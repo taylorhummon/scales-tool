@@ -12,8 +12,8 @@ export default function ArrowButton({
   isRight,
   onClick,
   dataTestid
-}: ArrowButtonProps): JSX.Element {
-  const arrow = isRight ? "⮕" : "⬅";
+}: ArrowButtonProps): JSX.Element {;
+  const arrow = isRight ? "→" : "←";
   const isDisabled = ! onClick;
   return (
     <div
