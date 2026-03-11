@@ -26,7 +26,11 @@ export default function KeyDescription({
       <div
         className={buildClassString(cssModule, ["key-description-content"])}
       >
-        {keyDescription}
+        <div
+          className={buildClassString(cssModule, ["key-description-text"])}
+        >
+          {keyDescription}
+        </div>
       </div>
     </>
   );

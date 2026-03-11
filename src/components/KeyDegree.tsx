@@ -18,9 +18,13 @@ export default function KeyDegree({
         key degree:
       </div>
       <div
-        className={buildClassString(cssModule, ["key-degree-content", "key-degree-text"])}
+        className={buildClassString(cssModule, ["key-degree-content"])}
       >
-        {keyDegree}
+        <div
+         className={buildClassString(cssModule, ["key-degree-text", "key-degree-font"])}
+        >
+          {keyDegree}
+        </div>
       </div>
     </>
   );

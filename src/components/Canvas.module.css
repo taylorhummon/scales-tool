@@ -2,5 +2,6 @@
   display: grid;
   grid-template-columns: 100px auto;
   column-gap: 20px;
+  row-gap: 16px;
   font-size: 16px;
 }
