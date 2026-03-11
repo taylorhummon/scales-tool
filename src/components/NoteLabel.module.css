@@ -1,0 +1,72 @@
+.note-label {
+  font-family: "PT Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  offset-rotate: 0deg;
+
+  &.do {
+    &.only {
+      offset-path: path("M 0, -80");
+    }
+  }
+
+  &.re {
+    &.early {
+      offset-path: path("M 40,-69.28203230275508");
+    }
+
+    &.late {
+      offset-path: path("M 69.28203230275508,-40");
+    }
+  }
+
+  &.mi {
+    &.early {
+      offset-path: path("M 80,0");
+    }
+
+    &.late {
+      offset-path: path("M 69.28203230275508,40");
+    }
+  }
+
+  &.fa {
+    &.early {
+      offset-path: path("M 40,69.28203230275508");
+    }
+
+    &.late {
+      offset-path: path("M 0,80");
+    }
+  }
+
+  &.sol {
+    &.early {
+      offset-path: path("M 0,80");
+    }
+
+    &.late {
+      offset-path: path("M -40,69.28203230275508");
+    }
+  }
+
+  &.la {
+    &.early {
+      offset-path: path("M -69.28203230275508,40");
+    }
+
+    &.late {
+      offset-path: path("M -80,0");
+    }
+  }
+
+  &.ti {
+    &.early {
+      offset-path: path("M -69.28203230275508,-40");
+    }
+
+    &.late {
+      offset-path: path("M -40,-69.28203230275508");
+    }
+  }
+}

@@ -1,0 +1,6 @@
+@value color-gray from "../constants.css";
+
+.tick {
+  stroke-width: 3;
+  stroke: color-gray;
+}

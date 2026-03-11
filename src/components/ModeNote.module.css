@@ -1,0 +1,24 @@
+.mode-note-label {
+  grid-column: 1;
+  grid-row: 3;
+  display: grid;
+  align-items: center;
+  text-align: right;
+}
+
+.mode-note-content {
+  grid-column: 2;
+  grid-row: 3;
+  margin: 10px 0;
+}
+
+.mode-note-text {
+  display: inline-grid;
+  width: 45px;
+  height: 40px;
+  align-items: center;
+  text-align: center;
+  font-family: "PT Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}

@@ -1,0 +1,7 @@
+@value color-gray from "../constants.css";
+
+.clock {
+  fill: none;
+  stroke-width: 2;
+  stroke: color-gray;
+}
