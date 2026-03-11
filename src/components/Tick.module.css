@@ -4,7 +4,7 @@
   stroke-width: 3;
   stroke: color-light-gray;
 
-  &.root {
+  &.hour-0 {
     stroke-width: 7;
   }
 

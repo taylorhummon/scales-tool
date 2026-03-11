@@ -29,8 +29,7 @@ function className(
   hour: number,
   isOccupied: boolean
 ): string {
-  const classNames = ["tick"];
-  if (hour === 0) classNames.push("root");
+  const classNames = ["tick", `hour-${hour}`];
   if (isOccupied) classNames.push("occupied");
   return buildClassString(cssModule, classNames);
 }

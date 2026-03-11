@@ -17,13 +17,15 @@ export default function NoteLabel({
   solfegeName
 }: NoteLabelProps): JSX.Element {
   return (
-    <g className={className(location, solfegeName)}>
+    <g
+      className={className(location, solfegeName)}
+      data-testid={`note-label-${solfegeName}`}
+    >
       <text
         style={{
           dominantBaseline: "central",
           textAnchor: "middle"
         }}
-        data-testid={`note-label-${solfegeName}`}
       >
         {note}
       </text>
