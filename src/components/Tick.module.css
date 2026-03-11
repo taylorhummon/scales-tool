@@ -1,6 +1,14 @@
-@value color-gray from "../constants.css";
+@value color-light-gray, color-dark-gray from "../constants.css";
 
 .tick {
   stroke-width: 3;
-  stroke: color-gray;
+  stroke: color-light-gray;
+
+  &.root {
+    stroke-width: 7;
+  }
+
+  &.occupied {
+    stroke: color-dark-gray;
+  }
 }

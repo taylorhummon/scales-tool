@@ -9,6 +9,7 @@ export interface Derived {
   modeNote: NaturalNote;
   keyDegree: number;
   locatedNoteBySolfegeName: Map<SolfegeName, LocatedNote>;
+  occupiedTickMarks: Set<number>;
 }
 
 export interface LocatedNote {

@@ -4,7 +4,6 @@ import Clock from "src/components/Clock";
 import KeyDegree from "src/components/KeyDegree";
 import KeyDescription from "src/components/KeyDescription";
 import ModeNote from "src/components/ModeNote";
-import NoteDot from "src/components/NoteDot";
 import NoteLabel from "src/components/NoteLabel";
 import RootNote from "src/components/RootNote";
 import { buildClassString } from "src/utilities/css";
@@ -32,14 +31,9 @@ export default function Canvas({
         height="300px"
         width="300px"
       >
-        <Clock />
-        {arrayFromMap(derived.locatedNoteBySolfegeName, (locatedNote, solfegeName) => (
-          <NoteDot
-            key={solfegeName}
-            location={locatedNote.location}
-            solfegeName={solfegeName}
-          />
-        ))}
+        <Clock
+          occupiedTickMarks={derived.occupiedTickMarks}
+        />
         {arrayFromMap(derived.locatedNoteBySolfegeName, (locatedNote, solfegeName) => (
           <NoteLabel
             key={solfegeName}

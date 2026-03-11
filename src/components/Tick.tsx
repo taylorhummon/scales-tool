@@ -6,14 +6,16 @@ import cssModule from "src/components/Tick.module.css";
 
 interface TickProps {
   hour: number;
+  isOccupied: boolean;
 }
 
 export default function Tick({
-  hour
+  hour,
+  isOccupied
 }: TickProps): JSX.Element {
   return (
     <line
-      className={className(hour)}
+      className={className(hour, isOccupied)}
       key={hour}
       x1={xOnClockAt(hour)}
       y1={yOnClockAt(hour)}
@@ -24,9 +26,11 @@ export default function Tick({
 }
 
 function className(
-  hour: number
+  hour: number,
+  isOccupied: boolean
 ): string {
   const classNames = ["tick"];
   if (hour === 0) classNames.push("root");
+  if (isOccupied) classNames.push("occupied");
   return buildClassString(cssModule, classNames);
 }

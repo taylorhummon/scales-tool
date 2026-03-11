@@ -6,16 +6,26 @@ import { buildClassString } from "src/utilities/css";
 import cssModule from "src/components/Clock.module.css";
 
 
-export default function Clock(): JSX.Element {
+interface ClockProps {
+  occupiedTickMarks: Set<number>;
+}
+
+export default function Clock({
+  occupiedTickMarks
+}: ClockProps): JSX.Element {
+  const ticks = buildIndicesArray(12).map((hour) => {
+    const isOccupied = occupiedTickMarks.has(hour);
+    return Tick({ hour, isOccupied });
+  });
   return (
     <>
+      {ticks}
       <circle
         className={buildClassString(cssModule, ["clock"])}
         cx="0"
         cy="0"
         r={CLOCK_RADIUS}
       />
-      {buildIndicesArray(12).map((hour) => Tick({ hour }))}
     </>
   );
 }
