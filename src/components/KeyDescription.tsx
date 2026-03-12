@@ -54,10 +54,9 @@ function getKeyDescription(
       </>
     );
   }
-  const modeName = modeNameFromModeNumber(modeNumber);
   return (
     <>
-      The {modeName} mode on <span className={className}>{rootNote}</span>
+      The {modeNameFromModeNumber(modeNumber)} mode on <span className={className}>{rootNote}</span>
     </>
   );
 }
