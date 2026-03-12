@@ -1,7 +1,6 @@
 import type { Note } from "src/types";
-
-import { MODE_NAMES_IN_FCGDAEB_ORDER } from "src/enumerations";
 import { buildClassString } from "src/utilities/css";
+import { modeNameFromModeNumber } from "src/utilities/music";
 
 import cssModule from "src/components/KeyDescription.module.css";
 
@@ -55,7 +54,7 @@ function getKeyDescription(
       </>
     );
   }
-  const modeName = MODE_NAMES_IN_FCGDAEB_ORDER[modeNumber + 3];
+  const modeName = modeNameFromModeNumber(modeNumber);
   return (
     <>
       The {modeName} mode on <span className={className}>{rootNote}</span>
