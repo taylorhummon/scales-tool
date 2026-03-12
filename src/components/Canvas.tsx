@@ -7,7 +7,6 @@ import ModeNote from "src/components/ModeNote";
 import NoteLabel from "src/components/NoteLabel";
 import RootNote from "src/components/RootNote";
 import { buildClassString } from "src/utilities/css";
-import { arrayFromMap } from "src/utilities/map";
 
 import cssModule from "src/components/Canvas.module.css";
 
@@ -32,14 +31,15 @@ export default function Canvas({
         width="300px"
       >
         <Clock
+          rootHour={derived.rootHour}
           occupiedTickMarks={derived.occupiedTickMarks}
         />
-        {arrayFromMap(derived.locatedNoteBySolfegeName, (locatedNote, solfegeName) => (
+        {derived.locatedNotes.map((locatedNote) => (
           <NoteLabel
-            key={solfegeName}
-            location={locatedNote.location}
+            key={locatedNote.note + locatedNote.hour.toString()}
+            hour={locatedNote.hour}
             note={locatedNote.note}
-            solfegeName={solfegeName}
+            solfegeName={locatedNote.solfegeName}
           />
         ))}
       </svg>

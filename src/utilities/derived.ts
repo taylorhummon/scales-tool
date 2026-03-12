@@ -1,29 +1,28 @@
 import {
-  Location,
   NATURAL_NOTES_IN_FCGDAEB_ORDER,
   NaturalNote,
-  SOLFEGE_NAMES_IN_FCGDAEB_ORDER,
   SolfegeName,
 } from "src/enumerations";
 import type { Derived, LocatedNote, Note } from "src/types";
-import { buildMap } from "src/utilities/map";
 import { getNoteBySolfegeName } from "src/utilities/music";
 
 
 export function derivedFromState(
+  rootHour: number,
   rootNumber: number,
   modeNumber: number
 ): Derived {
   const noteBySolfegeName = getNoteBySolfegeName(modeNumber, rootNumber);
-  const locatedNoteBySolfegeName = getLocatedNoteBySolfegeName(noteBySolfegeName, modeNumber);
+  const locatedNotes = getLocatedNotes(noteBySolfegeName, modeNumber, rootHour);
   return {
+    rootHour,
     rootNumber,
     modeNumber,
     rootNote: getRootNote(noteBySolfegeName),
     modeNote: getModeNote(modeNumber),
     keyDegree: rootNumber - modeNumber,
-    locatedNoteBySolfegeName,
-    occupiedTickMarks: getOccupiedTickMarks(locatedNoteBySolfegeName),
+    locatedNotes,
+    occupiedTickMarks: getOccupiedTickMarks(locatedNotes),
   };
 }
 
@@ -41,14 +40,37 @@ function getRootNote(
   return note;
 }
 
-function getLocatedNoteBySolfegeName(
+const SOLFEGE_NAMES = Object.values(SolfegeName);
+
+function getLocatedNotes(
   noteBySolfegeName: Map<SolfegeName, Note>,
-  modeNumber: number
-): Map<SolfegeName, LocatedNote> {
-  return buildMap(SOLFEGE_NAMES_IN_FCGDAEB_ORDER, ((solfegeName: SolfegeName) => ({
+  modeNumber: number,
+  rootHour: number
+): Array<LocatedNote> {
+  return SOLFEGE_NAMES.map((solfegeName: SolfegeName, solfegeIndex: number) => ({
+    hour: getHour(modeNumber, solfegeIndex, rootHour),
     note: getNote(noteBySolfegeName, solfegeName),
-    location: getLocation(solfegeName, modeNumber),
-  })));
+    solfegeName: solfegeName
+  }));
+}
+
+const HOUR_TABLE = [
+  [0, 2, 4, 6, 7, 9, 11],  // modeNumber = -3
+  [0, 2, 4, 5, 7, 9, 11],
+  [0, 2, 4, 5, 7, 9, 10],
+  [0, 2, 3, 5, 7, 9, 10],  // modeNumber = 0
+  [0, 2, 3, 5, 7, 8, 10],
+  [0, 1, 3, 5, 7, 8, 10],
+  [0, 1, 3, 5, 6, 8, 10],  // modeNumber = 3
+];
+
+function getHour(
+  modeNumber: number,
+  solfegeIndex: number,
+  rootHour: number
+): number {
+  const modeIndex = modeNumber + 3;
+  return (rootHour + HOUR_TABLE[modeIndex][solfegeIndex]) % 12;
 }
 
 function getNote(
@@ -60,39 +82,8 @@ function getNote(
   return note;
 }
 
-function getLocation(
-  solfegeName: SolfegeName,
-  modeNumber: number
-): Location {
-  if (solfegeName === SolfegeName.Do) return Location.Only;
-  const index = SOLFEGE_NAMES_IN_FCGDAEB_ORDER.indexOf(solfegeName);
-  if (index === -1) throw new Error(`invalid solfege note: ${solfegeName}`);
-  return (modeNumber > index - 3) ? Location.Early : Location.Late;
-}
-
 function getOccupiedTickMarks(
-  locatedNoteBySolfegeName: Map<SolfegeName, LocatedNote>
+  locatedNotes: Array<LocatedNote>
 ): Set<number> {
-  const tickMarks: Set<number> = new Set();
-  const doLocation = locatedNoteBySolfegeName.get(SolfegeName.Do)?.location;
-  if (doLocation === Location.Only) tickMarks.add(0);
-  const reLocation = locatedNoteBySolfegeName.get(SolfegeName.Re)?.location;
-  if (reLocation === Location.Early) tickMarks.add(1);
-  if (reLocation === Location.Late) tickMarks.add(2);
-  const miLocation = locatedNoteBySolfegeName.get(SolfegeName.Mi)?.location;
-  if (miLocation === Location.Early) tickMarks.add(3);
-  if (miLocation === Location.Late) tickMarks.add(4);
-  const faLocation = locatedNoteBySolfegeName.get(SolfegeName.Fa)?.location;
-  if (faLocation === Location.Early) tickMarks.add(5);
-  if (faLocation === Location.Late) tickMarks.add(6);
-  const solLocation = locatedNoteBySolfegeName.get(SolfegeName.Sol)?.location;
-  if (solLocation === Location.Early) tickMarks.add(6);
-  if (solLocation === Location.Late) tickMarks.add(7);
-  const laLocation = locatedNoteBySolfegeName.get(SolfegeName.La)?.location;
-  if (laLocation === Location.Early) tickMarks.add(8);
-  if (laLocation === Location.Late) tickMarks.add(9);
-  const tiLocation = locatedNoteBySolfegeName.get(SolfegeName.Ti)?.location;
-  if (tiLocation === Location.Early) tickMarks.add(10);
-  if (tiLocation === Location.Late) tickMarks.add(11);
-  return tickMarks;
+  return new Set(locatedNotes.map((locatedNote) => locatedNote.hour));
 }

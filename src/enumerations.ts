@@ -1,9 +1,3 @@
-export enum Location {
-  Only = "only",    // The root note, Do, only has one position
-  Early = "early",  // The earlier of the two possible positions on the clockface
-  Late = "late",    // The later of the two possible positions on the clockface
-}
-
 export enum NaturalNote {
   A = "A",
   B = "B",

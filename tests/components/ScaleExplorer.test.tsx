@@ -21,43 +21,43 @@ test("<ScalesTool /> shows notes at the correct positions for C-Major", () => {
   expect(
     domElementDo.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("only")
+    expect.stringContaining("hour-0")
   );
   const domElementRe = getNoteLabel(SolfegeName.Re);
   expect(
     domElementRe.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-2")
   );
   const domElementMi = getNoteLabel(SolfegeName.Mi);
   expect(
     domElementMi.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-4")
   );
   const domElementFa = getNoteLabel(SolfegeName.Fa);
   expect(
     domElementFa.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("early")
+    expect.stringContaining("hour-5")
   );
   const domElementSol = getNoteLabel(SolfegeName.Sol);
   expect(
     domElementSol.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-7")
   );
   const domElementLa = getNoteLabel(SolfegeName.La);
   expect(
     domElementLa.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-9")
   );
   const domElementTi = getNoteLabel(SolfegeName.Ti);
   expect(
     domElementTi.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-11")
   );
 });
 
@@ -115,43 +115,43 @@ test("<ScalesTool /> does not reposition notes after clicking increment root not
   expect(
     domElementDo.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("only")
+    expect.stringContaining("hour-0")
   );
   const domElementRe = getNoteLabel(SolfegeName.Re);
   expect(
     domElementRe.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-2")
   );
   const domElementMi = getNoteLabel(SolfegeName.Mi);
   expect(
     domElementMi.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-4")
   );
   const domElementFa = getNoteLabel(SolfegeName.Fa);
   expect(
     domElementFa.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("early")
+    expect.stringContaining("hour-5")
   );
   const domElementSol = getNoteLabel(SolfegeName.Sol);
   expect(
     domElementSol.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-7")
   );
   const domElementLa = getNoteLabel(SolfegeName.La);
   expect(
     domElementLa.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-9")
   );
   const domElementTi = getNoteLabel(SolfegeName.Ti);
   expect(
     domElementTi.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-11")
   );
 });
 
@@ -211,43 +211,43 @@ test("<ScalesTool /> does not reposition notes after clicking decrement root not
   expect(
     domElementDo.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("only")
+    expect.stringContaining("hour-0")
   );
   const domElementRe = getNoteLabel(SolfegeName.Re);
   expect(
     domElementRe.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-2")
   );
   const domElementMi = getNoteLabel(SolfegeName.Mi);
   expect(
     domElementMi.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-4")
   );
   const domElementFa = getNoteLabel(SolfegeName.Fa);
   expect(
     domElementFa.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("early")
+    expect.stringContaining("hour-5")
   );
   const domElementSol = getNoteLabel(SolfegeName.Sol);
   expect(
     domElementSol.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-7")
   );
   const domElementLa = getNoteLabel(SolfegeName.La);
   expect(
     domElementLa.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-9")
   );
   const domElementTi = getNoteLabel(SolfegeName.Ti);
   expect(
     domElementTi.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-11")
   );
 });
 
@@ -307,43 +307,43 @@ test("<ScalesTool /> repositions notes after clicking increment mode note", asyn
   expect(
     domElementDo.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("only")
+    expect.stringContaining("hour-0")
   );
   const domElementRe = getNoteLabel(SolfegeName.Re);
   expect(
     domElementRe.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-2")
   );
   const domElementMi = getNoteLabel(SolfegeName.Mi);
   expect(
     domElementMi.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-4")
   );
   const domElementFa = getNoteLabel(SolfegeName.Fa);
   expect(
     domElementFa.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("early")
+    expect.stringContaining("hour-5")
   );
   const domElementSol = getNoteLabel(SolfegeName.Sol);
   expect(
     domElementSol.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-7")
   );
   const domElementLa = getNoteLabel(SolfegeName.La);
   expect(
     domElementLa.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-9")
   );
   const domElementTi = getNoteLabel(SolfegeName.Ti);
   expect(
     domElementTi.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("early")
+    expect.stringContaining("hour-10")
   );
 });
 
@@ -403,43 +403,43 @@ test("<ScalesTool /> repositions notes after clicking decrement mode note", asyn
   expect(
     domElementDo.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("only")
+    expect.stringContaining("hour-0")
   );
   const domElementRe = getNoteLabel(SolfegeName.Re);
   expect(
     domElementRe.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-2")
   );
   const domElementMi = getNoteLabel(SolfegeName.Mi);
   expect(
     domElementMi.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-4")
   );
   const domElementFa = getNoteLabel(SolfegeName.Fa);
   expect(
     domElementFa.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-6")
   );
   const domElementSol = getNoteLabel(SolfegeName.Sol);
   expect(
     domElementSol.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-7")
   );
   const domElementLa = getNoteLabel(SolfegeName.La);
   expect(
     domElementLa.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-9")
   );
   const domElementTi = getNoteLabel(SolfegeName.Ti);
   expect(
     domElementTi.getAttribute("class")
   ).toEqual(
-    expect.stringContaining("late")
+    expect.stringContaining("hour-11")
   );
 });
 

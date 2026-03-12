@@ -6,15 +6,17 @@ import { derivedFromState } from "src/utilities/derived";
 import cssModule from "src/components/ScalesTool.module.css";
 
 
+const INITIAL_ROOT_HOUR = 0;
 const INITIAL_ROOT_NUMBER = -2; // C
 const INITIAL_MODE_NUMBER = -2; // Ionian
 const MAX_KEY_DEGREE = 14;
 
 
 export default function ScalesTool(): JSX.Element {
+  const [rootHour, setRootHour] = useState(INITIAL_ROOT_HOUR);
   const [rootNumber, setRootNumber] = useState(INITIAL_ROOT_NUMBER);
   const [modeNumber, setModeNumber] = useState(INITIAL_MODE_NUMBER);
-  const derived = derivedFromState(rootNumber, modeNumber);
+  const derived = derivedFromState(rootHour, rootNumber, modeNumber);
 
   function buildChangeRoot(
     isIncrement: boolean

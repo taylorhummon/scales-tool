@@ -4,69 +4,51 @@
   font-style: normal;
   offset-rotate: 0deg;
 
-  &.do {
-    &.only {
-      offset-path: path("M 0, -80");
-    }
+  &.hour-0 {
+    offset-path: path("M 0, -80");
   }
 
-  &.re {
-    &.early {
-      offset-path: path("M 40,-69.28203230275508");
-    }
-
-    &.late {
-      offset-path: path("M 69.28203230275508,-40");
-    }
+  &.hour-1 {
+    offset-path: path("M 40,-69.28203230275508");
   }
 
-  &.mi {
-    &.early {
-      offset-path: path("M 80,0");
-    }
-
-    &.late {
-      offset-path: path("M 69.28203230275508,40");
-    }
+  &.hour-2 {
+    offset-path: path("M 69.28203230275508,-40");
   }
 
-  &.fa {
-    &.early {
-      offset-path: path("M 40,69.28203230275508");
-    }
-
-    &.late {
-      offset-path: path("M 0,80");
-    }
+  &.hour-3 {
+    offset-path: path("M 80,0");
   }
 
-  &.sol {
-    &.early {
-      offset-path: path("M 0,80");
-    }
-
-    &.late {
-      offset-path: path("M -40,69.28203230275508");
-    }
+  &.hour-4 {
+    offset-path: path("M 69.28203230275508,40");
   }
 
-  &.la {
-    &.early {
-      offset-path: path("M -69.28203230275508,40");
-    }
-
-    &.late {
-      offset-path: path("M -80,0");
-    }
+  &.hour-5 {
+    offset-path: path("M 40,69.28203230275508");
   }
 
-  &.ti {
-    &.early {
-      offset-path: path("M -69.28203230275508,-40");
-    }
+  &.hour-6 {
+    offset-path: path("M 0,80");
+  }
 
-    &.late {
-      offset-path: path("M -40,-69.28203230275508");
-    }
+  &.hour-7 {
+    offset-path: path("M -40,69.28203230275508");
+  }
+
+  &.hour-8 {
+    offset-path: path("M -69.28203230275508,40");
+  }
+
+  &.hour-9 {
+    offset-path: path("M -80,0");
+  }
+
+  &.hour-10 {
+    offset-path: path("M -69.28203230275508,-40");
+  }
+
+  &.hour-11 {
+    offset-path: path("M -40,-69.28203230275508");
   }
 }
