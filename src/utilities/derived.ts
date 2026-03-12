@@ -3,15 +3,15 @@ import {
   NaturalNote,
   SolfegeName,
 } from "src/enumerations";
-import type { Derived, LocatedNote, Note } from "src/types";
+import type { State, Derived, LocatedNote, Note } from "src/types";
 import { getNoteBySolfegeName } from "src/utilities/music";
 
 
-export function derivedFromState(
-  rootHour: number,
-  rootNumber: number,
-  modeNumber: number
-): Derived {
+export function derivedFromState({
+  rootHour,
+  rootNumber,
+  modeNumber
+}: State): Derived {
   const noteBySolfegeName = getNoteBySolfegeName(modeNumber, rootNumber);
   const locatedNotes = getLocatedNotes(noteBySolfegeName, modeNumber, rootHour);
   return {

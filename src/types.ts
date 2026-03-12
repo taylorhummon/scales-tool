@@ -2,6 +2,12 @@ import { NaturalNote, SolfegeName } from "src/enumerations";
 
 export type Note = string;
 
+export interface State {
+  rootHour: number;
+  rootNumber: number;
+  modeNumber: number;
+}
+
 export interface Derived {
   rootHour: number;
   rootNumber: number;
