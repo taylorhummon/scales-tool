@@ -1,14 +1,28 @@
-import {
-  NATURAL_NOTES_IN_FCGDAEB_ORDER,
-  MODE_NAMES_IN_FCGDAEB_ORDER,
-  NaturalNote,
-  SolfegeName,
-} from "src/enumerations";
+import { NaturalNote, SolfegeName, ModeName } from "src/enumerations";
 import type { Note, LocatedNote } from "src/types";
 import { remainderFor } from "src/utilities/math";
 
 
 const SOLFEGE_NAMES = Object.values(SolfegeName);
+const NATURAL_NOTES_IN_FCGDAEB_ORDER = [
+  NaturalNote.F,
+  NaturalNote.C,
+  NaturalNote.G,
+  NaturalNote.D,
+  NaturalNote.A,
+  NaturalNote.E,
+  NaturalNote.B
+]
+const MODE_NAMES_IN_FCGDAEB_ORDER = [
+  ModeName.Lydian,
+  ModeName.Ionian,
+  ModeName.Mixolydian,
+  ModeName.Dorian,
+  ModeName.Aeolian,
+  ModeName.Phrygian,
+  ModeName.Locrian
+];
+
 
 export function getKeyDegree(
   rootNumber: number,
@@ -27,9 +41,9 @@ export function modeNoteFromModeNumber(
 
 export function modeNameFromModeNumber(
   modeNumber: number,
-): string {
+): ModeName {
   if (modeNumber < -3 || modeNumber > 3) throw `Invalid modeNumber (${modeNumber})`;
-  // mode number 0 corresponds to D
+  // mode number 0 corresponds to Dorian
   return MODE_NAMES_IN_FCGDAEB_ORDER[modeNumber + 3];
 }
 
@@ -40,10 +54,10 @@ export function rootHourFromRootNumber(
 }
 
 export function getNoteBySolfegeName(
-  modeNumber: number,
-  rootNumber: number
+  rootNumber: number,
+  modeNumber: number
 ): Map<SolfegeName, Note> {
-  const notes = getNotes(modeNumber, rootNumber);
+  const notes = getNotes(rootNumber, modeNumber);
   const result = new Map();
   for (let i = 0; i < 7; i++) {
     result.set(SOLFEGE_NAMES[i], notes[i]);
@@ -52,16 +66,16 @@ export function getNoteBySolfegeName(
 }
 
 function getNotes(
-  modeNumber: number,
-  rootNumber: number
+  rootNumber: number,
+  modeNumber: number
 ): Array<Note> {
-  const rootNote = NATURAL_NOTES_IN_FCGDAEB_ORDER[remainderFor(rootNumber + 3, 7)];
-  const naturalNotes = getNaturalNotesStartingWith(rootNote);
-  const degree = rootNumber - modeNumber;
-  if (degree >= 0) {
-    return getNotesWhenSharpsInvolved(naturalNotes, degree);
+  const firstNaturalNote = NATURAL_NOTES_IN_FCGDAEB_ORDER[remainderFor(rootNumber + 3, 7)];
+  const naturalNotes = getNaturalNotesStartingWith(firstNaturalNote);
+  const keyDegree = getKeyDegree(rootNumber, modeNumber);
+  if (keyDegree >= 0) {
+    return getNotesWhenSharpsInvolved(naturalNotes, keyDegree);
   } else {
-    return getNotesWhenFlatsInvolved(naturalNotes, - degree);  // - degree > 0
+    return getNotesWhenFlatsInvolved(naturalNotes, - keyDegree);  // - keyDegree > 0
   }
 }
 
@@ -132,9 +146,9 @@ function addFlats(
 }
 
 export function getLocatedNotes(
-  noteBySolfegeName: Map<SolfegeName, Note>,
   modeNumber: number,
-  rootHour: number
+  rootHour: number,
+  noteBySolfegeName: Map<SolfegeName, Note>,
 ): Array<LocatedNote> {
   return SOLFEGE_NAMES.map((solfegeName: SolfegeName, solfegeIndex: number) => ({
     hour: getHour(modeNumber, solfegeIndex, rootHour),

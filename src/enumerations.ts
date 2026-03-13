@@ -8,16 +8,6 @@ export enum NaturalNote {
   G = "G"
 }
 
-export const NATURAL_NOTES_IN_FCGDAEB_ORDER = [
-  NaturalNote.F,
-  NaturalNote.C,
-  NaturalNote.G,
-  NaturalNote.D,
-  NaturalNote.A,
-  NaturalNote.E,
-  NaturalNote.B
-]
-
 export enum SolfegeName {
   Do = "do",
   Re = "re",
@@ -28,16 +18,6 @@ export enum SolfegeName {
   Ti = "ti"
 }
 
-export const SOLFEGE_NAMES_IN_FCGDAEB_ORDER = [
-  SolfegeName.Fa,
-  SolfegeName.Ti,
-  SolfegeName.Mi,
-  SolfegeName.La,
-  SolfegeName.Re,
-  SolfegeName.Sol,
-  SolfegeName.Do
-];
-
 export enum ModeName {
   Aeolian = "Aeolian",
   Locrian = "Locrian",
@@ -47,13 +27,3 @@ export enum ModeName {
   Lydian = "Lydian",
   Mixolydian = "Mixolydian"
 }
-
-export const MODE_NAMES_IN_FCGDAEB_ORDER = [
-  ModeName.Lydian,
-  ModeName.Ionian,
-  ModeName.Mixolydian,
-  ModeName.Dorian,
-  ModeName.Aeolian,
-  ModeName.Phrygian,
-  ModeName.Locrian
-];

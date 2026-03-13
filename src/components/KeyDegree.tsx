@@ -38,19 +38,12 @@ export default function KeyDegree({
 function getExplanation(
   keyDegree: number,
 ): string {
-  if (keyDegree === 1) {
-    return "One sharp";
-  }
-  if (keyDegree === -1) {
-    return "One flat";
-  }
-  if (keyDegree >= 2) {
-    return `${writtenOutNumber(keyDegree)} sharps`;
-  }
-  if (keyDegree <= -2) {
-    return `${writtenOutNumber(- keyDegree)} flats`;
-  }
-  return "No sharps or flats";
+  if (keyDegree === 0)  return "No sharps or flats";
+  if (keyDegree === 1)  return "One sharp";
+  if (keyDegree === -1) return "One flat";
+  if (keyDegree >= 2)   return `${writtenOutNumber(keyDegree)} sharps`;
+  if (keyDegree <= -2)  return `${writtenOutNumber(- keyDegree)} flats`;
+  return "";
 }
 
 function writtenOutNumber(

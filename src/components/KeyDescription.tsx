@@ -1,6 +1,6 @@
 import type { Note } from "src/types";
 import { buildClassString } from "src/utilities/css";
-import { modeNameFromModeNumber } from "src/utilities/music";
+import { modeNameFromModeNumber } from "src/utilities/scale";
 
 import cssModule from "src/components/KeyDescription.module.css";
 

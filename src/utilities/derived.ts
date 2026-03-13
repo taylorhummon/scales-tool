@@ -1,21 +1,21 @@
 import type { State, Derived, LocatedNote } from "src/types";
 import {
   getNoteBySolfegeName,
+  getRootNote,
   rootHourFromRootNumber,
   getLocatedNotes,
-  getRootNote,
   modeNoteFromModeNumber,
   getKeyDegree,
-} from "src/utilities/music";
+} from "src/utilities/scale";
 
 
 export function derivedFromState({
   rootNumber,
   modeNumber
 }: State): Derived {
-  const noteBySolfegeName = getNoteBySolfegeName(modeNumber, rootNumber);
   const rootHour = rootHourFromRootNumber(rootNumber);
-  const locatedNotes = getLocatedNotes(noteBySolfegeName, modeNumber, rootHour);
+  const noteBySolfegeName = getNoteBySolfegeName(rootNumber, modeNumber);
+  const locatedNotes = getLocatedNotes(modeNumber, rootHour, noteBySolfegeName);
   return {
     rootNumber,
     modeNumber,
