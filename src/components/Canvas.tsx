@@ -5,6 +5,7 @@ import KeyDegree from "src/components/KeyDegree";
 import KeyDescription from "src/components/KeyDescription";
 import ModeNote from "src/components/ModeNote";
 import NoteLabel from "src/components/NoteLabel";
+import RootDot from "src/components/RootDot";
 import RootNote from "src/components/RootNote";
 import { buildClassString } from "src/utilities/css";
 
@@ -31,8 +32,10 @@ export default function Canvas({
         width="300px"
       >
         <Clock
-          rootHour={derived.rootHour}
           occupiedTickMarks={derived.occupiedTickMarks}
+        />
+        <RootDot
+          rootHour={derived.rootHour}
         />
         {derived.locatedNotes.map((locatedNote) => (
           <NoteLabel
