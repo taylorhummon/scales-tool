@@ -1,0 +1,67 @@
+@value color-black, duration-motion from "../constants.css";
+
+@keyframes move-note-dot {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+.note-dot {
+  offset-rotate: 0deg;
+  fill: color-blue;
+
+  &.move {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+  }
+
+  &.hour-0 {
+    offset-path: path("M 0,-120");
+  }
+
+  &.hour-1 {
+    offset-path: path("M 60,-103.92304845413263");
+  }
+
+  &.hour-2 {
+    offset-path: path("M 103.92304845413263,-60");
+  }
+
+  &.hour-3 {
+    offset-path: path("M 120,0");
+  }
+
+  &.hour-4 {
+    offset-path: path("M 103.92304845413263,60");
+  }
+
+  &.hour-5 {
+    offset-path: path("M 60,103.92304845413263");
+  }
+
+  &.hour-6 {
+    offset-path: path("M 0,120");
+  }
+
+  &.hour-7 {
+    offset-path: path("M -60,103.92304845413263");
+  }
+
+  &.hour-8 {
+    offset-path: path("M -103.92304845413263,60");
+  }
+
+  &.hour-9 {
+    offset-path: path("M -120,0");
+  }
+
+  &.hour-10 {
+    offset-path: path("M -103.92304845413263,-60");
+  }
+
+  &.hour-11 {
+    offset-path: path("M -60,-103.92304845413263");
+  }
+}

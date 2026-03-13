@@ -1,5 +1,5 @@
 import { Motion } from "src/enumerations";
-import type { State, Derived, LocatedNote } from "src/types";
+import type { State, Derived } from "src/types";
 import { remainderFor } from "src/utilities/math";
 import {
   getNoteBySolfegeName,
@@ -28,7 +28,6 @@ export function derivedFromState({
     rootHour,
     nextRootHour: getNextRootHour(rootHour, motion),
     locatedNotes,
-    occupiedTickMarks: getOccupiedTickMarks(locatedNotes),
     keyDegree: getKeyDegree(rootNumber, modeNumber),
   };
 }
@@ -40,10 +39,4 @@ function getNextRootHour(
   if (motion === Motion.IncrementRoot) return remainderFor(rootHour + 7, 12);
   if (motion === Motion.DecrementRoot) return remainderFor(rootHour - 7, 12);
   return rootHour;
-}
-
-function getOccupiedTickMarks(
-  locatedNotes: Array<LocatedNote>
-): Set<number> {
-  return new Set(locatedNotes.map((locatedNote) => locatedNote.hour));
 }

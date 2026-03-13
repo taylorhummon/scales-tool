@@ -6,16 +6,11 @@ import { buildClassString } from "src/utilities/css";
 import cssModule from "src/components/Clock.module.css";
 
 
-interface ClockProps {
-  occupiedTickMarks: Set<number>;
-}
-
-export default function Clock({
-  occupiedTickMarks
-}: ClockProps): JSX.Element {
+export default function Clock(
+): JSX.Element {
+  console.log("building clock");
   const ticks = buildIndicesArray(12).map((hour) => {
-    const isOccupied = occupiedTickMarks.has(hour);
-    return Tick({ hour, isOccupied });
+    return Tick({ hour });
   });
   return (
     <>

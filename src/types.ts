@@ -17,7 +17,6 @@ export interface Derived {
   rootHour: number;
   nextRootHour: number;
   locatedNotes: Array<LocatedNote>;
-  occupiedTickMarks: Set<number>;
   keyDegree: number;
 }
 
