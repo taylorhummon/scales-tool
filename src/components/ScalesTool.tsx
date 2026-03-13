@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { State } from "src/types";
+import { useState, useRef, useEffect } from "react";
+
+import { Motion } from "src/enumerations";
 import Canvas from "src/components/Canvas";
 import { buildClassString } from "src/utilities/css";
 import { derivedFromState } from "src/utilities/derived";
@@ -13,12 +14,12 @@ const MAX_KEY_DEGREE = 14;
 
 
 export default function ScalesTool(): JSX.Element {
-  const [rootNumber, setRootNumber] = useState(INITIAL_ROOT_NUMBER);
-  const [modeNumber, setModeNumber] = useState(INITIAL_MODE_NUMBER);
-  const state: State = {
-    rootNumber,
-    modeNumber
-  }
+  const domNodeRef = useRef<HTMLDivElement>(null);
+  const [state, setState] = useState({
+    motion: Motion.Still,
+    rootNumber: INITIAL_ROOT_NUMBER,
+    modeNumber: INITIAL_MODE_NUMBER
+  });
   const derived = derivedFromState(state);
 
   function buildChangeRoot(
@@ -27,12 +28,18 @@ export default function ScalesTool(): JSX.Element {
     if (isIncrement) {
       if (derived.keyDegree >= MAX_KEY_DEGREE) return undefined;
       return () => {
-        setRootNumber((rootNumber) => rootNumber + 1);
+        if (state.motion !== Motion.Still) return;
+        setState((state) => {
+          return { ...state, motion: Motion.IncrementRoot };
+        });
       }
     } else {
       if (derived.keyDegree <= -MAX_KEY_DEGREE) return undefined;
       return () => {
-        setRootNumber((rootNumber) => rootNumber - 1);
+        if (state.motion !== Motion.Still) return;
+        setState((state) => {
+          return { ...state, motion: Motion.DecrementRoot };
+        });
       }
     }
   }
@@ -41,22 +48,55 @@ export default function ScalesTool(): JSX.Element {
     isIncrement: boolean
   ): (() => void) | undefined {
     if (isIncrement) {
-      if (modeNumber >= 3) return undefined;
+      if (state.modeNumber >= 3) return undefined;
       if (derived.keyDegree <= -MAX_KEY_DEGREE) return undefined;
       return () => {
-        setModeNumber((rootNumber) => rootNumber + 1);
+        if (state.motion !== Motion.Still) return;
+        setState((state) => {
+          const modeNumber = state.modeNumber + 1;
+          return { ...state, modeNumber };
+        });
       }
     } else {
-      if (modeNumber <= -3) return undefined;
+      if (state.modeNumber <= -3) return undefined;
       if (derived.keyDegree >= MAX_KEY_DEGREE) return undefined;
       return () => {
-        setModeNumber((rootNumber) => rootNumber - 1);
-      }
+        if (state.motion !== Motion.Still) return;
+        setState((state) => {
+          const modeNumber = state.modeNumber - 1;
+          return { ...state, modeNumber };
+        });
+      };
     }
   }
 
+  useEffect(() => {
+    function animationEndHandler(): void {
+      setState((state) => {
+        if (state.motion === Motion.IncrementRoot) {
+          const motion = Motion.Still;
+          const rootNumber = state.rootNumber + 1;
+          return { ...state, motion, rootNumber };
+        }
+        if (state.motion === Motion.DecrementRoot) {
+          const motion = Motion.Still;
+          const rootNumber = state.rootNumber - 1;
+          return { ...state, motion, rootNumber };
+        }
+        return state;
+      });
+    }
+
+    const domNode = domNodeRef.current;
+    if (domNode) domNode.addEventListener("animationend", animationEndHandler, false);
+    return () => {
+      if (domNode) domNode.removeEventListener("animationend", animationEndHandler);
+    };
+  }, []);
+
   return (
     <div
+      ref={domNodeRef}
       className={buildClassString(cssModule, ["scales-tool"])}
     >
       <Canvas

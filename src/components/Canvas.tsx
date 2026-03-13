@@ -35,7 +35,9 @@ export default function Canvas({
           occupiedTickMarks={derived.occupiedTickMarks}
         />
         <RootDot
+          motion={derived.motion}
           rootHour={derived.rootHour}
+          nextRootHour={derived.nextRootHour}
         />
         {derived.locatedNotes.map((locatedNote) => (
           <NoteLabel

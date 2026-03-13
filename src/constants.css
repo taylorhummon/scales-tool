@@ -2,3 +2,5 @@
 @value color-dark-gray: rgb(30, 30, 30);
 @value color-light-gray: rgb(220, 220, 220);
 @value color-blue: rgb(4, 51, 255);
+
+@value duration-motion: 650ms;
