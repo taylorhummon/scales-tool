@@ -31,6 +31,10 @@ function className(
   nextHour: number
 ): string {
   const classNames = ["note-dot"];
+  if (hour === 0) {
+    classNames.push("move");
+    classNames.push("from-1-to-0");
+  }
   if (motion === Motion.Still) {
     classNames.push(`hour-${hour}`);
   }
