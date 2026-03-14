@@ -8,7 +8,6 @@ import cssModule from "src/components/Clock.module.css";
 
 export default function Clock(
 ): JSX.Element {
-  console.log("building clock");
   const ticks = buildIndicesArray(12).map((hour) => {
     return Tick({ hour });
   });

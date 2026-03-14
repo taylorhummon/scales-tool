@@ -11,7 +11,6 @@ interface TickProps {
 export default function Tick({
   hour
 }: TickProps): JSX.Element {
-  console.log("DRAWING LINE");
   return (
     <line
       className={className(hour)}
