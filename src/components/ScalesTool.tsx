@@ -53,8 +53,7 @@ export default function ScalesTool(): JSX.Element {
       return () => {
         if (state.motion !== Motion.Still) return;
         setState((state) => {
-          const modeNumber = state.modeNumber + 1;
-          return { ...state, modeNumber };
+          return { ...state, motion: Motion.IncrementMode };
         });
       }
     } else {
@@ -63,8 +62,7 @@ export default function ScalesTool(): JSX.Element {
       return () => {
         if (state.motion !== Motion.Still) return;
         setState((state) => {
-          const modeNumber = state.modeNumber - 1;
-          return { ...state, modeNumber };
+          return { ...state, motion: Motion.DecrementMode };
         });
       };
     }
@@ -74,14 +72,20 @@ export default function ScalesTool(): JSX.Element {
     function animationEndHandler(): void {
       setState((state) => {
         if (state.motion === Motion.IncrementRoot) {
-          const motion = Motion.Still;
           const rootNumber = state.rootNumber + 1;
-          return { ...state, motion, rootNumber };
+          return { ...state, motion: Motion.Still, rootNumber };
         }
         if (state.motion === Motion.DecrementRoot) {
-          const motion = Motion.Still;
           const rootNumber = state.rootNumber - 1;
-          return { ...state, motion, rootNumber };
+          return { ...state, motion: Motion.Still, rootNumber };
+        }
+        if (state.motion === Motion.IncrementMode) {
+          const modeNumber = state.modeNumber + 1;
+          return { ...state, motion: Motion.Still, modeNumber };
+        }
+        if (state.motion === Motion.DecrementMode) {
+          const modeNumber = state.modeNumber - 1;
+          return { ...state, motion: Motion.Still, modeNumber };
         }
         return state;
       });

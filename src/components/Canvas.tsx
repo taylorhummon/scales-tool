@@ -1,6 +1,5 @@
 import type { Derived } from "src/types";
 
-import { Motion } from "src/enumerations";
 import Clock from "src/components/Clock";
 import KeyDegree from "src/components/KeyDegree";
 import KeyDescription from "src/components/KeyDescription";
@@ -37,9 +36,10 @@ export default function Canvas({
         {derived.locatedNotes.map((locatedNote) => (
           <NoteDot
             key={locatedNote.note + locatedNote.hour.toString()}
-            motion={Motion.Still}
+            motion={derived.motion}
             hour={locatedNote.hour}
-            nextHour={locatedNote.hour}
+            movingNoteBegin={derived.movingNoteBegin}
+            movingNoteEnd={derived.movingNoteEnd}
           />
         ))}
         {derived.locatedNotes.map((locatedNote) => (
@@ -53,7 +53,8 @@ export default function Canvas({
         <RootDot
           motion={derived.motion}
           rootHour={derived.rootHour}
-          nextRootHour={derived.nextRootHour}
+          movingRootBegin={derived.movingRootBegin}
+          movingRootEnd={derived.movingRootEnd}
         />
       </svg>
       <div

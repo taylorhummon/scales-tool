@@ -29,19 +29,34 @@ export function derivedFromState({
     locatedNotes,
     keyDegree,
     rootHour,
-    nextRootHour: getNextRootHour(rootHour, motion),
+    movingRootBegin: getMovingRootBegin(motion, rootHour),
+    movingRootEnd: getMovingRootEnd(motion, rootHour),
     movingNoteBegin: getMovingNoteBegin(motion, keyDegree),
     movingNoteEnd: getMovingNoteEnd(motion, keyDegree),
   };
 }
 
-function getNextRootHour(
-  rootHour: number,
-  motion: Motion
-): number {
-  if (motion === Motion.IncrementRoot) return remainderFor(rootHour + 7, 12);
-  if (motion === Motion.DecrementRoot) return remainderFor(rootHour - 7, 12);
-  return rootHour;
+function getMovingRootBegin(
+  motion: Motion,
+  rootHour: number
+): number | null {
+  if (motion === Motion.IncrementRoot || motion === Motion.DecrementRoot) {
+    return rootHour;
+  }
+  return null;
+}
+
+function getMovingRootEnd(
+  motion: Motion,
+  rootHour: number
+): number | null {
+  if (motion === Motion.IncrementRoot) {
+    return remainderFor(rootHour + 7, 12);
+  }
+  if (motion === Motion.DecrementRoot) {
+    return remainderFor(rootHour - 7, 12);
+  }
+  return null;
 }
 
 function getMovingNoteBegin(
