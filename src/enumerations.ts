@@ -1,7 +1,9 @@
 export enum Motion {
   Still = "Still",
   IncrementRoot = "IncrementRoot",
-  DecrementRoot = "DecrementRoot"
+  DecrementRoot = "DecrementRoot",
+  IncrementMode = "IncrementMode",
+  DecrementMode = "DecrementMode",
 }
 
 export enum NaturalNote {

@@ -14,10 +14,12 @@ export interface Derived {
   modeNumber: number;
   rootNote: Note;
   modeNote: NaturalNote;
-  rootHour: number;
-  nextRootHour: number;
   locatedNotes: Array<LocatedNote>;
   keyDegree: number;
+  rootHour: number;
+  nextRootHour: number;
+  movingNoteBegin: number | null;
+  movingNoteEnd: number | null;
 }
 
 export interface LocatedNote {
