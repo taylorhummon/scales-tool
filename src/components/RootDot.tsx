@@ -1,5 +1,6 @@
 import { Motion } from "src/enumerations";
 import { buildClassString } from "src/utilities/css";
+import { getMovingNoteEndHour } from "src/utilities/scale";
 
 import cssModule from "src/components/RootDot.module.css";
 
@@ -7,19 +8,15 @@ import cssModule from "src/components/RootDot.module.css";
 interface RootDotProps {
   motion: Motion;
   rootHour: number;
-  movingRootBegin: number | null;
-  movingRootEnd: number | null;
 }
 
 export default function RootDot({
   motion,
-  rootHour,
-  movingRootBegin,
-  movingRootEnd
+  rootHour
 }: RootDotProps): JSX.Element {
   return (
     <circle
-      className={className(motion, rootHour, movingRootBegin, movingRootEnd)}
+      className={className(motion, rootHour)}
       cx="0"
       cy="0"
       r="10"
@@ -29,9 +26,7 @@ export default function RootDot({
 
 function className(
   motion: Motion,
-  rootHour: number,
-  movingRootBegin: number | null,
-  movingRootEnd: number | null
+  rootHour: number
 ): string {
   const classNames = ["root-dot"];
   if (
@@ -45,10 +40,9 @@ function className(
     motion === Motion.IncrementRoot ||
     motion === Motion.DecrementRoot
   ) {
-    if (movingRootBegin !== null && movingRootEnd !== null) {
-      classNames.push("move");
-      classNames.push(`from-${movingRootBegin}-to-${movingRootEnd}`);
-    }
+    const rootEndHour = getMovingNoteEndHour(motion, rootHour);
+    classNames.push("move");
+    classNames.push(`from-${rootHour}-to-${rootEndHour}`);
   }
   return buildClassString(cssModule, classNames);
 }

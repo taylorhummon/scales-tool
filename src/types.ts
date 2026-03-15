@@ -17,10 +17,6 @@ export interface Derived {
   locatedNotes: Array<LocatedNote>;
   keyDegree: number;
   rootHour: number;
-  movingRootBegin: number | null;
-  movingRootEnd: number | null;
-  movingNoteBegin: number | null;
-  movingNoteEnd: number | null;
 }
 
 export interface LocatedNote {

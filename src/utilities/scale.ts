@@ -1,4 +1,4 @@
-import { NaturalNote, SolfegeName, ModeName } from "src/enumerations";
+import { NaturalNote, SolfegeName, ModeName, Motion } from "src/enumerations";
 import type { Note, LocatedNote } from "src/types";
 import { remainderFor } from "src/utilities/math";
 
@@ -192,4 +192,17 @@ export function getRootNote(
   const note = noteBySolfegeName.get(SolfegeName.Do);
   if (! note) throw "Oops. Could not find root note";
   return note;
+}
+
+export function getMovingNoteEndHour(
+  motion: Motion,
+  hour: number
+): number | null {
+  if (motion === Motion.IncrementRoot || motion === Motion.DecrementMode) {
+    return remainderFor(hour + 7, 12);
+  }
+  if (motion === Motion.DecrementRoot || motion === Motion.IncrementMode) {
+    return remainderFor(hour - 7, 12);
+  }
+  return null;
 }

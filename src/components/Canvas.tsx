@@ -38,8 +38,7 @@ export default function Canvas({
             key={locatedNote.note + locatedNote.hour.toString()}
             motion={derived.motion}
             hour={locatedNote.hour}
-            movingNoteBegin={derived.movingNoteBegin}
-            movingNoteEnd={derived.movingNoteEnd}
+            isRoot={locatedNote.hour === derived.rootHour}
           />
         ))}
         {derived.locatedNotes.map((locatedNote) => (
@@ -53,8 +52,6 @@ export default function Canvas({
         <RootDot
           motion={derived.motion}
           rootHour={derived.rootHour}
-          movingRootBegin={derived.movingRootBegin}
-          movingRootEnd={derived.movingRootEnd}
         />
       </svg>
       <div
