@@ -6,8 +6,8 @@ import {
   getModeNoteName,
   getModeName,
   getRootNoteHour,
-  getNoteNameBySolfege,
   getRootNoteName,
+  getNotes,
   getMotionEndHour,
 } from "src/utilities/scale";
 
@@ -84,162 +84,6 @@ test("getRootNoteHour() works", () => {
   );
 });
 
-test("getNoteNameBySolfege() for C-Major", () => {
-  const noteNameBySolfege = getNoteNameBySolfege(-2, -2);
-  expect(
-    noteNameBySolfege.get(Solfege.Do)
-  ).toBe(
-    "C"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Re)
-  ).toBe(
-    "D"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Mi)
-  ).toBe(
-    "E"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Fa)
-  ).toBe(
-    "F"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Sol)
-  ).toBe(
-    "G"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.La)
-  ).toBe(
-    "A"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Ti)
-  ).toBe(
-    "B"
-  );
-});
-
-test("getNoteNameBySolfege() for D-Major", () => {
-  const noteNameBySolfege = getNoteNameBySolfege(0, -2);
-  expect(
-    noteNameBySolfege.get(Solfege.Do)
-  ).toBe(
-    "D"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Re)
-  ).toBe(
-    "E"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Mi)
-  ).toBe(
-    "F♯"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Fa)
-  ).toBe(
-    "G"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Sol)
-  ).toBe(
-    "A"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.La)
-  ).toBe(
-    "B"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Ti)
-  ).toBe(
-    "C♯"
-  );
-});
-
-test("getNoteNameBySolfege() for Dorian D", () => {
-  const noteNameBySolfege = getNoteNameBySolfege(0, 0);
-  expect(
-    noteNameBySolfege.get(Solfege.Do)
-  ).toBe(
-    "D"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Re)
-  ).toBe(
-    "E"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Mi)
-  ).toBe(
-    "F"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Fa)
-  ).toBe(
-    "G"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Sol)
-  ).toBe(
-    "A"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.La)
-  ).toBe(
-    "B"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Ti)
-  ).toBe(
-    "C"
-  );
-});
-
-test("getNoteNameBySolfege() for Dorian C", () => {
-  const noteNameBySolfege = getNoteNameBySolfege(-2, 0);
-  expect(
-    noteNameBySolfege.get(Solfege.Do)
-  ).toBe(
-    "C"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Re)
-  ).toBe(
-    "D"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Mi)
-  ).toBe(
-    "E♭"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Fa)
-  ).toBe(
-    "F"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Sol)
-  ).toBe(
-    "G"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.La)
-  ).toBe(
-    "A"
-  );
-  expect(
-    noteNameBySolfege.get(Solfege.Ti)
-  ).toBe(
-    "B♭"
-  );
-});
-
 test("getRootNoteName() works", () => {
   expect(
     getRootNoteName(0, -2)
@@ -260,6 +104,132 @@ test("getRootNoteName() works", () => {
     getRootNoteName(10, 2)
   ).toBe(
     "B♯"
+  );
+});
+
+test("getNotes() works", () => {
+  expect(
+    getNotes(0, 0)
+  ).toStrictEqual(
+    [
+      {
+        "hour": 0,
+        "name": "D",
+        "solfege": Solfege.Do,
+      },
+      {
+        "hour": 2,
+        "name": "E",
+        "solfege": Solfege.Re,
+      },
+      {
+        "hour": 3,
+        "name": "F",
+        "solfege": Solfege.Mi,
+      },
+      {
+        "hour": 5,
+        "name": "G",
+        "solfege": Solfege.Fa,
+      },
+      {
+        "hour": 7,
+        "name": "A",
+        "solfege": Solfege.Sol,
+      },
+      {
+        "hour": 9,
+        "name": "B",
+        "solfege": Solfege.La,
+      },
+      {
+        "hour": 10,
+        "name": "C",
+        "solfege": Solfege.Ti,
+      },
+    ]
+  );
+  expect(
+    getNotes(-3, 2)
+  ).toStrictEqual(
+    [
+      {
+        "hour": 3,
+        "name": "F",
+        "solfege": Solfege.Do,
+      },
+      {
+        "hour": 4,
+        "name": "G♭",
+        "solfege": Solfege.Re,
+      },
+      {
+        "hour": 6,
+        "name": "A♭",
+        "solfege": Solfege.Mi,
+      },
+      {
+        "hour": 8,
+        "name": "B♭",
+        "solfege": Solfege.Fa,
+      },
+      {
+        "hour": 10,
+        "name": "C",
+        "solfege": Solfege.Sol,
+      },
+      {
+        "hour": 11,
+        "name": "D♭",
+        "solfege": Solfege.La,
+      },
+      {
+        "hour": 1,
+        "name": "E♭",
+        "solfege": Solfege.Ti,
+      },
+    ]
+  );
+  expect(
+    getNotes(2, -1)
+  ).toStrictEqual(
+    [
+      {
+        "hour": 2,
+        "name": "E",
+        "solfege": Solfege.Do,
+      },
+      {
+        "hour": 4,
+        "name": "F♯",
+        "solfege": Solfege.Re,
+      },
+      {
+        "hour": 6,
+        "name": "G♯",
+        "solfege": Solfege.Mi,
+      },
+      {
+        "hour": 7,
+        "name": "A",
+        "solfege": Solfege.Fa,
+      },
+      {
+        "hour": 9,
+        "name": "B",
+        "solfege": Solfege.Sol,
+      },
+      {
+        "hour": 11,
+        "name": "C♯",
+        "solfege": Solfege.La,
+      },
+      {
+        "hour": 0,
+        "name": "D",
+        "solfege": Solfege.Ti,
+      },
+    ]
   );
 });
 

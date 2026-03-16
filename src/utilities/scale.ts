@@ -34,7 +34,7 @@ export function getKeyDegree(
 }
 
 export function getModeNoteName(
-  mode: number,
+  mode: number
 ): NaturalNoteName {
   if (mode < -3 || mode > 3) throw Error(`Invalid mode (${mode})`);
   // mode number 0 corresponds to D
@@ -42,7 +42,7 @@ export function getModeNoteName(
 }
 
 export function getModeName(
-  mode: number,
+  mode: number
 ): ModeName {
   if (mode < -3 || mode > 3) throw Error(`Invalid mode (${mode})`);
   // mode number 0 corresponds to Dorian
@@ -55,17 +55,37 @@ export function getRootNoteHour(
   return remainderFor(7 * root, 12);
 }
 
-// TODO: Consider not exporting this function
-export function getNoteNameBySolfege(
+export function getRootNoteName(
+  root: number,
+  mode: number
+): NoteName {
+  const noteNameBySolfege = getNoteNameBySolfege(root, mode);
+  return getNoteName(noteNameBySolfege, Solfege.Do);
+}
+
+export function getNotes(
+  root: number,
+  mode: number
+): Array<Note> {
+  const noteNameBySolfege = getNoteNameBySolfege(root, mode);
+  const rootNoteHour = getRootNoteHour(root);
+  return SOLFEGE_NAMES.map((solfege: Solfege, solfegeIndex: number) => ({
+    name: getNoteName(noteNameBySolfege, solfege),
+    hour: getNoteHour(mode, solfegeIndex, rootNoteHour),
+    solfege: solfege
+  }));
+}
+
+function getNoteNameBySolfege(
   root: number,
   mode: number
 ): Map<Solfege, NoteName> {
   const noteNames = getNoteNames(root, mode);
-  const result = new Map();
-  for (let i = 0; i < 7; i++) {
-    result.set(SOLFEGE_NAMES[i], noteNames[i]);
+  const noteNameBySolfege = new Map();
+  for (let i in buildIndicesArray(7)) {
+    noteNameBySolfege.set(SOLFEGE_NAMES[i], noteNames[i]);
   }
-  return result;
+  return noteNameBySolfege;
 }
 
 function getNoteNames(
@@ -134,19 +154,6 @@ function rotateQueue(
   return naturalNoteName;
 }
 
-export function getNotes(
-  root: number,
-  mode: number
-): Array<Note> {
-  const noteNameBySolfege = getNoteNameBySolfege(root, mode);
-  const rootNoteHour = getRootNoteHour(root);
-  return SOLFEGE_NAMES.map((solfege: Solfege, solfegeIndex: number) => ({
-    name: getNoteName(noteNameBySolfege, solfege),
-    hour: getNoteHour(mode, solfegeIndex, rootNoteHour),
-    solfege: solfege
-  }));
-}
-
 // This table gives the hour positions of solfege notes, assuming the root note occurs at hour 0.
 const HOUR_TABLE = [
   [0, 2, 4, 6, 7, 9, 11],  // mode = -3
@@ -174,14 +181,6 @@ function getNoteName(
   const noteName = noteNameBySolfege.get(solfege);
   if (! noteName) throw Error(`Could not find note from ${solfege}!`);
   return noteName;
-}
-
-export function getRootNoteName(
-  root: number,
-  mode: number
-): NoteName {
-  const noteNameBySolfege = getNoteNameBySolfege(root, mode);
-  return getNoteName(noteNameBySolfege, Solfege.Do);
 }
 
 export function getMotionEndHour(
