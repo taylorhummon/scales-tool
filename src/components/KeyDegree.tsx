@@ -64,5 +64,5 @@ function writtenOutNumber(
   if (n === 12) return "Twelve";
   if (n === 13) return "Thirteen";
   if (n === 14) return "Fourteen";
-  throw `Number ${n} out of range`;
+  throw Error(`Number ${n} out of range`);
 }

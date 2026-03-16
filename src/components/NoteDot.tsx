@@ -38,6 +38,7 @@ function className(
       motion === Motion.IncrementRoot ||
       motion === Motion.DecrementRoot
     ) {
+      // No need to show the root NoteDot behind the RootDot
       classNames.push("hide");
       return buildClassString(cssModule, classNames);
     }

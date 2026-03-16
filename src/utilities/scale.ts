@@ -1,6 +1,8 @@
 import { NaturalNote, SolfegeName, ModeName, Motion } from "src/enumerations";
 import type { Note, LocatedNote } from "src/types";
+import { buildIndicesArray } from "src/utilities/array";
 import { remainderFor } from "src/utilities/math";
+import { createMultiset, addToMultiset, getCountFromMultiset } from "src/utilities/multiset";
 
 
 const SOLFEGE_NAMES = Object.values(SolfegeName);
@@ -34,7 +36,7 @@ export function getKeyDegree(
 export function modeNoteFromModeNumber(
   modeNumber: number,
 ): NaturalNote {
-  if (modeNumber < -3 || modeNumber > 3) throw `Invalid modeNumber (${modeNumber})`;
+  if (modeNumber < -3 || modeNumber > 3) throw Error(`Invalid modeNumber (${modeNumber})`);
   // mode number 0 corresponds to D
   return NATURAL_NOTES_IN_FCGDAEB_ORDER[modeNumber + 3];
 }
@@ -42,7 +44,7 @@ export function modeNoteFromModeNumber(
 export function modeNameFromModeNumber(
   modeNumber: number,
 ): ModeName {
-  if (modeNumber < -3 || modeNumber > 3) throw `Invalid modeNumber (${modeNumber})`;
+  if (modeNumber < -3 || modeNumber > 3) throw Error(`Invalid modeNumber (${modeNumber})`);
   // mode number 0 corresponds to Dorian
   return MODE_NAMES_IN_FCGDAEB_ORDER[modeNumber + 3];
 }
@@ -50,7 +52,7 @@ export function modeNameFromModeNumber(
 export function rootHourFromRootNumber(
   rootNumber: number
 ): number {
-  return remainderFor(rootNumber * 7, 12);
+  return remainderFor(7 * rootNumber, 12);
 }
 
 export function getNoteBySolfegeName(
@@ -93,56 +95,42 @@ function getNotesWhenSharpsInvolved(
   naturalNotes: Array<NaturalNote>,
   sharpTotal: number
 ): Array<Note> {
-  const sharpsMultiset = new Map();
-  for (const naturalNote of naturalNotes) {
-    sharpsMultiset.set(naturalNote, 0);
-  }
+  const sharpsMultiset = createMultiset(naturalNotes);
   const queue = [...NATURAL_NOTES_IN_FCGDAEB_ORDER]; // FCGDAEB
-  for (let i = 0; i < sharpTotal; i += 1) {
-    const toSharp = queue.shift();
-    if (toSharp === undefined) throw "Ooops"; // This should never be tripped -- it's here for type check
-    queue.push(toSharp);
-    const sharpCount = sharpsMultiset.get(toSharp);
-    sharpsMultiset.set(toSharp, sharpCount + 1);
+  for (let _ in buildIndicesArray(sharpTotal)) {
+    const toSharp = rotateQueue(queue);
+    addToMultiset(sharpsMultiset, toSharp);
   }
-  return naturalNotes.map((naturalNote) => addSharps(sharpsMultiset, naturalNote));
+  return naturalNotes.map((naturalNote) => {
+    const sharpCount = getCountFromMultiset(sharpsMultiset, naturalNote);
+    return naturalNote + "♯".repeat(sharpCount);
+  });
 }
 
 function getNotesWhenFlatsInvolved(
   naturalNotes: Array<NaturalNote>,
   flatTotal: number
 ): Array<Note> {
-  const flatsMultiset = new Map();
-  for (const naturalNote of naturalNotes) {
-    flatsMultiset.set(naturalNote, 0);
-  }
+  const flatsMultiset = createMultiset(naturalNotes);
   const queue = [...NATURAL_NOTES_IN_FCGDAEB_ORDER].reverse(); // BEADGCF
-  for (let i = 0; i < flatTotal; i += 1) {
-    const toFlat = queue.shift();
-    if (toFlat === undefined) throw "Ooops"; // This should never be tripped -- it's here for type check
-    queue.push(toFlat);
-    const flatCount = flatsMultiset.get(toFlat);
-    flatsMultiset.set(toFlat, flatCount + 1);
+  for (let _ in buildIndicesArray(flatTotal)) {
+    const toFlat = rotateQueue(queue);
+    addToMultiset(flatsMultiset, toFlat);
   }
-  return naturalNotes.map((naturalNote) => addFlats(flatsMultiset, naturalNote));
+  return naturalNotes.map((naturalNote) => {
+    const flatCount = getCountFromMultiset(flatsMultiset, naturalNote);
+    return naturalNote + "♭".repeat(flatCount);
+  });
 }
 
-function addSharps(
-  sharpsMultiset: Map<Note, number>,
-  naturalNote: NaturalNote
-): Note {
-  const sharpCount = sharpsMultiset.get(naturalNote);
-  if (sharpCount === undefined) throw "Ooops"; // This should never be tripped -- it's here for type check
-  return naturalNote + "♯".repeat(sharpCount);
-}
-
-function addFlats(
-  flatsMultiset: Map<Note, number>,
-  naturalNote: NaturalNote
-): Note {
-  const flatCount = flatsMultiset.get(naturalNote);
-  if (flatCount === undefined) throw "Ooops"; // This should never be tripped -- it's here for type check
-  return naturalNote + "♭".repeat(flatCount);
+// Warning: rotateQueue mutates queue and returns a value
+function rotateQueue(
+  queue: Array<NaturalNote>
+): NaturalNote {
+  const naturalNote = queue.shift();
+  if (naturalNote === undefined) throw Error("Somehow queue was empty");
+  queue.push(naturalNote);
+  return naturalNote;
 }
 
 export function getLocatedNotes(
@@ -182,16 +170,14 @@ function getNote(
   solfegeName: SolfegeName
 ): Note {
   const note = noteBySolfegeName.get(solfegeName);
-  if (! note) throw "Oops. Could not find note!";
+  if (! note) throw Error(`Could not find note from ${solfegeName}!`);
   return note;
 }
 
 export function getRootNote(
   noteBySolfegeName: Map<SolfegeName, Note>
 ): Note {
-  const note = noteBySolfegeName.get(SolfegeName.Do);
-  if (! note) throw "Oops. Could not find root note";
-  return note;
+  return getNote(noteBySolfegeName, SolfegeName.Do);
 }
 
 export function getMovingNoteEndHour(

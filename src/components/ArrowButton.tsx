@@ -17,11 +17,11 @@ export default function ArrowButton({
   const isDisabled = ! onClick;
   return (
     <div
-        className={className(isDisabled)}
-        onClick={onClick}
-        data-testid={dataTestid}
+      className={className(isDisabled)}
+      onClick={onClick}
+      data-testid={dataTestid}
     >
-        {arrow}
+      {arrow}
     </div>
   );
 }
