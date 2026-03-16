@@ -2,7 +2,7 @@ import { NaturalNoteName, Solfege, ModeName, Motion } from "src/enumerations";
 import type { NoteName, Note } from "src/types";
 import { buildIndicesArray } from "src/utilities/array";
 import { remainderFor } from "src/utilities/math";
-import { createMultiset, addToMultiset, getCountFromMultiset } from "src/utilities/multiset";
+import { Multiset } from "src/utilities/multiset";
 
 
 const SOLFEGE_NAMES = Object.values(Solfege);
@@ -116,14 +116,14 @@ function getNoteNamesWhenSharpsInvolved(
   naturalNoteNames: Array<NaturalNoteName>,
   sharpTotal: number
 ): Array<NoteName> {
-  const sharpsMultiset = createMultiset<NaturalNoteName>();
+  const sharpsMultiset = new Multiset<NaturalNoteName>();
   const queue = [...NATURAL_NOTES_IN_FCGDAEB_ORDER]; // FCGDAEB
   for (let _ in buildIndicesArray(sharpTotal)) {
     const toSharp = rotateQueue(queue);
-    addToMultiset(sharpsMultiset, toSharp);
+    sharpsMultiset.add(toSharp);
   }
   return naturalNoteNames.map((naturalNoteName) => {
-    const sharpCount = getCountFromMultiset(sharpsMultiset, naturalNoteName);
+    const sharpCount = sharpsMultiset.count(naturalNoteName);
     return naturalNoteName + "♯".repeat(sharpCount);
   });
 }
@@ -132,14 +132,14 @@ function getNoteNamesWhenFlatsInvolved(
   naturalNoteNames: Array<NaturalNoteName>,
   flatTotal: number
 ): Array<NoteName> {
-  const flatsMultiset = createMultiset<NaturalNoteName>();
+  const flatsMultiset = new Multiset<NaturalNoteName>();
   const queue = [...NATURAL_NOTES_IN_FCGDAEB_ORDER].reverse(); // BEADGCF
   for (let _ in buildIndicesArray(flatTotal)) {
     const toFlat = rotateQueue(queue);
-    addToMultiset(flatsMultiset, toFlat);
+    flatsMultiset.add(toFlat);
   }
   return naturalNoteNames.map((naturalNoteName) => {
-    const flatCount = getCountFromMultiset(flatsMultiset, naturalNoteName);
+    const flatCount = flatsMultiset.count(naturalNoteName);
     return naturalNoteName + "♭".repeat(flatCount);
   });
 }

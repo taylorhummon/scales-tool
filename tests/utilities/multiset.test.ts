@@ -1,26 +1,26 @@
 import { test, expect } from 'vitest';
 
-import { createMultiset, addToMultiset, getCountFromMultiset } from "src/utilities/multiset";
+import { Multiset } from "src/utilities/multiset";
 
 
 test("We can create multisets, add to them, and get counts back.", () => {
-  const multiset = createMultiset<string>();
-  addToMultiset(multiset, "a");
-  addToMultiset(multiset, "b");
-  addToMultiset(multiset, "b");
-  addToMultiset(multiset, "b");
+  const multiset = new Multiset<string>();
+  multiset.add("a");
+  multiset.add("b");
+  multiset.add("b");
+  multiset.add("b");
   expect(
-    getCountFromMultiset(multiset, "a")
+    multiset.count("a")
   ).toStrictEqual(
     1
   );
   expect(
-    getCountFromMultiset(multiset, "b")
+    multiset.count("b")
   ).toStrictEqual(
     3
   );
   expect(
-    getCountFromMultiset(multiset, "c")
+    multiset.count("c")
   ).toStrictEqual(
     0
   );
