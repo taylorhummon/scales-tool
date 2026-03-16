@@ -1,4 +1,4 @@
-import type { Note } from "src/types";
+import type { NoteName } from "src/types";
 
 import ArrowButton from "src/components/ArrowButton";
 import { buildClassString } from "src/utilities/css";
@@ -7,12 +7,12 @@ import cssModule from "src/components/RootNote.module.css";
 
 
 interface RootNoteProps {
-  rootNote: Note;
+  rootNoteName: NoteName;
   buildChangeRoot: (isIncrement: boolean) => ((() => void) | undefined);
 }
 
 export default function RootNote({
-  rootNote,
+  rootNoteName,
   buildChangeRoot
 }: RootNoteProps): JSX.Element {
   return (
@@ -33,7 +33,7 @@ export default function RootNote({
         <div
           className={buildClassString(cssModule, ["root-note-text"])}
         >
-          {rootNote}
+          {rootNoteName}
         </div>
         <ArrowButton
           isRight={true}

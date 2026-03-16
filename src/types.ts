@@ -1,26 +1,26 @@
-import { Motion, NaturalNote, SolfegeName } from "src/enumerations";
+import { Motion, NaturalNoteName, Solfege } from "src/enumerations";
 
-export type Note = string;
+export type NoteName = string;
 
 export interface State {
   motion: Motion;
-  rootNumber: number;
-  modeNumber: number;
+  root: number;
+  mode: number;
 }
 
 export interface Derived {
   motion: Motion;
-  rootNumber: number;
-  modeNumber: number;
-  rootNote: Note;
-  modeNote: NaturalNote;
-  locatedNotes: Array<LocatedNote>;
+  root: number;
+  mode: number;
+  notes: Array<Note>;
+  rootNoteHour: number;
+  rootNoteName: NoteName;
+  modeNoteName: NaturalNoteName;
   keyDegree: number;
-  rootHour: number;
 }
 
-export interface LocatedNote {
+export interface Note {
+  name: NoteName;
   hour: number;
-  note: Note;
-  solfegeName: SolfegeName;
+  solfege: Solfege;
 }

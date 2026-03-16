@@ -1,13 +1,14 @@
 import { test, expect } from 'vitest';
 
-import { SolfegeName } from "src/enumerations";
+import { Solfege, Motion } from "src/enumerations";
 import {
   getKeyDegree,
-  modeNoteFromModeNumber,
-  modeNameFromModeNumber,
-  rootHourFromRootNumber,
-  getNoteBySolfegeName,
-  getRootNote,
+  getModeNoteName,
+  getModeName,
+  getRootNoteHour,
+  getNoteNameBySolfege,
+  getRootNoteName,
+  getMotionEndHour,
 } from "src/utilities/scale";
 
 
@@ -29,235 +30,278 @@ test("getKeyDegree() works", () => {
   );
 });
 
-test("modeNoteFromModeNumber() works", () => {
+test("getModeNoteName() works", () => {
   expect(
-    modeNoteFromModeNumber(0)
+    getModeNoteName(0)
   ).toBe(
     "D"
   );
   expect(
-    modeNoteFromModeNumber(-2)
+    getModeNoteName(-2)
   ).toBe(
     "C"
   );
   expect(
-    modeNoteFromModeNumber(3)
+    getModeNoteName(3)
   ).toBe(
     "B"
   );
 });
 
-test("modeNameFromModeNumber() works", () => {
+test("getModeName() works", () => {
   expect(
-    modeNameFromModeNumber(0)
+    getModeName(0)
   ).toBe(
     "Dorian"
   );
   expect(
-    modeNameFromModeNumber(-2)
+    getModeName(-2)
   ).toBe(
     "Ionian"
   );
   expect(
-    modeNameFromModeNumber(3)
+    getModeName(3)
   ).toBe(
     "Locrian"
   );
 });
 
-test("rootHourFromRootNumber() works", () => {
+test("getRootNoteHour() works", () => {
   expect(
-    rootHourFromRootNumber(0)
+    getRootNoteHour(0)
   ).toBe(
     0
   );
   expect(
-    rootHourFromRootNumber(-2)
+    getRootNoteHour(-2)
   ).toBe(
     10
   );
   expect(
-    rootHourFromRootNumber(3)
+    getRootNoteHour(3)
   ).toBe(
     9
   );
 });
 
-test("getNoteBySolfegeName() for C-Major", () => {
-  const noteBySolfegeName = getNoteBySolfegeName(-2, -2);
+test("getNoteNameBySolfege() for C-Major", () => {
+  const noteNameBySolfege = getNoteNameBySolfege(-2, -2);
   expect(
-    noteBySolfegeName.get(SolfegeName.Do)
+    noteNameBySolfege.get(Solfege.Do)
   ).toBe(
     "C"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Re)
+    noteNameBySolfege.get(Solfege.Re)
   ).toBe(
     "D"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Mi)
+    noteNameBySolfege.get(Solfege.Mi)
   ).toBe(
     "E"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Fa)
+    noteNameBySolfege.get(Solfege.Fa)
   ).toBe(
     "F"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Sol)
+    noteNameBySolfege.get(Solfege.Sol)
   ).toBe(
     "G"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.La)
+    noteNameBySolfege.get(Solfege.La)
   ).toBe(
     "A"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Ti)
+    noteNameBySolfege.get(Solfege.Ti)
   ).toBe(
     "B"
   );
 });
 
-test("getNoteBySolfegeName() for D-Major", () => {
-  const noteBySolfegeName = getNoteBySolfegeName(0, -2);
+test("getNoteNameBySolfege() for D-Major", () => {
+  const noteNameBySolfege = getNoteNameBySolfege(0, -2);
   expect(
-    noteBySolfegeName.get(SolfegeName.Do)
+    noteNameBySolfege.get(Solfege.Do)
   ).toBe(
     "D"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Re)
+    noteNameBySolfege.get(Solfege.Re)
   ).toBe(
     "E"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Mi)
+    noteNameBySolfege.get(Solfege.Mi)
   ).toBe(
     "F♯"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Fa)
+    noteNameBySolfege.get(Solfege.Fa)
   ).toBe(
     "G"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Sol)
+    noteNameBySolfege.get(Solfege.Sol)
   ).toBe(
     "A"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.La)
+    noteNameBySolfege.get(Solfege.La)
   ).toBe(
     "B"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Ti)
+    noteNameBySolfege.get(Solfege.Ti)
   ).toBe(
     "C♯"
   );
 });
 
-test("getNoteBySolfegeName() for Dorian D", () => {
-  const noteBySolfegeName = getNoteBySolfegeName(0, 0);
+test("getNoteNameBySolfege() for Dorian D", () => {
+  const noteNameBySolfege = getNoteNameBySolfege(0, 0);
   expect(
-    noteBySolfegeName.get(SolfegeName.Do)
+    noteNameBySolfege.get(Solfege.Do)
   ).toBe(
     "D"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Re)
+    noteNameBySolfege.get(Solfege.Re)
   ).toBe(
     "E"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Mi)
+    noteNameBySolfege.get(Solfege.Mi)
   ).toBe(
     "F"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Fa)
+    noteNameBySolfege.get(Solfege.Fa)
   ).toBe(
     "G"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Sol)
+    noteNameBySolfege.get(Solfege.Sol)
   ).toBe(
     "A"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.La)
+    noteNameBySolfege.get(Solfege.La)
   ).toBe(
     "B"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Ti)
+    noteNameBySolfege.get(Solfege.Ti)
   ).toBe(
     "C"
   );
 });
 
-test("getNoteBySolfegeName() for Dorian C", () => {
-  const noteBySolfegeName = getNoteBySolfegeName(-2, 0);
+test("getNoteNameBySolfege() for Dorian C", () => {
+  const noteNameBySolfege = getNoteNameBySolfege(-2, 0);
   expect(
-    noteBySolfegeName.get(SolfegeName.Do)
+    noteNameBySolfege.get(Solfege.Do)
   ).toBe(
     "C"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Re)
+    noteNameBySolfege.get(Solfege.Re)
   ).toBe(
     "D"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Mi)
+    noteNameBySolfege.get(Solfege.Mi)
   ).toBe(
     "E♭"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Fa)
+    noteNameBySolfege.get(Solfege.Fa)
   ).toBe(
     "F"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Sol)
+    noteNameBySolfege.get(Solfege.Sol)
   ).toBe(
     "G"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.La)
+    noteNameBySolfege.get(Solfege.La)
   ).toBe(
     "A"
   );
   expect(
-    noteBySolfegeName.get(SolfegeName.Ti)
+    noteNameBySolfege.get(Solfege.Ti)
   ).toBe(
     "B♭"
   );
 });
 
-test("getRootNote() works", () => {
+test("getRootNoteName() works", () => {
   expect(
-    getRootNote(getNoteBySolfegeName(0, -2))
+    getRootNoteName(0, -2)
   ).toBe(
     "D"
   );
   expect(
-    getRootNote(getNoteBySolfegeName(0, 3))
+    getRootNoteName(0, 3)
   ).toBe(
     "D"
   );
   expect(
-    getRootNote(getNoteBySolfegeName(-1, -3))
+    getRootNoteName(-1, -3)
   ).toBe(
     "G"
   );
   expect(
-    getRootNote(getNoteBySolfegeName(10, 2))
+    getRootNoteName(10, 2)
   ).toBe(
     "B♯"
+  );
+});
+
+test("getMotionEndHour() works", () => {
+  expect(
+    getMotionEndHour(Motion.IncrementRoot, 3)
+  ).toBe(
+    10
+  );
+  expect(
+    getMotionEndHour(Motion.IncrementRoot, 8)
+  ).toBe(
+    3
+  );
+  expect(
+    getMotionEndHour(Motion.DecrementRoot, 3)
+  ).toBe(
+    8
+  );
+  expect(
+    getMotionEndHour(Motion.DecrementRoot, 8)
+  ).toBe(
+    1
+  );
+  expect(
+    getMotionEndHour(Motion.IncrementMode, 3)
+  ).toBe(
+    8
+  );
+  expect(
+    getMotionEndHour(Motion.IncrementMode, 8)
+  ).toBe(
+    1
+  );
+  expect(
+    getMotionEndHour(Motion.DecrementMode, 3)
+  ).toBe(
+    10
+  );
+  expect(
+    getMotionEndHour(Motion.DecrementMode, 8)
+  ).toBe(
+    3
   );
 });

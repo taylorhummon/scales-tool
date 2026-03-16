@@ -1,25 +1,25 @@
-import { SolfegeName } from "src/enumerations";
-import type { Note } from "src/types";
+import { Solfege } from "src/enumerations";
+import type { NoteName } from "src/types";
 import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/NoteLabel.module.css";
 
 
 interface NoteLabelProps {
-  hour: number;
-  note: Note;
-  solfegeName: SolfegeName;
+  noteName: NoteName;
+  noteHour: number;
+  solfege: Solfege;
 }
 
 export default function NoteLabel({
-  hour,
-  note,
-  solfegeName
+  noteName,
+  noteHour,
+  solfege
 }: NoteLabelProps): JSX.Element {
   return (
     <g
-      className={className(hour, solfegeName)}
-      data-testid={`note-label-${solfegeName}`}
+      className={className(noteHour, solfege)}
+      data-testid={`note-label-${solfege}`}
     >
       <text
         style={{
@@ -27,16 +27,16 @@ export default function NoteLabel({
           textAnchor: "middle"
         }}
       >
-        {note}
+        {noteName}
       </text>
     </g>
   );
 }
 
 function className(
-  hour: number,
-  solfegeName: SolfegeName
+  noteHour: number,
+  solfege: Solfege
 ): string {
-  const classNames = ["note-label", `hour-${hour}`, solfegeName];
+  const classNames = ["note-label", `hour-${noteHour}`, solfege];
   return buildClassString(cssModule, classNames);
 }

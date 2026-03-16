@@ -1,19 +1,19 @@
-import { NaturalNote, SolfegeName, ModeName, Motion } from "src/enumerations";
-import type { Note, LocatedNote } from "src/types";
+import { NaturalNoteName, Solfege, ModeName, Motion } from "src/enumerations";
+import type { NoteName, Note } from "src/types";
 import { buildIndicesArray } from "src/utilities/array";
 import { remainderFor } from "src/utilities/math";
 import { createMultiset, addToMultiset, getCountFromMultiset } from "src/utilities/multiset";
 
 
-const SOLFEGE_NAMES = Object.values(SolfegeName);
+const SOLFEGE_NAMES = Object.values(Solfege);
 const NATURAL_NOTES_IN_FCGDAEB_ORDER = [
-  NaturalNote.F,
-  NaturalNote.C,
-  NaturalNote.G,
-  NaturalNote.D,
-  NaturalNote.A,
-  NaturalNote.E,
-  NaturalNote.B
+  NaturalNoteName.F,
+  NaturalNoteName.C,
+  NaturalNoteName.G,
+  NaturalNoteName.D,
+  NaturalNoteName.A,
+  NaturalNoteName.E,
+  NaturalNoteName.B
 ]
 const MODE_NAMES_IN_FCGDAEB_ORDER = [
   ModeName.Lydian,
@@ -27,160 +27,164 @@ const MODE_NAMES_IN_FCGDAEB_ORDER = [
 
 
 export function getKeyDegree(
-  rootNumber: number,
-  modeNumber: number
+  root: number,
+  mode: number
 ) {
-  return rootNumber - modeNumber;
+  return root - mode;
 }
 
-export function modeNoteFromModeNumber(
-  modeNumber: number,
-): NaturalNote {
-  if (modeNumber < -3 || modeNumber > 3) throw Error(`Invalid modeNumber (${modeNumber})`);
+export function getModeNoteName(
+  mode: number,
+): NaturalNoteName {
+  if (mode < -3 || mode > 3) throw Error(`Invalid mode (${mode})`);
   // mode number 0 corresponds to D
-  return NATURAL_NOTES_IN_FCGDAEB_ORDER[modeNumber + 3];
+  return NATURAL_NOTES_IN_FCGDAEB_ORDER[mode + 3];
 }
 
-export function modeNameFromModeNumber(
-  modeNumber: number,
+export function getModeName(
+  mode: number,
 ): ModeName {
-  if (modeNumber < -3 || modeNumber > 3) throw Error(`Invalid modeNumber (${modeNumber})`);
+  if (mode < -3 || mode > 3) throw Error(`Invalid mode (${mode})`);
   // mode number 0 corresponds to Dorian
-  return MODE_NAMES_IN_FCGDAEB_ORDER[modeNumber + 3];
+  return MODE_NAMES_IN_FCGDAEB_ORDER[mode + 3];
 }
 
-export function rootHourFromRootNumber(
-  rootNumber: number
+export function getRootNoteHour(
+  root: number
 ): number {
-  return remainderFor(7 * rootNumber, 12);
+  return remainderFor(7 * root, 12);
 }
 
-export function getNoteBySolfegeName(
-  rootNumber: number,
-  modeNumber: number
-): Map<SolfegeName, Note> {
-  const notes = getNotes(rootNumber, modeNumber);
+// TODO: Consider not exporting this function
+export function getNoteNameBySolfege(
+  root: number,
+  mode: number
+): Map<Solfege, NoteName> {
+  const noteNames = getNoteNames(root, mode);
   const result = new Map();
   for (let i = 0; i < 7; i++) {
-    result.set(SOLFEGE_NAMES[i], notes[i]);
+    result.set(SOLFEGE_NAMES[i], noteNames[i]);
   }
   return result;
 }
 
-function getNotes(
-  rootNumber: number,
-  modeNumber: number
-): Array<Note> {
-  const firstNaturalNote = NATURAL_NOTES_IN_FCGDAEB_ORDER[remainderFor(rootNumber + 3, 7)];
-  const naturalNotes = getNaturalNotesStartingWith(firstNaturalNote);
-  const keyDegree = getKeyDegree(rootNumber, modeNumber);
+function getNoteNames(
+  root: number,
+  mode: number
+): Array<NoteName> {
+  const firstNaturalNoteName = NATURAL_NOTES_IN_FCGDAEB_ORDER[remainderFor(root + 3, 7)];
+  const naturalNoteNames = getNaturalNoteNamesStartingWith(firstNaturalNoteName);
+  const keyDegree = getKeyDegree(root, mode);
   if (keyDegree >= 0) {
-    return getNotesWhenSharpsInvolved(naturalNotes, keyDegree);
+    return getNoteNamesWhenSharpsInvolved(naturalNoteNames, keyDegree);
   } else {
-    return getNotesWhenFlatsInvolved(naturalNotes, - keyDegree);  // - keyDegree > 0
+    return getNoteNamesWhenFlatsInvolved(naturalNoteNames, - keyDegree);  // - keyDegree > 0
   }
 }
 
-function getNaturalNotesStartingWith(
-  naturalNote: NaturalNote
-): Array<NaturalNote> {
-  const abcde = Object.values(NaturalNote);
+function getNaturalNoteNamesStartingWith(
+  naturalNoteName: NaturalNoteName
+): Array<NaturalNoteName> {
+  const abcde = Object.values(NaturalNoteName);
   const abcdefgabcdefg = abcde.concat(abcde);
-  const i = abcdefgabcdefg.indexOf(naturalNote);
-  const j = abcdefgabcdefg.lastIndexOf(naturalNote);
+  const i = abcdefgabcdefg.indexOf(naturalNoteName);
+  const j = abcdefgabcdefg.lastIndexOf(naturalNoteName);
   return abcdefgabcdefg.slice(i, j);
 }
 
-function getNotesWhenSharpsInvolved(
-  naturalNotes: Array<NaturalNote>,
+function getNoteNamesWhenSharpsInvolved(
+  naturalNoteNames: Array<NaturalNoteName>,
   sharpTotal: number
-): Array<Note> {
-  const sharpsMultiset = createMultiset(naturalNotes);
+): Array<NoteName> {
+  const sharpsMultiset = createMultiset<NaturalNoteName>();
   const queue = [...NATURAL_NOTES_IN_FCGDAEB_ORDER]; // FCGDAEB
   for (let _ in buildIndicesArray(sharpTotal)) {
     const toSharp = rotateQueue(queue);
     addToMultiset(sharpsMultiset, toSharp);
   }
-  return naturalNotes.map((naturalNote) => {
-    const sharpCount = getCountFromMultiset(sharpsMultiset, naturalNote);
-    return naturalNote + "♯".repeat(sharpCount);
+  return naturalNoteNames.map((naturalNoteName) => {
+    const sharpCount = getCountFromMultiset(sharpsMultiset, naturalNoteName);
+    return naturalNoteName + "♯".repeat(sharpCount);
   });
 }
 
-function getNotesWhenFlatsInvolved(
-  naturalNotes: Array<NaturalNote>,
+function getNoteNamesWhenFlatsInvolved(
+  naturalNoteNames: Array<NaturalNoteName>,
   flatTotal: number
-): Array<Note> {
-  const flatsMultiset = createMultiset(naturalNotes);
+): Array<NoteName> {
+  const flatsMultiset = createMultiset<NaturalNoteName>();
   const queue = [...NATURAL_NOTES_IN_FCGDAEB_ORDER].reverse(); // BEADGCF
   for (let _ in buildIndicesArray(flatTotal)) {
     const toFlat = rotateQueue(queue);
     addToMultiset(flatsMultiset, toFlat);
   }
-  return naturalNotes.map((naturalNote) => {
-    const flatCount = getCountFromMultiset(flatsMultiset, naturalNote);
-    return naturalNote + "♭".repeat(flatCount);
+  return naturalNoteNames.map((naturalNoteName) => {
+    const flatCount = getCountFromMultiset(flatsMultiset, naturalNoteName);
+    return naturalNoteName + "♭".repeat(flatCount);
   });
 }
 
 // Warning: rotateQueue mutates queue and returns a value
 function rotateQueue(
-  queue: Array<NaturalNote>
-): NaturalNote {
-  const naturalNote = queue.shift();
-  if (naturalNote === undefined) throw Error("Somehow queue was empty");
-  queue.push(naturalNote);
-  return naturalNote;
+  queue: Array<NaturalNoteName>
+): NaturalNoteName {
+  const naturalNoteName = queue.shift();
+  if (naturalNoteName === undefined) throw Error("Somehow queue was empty");
+  queue.push(naturalNoteName);
+  return naturalNoteName;
 }
 
-export function getLocatedNotes(
-  modeNumber: number,
-  rootHour: number,
-  noteBySolfegeName: Map<SolfegeName, Note>,
-): Array<LocatedNote> {
-  return SOLFEGE_NAMES.map((solfegeName: SolfegeName, solfegeIndex: number) => ({
-    hour: getHour(modeNumber, solfegeIndex, rootHour),
-    note: getNote(noteBySolfegeName, solfegeName),
-    solfegeName: solfegeName
+export function getNotes(
+  root: number,
+  mode: number
+): Array<Note> {
+  const noteNameBySolfege = getNoteNameBySolfege(root, mode);
+  const rootNoteHour = getRootNoteHour(root);
+  return SOLFEGE_NAMES.map((solfege: Solfege, solfegeIndex: number) => ({
+    name: getNoteName(noteNameBySolfege, solfege),
+    hour: getNoteHour(mode, solfegeIndex, rootNoteHour),
+    solfege: solfege
   }));
 }
 
 // This table gives the hour positions of solfege notes, assuming the root note occurs at hour 0.
 const HOUR_TABLE = [
-  [0, 2, 4, 6, 7, 9, 11],  // modeNumber = -3
+  [0, 2, 4, 6, 7, 9, 11],  // mode = -3
   [0, 2, 4, 5, 7, 9, 11],
   [0, 2, 4, 5, 7, 9, 10],
-  [0, 2, 3, 5, 7, 9, 10],  // modeNumber = 0
+  [0, 2, 3, 5, 7, 9, 10],  // mode = 0
   [0, 2, 3, 5, 7, 8, 10],
   [0, 1, 3, 5, 7, 8, 10],
-  [0, 1, 3, 5, 6, 8, 10],  // modeNumber = 3
+  [0, 1, 3, 5, 6, 8, 10],  // mode = 3
 ];
 
-function getHour(
-  modeNumber: number,
+function getNoteHour(
+  mode: number,
   solfegeIndex: number,
   rootHour: number
 ): number {
-  const modeIndex = modeNumber + 3;
+  const modeIndex = mode + 3;
   return (rootHour + HOUR_TABLE[modeIndex][solfegeIndex]) % 12;
 }
 
-function getNote(
-  noteBySolfegeName: Map<SolfegeName, Note>,
-  solfegeName: SolfegeName
-): Note {
-  const note = noteBySolfegeName.get(solfegeName);
-  if (! note) throw Error(`Could not find note from ${solfegeName}!`);
-  return note;
+function getNoteName(
+  noteNameBySolfege: Map<Solfege, NoteName>,
+  solfege: Solfege
+): NoteName {
+  const noteName = noteNameBySolfege.get(solfege);
+  if (! noteName) throw Error(`Could not find note from ${solfege}!`);
+  return noteName;
 }
 
-export function getRootNote(
-  noteBySolfegeName: Map<SolfegeName, Note>
-): Note {
-  return getNote(noteBySolfegeName, SolfegeName.Do);
+export function getRootNoteName(
+  root: number,
+  mode: number
+): NoteName {
+  const noteNameBySolfege = getNoteNameBySolfege(root, mode);
+  return getNoteName(noteNameBySolfege, Solfege.Do);
 }
 
-export function getMovingNoteEndHour(
+export function getMotionEndHour(
   motion: Motion,
   hour: number
 ): number | null {

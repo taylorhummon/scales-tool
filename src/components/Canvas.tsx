@@ -33,40 +33,40 @@ export default function Canvas({
         width="300px"
       >
         <Clock />
-        {derived.locatedNotes.map((locatedNote) => (
+        {derived.notes.map((note) => (
           <NoteDot
-            key={locatedNote.note + locatedNote.hour.toString()}
+            key={note.name + note.hour.toString()}
             motion={derived.motion}
-            hour={locatedNote.hour}
-            isRoot={locatedNote.hour === derived.rootHour}
+            noteHour={note.hour}
+            isRoot={note.hour === derived.rootNoteHour}
           />
         ))}
-        {derived.locatedNotes.map((locatedNote) => (
+        {derived.notes.map((note) => (
           <NoteLabel
-            key={locatedNote.note + locatedNote.hour.toString()}
-            hour={locatedNote.hour}
-            note={locatedNote.note}
-            solfegeName={locatedNote.solfegeName}
+            key={note.name + note.hour.toString()}
+            noteName={note.name}
+            noteHour={note.hour}
+            solfege={note.solfege}
           />
         ))}
         <RootDot
           motion={derived.motion}
-          rootHour={derived.rootHour}
+          rootNoteHour={derived.rootNoteHour}
         />
       </svg>
       <div
         className={buildClassString(cssModule, ["grid"])}
       >
         <KeyDescription
-          modeNumber={derived.modeNumber}
-          rootNote={derived.rootNote}
+          mode={derived.mode}
+          rootNoteName={derived.rootNoteName}
         />
         <RootNote
-          rootNote={derived.rootNote}
+          rootNoteName={derived.rootNoteName}
           buildChangeRoot={buildChangeRoot}
         />
         <ModeNote
-          modeNote={derived.modeNote}
+          modeNoteName={derived.modeNoteName}
           buildChangeMode={buildChangeMode}
         />
         <KeyDegree

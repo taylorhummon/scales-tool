@@ -1,30 +1,26 @@
 import type { State, Derived } from "src/types";
 import {
-  getNoteBySolfegeName,
-  getRootNote,
-  rootHourFromRootNumber,
-  getLocatedNotes,
-  modeNoteFromModeNumber,
+  getRootNoteName,
+  getRootNoteHour,
+  getNotes,
+  getModeNoteName,
   getKeyDegree,
 } from "src/utilities/scale";
 
 
 export function derivedFromState({
   motion,
-  rootNumber,
-  modeNumber
+  root,
+  mode
 }: State): Derived {
-  const rootHour = rootHourFromRootNumber(rootNumber);
-  const noteBySolfegeName = getNoteBySolfegeName(rootNumber, modeNumber);
-  const locatedNotes = getLocatedNotes(modeNumber, rootHour, noteBySolfegeName);
   return {
     motion,
-    rootNumber,
-    modeNumber,
-    rootNote: getRootNote(noteBySolfegeName),
-    modeNote: modeNoteFromModeNumber(modeNumber),
-    locatedNotes,
-    keyDegree: getKeyDegree(rootNumber, modeNumber),
-    rootHour,
+    root,
+    mode,
+    notes: getNotes(root, mode),
+    rootNoteHour: getRootNoteHour(root),
+    rootNoteName: getRootNoteName(root, mode),
+    modeNoteName: getModeNoteName(mode),
+    keyDegree: getKeyDegree(root, mode),
   };
 }

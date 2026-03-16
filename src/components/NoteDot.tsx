@@ -1,24 +1,24 @@
 import { Motion } from "src/enumerations";
 import { buildClassString } from "src/utilities/css";
-import { getMovingNoteEndHour } from "src/utilities/scale";
+import { getMotionEndHour } from "src/utilities/scale";
 
 import cssModule from "src/components/NoteDot.module.css";
 
 
 interface NoteDotProps {
   motion: Motion;
-  hour: number;
+  noteHour: number;
   isRoot: boolean;
 }
 
 export default function NoteDot({
   motion,
-  hour,
+  noteHour,
   isRoot
 }: NoteDotProps): JSX.Element {
   return (
     <circle
-      className={className(motion, hour, isRoot)}
+      className={className(motion, noteHour, isRoot)}
       cx="0"
       cy="0"
       r="10"
@@ -28,7 +28,7 @@ export default function NoteDot({
 
 function className(
   motion: Motion,
-  hour: number,
+  noteHour: number,
   isRoot: boolean
 ): string {
   const classNames = ["note-dot"];
@@ -47,18 +47,18 @@ function className(
     motion === Motion.IncrementRoot ||
     motion === Motion.DecrementMode
   ) {
-    const endHour = getMovingNoteEndHour(motion, hour);
+    const motionEndHour = getMotionEndHour(motion, noteHour);
     classNames.push("move");
-    classNames.push(`from-${hour}-to-${endHour}`);
+    classNames.push(`from-${noteHour}-to-${motionEndHour}`);
   } else if (
     motion === Motion.DecrementRoot ||
     motion === Motion.IncrementMode
   ) {
-    const endHour = getMovingNoteEndHour(motion, hour);
+    const motionEndHour = getMotionEndHour(motion, noteHour);
     classNames.push("move");
-    classNames.push(`from-${hour}-to-${endHour}`);
+    classNames.push(`from-${noteHour}-to-${motionEndHour}`);
   } else {
-    classNames.push(`hour-${hour}`);
+    classNames.push(`hour-${noteHour}`);
   }
   return buildClassString(cssModule, classNames);
 }

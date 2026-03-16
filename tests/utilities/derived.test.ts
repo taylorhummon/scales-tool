@@ -4,93 +4,155 @@ import { Motion } from "src/enumerations";
 import { derivedFromState } from "src/utilities/derived";
 
 
-test("derivedFromState() includes the rootNumber", () => {
+test("derivedFromState() includes the root", () => {
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: 3, modeNumber: 2}).rootNumber
+    derivedFromState({ motion: Motion.Still, root: 3, mode: 2 }).root
   ).toBe(
     3
   );
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: -2, modeNumber: -2 }).rootNumber
+    derivedFromState({ motion: Motion.Still, root: -2, mode: -2 }).root
   ).toBe(
     -2
   );
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: 8, modeNumber: -1 }).rootNumber
+    derivedFromState({ motion: Motion.Still, root: 8, mode: -1 }).root
   ).toBe(
     8
   );
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: -5, modeNumber: 2 }).rootNumber
+    derivedFromState({ motion: Motion.Still, root: -5, mode: 2 }).root
   ).toBe(
     -5
   );
 });
 
-test("derivedFromState() includes the modeNumber", () => {
+test("derivedFromState() includes the mode", () => {
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: 3, modeNumber: 2 }).modeNumber
+    derivedFromState({ motion: Motion.Still, root: 3, mode: 2 }).mode
   ).toBe(
     2
   );
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: -2, modeNumber: -2 }).modeNumber
+    derivedFromState({ motion: Motion.Still, root: -2, mode: -2 }).mode
   ).toBe(
     -2
   );
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: 8, modeNumber: -1 }).modeNumber
+    derivedFromState({ motion: Motion.Still, root: 8, mode: -1 }).mode
   ).toBe(
     -1
   );
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: -5, modeNumber: 2 }).modeNumber
+    derivedFromState({ motion: Motion.Still, root: -5, mode: 2 }).mode
   ).toBe(
     2
   );
 });
 
-test("derivedFromState() includes the rootNote", () => {
+test("derivedFromState() includes the notes", () => {
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: 3, modeNumber: 2 }).rootNote
+    derivedFromState({ motion: Motion.Still, root: 3, mode: 2 }).notes[1]
+  ).toStrictEqual(
+    {
+      name: "C",
+      hour: 10,
+      solfege: "re"
+    }
+  );
+  expect(
+    derivedFromState({ motion: Motion.Still, root: -2, mode: -2 }).notes[1]
+  ).toStrictEqual(
+    {
+      name: "D",
+      hour: 0,
+      solfege: "re"
+    }
+  );
+  expect(
+    derivedFromState({ motion: Motion.Still, root: 8, mode: -1 }).notes[1]
+  ).toStrictEqual(
+    {
+      name: "B♯",
+      hour: 10,
+      solfege: "re"
+    }
+  );
+  expect(
+    derivedFromState({ motion: Motion.Still, root: -5, mode: 2 }).notes[1]
+  ).toStrictEqual(
+    {
+      name: "F♭",
+      hour: 2,
+      solfege: "re"
+    }
+  );
+});
+
+test("derivedFromState() includes the rootNoteHour", () => {
+  expect(
+    derivedFromState({ motion: Motion.Still, root: 3, mode: 2 }).rootNoteHour
+  ).toBe(
+    9
+  );
+  expect(
+    derivedFromState({ motion: Motion.Still, root: -2, mode: -2 }).rootNoteHour
+  ).toBe(
+    10
+  );
+  expect(
+    derivedFromState({ motion: Motion.Still, root: 8, mode: -1 }).rootNoteHour
+  ).toBe(
+    8
+  );
+  expect(
+    derivedFromState({ motion: Motion.Still, root: -5, mode: 2 }).rootNoteHour
+  ).toBe(
+    1
+  );
+});
+
+test("derivedFromState() includes the rootNoteName", () => {
+  expect(
+    derivedFromState({ motion: Motion.Still, root: 3, mode: 2 }).rootNoteName
   ).toBe(
     "B"
   );
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: -2, modeNumber: -2 }).rootNote
+    derivedFromState({ motion: Motion.Still, root: -2, mode: -2 }).rootNoteName
   ).toBe(
     "C"
   );
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: 8, modeNumber: -1 }).rootNote
+    derivedFromState({ motion: Motion.Still, root: 8, mode: -1 }).rootNoteName
   ).toBe(
     "A♯"
   );
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: -5, modeNumber: 2 }).rootNote
+    derivedFromState({ motion: Motion.Still, root: -5, mode: 2 }).rootNoteName
   ).toBe(
     "E♭"
   );
 });
 
-test("derivedFromState() includes the modeNote", () => {
+test("derivedFromState() includes the modeNoteName", () => {
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: 3, modeNumber: 2 }).modeNote
+    derivedFromState({ motion: Motion.Still, root: 3, mode: 2 }).modeNoteName
   ).toBe(
     "E"
   );
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: -2, modeNumber: -2 }).modeNote
+    derivedFromState({ motion: Motion.Still, root: -2, mode: -2 }).modeNoteName
   ).toBe(
     "C"
   );
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: 8, modeNumber: -1 }).modeNote
+    derivedFromState({ motion: Motion.Still, root: 8, mode: -1 }).modeNoteName
   ).toBe(
     "G"
   );
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: -5, modeNumber: 2 }).modeNote
+    derivedFromState({ motion: Motion.Still, root: -5, mode: 2 }).modeNoteName
   ).toBe(
     "E"
   );
@@ -98,62 +160,23 @@ test("derivedFromState() includes the modeNote", () => {
 
 test("derivedFromState() includes the keyDegree", () => {
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: 3, modeNumber: 2 }).keyDegree
+    derivedFromState({ motion: Motion.Still, root: 3, mode: 2 }).keyDegree
   ).toBe(
     1
   );
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: -2, modeNumber: -2 }).keyDegree
+    derivedFromState({ motion: Motion.Still, root: -2, mode: -2 }).keyDegree
   ).toBe(
     0
   );
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: 8, modeNumber: -1 }).keyDegree
+    derivedFromState({ motion: Motion.Still, root: 8, mode: -1 }).keyDegree
   ).toBe(
     9
   );
   expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: -5, modeNumber: 2 }).keyDegree
+    derivedFromState({ motion: Motion.Still, root: -5, mode: 2 }).keyDegree
   ).toBe(
     -7
-  );
-});
-
-test("derivedFromState() includes the locatedNotes", () => {
-  expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: 3, modeNumber: 2 }).locatedNotes[1]
-  ).toStrictEqual(
-    {
-      hour: 10,
-      note: "C",
-      solfegeName: "re"
-    }
-  );
-  expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: -2, modeNumber: -2 }).locatedNotes[1]
-  ).toStrictEqual(
-    {
-      hour: 0,
-      note: "D",
-      solfegeName: "re"
-    }
-  );
-  expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: 8, modeNumber: -1 }).locatedNotes[1]
-  ).toStrictEqual(
-    {
-      hour: 10,
-      note: "B♯",
-      solfegeName: "re"
-    }
-  );
-  expect(
-    derivedFromState({ motion: Motion.Still, rootNumber: -5, modeNumber: 2 }).locatedNotes[1]
-  ).toStrictEqual(
-    {
-      hour: 2,
-      note: "F♭",
-      solfegeName: "re"
-    }
   );
 });

@@ -6,7 +6,7 @@ export enum Motion {
   DecrementMode = "DecrementMode",
 }
 
-export enum NaturalNote {
+export enum NaturalNoteName {
   A = "A",
   B = "B",
   C = "C",
@@ -16,7 +16,7 @@ export enum NaturalNote {
   G = "G"
 }
 
-export enum SolfegeName {
+export enum Solfege {
   Do = "do",
   Re = "re",
   Mi = "mi",

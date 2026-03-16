@@ -1,10 +1,6 @@
 export function createMultiset<T>(
-  elements: Array<T>
 ): Map<T, number> {
   const multiset: Map<T, number> = new Map();
-  for (const element of elements) {
-    multiset.set(element, 0);
-  }
   return multiset;
 }
 

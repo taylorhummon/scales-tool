@@ -17,8 +17,8 @@ export default function ScalesTool(): JSX.Element {
   const domNodeRef = useRef<HTMLDivElement>(null);
   const [state, setState] = useState({
     motion: Motion.Still,
-    rootNumber: INITIAL_ROOT_NUMBER,
-    modeNumber: INITIAL_MODE_NUMBER
+    root: INITIAL_ROOT_NUMBER,
+    mode: INITIAL_MODE_NUMBER
   });
   const derived = derivedFromState(state);
 
@@ -48,7 +48,7 @@ export default function ScalesTool(): JSX.Element {
     isIncrement: boolean
   ): (() => void) | undefined {
     if (isIncrement) {
-      if (state.modeNumber >= 3) return undefined;
+      if (state.mode >= 3) return undefined;
       if (derived.keyDegree <= -MAX_KEY_DEGREE) return undefined;
       return () => {
         if (state.motion !== Motion.Still) return;
@@ -57,7 +57,7 @@ export default function ScalesTool(): JSX.Element {
         });
       }
     } else {
-      if (state.modeNumber <= -3) return undefined;
+      if (state.mode <= -3) return undefined;
       if (derived.keyDegree >= MAX_KEY_DEGREE) return undefined;
       return () => {
         if (state.motion !== Motion.Still) return;
@@ -72,20 +72,20 @@ export default function ScalesTool(): JSX.Element {
     function animationEndHandler(): void {
       setState((state) => {
         if (state.motion === Motion.IncrementRoot) {
-          const rootNumber = state.rootNumber + 1;
-          return { ...state, motion: Motion.Still, rootNumber };
+          const root = state.root + 1;
+          return { ...state, motion: Motion.Still, root };
         }
         if (state.motion === Motion.DecrementRoot) {
-          const rootNumber = state.rootNumber - 1;
-          return { ...state, motion: Motion.Still, rootNumber };
+          const root = state.root - 1;
+          return { ...state, motion: Motion.Still, root };
         }
         if (state.motion === Motion.IncrementMode) {
-          const modeNumber = state.modeNumber + 1;
-          return { ...state, motion: Motion.Still, modeNumber };
+          const mode = state.mode + 1;
+          return { ...state, motion: Motion.Still, mode };
         }
         if (state.motion === Motion.DecrementMode) {
-          const modeNumber = state.modeNumber - 1;
-          return { ...state, motion: Motion.Still, modeNumber };
+          const mode = state.mode - 1;
+          return { ...state, motion: Motion.Still, mode };
         }
         return state;
       });
