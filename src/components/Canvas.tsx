@@ -1,46 +1,86 @@
-import type { Derived } from "src/types";
+import { useRef, useEffect, Dispatch, SetStateAction } from "react";
 
+import { Motion } from "src/enumerations";
+import type { State, Derived } from "src/types";
 import Clock from "src/components/Clock";
 import NoteDot from "src/components/NoteDot";
 import NoteLabel from "src/components/NoteLabel";
 import RootDot from "src/components/RootDot";
+import { buildClassString } from "src/utilities/css";
+
+import cssModule from "src/components/Canvas.module.css";
 
 
 interface CanvasProps {
   derived: Derived;
+  setState: Dispatch<SetStateAction<State>>;
 }
 
 export default function Canvas({
-  derived
+  derived,
+  setState
 }: CanvasProps): JSX.Element {
+  const domNodeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function animationEndHandler(): void {
+      setState((state: State) => {
+        if (state.motion === Motion.IncrementRoot) {
+          return { ...state, motion: Motion.Still, root: state.root + 1 };
+        }
+        if (state.motion === Motion.DecrementRoot) {
+          return { ...state, motion: Motion.Still, root: state.root - 1 };
+        }
+        if (state.motion === Motion.IncrementMode) {
+          return { ...state, motion: Motion.Still, mode: state.mode + 1 };
+        }
+        if (state.motion === Motion.DecrementMode) {
+          return { ...state, motion: Motion.Still, mode: state.mode - 1 };
+        }
+        return state;
+      });
+    }
+
+    const domNode = domNodeRef.current;
+    if (domNode) domNode.addEventListener("animationend", animationEndHandler, false);
+    return () => {
+      if (domNode) domNode.removeEventListener("animationend", animationEndHandler);
+    };
+  }, []);
+
   return (
-    <svg
-      viewBox="-150 -150 300 300"
-      xmlns="http://www.w3.org/2000/svg"
-      height="300px"
-      width="300px"
+    <div
+      ref={domNodeRef}
+      className={buildClassString(cssModule, ["canvas"])}
     >
-      <Clock />
-      {derived.notes.map((note) => (
-        <NoteDot
-          key={note.name + note.hour.toString()}
+      <svg
+        viewBox="-150 -150 300 300"
+        xmlns="http://www.w3.org/2000/svg"
+        height="300px"
+        width="300px"
+      >
+        <Clock />
+        {derived.notes.map((note) => (
+          <NoteDot
+            key={note.name + note.hour.toString()}
+            motion={derived.motion}
+            noteHour={note.hour}
+            isRoot={note.hour === derived.rootNoteHour}
+          />
+        ))}
+        {derived.notes.map((note) => (
+          <NoteLabel
+            key={note.name + note.hour.toString()}
+            noteName={note.name}
+            noteHour={note.hour}
+            solfege={note.solfege}
+          />
+        ))}
+        <RootDot
           motion={derived.motion}
-          noteHour={note.hour}
-          isRoot={note.hour === derived.rootNoteHour}
+          rootNoteHour={derived.rootNoteHour}
         />
-      ))}
-      {derived.notes.map((note) => (
-        <NoteLabel
-          key={note.name + note.hour.toString()}
-          noteName={note.name}
-          noteHour={note.hour}
-          solfege={note.solfege}
-        />
-      ))}
-      <RootDot
-        motion={derived.motion}
-        rootNoteHour={derived.rootNoteHour}
-      />
-    </svg>
+      </svg>
+    </div>
   )
 };

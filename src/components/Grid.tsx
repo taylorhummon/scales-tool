@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 import { Motion } from "src/enumerations";
 import { State, Derived } from "src/types";
 import KeyDegree from "src/components/KeyDegree";
@@ -14,7 +16,7 @@ const MAX_KEY_DEGREE = 14;
 
 interface GridProps{
   derived: Derived;
-  setState: any
+  setState: Dispatch<SetStateAction<State>>;
 }
 
 export default function Grid({
