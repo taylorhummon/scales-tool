@@ -5,7 +5,7 @@ import { buildClassString } from "src/utilities/css";
 interface ArrowButtonProps {
   isRight: boolean;
   onClick: (() => void) | undefined;
-  dataTestid: string | undefined;
+  dataTestid: string;
 }
 
 export default function ArrowButton({
