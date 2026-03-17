@@ -32,6 +32,16 @@ export class LabelAnimation {
     }
   }
 
+  get isNudgedLeft(): boolean {
+    if (this.#keyDegree > 0 && ! this.#isIncrementingKeyDegree) {
+      return false;
+    }
+    if (this.#keyDegree < 0 && this.#isIncrementingKeyDegree) {
+      return false;
+    }
+    return true;
+  }
+
   #getIsIncrementingKeyDegree(
     motion: Motion
   ): boolean {

@@ -24,6 +24,8 @@ const MODE_NAMES_IN_FCGDAEB_ORDER = [
   ModeName.Phrygian,
   ModeName.Locrian
 ];
+const SHARP = "♯";
+const FLAT = "♭";
 
 
 export function getKeyDegree(
@@ -124,7 +126,7 @@ function getNoteNamesWhenSharpsInvolved(
   }
   return naturalNoteNames.map((naturalNoteName) => {
     const sharpCount = sharpsMultiset.count(naturalNoteName);
-    return naturalNoteName + "♯".repeat(sharpCount);
+    return naturalNoteName + SHARP.repeat(sharpCount);
   });
 }
 
@@ -140,7 +142,7 @@ function getNoteNamesWhenFlatsInvolved(
   }
   return naturalNoteNames.map((naturalNoteName) => {
     const flatCount = flatsMultiset.count(naturalNoteName);
-    return naturalNoteName + "♭".repeat(flatCount);
+    return naturalNoteName + FLAT.repeat(flatCount);
   });
 }
 

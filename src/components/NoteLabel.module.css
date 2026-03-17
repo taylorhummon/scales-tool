@@ -69,97 +69,289 @@
 
   &.from-0-to-1 {
     offset-path: path("M 0 -80 L 40 -69.28203230275508");
+
+    &.nudged-left {
+      offset-path: path("M 0 -80 L 35 -69.28203230275508");
+    }
+
+    &.nudged-right {
+      offset-path: path("M 0 -80 L 45 -69.28203230275508");
+    }
   }
 
   &.from-1-to-2 {
     offset-path: path("M 40 -69.28203230275508 L 69.28203230275508 -40");
+
+    &.nudged-left {
+      offset-path: path("M 40 -69.28203230275508 L 64.28203230275508 -40");
+    }
+
+    &.nudged-right {
+      offset-path: path("M 40 -69.28203230275508 L 74.28203230275508 -40");
+    }
   }
 
   &.from-2-to-3 {
     offset-path: path("M 69.28203230275508 -40 L 80 0");
+
+    &.nudged-left {
+      offset-path: path("M 69.28203230275508 -40 L 75 0");
+    }
+
+    &.nudged-right {
+      offset-path: path("M 69.28203230275508 -40 L 85 0");
+    }
   }
 
   &.from-3-to-4 {
     offset-path: path("M 80 0 L 69.28203230275508 40");
+
+    &.nudged-left {
+      offset-path: path("M 80 0 L 64.28203230275508 40");
+    }
+
+    &.nudged-right {
+      offset-path: path("M 80 0 L 74.28203230275508 40");
+    }
   }
 
   &.from-4-to-5 {
     offset-path: path("M 69.28203230275508 40 L 40 69.28203230275508");
+
+    &.nudged-left {
+      offset-path: path("M 69.28203230275508 40 L 35 69.28203230275508");
+    }
+
+    &.nudged-right {
+      offset-path: path("M 69.28203230275508 40 L 45 69.28203230275508");
+    }
   }
 
   &.from-5-to-6 {
     offset-path: path("M 40 69.28203230275508 L 0 80");
+
+    &.nudged-left {
+      offset-path: path("M 40 69.28203230275508 L -5 80");
+    }
+
+    &.nudged-right {
+      offset-path: path("M 40 69.28203230275508 L 5 80");
+    }
   }
 
   &.from-6-to-7 {
     offset-path: path("M 0 80 L -40 69.28203230275508");
+
+    &.nudged-left {
+      offset-path: path("M 0 80 L -45 69.28203230275508");
+    }
+
+    &.nudged-right {
+      offset-path: path("M 0 80 L -35 69.28203230275508");
+    }
   }
 
   &.from-7-to-8 {
     offset-path: path("M -40 69.28203230275508 L -69.28203230275508 40");
+
+    &.nudged-left {
+      offset-path: path("M -40 69.28203230275508 L -74.28203230275508 40");
+    }
+
+    &.nudged-right {
+      offset-path: path("M -40 69.28203230275508 L -64.28203230275508 40");
+    }
   }
 
   &.from-8-to-9 {
     offset-path: path("M -69.28203230275508 40 L -80 0");
+
+    &.nudged-left {
+      offset-path: path("M -69.28203230275508 40 L -85 0");
+    }
+
+    &.nudged-right {
+      offset-path: path("M -69.28203230275508 40 L -75 0");
+    }
   }
 
   &.from-9-to-10 {
     offset-path: path("M -80 0 L -69.28203230275508 -40");
+
+    &.nudged-left {
+      offset-path: path("M -80 0 L -74.28203230275508 -40");
+    }
+
+    &.nudged-right {
+      offset-path: path("M -80 0 L -64.28203230275508 -40");
+    }
   }
 
   &.from-10-to-11 {
     offset-path: path("M -69.28203230275508 -40 L -40 -69.28203230275508");
+
+    &.nudged-left {
+      offset-path: path("M -69.28203230275508 -40 L -45 -69.28203230275508");
+    }
+
+    &.nudged-right {
+      offset-path: path("M -69.28203230275508 -40 L -35 -69.28203230275508");
+    }
   }
 
   &.from-11-to-0 {
     offset-path: path("M -40 -69.28203230275508 L 0 -80");
+
+    &.nudged-left {
+      offset-path: path("M -40 -69.28203230275508 L -5 -80");
+    }
+
+    &.nudged-right {
+      offset-path: path("M -40 -69.28203230275508 L 5 -80");
+    }
   }
 
   &.from-1-to-0 {
     offset-path: path("M 40 -69.28203230275508 L 0 -80");
+
+    &.nudged-left {
+      offset-path: path("M 40 -69.28203230275508 L -5 -80");
+    }
+
+    &.nudged-right {
+      offset-path: path("M 40 -69.28203230275508 L 5 -80");
+    }
   }
 
   &.from-2-to-1 {
     offset-path: path("M 69.28203230275508 -40 L 40 -69.28203230275508");
+
+    &.nudged-left {
+      offset-path: path("M 69.28203230275508 -40 L 35 -69.28203230275508");
+    }
+
+    &.nudged-right {
+      offset-path: path("M 69.28203230275508 -40 L 45 -69.28203230275508");
+    }
   }
 
   &.from-3-to-2 {
     offset-path: path("M 80 0 L 69.28203230275508 -40");
+
+    &.nudged-left {
+      offset-path: path("M 80 0 L 64.28203230275508 -40");
+    }
+
+    &.nudged-right {
+      offset-path: path("M 80 0 L 74.28203230275508 -40");
+    }
   }
 
   &.from-4-to-3 {
     offset-path: path("M 69.28203230275508 40 L 80 0");
+
+    &.nudged-left {
+      offset-path: path("M 69.28203230275508 40 L 75 0");
+    }
+
+    &.nudged-right {
+      offset-path: path("M 69.28203230275508 40 L 85 0");
+    }
   }
 
   &.from-5-to-4 {
     offset-path: path("M 40 69.28203230275508 L 69.28203230275508 40");
+
+    &.nudged-left {
+      offset-path: path("M 40 69.28203230275508 L 64.28203230275508 40");
+    }
+
+    &.nudged-right {
+      offset-path: path("M 40 69.28203230275508 L 74.28203230275508 40");
+    }
   }
 
   &.from-6-to-5 {
     offset-path: path("M 0 80 L 40 69.28203230275508");
+
+    &.nudged-left {
+      offset-path: path("M 0 80 L 35 69.28203230275508");
+    }
+
+    &.nudged-right {
+      offset-path: path("M 0 80 L 45 69.28203230275508");
+    }
   }
 
   &.from-7-to-6 {
     offset-path: path("M -40 69.28203230275508 L 0 80");
+
+    &.nudged-left {
+      offset-path: path("M -40 69.28203230275508 L -5 80");
+    }
+
+    &.nudged-right {
+      offset-path: path("M -40 69.28203230275508 L 5 80");
+    }
   }
 
   &.from-8-to-7 {
     offset-path: path("M -69.28203230275508 40 L -40 69.28203230275508");
+
+    &.nudged-left {
+      offset-path: path("M -69.28203230275508 40 L -45 69.28203230275508");
+    }
+
+    &.nudged-right {
+      offset-path: path("M -69.28203230275508 40 L -35 69.28203230275508");
+    }
   }
 
   &.from-9-to-8 {
     offset-path: path("M -80 0 L -69.28203230275508 40");
+
+    &.nudged-left {
+      offset-path: path("M -80 0 L -74.28203230275508 40");
+    }
+
+    &.nudged-right {
+      offset-path: path("M -80 0 L -64.28203230275508 40");
+    }
   }
 
   &.from-10-to-9 {
     offset-path: path("M -69.28203230275508 -40 L -80 0");
+
+    &.nudged-left {
+      offset-path: path("M -69.28203230275508 -40 L -85 0");
+    }
+
+    &.nudged-right {
+      offset-path: path("M -69.28203230275508 -40 L -75 0");
+    }
   }
 
   &.from-11-to-10 {
     offset-path: path("M -40 -69.28203230275508 L -69.28203230275508 -40");
+
+    &.nudged-left {
+      offset-path: path("M -40 -69.28203230275508 L -74.28203230275508 -40");
+    }
+
+    &.nudged-right {
+      offset-path: path("M -40 -69.28203230275508 L -64.28203230275508 -40");
+    }
   }
 
   &.from-0-to-11 {
     offset-path: path("M 0 -80 L -40 -69.28203230275508");
+
+    &.nudged-left {
+      offset-path: path("M 0 -80 L -45 -69.28203230275508");
+    }
+
+    &.nudged-right {
+      offset-path: path("M 0 -80 L -35 -69.28203230275508");
+    }
   }
 }

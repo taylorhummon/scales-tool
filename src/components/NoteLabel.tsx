@@ -47,6 +47,11 @@ function className(
   } else {
     classNames.push("move");
     classNames.push(`from-${labelAnimation.fromHour}-to-${labelAnimation.toHour}`);
+    if (labelAnimation.isNudgedLeft) {
+      classNames.push("nudged-left");
+    } else {
+      classNames.push("nudged-right");
+    }
   }
   return buildClassString(cssModule, classNames);
 }
