@@ -1,8 +1,8 @@
 import { NaturalNoteName, Solfege, ModeName, Motion } from "src/enumerations";
 import type { NoteName, Note } from "src/types";
+import { Multiset } from "src/classes/multiset";
 import { buildIndicesArray } from "src/utilities/array";
 import { remainderFor } from "src/utilities/math";
-import { Multiset } from "src/utilities/multiset";
 
 
 const SOLFEGE_NAMES = Object.values(Solfege);
@@ -183,7 +183,7 @@ function getNoteName(
   return noteName;
 }
 
-export function getMotionEndHour(
+export function getDotMotionEndHour(
   motion: Motion,
   hour: number
 ): number | null {

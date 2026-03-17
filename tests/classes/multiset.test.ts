@@ -1,6 +1,6 @@
 import { test, expect } from 'vitest';
 
-import { Multiset } from "src/utilities/multiset";
+import { Multiset } from "src/classes/multiset";
 
 
 test("We can create multisets, add to them, and get counts back.", () => {

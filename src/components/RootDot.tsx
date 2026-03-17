@@ -1,6 +1,6 @@
 import { Motion } from "src/enumerations";
 import { buildClassString } from "src/utilities/css";
-import { getMotionEndHour } from "src/utilities/scale";
+import { getDotMotionEndHour } from "src/utilities/scale";
 
 import cssModule from "src/components/RootDot.module.css";
 
@@ -40,7 +40,7 @@ function className(
     motion === Motion.IncrementRoot ||
     motion === Motion.DecrementRoot
   ) {
-    const motionEndHour = getMotionEndHour(motion, rootNoteHour);
+    const motionEndHour = getDotMotionEndHour(motion, rootNoteHour);
     classNames.push("move");
     classNames.push(`from-${rootNoteHour}-to-${motionEndHour}`);
   }

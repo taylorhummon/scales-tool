@@ -2,6 +2,7 @@ import { useRef, useEffect, Dispatch, SetStateAction } from "react";
 
 import { Motion } from "src/enumerations";
 import type { State, Derived } from "src/types";
+import { LabelAnimation } from "src/classes/label_animation";
 import Clock from "src/components/Clock";
 import NoteDot from "src/components/NoteDot";
 import NoteLabel from "src/components/NoteLabel";
@@ -71,6 +72,7 @@ export default function Canvas({
         {derived.notes.map((note) => (
           <NoteLabel
             key={note.name + note.hour.toString()}
+            labelAnimation={getLabelAnimation(derived)}
             noteName={note.name}
             noteHour={note.hour}
             solfege={note.solfege}
@@ -84,3 +86,10 @@ export default function Canvas({
     </div>
   )
 };
+
+function getLabelAnimation(
+  derived: Derived
+): LabelAnimation | null {
+  if (derived.motion === Motion.Still) return null;
+  return new LabelAnimation(derived.motion, derived.root, derived.mode);
+}

@@ -8,7 +8,7 @@ import {
   getRootNoteHour,
   getRootNoteName,
   getNotes,
-  getMotionEndHour,
+  getDotMotionEndHour,
 } from "src/utilities/scale";
 
 
@@ -233,44 +233,44 @@ test("getNotes() works", () => {
   );
 });
 
-test("getMotionEndHour() works", () => {
+test("getDotMotionEndHour() works", () => {
   expect(
-    getMotionEndHour(Motion.IncrementRoot, 3)
+    getDotMotionEndHour(Motion.IncrementRoot, 3)
   ).toBe(
     10
   );
   expect(
-    getMotionEndHour(Motion.IncrementRoot, 8)
+    getDotMotionEndHour(Motion.IncrementRoot, 8)
   ).toBe(
     3
   );
   expect(
-    getMotionEndHour(Motion.DecrementRoot, 3)
+    getDotMotionEndHour(Motion.DecrementRoot, 3)
   ).toBe(
     8
   );
   expect(
-    getMotionEndHour(Motion.DecrementRoot, 8)
+    getDotMotionEndHour(Motion.DecrementRoot, 8)
   ).toBe(
     1
   );
   expect(
-    getMotionEndHour(Motion.IncrementMode, 3)
+    getDotMotionEndHour(Motion.IncrementMode, 3)
   ).toBe(
     8
   );
   expect(
-    getMotionEndHour(Motion.IncrementMode, 8)
+    getDotMotionEndHour(Motion.IncrementMode, 8)
   ).toBe(
     1
   );
   expect(
-    getMotionEndHour(Motion.DecrementMode, 3)
+    getDotMotionEndHour(Motion.DecrementMode, 3)
   ).toBe(
     10
   );
   expect(
-    getMotionEndHour(Motion.DecrementMode, 8)
+    getDotMotionEndHour(Motion.DecrementMode, 8)
   ).toBe(
     3
   );
