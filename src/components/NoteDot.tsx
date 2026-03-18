@@ -20,6 +20,7 @@ export default function NoteDot({
   return (
     <circle
       className={className(motion, note.hour, solfege)}
+      data-testid={`note-dot-${solfege}`}
       cx="0"
       cy="0"
       r="10"

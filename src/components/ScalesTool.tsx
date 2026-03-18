@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { Motion } from "src/enumerations";
+import type { State } from "src/types";
 import Canvas from "src/components/Canvas";
 import Grid from "src/components/Grid";
 import { buildClassString } from "src/utilities/css";
@@ -9,15 +10,12 @@ import { derivedFromState } from "src/utilities/derived";
 import cssModule from "src/components/ScalesTool.module.css";
 
 
-const INITIAL_STATE = {
-  motion: Motion.Still,
-  root: -2,   // C
-  mode: -2    // Ionian
-}
-
-
-export default function ScalesTool(): JSX.Element {
-  const [state, setState] = useState(INITIAL_STATE);
+export default function ScalesTool({
+  root = -2,   // C
+  mode = -2    // Ionian
+}): JSX.Element {
+  const initialState: State = { motion: Motion.Still, root, mode };
+  const [state, setState] = useState(initialState);
   const derived = derivedFromState(state);
 
   return (

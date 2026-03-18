@@ -17,6 +17,7 @@ export default function RootDot({
   return (
     <circle
       className={className(motion, rootNoteHour)}
+      data-testid={"root-dot"}
       cx="0"
       cy="0"
       r="10"
