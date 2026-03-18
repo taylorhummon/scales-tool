@@ -61,26 +61,25 @@ export default function Canvas({
         width="300px"
       >
         <Clock />
-        {derived.notes.map((note) => (
+        {[...derived.noteBySolfege].map(([solfege, note], _) => (
           <NoteDot
-            key={note.name + note.hour.toString()}
+            key={note.name}
             motion={derived.motion}
-            noteHour={note.hour}
-            isRoot={note.hour === derived.rootNoteHour}
+            note={note}
+            solfege={solfege}
           />
         ))}
-        {derived.notes.map((note) => (
+        {[...derived.noteBySolfege].map(([solfege, note], _) => (
           <NoteLabel
-            key={note.name + note.hour.toString()}
+            key={note.name}
             labelAnimation={getLabelAnimation(derived)}
-            noteName={note.name}
-            noteHour={note.hour}
-            solfege={note.solfege}
+            note={note}
+            solfege={solfege}
           />
         ))}
         <RootDot
           motion={derived.motion}
-          rootNoteHour={derived.rootNoteHour}
+          rootNoteHour={derived.rootNote.hour}
         />
       </svg>
     </div>

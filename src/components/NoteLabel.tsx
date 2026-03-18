@@ -1,6 +1,6 @@
 import { Solfege } from "src/enumerations";
-import type { NoteName } from "src/types";
-import { LabelAnimation } from "src/classes/label_animation";
+import type { Note } from "src/classes/note";
+import type { LabelAnimation } from "src/classes/label_animation";
 import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/NoteLabel.module.css";
@@ -8,20 +8,18 @@ import cssModule from "src/components/NoteLabel.module.css";
 
 interface NoteLabelProps {
   labelAnimation: LabelAnimation | null;
-  noteName: NoteName;
-  noteHour: number;
+  note: Note;
   solfege: Solfege;
 }
 
 export default function NoteLabel({
   labelAnimation,
-  noteName,
-  noteHour,
+  note,
   solfege
 }: NoteLabelProps): JSX.Element {
   return (
     <g
-      className={className(labelAnimation, noteHour, solfege)}
+      className={className(labelAnimation, note.hour, solfege)}
       data-testid={`note-label-${solfege}`}
     >
       <text
@@ -30,7 +28,7 @@ export default function NoteLabel({
           textAnchor: "middle"
         }}
       >
-        {noteName}
+        {note.name}
       </text>
     </g>
   );

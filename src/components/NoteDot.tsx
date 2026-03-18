@@ -1,4 +1,5 @@
-import { Motion } from "src/enumerations";
+import { Motion, Solfege } from "src/enumerations";
+import type { Note } from "src/classes/note";
 import { buildClassString } from "src/utilities/css";
 import { getDotMotionEndHour } from "src/utilities/scale";
 
@@ -7,18 +8,18 @@ import cssModule from "src/components/NoteDot.module.css";
 
 interface NoteDotProps {
   motion: Motion;
-  noteHour: number;
-  isRoot: boolean;
+  note: Note;
+  solfege: Solfege;
 }
 
 export default function NoteDot({
   motion,
-  noteHour,
-  isRoot
+  note,
+  solfege
 }: NoteDotProps): JSX.Element {
   return (
     <circle
-      className={className(motion, noteHour, isRoot)}
+      className={className(motion, note.hour, solfege)}
       cx="0"
       cy="0"
       r="10"
@@ -29,11 +30,11 @@ export default function NoteDot({
 function className(
   motion: Motion,
   noteHour: number,
-  isRoot: boolean
+  solfege: Solfege
 ): string {
   const classNames = ["note-dot"];
   if (
-    isRoot && (
+    solfege === Solfege.Do && (
       motion === Motion.Still ||
       motion === Motion.IncrementRoot ||
       motion === Motion.DecrementRoot

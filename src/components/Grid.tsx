@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
 import { Motion } from "src/enumerations";
-import { State, Derived } from "src/types";
+import type { State, Derived } from "src/types";
 import KeyDegree from "src/components/KeyDegree";
 import KeyDescription from "src/components/KeyDescription";
 import ModeNote from "src/components/ModeNote";
@@ -67,10 +67,10 @@ export default function Grid({
     >
       <KeyDescription
         mode={derived.mode}
-        rootNoteName={derived.rootNoteName}
+        rootNoteName={derived.rootNote.name}
       />
       <RootNote
-        rootNoteName={derived.rootNoteName}
+        rootNoteName={derived.rootNote.name}
         buildChangeRoot={buildChangeRoot}
       />
       <ModeNote

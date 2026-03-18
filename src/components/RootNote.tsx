@@ -1,5 +1,3 @@
-import type { NoteName } from "src/types";
-
 import ArrowButton from "src/components/ArrowButton";
 import { buildClassString } from "src/utilities/css";
 
@@ -7,7 +5,7 @@ import cssModule from "src/components/RootNote.module.css";
 
 
 interface RootNoteProps {
-  rootNoteName: NoteName;
+  rootNoteName: string;
   buildChangeRoot: (isIncrement: boolean) => ((() => void) | undefined);
 }
 

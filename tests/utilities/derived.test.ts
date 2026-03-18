@@ -1,6 +1,7 @@
 import { test, expect } from 'vitest';
 
-import { Motion } from "src/enumerations";
+import { Motion, Solfege } from "src/enumerations";
+import type { Note } from "src/classes/note";
 import { derivedFromState } from "src/utilities/derived";
 
 
@@ -74,85 +75,94 @@ test("derivedFromState() includes the mode", () => {
 });
 
 test("derivedFromState() includes the notes", () => {
+  const noteA = derivedFromState({ motion: Motion.Still, root: 3, mode: 2 }).noteBySolfege.get(Solfege.Re) as Note;
   expect(
-    derivedFromState({ motion: Motion.Still, root: 3, mode: 2 }).notes[1]
-  ).toStrictEqual(
-    {
-      name: "C",
-      hour: 10,
-      solfege: "re"
-    }
-  );
-  expect(
-    derivedFromState({ motion: Motion.IncrementRoot, root: -2, mode: -2 }).notes[1]
-  ).toStrictEqual(
-    {
-      name: "D",
-      hour: 0,
-      solfege: "re"
-    }
-  );
-  expect(
-    derivedFromState({ motion: Motion.DecrementRoot, root: 8, mode: -1 }).notes[1]
-  ).toStrictEqual(
-    {
-      name: "B♯",
-      hour: 10,
-      solfege: "re"
-    }
-  );
-  expect(
-    derivedFromState({ motion: Motion.IncrementMode, root: -5, mode: 2 }).notes[1]
-  ).toStrictEqual(
-    {
-      name: "F♭",
-      hour: 2,
-      solfege: "re"
-    }
-  );
-});
-
-test("derivedFromState() includes the rootNoteHour", () => {
-  expect(
-    derivedFromState({ motion: Motion.Still, root: 3, mode: 2 }).rootNoteHour
-  ).toBe(
-    9
-  );
-  expect(
-    derivedFromState({ motion: Motion.IncrementRoot, root: -2, mode: -2 }).rootNoteHour
-  ).toBe(
-    10
-  );
-  expect(
-    derivedFromState({ motion: Motion.DecrementRoot, root: 8, mode: -1 }).rootNoteHour
-  ).toBe(
-    8
-  );
-  expect(
-    derivedFromState({ motion: Motion.IncrementMode, root: -5, mode: 2 }).rootNoteHour
-  ).toBe(
-    1
-  );
-});
-
-test("derivedFromState() includes the rootNoteName", () => {
-  expect(
-    derivedFromState({ motion: Motion.Still, root: 3, mode: 2 }).rootNoteName
-  ).toBe(
-    "B"
-  );
-  expect(
-    derivedFromState({ motion: Motion.IncrementRoot, root: -2, mode: -2 }).rootNoteName
+    noteA.name
   ).toBe(
     "C"
   );
   expect(
-    derivedFromState({ motion: Motion.DecrementRoot, root: 8, mode: -1 }).rootNoteName
+    noteA.hour
+  ).toBe(
+    10
+  );
+  const noteB = derivedFromState({ motion: Motion.Still, root: -2, mode: -2 }).noteBySolfege.get(Solfege.Re) as Note;
+  expect(
+    noteB.name
+  ).toBe(
+    "D"
+  );
+  expect(
+    noteB.hour
+  ).toBe(
+    0
+  );
+  const noteC = derivedFromState({ motion: Motion.Still, root: 8, mode: -1 }).noteBySolfege.get(Solfege.Re) as Note;
+  expect(
+    noteC.name
+  ).toBe(
+    "B♯"
+  );
+  expect(
+    noteC.hour
+  ).toBe(
+    10
+  );
+  const noteD = derivedFromState({ motion: Motion.Still, root: -5, mode: 2 }).noteBySolfege.get(Solfege.Re) as Note;
+  expect(
+    noteD.name
+  ).toBe(
+    "F♭"
+  );
+  expect(
+    noteD.hour
+  ).toBe(
+    2
+  );
+});
+
+test("derivedFromState() includes the rootNote", () => {
+  const rootNoteA = derivedFromState({ motion: Motion.Still, root: 3, mode: 2 }).rootNote;
+  expect(
+    rootNoteA.hour
+  ).toBe(
+    9
+  );
+  expect(
+    rootNoteA.name
+  ).toBe(
+    "B"
+  );
+  const rootNoteB = derivedFromState({ motion: Motion.Still, root: -2, mode: -2 }).rootNote;
+  expect(
+    rootNoteB.hour
+  ).toBe(
+    10
+  );
+  expect(
+    rootNoteB.name
+  ).toBe(
+    "C"
+  );
+  const rootNoteC = derivedFromState({ motion: Motion.Still, root: 8, mode: -1 }).rootNote;
+  expect(
+    rootNoteC.hour
+  ).toBe(
+    8
+  );
+  expect(
+    rootNoteC.name
   ).toBe(
     "A♯"
   );
+  const rootNoteD = derivedFromState({ motion: Motion.Still, root: -5, mode: 2 }).rootNote;
   expect(
-    derivedFromState({ motion: Motion.IncrementMode, root: -5, mode: 2 }).rootNoteName
+    rootNoteD.hour
+  ).toBe(
+    1
+  );
+  expect(
+    rootNoteD.name
   ).toBe(
     "E♭"
   );
