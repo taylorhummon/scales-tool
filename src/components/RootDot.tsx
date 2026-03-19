@@ -10,7 +10,7 @@ interface RootDotProps {
   rootNoteHour: number;
 }
 
-export default function RootDot({
+export function RootDot({
   motion,
   rootNoteHour
 }: RootDotProps): JSX.Element {

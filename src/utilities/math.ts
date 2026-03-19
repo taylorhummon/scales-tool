@@ -1,19 +1,30 @@
+export function quotientAndRemainderFor(
+  numerator: number,
+  denominator: number
+): { quotient: number, remainder: number } {
+  const remainder = remainderFor(numerator, denominator);
+  const quotient = ensureZeroIsPositive((numerator - remainder) / denominator);
+  return { quotient, remainder };
+}
+
 export function remainderFor(
   numerator: number,
   denominator: number
 ): number {
   if (denominator <= 0) throw Error("remainder() expects a positive denominator");
-  const possiblyNegative = numerator % denominator;
-  if (isNegativeZero(possiblyNegative)) return 0;
-  if (possiblyNegative < 0) return possiblyNegative + denominator;
-  return possiblyNegative;
+  const possiblyNegative = ensureZeroIsPositive(numerator % denominator);
+  if (possiblyNegative < 0) {
+    return possiblyNegative + denominator;
+  } else {
+    return possiblyNegative;
+  }
 }
 
-export function isNegativeZero(
+function ensureZeroIsPositive(
   n: number
-): boolean {
-  if (n !== 0) return false;
-  return 1 / n === -Infinity;
+): number {
+  // Note: 0 === -0, but that's OK
+  return n === -0 ? 0 : n;
 }
 
 export function cosineOfDegrees(

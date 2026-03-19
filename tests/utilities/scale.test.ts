@@ -1,7 +1,7 @@
 import { test, expect } from 'vitest';
 
 import { Solfege, Motion } from "src/enumerations";
-import type { Note } from "src/classes/note";
+import type { Note } from "src/classes/Note";
 import {
   getKeyDegree,
   getModeNoteName,

@@ -2,10 +2,10 @@ import { Dispatch, SetStateAction } from "react";
 
 import { Motion } from "src/enumerations";
 import type { State, Derived } from "src/types";
-import KeyDegree from "src/components/KeyDegree";
-import KeyDescription from "src/components/KeyDescription";
-import ModeNote from "src/components/ModeNote";
-import RootNote from "src/components/RootNote";
+import { KeyDegree } from "src/components/KeyDegree";
+import { KeyDescription } from "src/components/KeyDescription";
+import { ModeNote } from "src/components/ModeNote";
+import { RootNote } from "src/components/RootNote";
 import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/Grid.module.css";
@@ -19,7 +19,7 @@ interface GridProps{
   setState: Dispatch<SetStateAction<State>>;
 }
 
-export default function Grid({
+export function Grid({
   derived,
   setState
 }: GridProps): JSX.Element {

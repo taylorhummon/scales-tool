@@ -1,6 +1,6 @@
 import { Solfege } from "src/enumerations";
 import type { State, Derived } from "src/types";
-import type { Note } from "src/classes/note";
+import type { Note } from "src/classes/Note";
 import {
   getNoteBySolfege,
   getModeNoteName,

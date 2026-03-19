@@ -1,5 +1,5 @@
 import { Motion, Solfege } from "src/enumerations";
-import type { Note } from "src/classes/note";
+import type { Note } from "src/classes/Note";
 import { buildClassString } from "src/utilities/css";
 import { getDotMotionEndHour } from "src/utilities/scale";
 
@@ -12,7 +12,7 @@ interface NoteDotProps {
   solfege: Solfege;
 }
 
-export default function NoteDot({
+export function NoteDot({
   motion,
   note,
   solfege

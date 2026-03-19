@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import { Motion } from "src/enumerations";
 import type { State } from "src/types";
-import Canvas from "src/components/Canvas";
-import Grid from "src/components/Grid";
+import { Canvas } from "src/components/Canvas";
+import { Grid } from "src/components/Grid";
 import { buildClassString } from "src/utilities/css";
 import { derivedFromState } from "src/utilities/derived";
 

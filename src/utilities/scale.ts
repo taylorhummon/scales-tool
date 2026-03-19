@@ -1,12 +1,11 @@
 import { NaturalNoteName, Solfege, ModeName, Motion } from "src/enumerations";
-import { Multiset } from "src/classes/multiset";
-import { Note } from "src/classes/note";
+import { Multiset } from "src/classes/Multiset";
+import { Note } from "src/classes/Note";
 import { buildIndicesArray } from "src/utilities/array";
 import { remainderFor } from "src/utilities/math";
 
 
-const SOLFEGE_NAMES = Object.values(Solfege);
-const NATURAL_NOTES_IN_FCGDAEB_ORDER = [
+export const NATURAL_NOTES_IN_FCGDAEB_ORDER = [
   NaturalNoteName.F,
   NaturalNoteName.C,
   NaturalNoteName.G,
@@ -14,7 +13,9 @@ const NATURAL_NOTES_IN_FCGDAEB_ORDER = [
   NaturalNoteName.A,
   NaturalNoteName.E,
   NaturalNoteName.B
-]
+];
+export const NATURAL_NOTES_IN_BEADGCF_ORDER = [...NATURAL_NOTES_IN_FCGDAEB_ORDER].reverse();
+const SOLFEGE_NAMES = Object.values(Solfege);
 const MODE_NAMES_IN_FCGDAEB_ORDER = [
   ModeName.Lydian,
   ModeName.Ionian,
@@ -90,7 +91,7 @@ function getNotesWhenSharpsInvolved(
   sharpTotal: number
 ): Array<Note> {
   const sharpsMultiset = new Multiset<NaturalNoteName>();
-  const queue = [...NATURAL_NOTES_IN_FCGDAEB_ORDER]; // FCGDAEB
+  const queue = [...NATURAL_NOTES_IN_FCGDAEB_ORDER];
   for (let _ in buildIndicesArray(sharpTotal)) {
     const toSharp = rotateQueue(queue);
     sharpsMultiset.add(toSharp);
@@ -106,7 +107,7 @@ function getNotesWhenFlatsInvolved(
   flatTotal: number
 ): Array<Note> {
   const flatsMultiset = new Multiset<NaturalNoteName>();
-  const queue = [...NATURAL_NOTES_IN_FCGDAEB_ORDER].reverse(); // BEADGCF
+  const queue = [...NATURAL_NOTES_IN_BEADGCF_ORDER];
   for (let _ in buildIndicesArray(flatTotal)) {
     const toFlat = rotateQueue(queue);
     flatsMultiset.add(toFlat);

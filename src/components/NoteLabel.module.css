@@ -1,6 +1,6 @@
 @value duration-motion from "../constants.css";
 
-@keyframes move-note-label {
+@keyframes from-note-label {
   0% {
     offset-distance: 0%;
   }
@@ -16,342 +16,370 @@
   font-style: normal;
 
   &.move {
-    animation: move-note-label duration-motion ease-in-out 1 forwards;
+    animation: from-note-label duration-motion ease-in-out 1 forwards;
   }
 
-  &.hour-0 {
-    offset-path: path("M 0 -80");
+  &.note-D♭♭ {
+    offset-path: path("M -84.28203230275508 -35");
   }
 
-  &.hour-1 {
-    offset-path: path("M 40 -69.28203230275508");
+  &.note-D♭ {
+    offset-path: path("M -50 -64.28203230275508");
   }
 
-  &.hour-2 {
-    offset-path: path("M 69.28203230275508 -40");
+  &.note-D {
+    offset-path: path("M -5 -75");
   }
 
-  &.hour-3 {
-    offset-path: path("M 80 0");
+  &.note-D♯ {
+    offset-path: path("M 30 -64.28203230275508");
   }
 
-  &.hour-4 {
-    offset-path: path("M 69.28203230275508 40");
+  &.note-D♯♯ {
+    offset-path: path("M 54.28203230275508 -35");
   }
 
-  &.hour-5 {
-    offset-path: path("M 40 69.28203230275508");
+  &.note-E♭♭ {
+    offset-path: path("M -15 -75");
   }
 
-  &.hour-6 {
-    offset-path: path("M 0 80");
+  &.note-E♭ {
+    offset-path: path("M 30 -64.28203230275508");
   }
 
-  &.hour-7 {
-    offset-path: path("M -40 69.28203230275508");
+  &.note-E {
+    offset-path: path("M 64.28203230275508 -35");
   }
 
-  &.hour-8 {
-    offset-path: path("M -69.28203230275508 40");
+  &.note-E♯ {
+    offset-path: path("M 70 5");
   }
 
-  &.hour-9 {
-    offset-path: path("M -80 0");
+  &.note-E♯♯ {
+    offset-path: path("M 54.28203230275508 45");
   }
 
-  &.hour-10 {
-    offset-path: path("M -69.28203230275508 -40");
+  &.note-F♭♭ {
+    offset-path: path("M 25 -64.28203230275508");
   }
 
-  &.hour-11 {
-    offset-path: path("M -40 -69.28203230275508");
+  &.note-F♭ {
+    offset-path: path("M 59.28203230275508 -35");
   }
 
-  &.from-0-to-1 {
-    offset-path: path("M 0 -80 L 40 -69.28203230275508");
-
-    &.nudged-left {
-      offset-path: path("M 0 -80 L 35 -69.28203230275508");
-    }
-
-    &.nudged-right {
-      offset-path: path("M 0 -80 L 45 -69.28203230275508");
-    }
+  &.note-F {
+    offset-path: path("M 75 5");
   }
 
-  &.from-1-to-2 {
-    offset-path: path("M 40 -69.28203230275508 L 69.28203230275508 -40");
-
-    &.nudged-left {
-      offset-path: path("M 40 -69.28203230275508 L 64.28203230275508 -40");
-    }
-
-    &.nudged-right {
-      offset-path: path("M 40 -69.28203230275508 L 74.28203230275508 -40");
-    }
+  &.note-F♯ {
+    offset-path: path("M 59.28203230275508 45");
   }
 
-  &.from-2-to-3 {
-    offset-path: path("M 69.28203230275508 -40 L 80 0");
-
-    &.nudged-left {
-      offset-path: path("M 69.28203230275508 -40 L 75 0");
-    }
-
-    &.nudged-right {
-      offset-path: path("M 69.28203230275508 -40 L 85 0");
-    }
+  &.note-F♯♯ {
+    offset-path: path("M 25 74.28203230275508");
   }
 
-  &.from-3-to-4 {
-    offset-path: path("M 80 0 L 69.28203230275508 40");
-
-    &.nudged-left {
-      offset-path: path("M 80 0 L 64.28203230275508 40");
-    }
-
-    &.nudged-right {
-      offset-path: path("M 80 0 L 74.28203230275508 40");
-    }
+  &.note-G♭♭ {
+    offset-path: path("M 65 5");
   }
 
-  &.from-4-to-5 {
-    offset-path: path("M 69.28203230275508 40 L 40 69.28203230275508");
-
-    &.nudged-left {
-      offset-path: path("M 69.28203230275508 40 L 35 69.28203230275508");
-    }
-
-    &.nudged-right {
-      offset-path: path("M 69.28203230275508 40 L 45 69.28203230275508");
-    }
+  &.note-G♭ {
+    offset-path: path("M 59.28203230275508 45");
   }
 
-  &.from-5-to-6 {
-    offset-path: path("M 40 69.28203230275508 L 0 80");
-
-    &.nudged-left {
-      offset-path: path("M 40 69.28203230275508 L -5 80");
-    }
-
-    &.nudged-right {
-      offset-path: path("M 40 69.28203230275508 L 5 80");
-    }
+  &.note-G {
+    offset-path: path("M 35 74.28203230275508");
   }
 
-  &.from-6-to-7 {
-    offset-path: path("M 0 80 L -40 69.28203230275508");
-
-    &.nudged-left {
-      offset-path: path("M 0 80 L -45 69.28203230275508");
-    }
-
-    &.nudged-right {
-      offset-path: path("M 0 80 L -35 69.28203230275508");
-    }
+  &.note-G♯ {
+    offset-path: path("M -10 85");
   }
 
-  &.from-7-to-8 {
-    offset-path: path("M -40 69.28203230275508 L -69.28203230275508 40");
-
-    &.nudged-left {
-      offset-path: path("M -40 69.28203230275508 L -74.28203230275508 40");
-    }
-
-    &.nudged-right {
-      offset-path: path("M -40 69.28203230275508 L -64.28203230275508 40");
-    }
+  &.note-G♯♯ {
+    offset-path: path("M -55 74.28203230275508");
   }
 
-  &.from-8-to-9 {
-    offset-path: path("M -69.28203230275508 40 L -80 0");
-
-    &.nudged-left {
-      offset-path: path("M -69.28203230275508 40 L -85 0");
-    }
-
-    &.nudged-right {
-      offset-path: path("M -69.28203230275508 40 L -75 0");
-    }
+  &.note-A♭♭ {
+    offset-path: path("M 25 74.28203230275508");
   }
 
-  &.from-9-to-10 {
-    offset-path: path("M -80 0 L -69.28203230275508 -40");
-
-    &.nudged-left {
-      offset-path: path("M -80 0 L -74.28203230275508 -40");
-    }
-
-    &.nudged-right {
-      offset-path: path("M -80 0 L -64.28203230275508 -40");
-    }
+  &.note-A♭ {
+    offset-path: path("M -10 85");
   }
 
-  &.from-10-to-11 {
-    offset-path: path("M -69.28203230275508 -40 L -40 -69.28203230275508");
-
-    &.nudged-left {
-      offset-path: path("M -69.28203230275508 -40 L -45 -69.28203230275508");
-    }
-
-    &.nudged-right {
-      offset-path: path("M -69.28203230275508 -40 L -35 -69.28203230275508");
-    }
+  &.note-A {
+    offset-path: path("M -45 74.28203230275508");
   }
 
-  &.from-11-to-0 {
-    offset-path: path("M -40 -69.28203230275508 L 0 -80");
-
-    &.nudged-left {
-      offset-path: path("M -40 -69.28203230275508 L -5 -80");
-    }
-
-    &.nudged-right {
-      offset-path: path("M -40 -69.28203230275508 L 5 -80");
-    }
+  &.note-A♯ {
+    offset-path: path("M -79.28203230275508 45");
   }
 
-  &.from-1-to-0 {
-    offset-path: path("M 40 -69.28203230275508 L 0 -80");
-
-    &.nudged-left {
-      offset-path: path("M 40 -69.28203230275508 L -5 -80");
-    }
-
-    &.nudged-right {
-      offset-path: path("M 40 -69.28203230275508 L 5 -80");
-    }
+  &.note-A♯♯ {
+    offset-path: path("M -95 5");
   }
 
-  &.from-2-to-1 {
-    offset-path: path("M 69.28203230275508 -40 L 40 -69.28203230275508");
-
-    &.nudged-left {
-      offset-path: path("M 69.28203230275508 -40 L 35 -69.28203230275508");
-    }
-
-    &.nudged-right {
-      offset-path: path("M 69.28203230275508 -40 L 45 -69.28203230275508");
-    }
+  &.note-B♭♭ {
+    offset-path: path("M -55 74.28203230275508");
   }
 
-  &.from-3-to-2 {
-    offset-path: path("M 80 0 L 69.28203230275508 -40");
-
-    &.nudged-left {
-      offset-path: path("M 80 0 L 64.28203230275508 -40");
-    }
-
-    &.nudged-right {
-      offset-path: path("M 80 0 L 74.28203230275508 -40");
-    }
+  &.note-B♭ {
+    offset-path: path("M -79.28203230275508 45");
   }
 
-  &.from-4-to-3 {
-    offset-path: path("M 69.28203230275508 40 L 80 0");
-
-    &.nudged-left {
-      offset-path: path("M 69.28203230275508 40 L 75 0");
-    }
-
-    &.nudged-right {
-      offset-path: path("M 69.28203230275508 40 L 85 0");
-    }
+  &.note-B {
+    offset-path: path("M -85 5");
   }
 
-  &.from-5-to-4 {
-    offset-path: path("M 40 69.28203230275508 L 69.28203230275508 40");
-
-    &.nudged-left {
-      offset-path: path("M 40 69.28203230275508 L 64.28203230275508 40");
-    }
-
-    &.nudged-right {
-      offset-path: path("M 40 69.28203230275508 L 74.28203230275508 40");
-    }
+  &.note-B♯ {
+    offset-path: path("M -79.28203230275508 -35");
   }
 
-  &.from-6-to-5 {
-    offset-path: path("M 0 80 L 40 69.28203230275508");
-
-    &.nudged-left {
-      offset-path: path("M 0 80 L 35 69.28203230275508");
-    }
-
-    &.nudged-right {
-      offset-path: path("M 0 80 L 45 69.28203230275508");
-    }
+  &.note-B♯♯ {
+    offset-path: path("M -55 -64.28203230275508");
   }
 
-  &.from-7-to-6 {
-    offset-path: path("M -40 69.28203230275508 L 0 80");
-
-    &.nudged-left {
-      offset-path: path("M -40 69.28203230275508 L -5 80");
-    }
-
-    &.nudged-right {
-      offset-path: path("M -40 69.28203230275508 L 5 80");
-    }
+  &.note-C♭♭ {
+    offset-path: path("M -84.28203230275508 45");
   }
 
-  &.from-8-to-7 {
-    offset-path: path("M -69.28203230275508 40 L -40 69.28203230275508");
-
-    &.nudged-left {
-      offset-path: path("M -69.28203230275508 40 L -45 69.28203230275508");
-    }
-
-    &.nudged-right {
-      offset-path: path("M -69.28203230275508 40 L -35 69.28203230275508");
-    }
+  &.note-C♭ {
+    offset-path: path("M -90 5");
   }
 
-  &.from-9-to-8 {
-    offset-path: path("M -80 0 L -69.28203230275508 40");
-
-    &.nudged-left {
-      offset-path: path("M -80 0 L -74.28203230275508 40");
-    }
-
-    &.nudged-right {
-      offset-path: path("M -80 0 L -64.28203230275508 40");
-    }
+  &.note-C {
+    offset-path: path("M -74.28203230275508 -35");
   }
 
-  &.from-10-to-9 {
-    offset-path: path("M -69.28203230275508 -40 L -80 0");
-
-    &.nudged-left {
-      offset-path: path("M -69.28203230275508 -40 L -85 0");
-    }
-
-    &.nudged-right {
-      offset-path: path("M -69.28203230275508 -40 L -75 0");
-    }
+  &.note-C♯ {
+    offset-path: path("M -50 -64.28203230275508");
   }
 
-  &.from-11-to-10 {
-    offset-path: path("M -40 -69.28203230275508 L -69.28203230275508 -40");
-
-    &.nudged-left {
-      offset-path: path("M -40 -69.28203230275508 L -74.28203230275508 -40");
-    }
-
-    &.nudged-right {
-      offset-path: path("M -40 -69.28203230275508 L -64.28203230275508 -40");
-    }
+  &.note-C♯♯ {
+    offset-path: path("M -15 -75");
   }
 
-  &.from-0-to-11 {
-    offset-path: path("M 0 -80 L -40 -69.28203230275508");
+  &.from-D♭♭-to-D♭ {
+    offset-path: path("M -84.28203230275508 -35 L -50 -64.28203230275508");
+  }
 
-    &.nudged-left {
-      offset-path: path("M 0 -80 L -45 -69.28203230275508");
-    }
+  &.from-D♭-to-D {
+    offset-path: path("M -50 -64.28203230275508 L -5 -75");
+  }
 
-    &.nudged-right {
-      offset-path: path("M 0 -80 L -35 -69.28203230275508");
-    }
+  &.from-D-to-D♯ {
+    offset-path: path("M -5 -75 L 30 -64.28203230275508");
+  }
+
+  &.from-D♯-to-D♯♯ {
+    offset-path: path("M 30 -64.28203230275508 L 54.28203230275508 -35");
+  }
+
+  &.from-E♭♭-to-E♭ {
+    offset-path: path("M -15 -75 L 30 -64.28203230275508");
+  }
+
+  &.from-E♭-to-E {
+    offset-path: path("M 30 -64.28203230275508 L 64.28203230275508 -35");
+  }
+
+  &.from-E-to-E♯ {
+    offset-path: path("M 64.28203230275508 -35 L 70 5");
+  }
+
+  &.from-E♯-to-E♯♯ {
+    offset-path: path("M 70 5 L 54.28203230275508 45");
+  }
+
+  &.from-F♭♭-to-F♭ {
+    offset-path: path("M 25 -64.28203230275508 L 59.28203230275508 -35");
+  }
+
+  &.from-F♭-to-F {
+    offset-path: path("M 59.28203230275508 -35 L 75 5");
+  }
+
+  &.from-F-to-F♯ {
+    offset-path: path("M 75 5 L 59.28203230275508 45");
+  }
+
+  &.from-F♯-to-F♯♯ {
+    offset-path: path("M 59.28203230275508 45 L 25 74.28203230275508");
+  }
+
+  &.from-G♭♭-to-G♭ {
+    offset-path: path("M 65 5 L 59.28203230275508 45");
+  }
+
+  &.from-G♭-to-G {
+    offset-path: path("M 59.28203230275508 45 L 35 74.28203230275508");
+  }
+
+  &.from-G-to-G♯ {
+    offset-path: path("M 35 74.28203230275508 L -10 85");
+  }
+
+  &.from-G♯-to-G♯♯ {
+    offset-path: path("M -10 85 L -55 74.28203230275508");
+  }
+
+  &.from-A♭♭-to-A♭ {
+    offset-path: path("M 25 74.28203230275508 L -10 85");
+  }
+
+  &.from-A♭-to-A {
+    offset-path: path("M -10 85 L -45 74.28203230275508");
+  }
+
+  &.from-A-to-A♯ {
+    offset-path: path("M -45 74.28203230275508 L -79.28203230275508 45");
+  }
+
+  &.from-A♯-to-A♯♯ {
+    offset-path: path("M -79.28203230275508 45 L -95 5");
+  }
+
+  &.from-B♭♭-to-B♭ {
+    offset-path: path("M -55 74.28203230275508 L -79.28203230275508 45");
+  }
+
+  &.from-B♭-to-B {
+    offset-path: path("M -79.28203230275508 45 L -85 5");
+  }
+
+  &.from-B-to-B♯ {
+    offset-path: path("M -85 5 L -79.28203230275508 -35");
+  }
+
+  &.from-B♯-to-B♯♯ {
+    offset-path: path("M -79.28203230275508 -35 L -55 -64.28203230275508");
+  }
+
+  &.from-C♭♭-to-C♭ {
+    offset-path: path("M -84.28203230275508 45 L -90 5");
+  }
+
+  &.from-C♭-to-C {
+    offset-path: path("M -90 5 L -74.28203230275508 -35");
+  }
+
+  &.from-C-to-C♯ {
+    offset-path: path("M -74.28203230275508 -35 L -50 -64.28203230275508");
+  }
+
+  &.from-C♯-to-C♯♯ {
+    offset-path: path("M -50 -64.28203230275508 L -15 -75");
+  }
+
+  &.from-D♯♯-to-D♯ {
+    offset-path: path("M 54.28203230275508 -35 L 30 -64.28203230275508");
+  }
+
+  &.from-D♯-to-D {
+    offset-path: path("M 30 -64.28203230275508 L -5 -75");
+  }
+
+  &.from-D-to-D♭ {
+    offset-path: path("M -5 -75 L -50 -64.28203230275508");
+  }
+
+  &.from-D♭-to-D♭♭ {
+    offset-path: path("M -50 -64.28203230275508 L -84.28203230275508 -35");
+  }
+
+  &.from-E♯♯-to-E♯ {
+    offset-path: path("M 54.28203230275508 45 L 70 5");
+  }
+
+  &.from-E♯-to-E {
+    offset-path: path("M 70 5 L 64.28203230275508 -35");
+  }
+
+  &.from-E-to-E♭ {
+    offset-path: path("M 64.28203230275508 -35 L 30 -64.28203230275508");
+  }
+
+  &.from-E♭-to-E♭♭ {
+    offset-path: path("M 30 -64.28203230275508 L -15 -75");
+  }
+
+  &.from-F♯♯-to-F♯ {
+    offset-path: path("M 25 74.28203230275508 L 59.28203230275508 45");
+  }
+
+  &.from-F♯-to-F {
+    offset-path: path("M 59.28203230275508 45 L 75 5");
+  }
+
+  &.from-F-to-F♭ {
+    offset-path: path("M 75 5 L 59.28203230275508 -35");
+  }
+
+  &.from-F♭-to-F♭♭ {
+    offset-path: path("M 59.28203230275508 -35 L 25 -64.28203230275508");
+  }
+
+  &.from-G♯♯-to-G♯ {
+    offset-path: path("M -55 74.28203230275508 L -10 85");
+  }
+
+  &.from-G♯-to-G {
+    offset-path: path("M -10 85 L 35 74.28203230275508");
+  }
+
+  &.from-G-to-G♭ {
+    offset-path: path("M 35 74.28203230275508 L 59.28203230275508 45");
+  }
+
+  &.from-G♭-to-G♭♭ {
+    offset-path: path("M 59.28203230275508 45 L 65 5");
+  }
+
+  &.from-A♯♯-to-A♯ {
+    offset-path: path("M -95 5 L -79.28203230275508 45");
+  }
+
+  &.from-A♯-to-A {
+    offset-path: path("M -79.28203230275508 45 L -45 74.28203230275508");
+  }
+
+  &.from-A-to-A♭ {
+    offset-path: path("M -45 74.28203230275508 L -10 85");
+  }
+
+  &.from-A♭-to-A♭♭ {
+    offset-path: path("M -10 85 L 25 74.28203230275508");
+  }
+
+  &.from-B♯♯-to-B♯ {
+    offset-path: path("M -55 -64.28203230275508 L -79.28203230275508 -35");
+  }
+
+  &.from-B♯-to-B {
+    offset-path: path("M -79.28203230275508 -35 L -85 5");
+  }
+
+  &.from-B-to-B♭ {
+    offset-path: path("M -85 5 L -79.28203230275508 45");
+  }
+
+  &.from-B♭-to-B♭♭ {
+    offset-path: path("M -79.28203230275508 45 L -55 74.28203230275508");
+  }
+
+  &.from-C♯♯-to-C♯ {
+    offset-path: path("M -15 -75 L -50 -64.28203230275508");
+  }
+
+  &.from-C♯-to-C {
+    offset-path: path("M -50 -64.28203230275508 L -74.28203230275508 -35");
+  }
+
+  &.from-C-to-C♭ {
+    offset-path: path("M -74.28203230275508 -35 L -90 5");
+  }
+
+  &.from-C♭-to-C♭♭ {
+    offset-path: path("M -90 5 L -84.28203230275508 45");
   }
 }

@@ -1,4 +1,4 @@
-import ArrowButton from "src/components/ArrowButton";
+import { ArrowButton } from "src/components/ArrowButton";
 import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/RootNote.module.css";
@@ -9,7 +9,7 @@ interface RootNoteProps {
   buildChangeRoot: (isIncrement: boolean) => ((() => void) | undefined);
 }
 
-export default function RootNote({
+export function RootNote({
   rootNoteName,
   buildChangeRoot
 }: RootNoteProps): JSX.Element {

@@ -2,11 +2,11 @@ import { useRef, useEffect, Dispatch, SetStateAction } from "react";
 
 import { Motion } from "src/enumerations";
 import type { State, Derived } from "src/types";
-import { LabelAnimation } from "src/classes/label_animation";
-import Clock from "src/components/Clock";
-import NoteDot from "src/components/NoteDot";
-import NoteLabel from "src/components/NoteLabel";
-import RootDot from "src/components/RootDot";
+import { LabelAnimation } from "src/classes/LabelAnimation";
+import { Clock } from "src/components/Clock";
+import { NoteDot } from "src/components/NoteDot";
+import { NoteLabel } from "src/components/NoteLabel";
+import { RootDot } from "src/components/RootDot";
 import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/Canvas.module.css";
@@ -17,7 +17,7 @@ interface CanvasProps {
   setState: Dispatch<SetStateAction<State>>;
 }
 
-export default function Canvas({
+export function Canvas({
   derived,
   setState
 }: CanvasProps): JSX.Element {

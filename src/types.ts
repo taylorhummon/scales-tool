@@ -1,5 +1,5 @@
 import { Motion, NaturalNoteName, Solfege } from "src/enumerations";
-import type { Note } from "src/classes/note";
+import type { Note } from "src/classes/Note";
 
 
 export interface State {

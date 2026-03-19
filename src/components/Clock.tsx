@@ -1,4 +1,4 @@
-import Tick from "src/components/Tick";
+import { Tick } from "src/components/Tick";
 import { buildIndicesArray } from "src/utilities/array";
 import { CLOCK_RADIUS } from "src/utilities/clock";
 import { buildClassString } from "src/utilities/css";
@@ -6,7 +6,7 @@ import { buildClassString } from "src/utilities/css";
 import cssModule from "src/components/Clock.module.css";
 
 
-export default function Clock(
+export function Clock(
 ): JSX.Element {
   const ticks = buildIndicesArray(12).map((hour) => {
     return Tick({ hour });

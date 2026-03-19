@@ -1,4 +1,3 @@
-import type { NoteName } from "src/types";
 import { buildClassString } from "src/utilities/css";
 import { getModeName } from "src/utilities/scale";
 
@@ -7,10 +6,10 @@ import cssModule from "src/components/KeyDescription.module.css";
 
 interface KeyDescriptionProps {
   mode: number;
-  rootNoteName: NoteName;
+  rootNoteName: string;
 }
 
-export default function KeyDescription({
+export function KeyDescription({
   mode,
   rootNoteName,
 }: KeyDescriptionProps): JSX.Element {
@@ -37,7 +36,7 @@ export default function KeyDescription({
 
 function getKeyDescription(
   mode: number,
-  rootNoteName: NoteName
+  rootNoteName: string
 ): JSX.Element {
   const className = buildClassString(cssModule, ["note-font"]);
   if (mode === -2) {

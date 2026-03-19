@@ -7,7 +7,7 @@ interface KeyDegreeProps {
   keyDegree: number;
 }
 
-export default function KeyDegree({
+export function KeyDegree({
   keyDegree
 }: KeyDegreeProps): JSX.Element {
   return (

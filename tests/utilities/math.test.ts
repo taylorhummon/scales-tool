@@ -1,7 +1,45 @@
 import { test, expect } from 'vitest';
 
-import { remainderFor, isNegativeZero, cosineOfDegrees, sineOfDegrees } from "src/utilities/math";
+import {
+  quotientAndRemainderFor,
+  remainderFor,
+  cosineOfDegrees,
+  sineOfDegrees
+} from "src/utilities/math";
 
+
+test("quotientAndRemainderFor() works when the denominator is positive", () => {
+  expect(
+    quotientAndRemainderFor(14, 6)
+  ).toStrictEqual(
+    { quotient: 2, remainder: 2 }
+  );
+  expect(
+    quotientAndRemainderFor(4, 6)
+  ).toStrictEqual(
+    { quotient: 0, remainder: 4 }
+  );
+  expect(
+    quotientAndRemainderFor(0, 6)
+  ).toStrictEqual(
+    { quotient: 0, remainder: 0 }
+  );
+  expect(
+    quotientAndRemainderFor(-0, 6)
+  ).toStrictEqual(
+    { quotient: 0, remainder: 0 }
+  );
+  expect(
+    quotientAndRemainderFor(-6, 6)
+  ).toStrictEqual(
+    { quotient: -1, remainder: 0 }
+  );
+  expect(
+    quotientAndRemainderFor(-14, 6)
+  ).toStrictEqual(
+    { quotient: -3, remainder: 4 }
+  );
+});
 
 test("remainderFor() works when the denominator is positive", () => {
   expect(
@@ -43,24 +81,6 @@ test("remainderFor() throws when the denominator is zero or negative", () => {
   expect(() => {
     remainderFor(14, -3);
   }).toThrow();
-});
-
-test("isNegativeZero() identifies negative zero", () => {
-  expect(
-    isNegativeZero(-0)
-  ).toBe(
-    true
-  );
-  expect(
-    isNegativeZero(0)
-  ).toBe(
-    false
-  );
-  expect(
-    isNegativeZero(-2)
-  ).toBe(
-    false
-  );
 });
 
 test("cosineOfDegrees() should work for common degree values", () => {

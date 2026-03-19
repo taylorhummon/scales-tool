@@ -1,5 +1,5 @@
 import { NaturalNoteName } from "src/enumerations";
-import ArrowButton from "src/components/ArrowButton";
+import { ArrowButton } from "src/components/ArrowButton";
 import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/ModeNote.module.css";
@@ -10,7 +10,7 @@ interface ModeNoteProps {
   buildChangeMode: (isIncrement: boolean) => ((() => void) | undefined);
 }
 
-export default function ModeNote({
+export function ModeNote({
   modeNoteName,
   buildChangeMode
 }: ModeNoteProps): JSX.Element {

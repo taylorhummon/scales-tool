@@ -1,7 +1,7 @@
 import { test, expect } from 'vitest';
 
 import { NaturalNoteName } from "src/enumerations"
-import { Note } from "src/classes/note";
+import { Note } from "src/classes/Note";
 
 
 test("Note.name works", () => {

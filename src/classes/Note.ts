@@ -28,6 +28,14 @@ export class Note {
     this.#sharpsCount = sharpsCount;
   }
 
+  get naturalNoteName(): NaturalNoteName {
+    return this.#naturalNoteName;
+  }
+
+  get sharpsCount(): number {
+    return this.#sharpsCount;
+  }
+
   get name(): string {
     if (this.#sharpsCount > 0) {
       return this.#naturalNoteName + SHARP.repeat(this.#sharpsCount);

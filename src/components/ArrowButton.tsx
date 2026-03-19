@@ -1,5 +1,6 @@
-import cssModule from "src/components/ArrowButton.module.css";
 import { buildClassString } from "src/utilities/css";
+
+import cssModule from "src/components/ArrowButton.module.css";
 
 
 interface ArrowButtonProps {
@@ -8,7 +9,7 @@ interface ArrowButtonProps {
   dataTestid: string;
 }
 
-export default function ArrowButton({
+export function ArrowButton({
   isRight,
   onClick,
   dataTestid
