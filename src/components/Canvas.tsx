@@ -47,7 +47,7 @@ export function Canvas({
     return () => {
       if (domNode) domNode.removeEventListener("animationend", animationEndHandler);
     };
-  }, []);
+  }, [setState]);
 
   return (
     <div
@@ -61,7 +61,7 @@ export function Canvas({
         width="300px"
       >
         <Clock />
-        {[...derived.noteBySolfege].map(([solfege, note], _) => (
+        {[...derived.noteBySolfege].map(([solfege, note]) => (
           <NoteDot
             key={note.name}
             motion={derived.motion}
@@ -69,7 +69,7 @@ export function Canvas({
             solfege={solfege}
           />
         ))}
-        {[...derived.noteBySolfege].map(([solfege, note], _) => (
+        {[...derived.noteBySolfege].map(([solfege, note]) => (
           <NoteLabel
             key={note.name}
             labelAnimation={getLabelAnimation(derived)}

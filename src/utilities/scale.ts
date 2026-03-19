@@ -56,7 +56,7 @@ export function getNoteBySolfege(
 ): Map<Solfege, Note> {
   const notes = getNotes(root, mode);
   const noteBySolfege = new Map();
-  for (let i in buildIndicesArray(7)) {
+  for (const i in buildIndicesArray(7)) {
     noteBySolfege.set(SOLFEGE_NAMES[i], notes[i]);
   }
   return noteBySolfege;
@@ -92,7 +92,7 @@ function getNotesWhenSharpsInvolved(
 ): Array<Note> {
   const sharpsMultiset = new Multiset<NaturalNoteName>();
   const queue = [...NATURAL_NOTES_IN_FCGDAEB_ORDER];
-  for (let _ in buildIndicesArray(sharpTotal)) {
+  for (const _ in buildIndicesArray(sharpTotal)) {
     const toSharp = rotateQueue(queue);
     sharpsMultiset.add(toSharp);
   }
@@ -108,7 +108,7 @@ function getNotesWhenFlatsInvolved(
 ): Array<Note> {
   const flatsMultiset = new Multiset<NaturalNoteName>();
   const queue = [...NATURAL_NOTES_IN_BEADGCF_ORDER];
-  for (let _ in buildIndicesArray(flatTotal)) {
+  for (const _ in buildIndicesArray(flatTotal)) {
     const toFlat = rotateQueue(queue);
     flatsMultiset.add(toFlat);
   }

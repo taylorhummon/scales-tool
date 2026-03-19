@@ -23,8 +23,8 @@ export function remainderFor(
 function ensureZeroIsPositive(
   n: number
 ): number {
-  // Note: 0 === -0, but that's OK
-  return n === -0 ? 0 : n;
+  // Note: -0 === 0, and that's OK
+  return n === 0 ? 0 : n;
 }
 
 export function cosineOfDegrees(
