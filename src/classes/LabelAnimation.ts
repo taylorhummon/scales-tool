@@ -11,6 +11,8 @@ import {
 export class LabelAnimation {
   #isIncrementingKeyDegree: boolean;
   #keyDegree: number;
+  #startNote: Note | null = null;
+  #finishNote: Note | null = null;
 
   constructor(
     motion: Motion,
@@ -22,21 +24,15 @@ export class LabelAnimation {
   }
 
   get startNote(): Note {
-    if (this.#isIncrementingKeyDegree) {
-      const { quotient, remainder } = quotientAndRemainderFor(this.#keyDegree, 7);
-      const naturalNoteName = NATURAL_NOTES_IN_FCGDAEB_ORDER[remainder];
-      return new Note(naturalNoteName, quotient);
-    } else {
-      const { quotient, remainder } = quotientAndRemainderFor(- this.#keyDegree, 7);
-      const naturalNoteName = NATURAL_NOTES_IN_BEADGCF_ORDER[remainder];
-      return new Note(naturalNoteName, - quotient);
-    }
+    if (this.#startNote !== null) return this.#startNote;
+    this.#startNote = this.#computeStartNote();
+    return this.#startNote;
   }
 
   get finishNote(): Note {
-    const startNote = this.startNote;
-    const sharpsCount = this.#isIncrementingKeyDegree ? startNote.sharpsCount + 1 : startNote.sharpsCount - 1;
-    return new Note(startNote.naturalNoteName, sharpsCount);
+    if (this.#finishNote !== null) return this.#finishNote;
+    this.#finishNote = this.#computeFinishNote();
+    return this.#finishNote;
   }
 
   get isIncrementingKeyDegree(): boolean {
@@ -63,5 +59,23 @@ export class LabelAnimation {
       motion === Motion.IncrementRoot ||
       motion === Motion.DecrementMode
     );
+  }
+
+  #computeStartNote(): Note {
+    if (this.#isIncrementingKeyDegree) {
+      const { quotient, remainder } = quotientAndRemainderFor(this.#keyDegree, 7);
+      const naturalNoteName = NATURAL_NOTES_IN_FCGDAEB_ORDER[remainder];
+      return new Note(naturalNoteName, quotient);
+    } else {
+      const { quotient, remainder } = quotientAndRemainderFor(- this.#keyDegree, 7);
+      const naturalNoteName = NATURAL_NOTES_IN_BEADGCF_ORDER[remainder];
+      return new Note(naturalNoteName, - quotient);
+    }
+  }
+
+  #computeFinishNote(): Note {
+    const startNote = this.startNote;
+    const sharpsCount = this.#isIncrementingKeyDegree ? startNote.sharpsCount + 1 : startNote.sharpsCount - 1;
+    return new Note(startNote.naturalNoteName, sharpsCount);
   }
 }

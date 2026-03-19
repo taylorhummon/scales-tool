@@ -15,7 +15,6 @@ export const NATURAL_NOTES_IN_FCGDAEB_ORDER = [
   NaturalNoteName.B
 ];
 export const NATURAL_NOTES_IN_BEADGCF_ORDER = [...NATURAL_NOTES_IN_FCGDAEB_ORDER].reverse();
-const SOLFEGE_NAMES = Object.values(Solfege);
 const MODE_NAMES_IN_FCGDAEB_ORDER = [
   ModeName.Lydian,
   ModeName.Ionian,
@@ -25,6 +24,7 @@ const MODE_NAMES_IN_FCGDAEB_ORDER = [
   ModeName.Phrygian,
   ModeName.Locrian
 ];
+const SOLFEGE_NAMES = Object.values(Solfege);
 
 
 export function getKeyDegree(
