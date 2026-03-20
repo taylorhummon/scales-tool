@@ -7,6 +7,7 @@ import { Clock } from "src/components/Clock";
 import { NoteDot } from "src/components/NoteDot";
 import { NoteLabel } from "src/components/NoteLabel";
 import { RootDot } from "src/components/RootDot";
+import { arrayFromMap } from "src/utilities/map";
 import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/Canvas.module.css";
@@ -61,7 +62,7 @@ export function Canvas({
         width="300px"
       >
         <Clock />
-        {[...derived.noteBySolfege].map(([solfege, note]) => (
+        {arrayFromMap(derived.noteBySolfege, (note, solfege) => (
           <NoteDot
             key={note.name}
             motion={derived.motion}
@@ -69,7 +70,7 @@ export function Canvas({
             solfege={solfege}
           />
         ))}
-        {[...derived.noteBySolfege].map(([solfege, note]) => (
+        {arrayFromMap(derived.noteBySolfege, (note, solfege) => (
           <NoteLabel
             key={note.name}
             labelAnimation={getLabelAnimation(derived)}
