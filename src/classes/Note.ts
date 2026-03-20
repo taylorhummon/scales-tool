@@ -2,9 +2,6 @@ import { NaturalNoteName } from "src/enumerations";
 import { remainderFor } from "src/utilities/math";
 
 
-const SHARP = "♯";
-const FLAT = "♭";
-
 const HOUR_BY_NATURAL_NOTE = new Map<NaturalNoteName, number>([
   [NaturalNoteName.D, 0],
   [NaturalNoteName.E, 2],
@@ -38,9 +35,9 @@ export class Note {
 
   get name(): string {
     if (this.#sharpsCount > 0) {
-      return this.#naturalNoteName + SHARP.repeat(this.#sharpsCount);
+      return this.#naturalNoteName + "♯".repeat(this.#sharpsCount);
     } else if (this.#sharpsCount < 0) {
-      return this.#naturalNoteName + FLAT.repeat(- this.#sharpsCount);
+      return this.#naturalNoteName + "♭".repeat(- this.#sharpsCount);
     } else {
       return this.#naturalNoteName;
     }

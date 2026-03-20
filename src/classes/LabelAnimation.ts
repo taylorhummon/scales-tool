@@ -61,7 +61,8 @@ export class LabelAnimation {
     );
   }
 
-  #computeStartNote(): Note {
+  #computeStartNote(
+  ): Note {
     if (this.#isIncrementingKeyDegree) {
       const { quotient, remainder } = quotientAndRemainderFor(this.#keyDegree, 7);
       const naturalNoteName = NATURAL_NOTES_IN_FCGDAEB_ORDER[remainder];
@@ -73,7 +74,8 @@ export class LabelAnimation {
     }
   }
 
-  #computeFinishNote(): Note {
+  #computeFinishNote(
+  ): Note {
     const startNote = this.startNote;
     const sharpsCount = this.#isIncrementingKeyDegree ? startNote.sharpsCount + 1 : startNote.sharpsCount - 1;
     return new Note(startNote.naturalNoteName, sharpsCount);
