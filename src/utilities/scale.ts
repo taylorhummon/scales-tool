@@ -15,16 +15,6 @@ export const NATURAL_NOTES_IN_FCGDAEB_ORDER = [
   NaturalNoteName.B
 ];
 export const NATURAL_NOTES_IN_BEADGCF_ORDER = [...NATURAL_NOTES_IN_FCGDAEB_ORDER].reverse();
-const MODE_NAMES_IN_FCGDAEB_ORDER = [
-  ModeName.Lydian,
-  ModeName.Ionian,
-  ModeName.Mixolydian,
-  ModeName.Dorian,
-  ModeName.Aeolian,
-  ModeName.Phrygian,
-  ModeName.Locrian
-];
-const SOLFEGES = Object.values(Solfege);
 
 
 export function getKeyDegree(
@@ -50,73 +40,105 @@ export function getModeName(
   return MODE_NAMES_IN_FCGDAEB_ORDER[mode + 3];
 }
 
-export function getNoteBySolfege(
-  root: number,
+const MODE_NAMES_IN_FCGDAEB_ORDER = [
+  ModeName.Lydian,
+  ModeName.Ionian,
+  ModeName.Mixolydian,
+  ModeName.Dorian,
+  ModeName.Aeolian,
+  ModeName.Phrygian,
+  ModeName.Locrian
+];
+
+export function getRootNote(
+  notes: Array<Note>,
   mode: number
-): Map<Solfege, Note> {
-  const notes = getNotes(root, mode);
-  const noteBySolfege = new Map();
-  for (const i in buildIndicesArray(7)) {
-    noteBySolfege.set(SOLFEGES[i], notes[i]);
-  }
-  return noteBySolfege;
+): Note {
+  // remainderFor(mode + 3, 7) describes how far the root is off-center on the slider
+  return notes[remainderFor(mode + 3, 7)];
 }
 
-function getNotes(
+export function getNotes(
   root: number,
   mode: number
 ): Array<Note> {
-  const firstNaturalNoteName = NATURAL_NOTES_IN_FCGDAEB_ORDER[remainderFor(root + 3, 7)];
-  const naturalNoteNames = getNaturalNoteNamesStartingWith(firstNaturalNoteName);
   const keyDegree = getKeyDegree(root, mode);
+  const firstNaturalNoteName = NATURAL_NOTES_IN_FCGDAEB_ORDER[remainderFor(keyDegree, 7)];
+  const naturalNoteNames = getNaturalNoteNamesStartingWith(firstNaturalNoteName);
   if (keyDegree >= 0) {
-    return getNotesWhenSharpsInvolved(naturalNoteNames, keyDegree);
+    return getNotesWhenSharpsInvolved(naturalNoteNames, mode, keyDegree);
   } else {
-    return getNotesWhenFlatsInvolved(naturalNoteNames, - keyDegree);  // - keyDegree > 0
+    return getNotesWhenFlatsInvolved(naturalNoteNames, mode, - keyDegree);  // - keyDegree > 0
   }
 }
 
 function getNaturalNoteNamesStartingWith(
   naturalNoteName: NaturalNoteName
 ): Array<NaturalNoteName> {
-  const abcde = Object.values(NaturalNoteName);
-  const abcdefgabcdefg = abcde.concat(abcde);
-  const i = abcdefgabcdefg.indexOf(naturalNoteName);
-  const j = abcdefgabcdefg.lastIndexOf(naturalNoteName);
-  return abcdefgabcdefg.slice(i, j);
+  const fcgdaebfcgdaeb = NATURAL_NOTES_IN_FCGDAEB_ORDER.concat(NATURAL_NOTES_IN_FCGDAEB_ORDER);
+  const i = fcgdaebfcgdaeb.indexOf(naturalNoteName);
+  const j = fcgdaebfcgdaeb.lastIndexOf(naturalNoteName);
+  return fcgdaebfcgdaeb.slice(i, j);
 }
 
 function getNotesWhenSharpsInvolved(
   naturalNoteNames: Array<NaturalNoteName>,
+  mode: number,
   sharpTotal: number
 ): Array<Note> {
   const sharpsMultiset = new Multiset<NaturalNoteName>();
   const queue = [...NATURAL_NOTES_IN_FCGDAEB_ORDER];
-  for (const _ in buildIndicesArray(sharpTotal)) {
+  for (const _ of buildIndicesArray(sharpTotal)) {
     const toSharp = rotateQueue(queue);
     sharpsMultiset.add(toSharp);
   }
-  return naturalNoteNames.map((naturalNoteName) => {
+  const notes = [];
+  for (const location of buildIndicesArray(7)) {
+    const naturalNoteName = naturalNoteNames[location];
     const sharpsCount = sharpsMultiset.count(naturalNoteName);
-    return new Note(naturalNoteName, sharpsCount);
-  });
+    const note = new Note(naturalNoteName, sharpsCount, getSolfege(mode, location), location);
+    notes.push(note);
+  }
+  return notes;
 }
 
 function getNotesWhenFlatsInvolved(
   naturalNoteNames: Array<NaturalNoteName>,
+  mode: number,
   flatTotal: number
 ): Array<Note> {
   const flatsMultiset = new Multiset<NaturalNoteName>();
   const queue = [...NATURAL_NOTES_IN_BEADGCF_ORDER];
-  for (const _ in buildIndicesArray(flatTotal)) {
+  for (const _ of buildIndicesArray(flatTotal)) {
     const toFlat = rotateQueue(queue);
     flatsMultiset.add(toFlat);
   }
-  return naturalNoteNames.map((naturalNoteName) => {
+  const notes = [];
+  for (const location of buildIndicesArray(7)) {
+    const naturalNoteName = naturalNoteNames[location];
     const flatsCount = flatsMultiset.count(naturalNoteName);
-    return new Note(naturalNoteName, - flatsCount);
-  });
+    const note = new Note(naturalNoteName, - flatsCount, getSolfege(mode, location), location);
+    notes.push(note);
+  }
+  return notes;
 }
+
+export function getSolfege(
+  mode: number,
+  location: number
+): Solfege {
+  return SOLFEGES[remainderFor(location - (mode + 3), 7)];
+}
+
+const SOLFEGES = [
+  Solfege.Do,
+  Solfege.Sol,
+  Solfege.Re,
+  Solfege.La,
+  Solfege.Mi,
+  Solfege.Ti,
+  Solfege.Fa,
+];
 
 // Warning: rotateQueue mutates queue and returns a value
 function rotateQueue(

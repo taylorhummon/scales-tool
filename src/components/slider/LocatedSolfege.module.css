@@ -1,0 +1,31 @@
+.located-solfege {
+  font-family: "PT Mono", monospace;
+
+  &.location-0 {
+    offset-path: path("M -150 20");
+  }
+
+  &.location-1 {
+    offset-path: path("M -100 20");
+  }
+
+  &.location-2 {
+    offset-path: path("M -50 20");
+  }
+
+  &.location-3 {
+    offset-path: path("M 0 20");
+  }
+
+  &.location-4 {
+    offset-path: path("M 50 20");
+  }
+
+  &.location-5 {
+    offset-path: path("M 100 20");
+  }
+
+  &.location-6 {
+    offset-path: path("M 150 20");
+  }
+}

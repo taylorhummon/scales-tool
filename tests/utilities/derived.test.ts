@@ -75,7 +75,7 @@ test("derivedFromState() includes the mode", () => {
 });
 
 test("derivedFromState() includes the notes", () => {
-  const noteA = derivedFromState({ motion: Motion.Still, root: 3, mode: 2 }).noteBySolfege.get(Solfege.Re) as Note;
+  const noteA = derivedFromState({ motion: Motion.Still, root: 3, mode: 2 }).notes[0];
   expect(
     noteA.name
   ).toBe(
@@ -86,7 +86,18 @@ test("derivedFromState() includes the notes", () => {
   ).toBe(
     10
   );
-  const noteB = derivedFromState({ motion: Motion.Still, root: -2, mode: -2 }).noteBySolfege.get(Solfege.Re) as Note;
+  expect(
+    noteA.solfege
+  ).toBe(
+    "re"
+  );
+  expect(
+    noteA.location
+  ).toBe(
+    0
+  );
+
+  const noteB = derivedFromState({ motion: Motion.Still, root: -2, mode: -2 }).notes[3];
   expect(
     noteB.name
   ).toBe(
@@ -97,7 +108,18 @@ test("derivedFromState() includes the notes", () => {
   ).toBe(
     0
   );
-  const noteC = derivedFromState({ motion: Motion.Still, root: 8, mode: -1 }).noteBySolfege.get(Solfege.Re) as Note;
+  expect(
+    noteB.solfege
+  ).toBe(
+    "re"
+  );
+  expect(
+    noteB.location
+  ).toBe(
+    3
+  );
+
+  const noteC = derivedFromState({ motion: Motion.Still, root: 8, mode: -1 }).notes[4];
   expect(
     noteC.name
   ).toBe(
@@ -108,16 +130,37 @@ test("derivedFromState() includes the notes", () => {
   ).toBe(
     10
   );
-  const noteD = derivedFromState({ motion: Motion.Still, root: -5, mode: 2 }).noteBySolfege.get(Solfege.Re) as Note;
+  expect(
+    noteC.solfege
+  ).toBe(
+    "re"
+  );
+  expect(
+    noteC.location
+  ).toBe(
+    4
+  );
+
+  const noteD = derivedFromState({ motion: Motion.Still, root: -5, mode: 2 }).notes[1];
   expect(
     noteD.name
   ).toBe(
-    "F♭"
+    "C♭"
   );
   expect(
     noteD.hour
   ).toBe(
-    2
+    9
+  );
+  expect(
+    noteD.solfege
+  ).toBe(
+    "la"
+  );
+  expect(
+    noteD.location
+  ).toBe(
+    1
   );
 });
 
@@ -133,6 +176,7 @@ test("derivedFromState() includes the rootNote", () => {
   ).toBe(
     "B"
   );
+
   const rootNoteB = derivedFromState({ motion: Motion.Still, root: -2, mode: -2 }).rootNote;
   expect(
     rootNoteB.hour
@@ -144,6 +188,7 @@ test("derivedFromState() includes the rootNote", () => {
   ).toBe(
     "C"
   );
+
   const rootNoteC = derivedFromState({ motion: Motion.Still, root: 8, mode: -1 }).rootNote;
   expect(
     rootNoteC.hour
@@ -155,6 +200,7 @@ test("derivedFromState() includes the rootNote", () => {
   ).toBe(
     "A♯"
   );
+
   const rootNoteD = derivedFromState({ motion: Motion.Still, root: -5, mode: 2 }).rootNote;
   expect(
     rootNoteD.hour

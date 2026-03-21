@@ -4,11 +4,13 @@ import { quotientAndRemainderFor } from "src/utilities/math";
 import {
   NATURAL_NOTES_IN_FCGDAEB_ORDER,
   NATURAL_NOTES_IN_BEADGCF_ORDER,
-  getKeyDegree
+  getKeyDegree,
+  getSolfege
 } from "src/utilities/scale";
 
 
 export class LabelAnimation {
+  #mode: number;
   #isIncrementingKeyDegree: boolean;
   #keyDegree: number;
   #startNote: Note | null = null;
@@ -19,6 +21,7 @@ export class LabelAnimation {
     root: number,
     mode: number
   ) {
+    this.#mode = mode;
     this.#isIncrementingKeyDegree = this.#getIsIncrementingKeyDegree(motion);
     this.#keyDegree = getKeyDegree(root, mode);
   }
@@ -66,18 +69,25 @@ export class LabelAnimation {
     if (this.#isIncrementingKeyDegree) {
       const { quotient, remainder } = quotientAndRemainderFor(this.#keyDegree, 7);
       const naturalNoteName = NATURAL_NOTES_IN_FCGDAEB_ORDER[remainder];
-      return new Note(naturalNoteName, quotient);
+      const location = 0; // first
+      const solfege = getSolfege(this.#mode, location);
+      return new Note(naturalNoteName, quotient, solfege, location);
     } else {
       const { quotient, remainder } = quotientAndRemainderFor(- this.#keyDegree, 7);
       const naturalNoteName = NATURAL_NOTES_IN_BEADGCF_ORDER[remainder];
-      return new Note(naturalNoteName, - quotient);
+      const location = 6; // last
+      const solfege = getSolfege(this.#mode, location);
+      return new Note(naturalNoteName, - quotient, solfege, location);
     }
   }
 
   #computeFinishNote(
   ): Note {
     const startNote = this.startNote;
-    const sharpsCount = this.#isIncrementingKeyDegree ? startNote.sharpsCount + 1 : startNote.sharpsCount - 1;
-    return new Note(startNote.naturalNoteName, sharpsCount);
+    if (this.#isIncrementingKeyDegree) {
+      return new Note(startNote.naturalNoteName, startNote.sharpsCount + 1, startNote.solfege, 6);
+    } else {
+      return new Note(startNote.naturalNoteName, startNote.sharpsCount - 1, startNote.solfege, 0);
+    }
   }
 }

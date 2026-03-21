@@ -1,12 +1,13 @@
 import { test, expect } from 'vitest';
 
-import { Solfege, Motion } from "src/enumerations";
-import type { Note } from "src/classes/Note";
+import { Motion } from "src/enumerations";
 import {
   getKeyDegree,
   getModeNoteName,
   getModeName,
-  getNoteBySolfege,
+  getRootNote,
+  getNotes,
+  getSolfege,
   getDotMotionEndHour,
 } from "src/utilities/scale";
 
@@ -65,221 +66,83 @@ test("getModeName() works", () => {
   );
 });
 
-test("getNoteBySolfege() works", () => {
-  const noteBySolfegeA = getNoteBySolfege(0, 0);
+test("getRootNote() works", () => {
   expect(
-    (noteBySolfegeA.get(Solfege.Do) as Note).hour
-  ).toBe(
-    0
-  );
-  expect(
-    (noteBySolfegeA.get(Solfege.Do) as Note).name
+    getRootNote(getNotes(0, 0), 0).name
   ).toBe(
     "D"
   );
   expect(
-    (noteBySolfegeA.get(Solfege.Re) as Note).hour
-  ).toBe(
-    2
-  );
-  expect(
-    (noteBySolfegeA.get(Solfege.Re) as Note).name
+    getRootNote(getNotes(2, -1), -1).name
   ).toBe(
     "E"
   );
   expect(
-    (noteBySolfegeA.get(Solfege.Mi) as Note).hour
+    getRootNote(getNotes(2, 0), 0).name
   ).toBe(
-    3
+    "E"
   );
   expect(
-    (noteBySolfegeA.get(Solfege.Mi) as Note).name
-  ).toBe(
-    "F"
-  );
-  expect(
-    (noteBySolfegeA.get(Solfege.Fa) as Note).hour
-  ).toBe(
-    5
-  );
-  expect(
-    (noteBySolfegeA.get(Solfege.Fa) as Note).name
+    getRootNote(getNotes(-1, 3), 3).name
   ).toBe(
     "G"
   );
+});
+
+test("getNotes() works", () => {
   expect(
-    (noteBySolfegeA.get(Solfege.Sol) as Note).hour
-  ).toBe(
-    7
+    getNotes(0, 0).map((note) => note.name)
+  ).toStrictEqual(
+    ["F", "C", "G", "D", "A", "E", "B"]
   );
   expect(
-    (noteBySolfegeA.get(Solfege.Sol) as Note).name
-  ).toBe(
-    "A"
+    getNotes(2, -1).map((note) => note.name)
+  ).toStrictEqual(
+    ["D", "A", "E", "B", "F♯", "C♯", "G♯"]
   );
   expect(
-    (noteBySolfegeA.get(Solfege.La) as Note).hour
-  ).toBe(
-    9
+    getNotes(2, 0).map((note) => note.name)
+  ).toStrictEqual(
+    ["G", "D", "A", "E", "B", "F♯", "C♯"]
   );
   expect(
-    (noteBySolfegeA.get(Solfege.La) as Note).name
+    getNotes(-1, 3).map((note) => note.name)
+  ).toStrictEqual(
+    ["D♭", "A♭", "E♭", "B♭", "F", "C", "G"]
+  );
+});
+
+test("getSolfege() works", () => {
+  expect(
+    getSolfege(0, 3)
   ).toBe(
-    "B"
+    "do"
   );
   expect(
-    (noteBySolfegeA.get(Solfege.Ti) as Note).hour
+    getSolfege(0, 0)
   ).toBe(
-    10
+    "mi"
   );
   expect(
-    (noteBySolfegeA.get(Solfege.Ti) as Note).name
+    getSolfege(0, 1)
   ).toBe(
-    "C"
+    "ti"
   );
 
-  const noteBySolfegeB = getNoteBySolfege(-3, 2);
   expect(
-    (noteBySolfegeB.get(Solfege.Do) as Note).hour
+    getSolfege(-2, 3)
   ).toBe(
-    3
+    "re"
   );
   expect(
-    (noteBySolfegeB.get(Solfege.Do) as Note).name
+    getSolfege(-2, 0)
   ).toBe(
-    "F"
+    "fa"
   );
   expect(
-    (noteBySolfegeB.get(Solfege.Re) as Note).hour
+    getSolfege(-2, 1)
   ).toBe(
-    4
-  );
-  expect(
-    (noteBySolfegeB.get(Solfege.Re) as Note).name
-  ).toBe(
-    "G♭"
-  );
-  expect(
-    (noteBySolfegeB.get(Solfege.Mi) as Note).hour
-  ).toBe(
-    6
-  );
-  expect(
-    (noteBySolfegeB.get(Solfege.Mi) as Note).name
-  ).toBe(
-    "A♭"
-  );
-  expect(
-    (noteBySolfegeB.get(Solfege.Fa) as Note).hour
-  ).toBe(
-    8
-  );
-  expect(
-    (noteBySolfegeB.get(Solfege.Fa) as Note).name
-  ).toBe(
-    "B♭"
-  );
-  expect(
-    (noteBySolfegeB.get(Solfege.Sol) as Note).hour
-  ).toBe(
-    10
-  );
-  expect(
-    (noteBySolfegeB.get(Solfege.Sol) as Note).name
-  ).toBe(
-    "C"
-  );
-  expect(
-    (noteBySolfegeB.get(Solfege.La) as Note).hour
-  ).toBe(
-    11
-  );
-  expect(
-    (noteBySolfegeB.get(Solfege.La) as Note).name
-  ).toBe(
-    "D♭"
-  );
-  expect(
-    (noteBySolfegeB.get(Solfege.Ti) as Note).hour
-  ).toBe(
-    1
-  );
-  expect(
-    (noteBySolfegeB.get(Solfege.Ti) as Note).name
-  ).toBe(
-    "E♭"
-  );
-
-  const noteBySolfegeC = getNoteBySolfege(2, -1);
-  expect(
-    (noteBySolfegeC.get(Solfege.Do) as Note).hour
-  ).toBe(
-    2
-  );
-  expect(
-    (noteBySolfegeC.get(Solfege.Do) as Note).name
-  ).toBe(
-    "E"
-  );
-  expect(
-    (noteBySolfegeC.get(Solfege.Re) as Note).hour
-  ).toBe(
-    4
-  );
-  expect(
-    (noteBySolfegeC.get(Solfege.Re) as Note).name
-  ).toBe(
-    "F♯"
-  );
-  expect(
-    (noteBySolfegeC.get(Solfege.Mi) as Note).hour
-  ).toBe(
-    6
-  );
-  expect(
-    (noteBySolfegeC.get(Solfege.Mi) as Note).name
-  ).toBe(
-    "G♯"
-  );
-  expect(
-    (noteBySolfegeC.get(Solfege.Fa) as Note).hour
-  ).toBe(
-    7
-  );
-  expect(
-    (noteBySolfegeC.get(Solfege.Fa) as Note).name
-  ).toBe(
-    "A"
-  );
-  expect(
-    (noteBySolfegeC.get(Solfege.Sol) as Note).hour
-  ).toBe(
-    9
-  );
-  expect(
-    (noteBySolfegeC.get(Solfege.Sol) as Note).name
-  ).toBe(
-    "B"
-  );
-  expect(
-    (noteBySolfegeC.get(Solfege.La) as Note).hour
-  ).toBe(
-    11
-  );
-  expect(
-    (noteBySolfegeC.get(Solfege.La) as Note).name
-  ).toBe(
-    "C♯"
-  );
-  expect(
-    (noteBySolfegeC.get(Solfege.Ti) as Note).hour
-  ).toBe(
-    0
-  );
-  expect(
-    (noteBySolfegeC.get(Solfege.Ti) as Note).name
-  ).toBe(
-    "D"
+    "do"
   );
 });
 

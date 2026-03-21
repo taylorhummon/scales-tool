@@ -1,4 +1,4 @@
-import { Motion, NaturalNoteName, Solfege } from "src/enumerations";
+import { Motion, NaturalNoteName } from "src/enumerations";
 import type { Note } from "src/classes/Note";
 
 
@@ -12,7 +12,7 @@ export interface Derived {
   motion: Motion;
   root: number;
   mode: number;
-  noteBySolfege: Map<Solfege, Note>;
+  notes: Array<Note>;
   rootNote: Note;
   modeNoteName: NaturalNoteName;
   keyDegree: number;

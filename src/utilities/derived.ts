@@ -1,10 +1,9 @@
-import { Solfege } from "src/enumerations";
 import type { State, Derived } from "src/types";
-import type { Note } from "src/classes/Note";
 import {
-  getNoteBySolfege,
+  getNotes,
+  getRootNote,
   getModeNoteName,
-  getKeyDegree,
+  getKeyDegree
 } from "src/utilities/scale";
 
 
@@ -13,14 +12,13 @@ export function derivedFromState({
   root,
   mode
 }: State): Derived {
-  const noteBySolfege = getNoteBySolfege(root, mode);
-  const rootNote = noteBySolfege.get(Solfege.Do) as Note;
+  const notes = getNotes(root, mode);
   return {
     motion,
     root,
     mode,
-    noteBySolfege,
-    rootNote,
+    notes,
+    rootNote: getRootNote(notes, mode),
     modeNoteName: getModeNoteName(mode),
     keyDegree: getKeyDegree(root, mode),
   };

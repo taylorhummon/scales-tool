@@ -1,0 +1,31 @@
+.located-note {
+  font-family: "PT Mono", monospace;
+
+  &.location-0 {
+    offset-path: path("M -150 50");
+  }
+
+  &.location-1 {
+    offset-path: path("M -100 50");
+  }
+
+  &.location-2 {
+    offset-path: path("M -50 50");
+  }
+
+  &.location-3 {
+    offset-path: path("M 0 50");
+  }
+
+  &.location-4 {
+    offset-path: path("M 50 50");
+  }
+
+  &.location-5 {
+    offset-path: path("M 100 50");
+  }
+
+  &.location-6 {
+    offset-path: path("M 150 50");
+  }
+}
