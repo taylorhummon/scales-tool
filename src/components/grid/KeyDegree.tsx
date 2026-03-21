@@ -1,6 +1,6 @@
 import { buildClassString } from "src/utilities/css";
 
-import cssModule from "src/components/KeyDegree.module.css";
+import cssModule from "src/components/grid/KeyDegree.module.css";
 
 
 interface KeyDegreeProps {

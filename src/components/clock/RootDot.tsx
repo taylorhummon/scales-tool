@@ -2,7 +2,7 @@ import { Motion } from "src/enumerations";
 import { buildClassString } from "src/utilities/css";
 import { getDotMotionEndHour } from "src/utilities/scale";
 
-import cssModule from "src/components/RootDot.module.css";
+import cssModule from "src/components/clock/RootDot.module.css";
 
 
 interface RootDotProps {

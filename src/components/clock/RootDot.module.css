@@ -1,4 +1,4 @@
-@value color-blue, duration-motion from "../constants.css";
+@value color-blue, duration-motion from "../../constants.css";
 
 @keyframes move-root-dot {
   0% {

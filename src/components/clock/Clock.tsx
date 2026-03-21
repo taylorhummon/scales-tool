@@ -3,25 +3,27 @@ import { useRef, useEffect, Dispatch, SetStateAction } from "react";
 import { Motion } from "src/enumerations";
 import type { State, Derived } from "src/types";
 import { LabelAnimation } from "src/classes/LabelAnimation";
-import { Clock } from "src/components/Clock";
-import { NoteDot } from "src/components/NoteDot";
-import { NoteLabel } from "src/components/NoteLabel";
-import { RootDot } from "src/components/RootDot";
-import { arrayFromMap } from "src/utilities/map";
+import { NoteDot } from "src/components/clock/NoteDot";
+import { NoteLabel } from "src/components/clock/NoteLabel";
+import { RootDot } from "src/components/clock/RootDot";
+import { Tick } from "src/components/clock/Tick";
+import { buildIndicesArray } from "src/utilities/array";
+import { CLOCK_RADIUS } from "src/utilities/clock";
 import { buildClassString } from "src/utilities/css";
+import { arrayFromMap } from "src/utilities/map";
 
-import cssModule from "src/components/Canvas.module.css";
+import cssModule from "src/components/clock/Clock.module.css";
 
 
-interface CanvasProps {
+interface ClockProps {
   derived: Derived;
   setState: Dispatch<SetStateAction<State>>;
 }
 
-export function Canvas({
+export function Clock({
   derived,
   setState
-}: CanvasProps): JSX.Element {
+}: ClockProps): JSX.Element {
   const domNodeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -61,19 +63,25 @@ export function Canvas({
         height="300px"
         width="300px"
       >
-        <Clock />
+        {buildIndicesArray(12).map((hour) => Tick({ hour }))}
+        <circle
+          className={buildClassString(cssModule, ["clock"])}
+          cx="0"
+          cy="0"
+          r={CLOCK_RADIUS}
+        />
         {arrayFromMap(derived.noteBySolfege, (note, solfege) => (
-          <NoteDot
+          <NoteLabel
             key={note.name}
-            motion={derived.motion}
+            labelAnimation={getLabelAnimation(derived)}
             note={note}
             solfege={solfege}
           />
         ))}
         {arrayFromMap(derived.noteBySolfege, (note, solfege) => (
-          <NoteLabel
+          <NoteDot
             key={note.name}
-            labelAnimation={getLabelAnimation(derived)}
+            motion={derived.motion}
             note={note}
             solfege={solfege}
           />

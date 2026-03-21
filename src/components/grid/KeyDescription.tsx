@@ -1,7 +1,7 @@
 import { buildClassString } from "src/utilities/css";
 import { getModeName } from "src/utilities/scale";
 
-import cssModule from "src/components/KeyDescription.module.css";
+import cssModule from "src/components/grid/KeyDescription.module.css";
 
 
 interface KeyDescriptionProps {

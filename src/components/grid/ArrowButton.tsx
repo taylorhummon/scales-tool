@@ -1,6 +1,6 @@
 import { buildClassString } from "src/utilities/css";
 
-import cssModule from "src/components/ArrowButton.module.css";
+import cssModule from "src/components/grid/ArrowButton.module.css";
 
 
 interface ArrowButtonProps {

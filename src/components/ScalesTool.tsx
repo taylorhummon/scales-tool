@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import { Motion } from "src/enumerations";
 import type { State } from "src/types";
-import { Canvas } from "src/components/Canvas";
-import { Grid } from "src/components/Grid";
+import { Clock } from "src/components/clock/Clock";
+import { Grid } from "src/components/grid/Grid";
 import { buildClassString } from "src/utilities/css";
 import { derivedFromState } from "src/utilities/derived";
 
@@ -22,7 +22,7 @@ export default function ScalesTool({
     <div
       className={buildClassString(cssModule, ["scales-tool"])}
     >
-      <Canvas
+      <Clock
         derived={derived}
         setState={setState}
       />

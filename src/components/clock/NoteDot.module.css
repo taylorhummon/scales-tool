@@ -1,4 +1,4 @@
-@value color-black, duration-motion from "../constants.css";
+@value color-black, duration-motion from "../../constants.css";
 
 @keyframes move-note-dot {
   0% {

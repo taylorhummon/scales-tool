@@ -1,8 +1,8 @@
 import { NaturalNoteName } from "src/enumerations";
-import { ArrowButton } from "src/components/ArrowButton";
+import { ArrowButton } from "src/components/grid/ArrowButton";
 import { buildClassString } from "src/utilities/css";
 
-import cssModule from "src/components/ModeNote.module.css";
+import cssModule from "src/components/grid/ModeNote.module.css";
 
 
 interface ModeNoteProps {

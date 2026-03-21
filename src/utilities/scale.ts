@@ -24,7 +24,7 @@ const MODE_NAMES_IN_FCGDAEB_ORDER = [
   ModeName.Phrygian,
   ModeName.Locrian
 ];
-const SOLFEGE_NAMES = Object.values(Solfege);
+const SOLFEGES = Object.values(Solfege);
 
 
 export function getKeyDegree(
@@ -57,7 +57,7 @@ export function getNoteBySolfege(
   const notes = getNotes(root, mode);
   const noteBySolfege = new Map();
   for (const i in buildIndicesArray(7)) {
-    noteBySolfege.set(SOLFEGE_NAMES[i], notes[i]);
+    noteBySolfege.set(SOLFEGES[i], notes[i]);
   }
   return noteBySolfege;
 }

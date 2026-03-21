@@ -1,7 +1,7 @@
-import { ArrowButton } from "src/components/ArrowButton";
+import { ArrowButton } from "src/components/grid/ArrowButton";
 import { buildClassString } from "src/utilities/css";
 
-import cssModule from "src/components/RootNote.module.css";
+import cssModule from "src/components/grid/RootNote.module.css";
 
 
 interface RootNoteProps {

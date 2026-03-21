@@ -1,4 +1,4 @@
-@value color-gray from "../constants.css";
+@value color-gray from "../../constants.css";
 
 .clock {
   fill: none;

@@ -3,7 +3,7 @@ import type { Note } from "src/classes/Note";
 import { buildClassString } from "src/utilities/css";
 import { getDotMotionEndHour } from "src/utilities/scale";
 
-import cssModule from "src/components/NoteDot.module.css";
+import cssModule from "src/components/clock/NoteDot.module.css";
 
 
 interface NoteDotProps {

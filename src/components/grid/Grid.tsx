@@ -2,13 +2,13 @@ import { Dispatch, SetStateAction } from "react";
 
 import { Motion } from "src/enumerations";
 import type { State, Derived } from "src/types";
-import { KeyDegree } from "src/components/KeyDegree";
-import { KeyDescription } from "src/components/KeyDescription";
-import { ModeNote } from "src/components/ModeNote";
-import { RootNote } from "src/components/RootNote";
+import { KeyDegree } from "src/components/grid/KeyDegree";
+import { KeyDescription } from "src/components/grid/KeyDescription";
+import { ModeNote } from "src/components/grid/ModeNote";
+import { RootNote } from "src/components/grid/RootNote";
 import { buildClassString } from "src/utilities/css";
 
-import cssModule from "src/components/Grid.module.css";
+import cssModule from "src/components/grid/Grid.module.css";
 
 
 const MAX_KEY_DEGREE = 14;
