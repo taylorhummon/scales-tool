@@ -1,20 +1,9 @@
 .arrow-button {
   width: 50px;
   height: 40px;
-  display: grid;
-  align-items: center;
-  text-align: center;
-  border-radius: 8px;
-  background-color: rgb(128, 85, 245);
-  color: white;
   cursor: pointer;
-  user-select: none;
-  font-family: "Open Sans", sans-serif;
-  font-size: 22px;
 
   &.disabled {
-    background-color: rgb(191, 169, 249);
-    color: rgb(230, 210, 255);
     cursor: default;
   }
 }
