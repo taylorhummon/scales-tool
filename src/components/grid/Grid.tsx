@@ -65,10 +65,6 @@ export function Grid({
     <div
       className={buildClassString(cssModule, ["grid"])}
     >
-      <KeyDescription
-        mode={derived.mode}
-        rootNoteName={derived.rootNote.name}
-      />
       <RootNote
         rootNoteName={derived.rootNote.name}
         buildChangeRoot={buildChangeRoot}
@@ -76,6 +72,10 @@ export function Grid({
       <ModeNote
         modeNoteName={derived.modeNoteName}
         buildChangeMode={buildChangeMode}
+      />
+      <KeyDescription
+        mode={derived.mode}
+        rootNoteName={derived.rootNote.name}
       />
       <KeyDegree
         keyDegree={derived.keyDegree}

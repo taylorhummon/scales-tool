@@ -20,12 +20,8 @@ export function Clock({
   derived
 }: ClockProps): JSX.Element {
   return (
-    <svg
+    <g
       className={buildClassString(cssModule, ["clock"])}
-      viewBox="-150 -150 300 300"
-      xmlns="http://www.w3.org/2000/svg"
-      height="300px"
-      width="300px"
     >
       {buildIndicesArray(12).map((hour) =>
         <Tick
@@ -59,7 +55,7 @@ export function Clock({
         motion={derived.motion}
         rootNoteHour={derived.rootNote.hour}
       />
-    </svg>
+    </g>
   );
 }
 

@@ -1,21 +1,15 @@
 .key-description-label {
   grid-column: 1;
-  grid-row: 1;
-  display: grid;
-  align-items: center;
+  grid-row: 3;
   text-align: right;
+  font-weight: bold;
 }
 
 .key-description-content {
   grid-column: 2;
-  grid-row: 1;
-  display: grid;
-  height: 40px;
-  align-items: center;
+  grid-row: 3;
 }
 
 .note-font {
   font-family: "PT Mono", monospace;
-  font-weight: 400;
-  font-style: normal;
 }

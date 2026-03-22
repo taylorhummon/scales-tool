@@ -1,31 +1,111 @@
+@value duration-motion from "../../constants.css";
+
+@keyframes move-located-note {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
 .located-note {
   font-family: "PT Mono", monospace;
+  offset-rotate: 0deg;
 
   &.location-0 {
-    offset-path: path("M -150 50");
+    offset-path: path("M 240 -105");
   }
 
   &.location-1 {
-    offset-path: path("M -100 50");
+    offset-path: path("M 240 -70");
   }
 
   &.location-2 {
-    offset-path: path("M -50 50");
+    offset-path: path("M 240 -35");
   }
 
   &.location-3 {
-    offset-path: path("M 0 50");
+    offset-path: path("M 240 0");
   }
 
   &.location-4 {
-    offset-path: path("M 50 50");
+    offset-path: path("M 240 35");
   }
 
   &.location-5 {
-    offset-path: path("M 100 50");
+    offset-path: path("M 240 70");
   }
 
   &.location-6 {
-    offset-path: path("M 150 50");
+    offset-path: path("M 240 105");
+  }
+
+  &.move {
+    animation: move-located-note duration-motion ease-in-out 1 forwards;
+
+    &.from--1-to-0 {
+      offset-path: path("M 240 -140 L 240 -105");
+    }
+
+    &.from-0-to-1 {
+      offset-path: path("M 240 -105 L 240 -70");
+    }
+
+    &.from-1-to-2 {
+      offset-path: path("M 240 -70 L 240 -35");
+    }
+
+    &.from-2-to-3 {
+      offset-path: path("M 240 -35 L 240 0");
+    }
+
+    &.from-3-to-4 {
+      offset-path: path("M 240 0 L 240 35");
+    }
+
+    &.from-4-to-5 {
+      offset-path: path("M 240 35 L 240 70");
+    }
+
+    &.from-5-to-6 {
+      offset-path: path("M 240 70 L 240 105");
+    }
+
+    &.from-6-to-7 {
+      offset-path: path("M 240 105 L 240 140");
+    }
+
+    &.from-7-to-6 {
+      offset-path: path("M 240 140 L 240 105");
+    }
+
+    &.from-6-to-5 {
+      offset-path: path("M 240 105 L 240 70");
+    }
+
+    &.from-5-to-4 {
+      offset-path: path("M 240 70 L 240 35");
+    }
+
+    &.from-4-to-3 {
+      offset-path: path("M 240 35 L 240 0");
+    }
+
+    &.from-3-to-2 {
+      offset-path: path("M 240 0 L 240 -35");
+    }
+
+    &.from-2-to-1 {
+      offset-path: path("M 240 -35 L 240 -70");
+    }
+
+    &.from-1-to-0 {
+      offset-path: path("M 240 -70 L 240 -105");
+    }
+
+    &.from-0-to--1 {
+      offset-path: path("M 240 -105 L 240 -140");
+    }
   }
 }

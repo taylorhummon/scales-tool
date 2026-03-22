@@ -1,23 +1,22 @@
 .root-note-label {
   grid-column: 1;
-  grid-row: 2;
+  grid-row: 1;
   display: grid;
   align-items: center;
   text-align: right;
+  font-weight: bold;
 }
 
 .root-note-content {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .root-note-text {
-  display: inline-grid;
   width: 45px;
-  height: 40px;
-  align-items: center;
   text-align: center;
   font-family: "PT Mono", monospace;
-  font-weight: 400;
-  font-style: normal;
 }
