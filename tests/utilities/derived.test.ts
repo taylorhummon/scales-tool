@@ -1,7 +1,6 @@
 import { test, expect } from 'vitest';
 
-import { Motion, Solfege } from "src/enumerations";
-import type { Note } from "src/classes/Note";
+import { Motion } from "src/enumerations";
 import { derivedFromState } from "src/utilities/derived";
 
 

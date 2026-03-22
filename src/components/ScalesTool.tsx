@@ -11,8 +11,8 @@ import cssModule from "src/components/ScalesTool.module.css";
 
 
 interface ScalesToolProps {
-  root: number;
-  mode: number;
+  root?: number;
+  mode?: number;
 }
 
 
