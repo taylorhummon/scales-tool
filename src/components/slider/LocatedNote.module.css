@@ -14,98 +14,98 @@
   offset-rotate: 0deg;
 
   &.location-0 {
-    offset-path: path("M 240 -100");
+    offset-path: path("M 228 -100");
   }
 
   &.location-1 {
-    offset-path: path("M 240 -65");
+    offset-path: path("M 228 -65");
   }
 
   &.location-2 {
-    offset-path: path("M 240 -30");
+    offset-path: path("M 228 -30");
   }
 
   &.location-3 {
-    offset-path: path("M 240 5");
+    offset-path: path("M 228 5");
   }
 
   &.location-4 {
-    offset-path: path("M 240 40");
+    offset-path: path("M 228 40");
   }
 
   &.location-5 {
-    offset-path: path("M 240 75");
+    offset-path: path("M 228 75");
   }
 
   &.location-6 {
-    offset-path: path("M 240 110");
+    offset-path: path("M 228 110");
   }
 
   &.move {
     animation: move-located-note duration-motion ease-in-out 1 forwards;
 
     &.from--1-to-0 {
-      offset-path: path("M 240 -135 L 240 -100");
+      offset-path: path("M 228 -135 L 228 -100");
     }
 
     &.from-0-to-1 {
-      offset-path: path("M 240 -100 L 240 -65");
+      offset-path: path("M 228 -100 L 228 -65");
     }
 
     &.from-1-to-2 {
-      offset-path: path("M 240 -65 L 240 -30");
+      offset-path: path("M 228 -65 L 228 -30");
     }
 
     &.from-2-to-3 {
-      offset-path: path("M 240 -30 L 240 5");
+      offset-path: path("M 228 -30 L 228 5");
     }
 
     &.from-3-to-4 {
-      offset-path: path("M 240 5 L 240 40");
+      offset-path: path("M 228 5 L 228 40");
     }
 
     &.from-4-to-5 {
-      offset-path: path("M 240 40 L 240 75");
+      offset-path: path("M 228 40 L 228 75");
     }
 
     &.from-5-to-6 {
-      offset-path: path("M 240 75 L 240 110");
+      offset-path: path("M 228 75 L 228 110");
     }
 
     &.from-6-to-7 {
-      offset-path: path("M 240 110 L 240 145");
+      offset-path: path("M 228 110 L 228 145");
     }
 
     &.from-7-to-6 {
-      offset-path: path("M 240 145 L 240 110");
+      offset-path: path("M 228 145 L 228 110");
     }
 
     &.from-6-to-5 {
-      offset-path: path("M 240 110 L 240 75");
+      offset-path: path("M 228 110 L 228 75");
     }
 
     &.from-5-to-4 {
-      offset-path: path("M 240 75 L 240 40");
+      offset-path: path("M 228 75 L 228 40");
     }
 
     &.from-4-to-3 {
-      offset-path: path("M 240 40 L 240 5");
+      offset-path: path("M 228 40 L 228 5");
     }
 
     &.from-3-to-2 {
-      offset-path: path("M 240 5 L 240 -30");
+      offset-path: path("M 228 5 L 228 -30");
     }
 
     &.from-2-to-1 {
-      offset-path: path("M 240 -30 L 240 -65");
+      offset-path: path("M 228 -30 L 228 -65");
     }
 
     &.from-1-to-0 {
-      offset-path: path("M 240 -65 L 240 -100");
+      offset-path: path("M 228 -65 L 228 -100");
     }
 
     &.from-0-to--1 {
-      offset-path: path("M 240 -100 L 240 -135");
+      offset-path: path("M 228 -100 L 228 -135");
     }
   }
 }

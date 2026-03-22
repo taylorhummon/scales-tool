@@ -20,7 +20,9 @@ export function LocatedSolfege({
     <g
       className={className(motion, solfege, location)}
     >
-      <text>
+      <text
+        className={buildClassString(cssModule, ["solfege-text"])}
+      >
         {solfege}:
       </text>
     </g>

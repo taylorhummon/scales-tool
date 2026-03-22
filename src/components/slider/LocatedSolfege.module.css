@@ -9,6 +9,10 @@
   }
 }
 
+.solfege-text {
+  text-anchor: end;
+}
+
 .located-solfege {
   offset-rotate: 0deg;
   font-family: "PT Mono", monospace;
@@ -18,98 +22,98 @@
   }
 
   &.location-0 {
-    offset-path: path("M 190 -100");
+    offset-path: path("M 212 -100");
   }
 
   &.location-1 {
-    offset-path: path("M 190 -65");
+    offset-path: path("M 212 -65");
   }
 
   &.location-2 {
-    offset-path: path("M 190 -30");
+    offset-path: path("M 212 -30");
   }
 
   &.location-3 {
-    offset-path: path("M 190 5");
+    offset-path: path("M 212 5");
   }
 
   &.location-4 {
-    offset-path: path("M 190 40");
+    offset-path: path("M 212 40");
   }
 
   &.location-5 {
-    offset-path: path("M 190 75");
+    offset-path: path("M 212 75");
   }
 
   &.location-6 {
-    offset-path: path("M 190 110");
+    offset-path: path("M 212 110");
   }
 
   &.move {
     animation: move-located-solfege duration-motion ease-in-out 1 forwards;
 
     &.from--1-to-0 {
-      offset-path: path("M 190 -135 L 190 -100");
+      offset-path: path("M 212 -135 L 212 -100");
     }
 
     &.from-0-to-1 {
-      offset-path: path("M 190 -100 L 190 -65");
+      offset-path: path("M 212 -100 L 212 -65");
     }
 
     &.from-1-to-2 {
-      offset-path: path("M 190 -65 L 190 -30");
+      offset-path: path("M 212 -65 L 212 -30");
     }
 
     &.from-2-to-3 {
-      offset-path: path("M 190 -30 L 190 5");
+      offset-path: path("M 212 -30 L 212 5");
     }
 
     &.from-3-to-4 {
-      offset-path: path("M 190 5 L 190 40");
+      offset-path: path("M 212 5 L 212 40");
     }
 
     &.from-4-to-5 {
-      offset-path: path("M 190 40 L 190 75");
+      offset-path: path("M 212 40 L 212 75");
     }
 
     &.from-5-to-6 {
-      offset-path: path("M 190 75 L 190 110");
+      offset-path: path("M 212 75 L 212 110");
     }
 
     &.from-6-to-7 {
-      offset-path: path("M 190 110 L 190 145");
+      offset-path: path("M 212 110 L 212 145");
     }
 
     &.from-7-to-6 {
-      offset-path: path("M 190 145 L 190 110");
+      offset-path: path("M 212 145 L 212 110");
     }
 
     &.from-6-to-5 {
-      offset-path: path("M 190 110 L 190 75");
+      offset-path: path("M 212 110 L 212 75");
     }
 
     &.from-5-to-4 {
-      offset-path: path("M 190 75 L 190 40");
+      offset-path: path("M 212 75 L 212 40");
     }
 
     &.from-4-to-3 {
-      offset-path: path("M 190 40 L 190 5");
+      offset-path: path("M 212 40 L 212 5");
     }
 
     &.from-3-to-2 {
-      offset-path: path("M 190 5 L 190 -30");
+      offset-path: path("M 212 5 L 212 -30");
     }
 
     &.from-2-to-1 {
-      offset-path: path("M 190 -30 L 190 -65");
+      offset-path: path("M 212 -30 L 212 -65");
     }
 
     &.from-1-to-0 {
-      offset-path: path("M 190 -65 L 190 -100");
+      offset-path: path("M 212 -65 L 212 -100");
     }
 
     &.from-0-to--1 {
-      offset-path: path("M 190 -100 L 190 -135");
+      offset-path: path("M 212 -100 L 212 -135");
     }
   }
 }

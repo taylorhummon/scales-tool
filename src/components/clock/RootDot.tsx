@@ -20,7 +20,7 @@ export function RootDot({
       data-testid={"root-dot"}
       cx="0"
       cy="0"
-      r="10"
+      r="11"
     />
   );
 }
