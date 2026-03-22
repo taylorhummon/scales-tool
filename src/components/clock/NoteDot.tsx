@@ -23,7 +23,7 @@ export function NoteDot({
       data-testid={`note-dot-${solfege}`}
       cx="0"
       cy="0"
-      r="10"
+      r="8"
     />
   );
 }

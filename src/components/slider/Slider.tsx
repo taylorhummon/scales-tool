@@ -18,7 +18,6 @@ export function Slider({
   return (
     <g
       className={buildClassString(cssModule, ["slider"])}
-      clipPath="url(#slider-clip-box)"
     >
       {derived.notes.map((note) => (
         <LocatedSolfege

@@ -55,24 +55,11 @@ export function Canvas({
     >
       <svg
         className={buildClassString(cssModule, ["canvas-svg"])}
-        viewBox="-150 -150 450 300"
+        viewBox="-132 -132 400 264"
         xmlns="http://www.w3.org/2000/svg"
-        height="300px"
-        width="450px"
+        width="400px"
+        height="264px"
       >
-        <defs>
-          <clipPath
-            id="slider-clip-box"
-            clipPathUnits="userSpaceOnUse"
-          >
-            <rect
-              x="180"
-              y="-130"
-              width="120"
-              height="250"
-            />
-          </clipPath>
-        </defs>
         <Clock
           derived={derived}
         />
