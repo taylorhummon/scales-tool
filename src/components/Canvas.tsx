@@ -57,8 +57,6 @@ export function Canvas({
         className={buildClassString(cssModule, ["canvas-svg"])}
         viewBox="-132 -132 400 264"
         xmlns="http://www.w3.org/2000/svg"
-        width="400px"
-        height="264px"
       >
         <Clock
           derived={derived}
