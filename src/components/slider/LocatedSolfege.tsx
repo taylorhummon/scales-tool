@@ -43,5 +43,8 @@ function className(
   } else {
     classNames.push(`location-${location}`);
   }
+  if (solfege === Solfege.Do) {
+    classNames.push("root");
+  }
   return buildClassString(cssModule, classNames);
 }

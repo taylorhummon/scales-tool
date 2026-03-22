@@ -1,4 +1,4 @@
-@value duration-motion from "../../constants.css";
+@value duration-motion, color-blue from "../../constants.css";
 
 @keyframes move-located-solfege {
   0% {
@@ -10,8 +10,12 @@
 }
 
 .located-solfege {
-  font-family: "PT Mono", monospace;
   offset-rotate: 0deg;
+  font-family: "PT Mono", monospace;
+
+  &.root {
+    stroke: color-blue;
+  }
 
   &.location-0 {
     offset-path: path("M 190 -105");
