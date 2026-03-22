@@ -1,7 +1,7 @@
 # Scales Tool
 
-This app is a companion to <emph>Taylor's Guide to Scales</emph>. You check out both the Scales 
-Tool app and the guide at [https://scales.taylorhummon.com/](https://scales.taylorhummon.com/).
+The Scales Tool is a companion to <emph>Taylor's Guide to Scales</emph>. You check out both the 
+Scales Tool and the guide at [https://scales.taylorhummon.com/](https://scales.taylorhummon.com/).
 
 ## Installation
 
