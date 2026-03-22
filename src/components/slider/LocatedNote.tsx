@@ -15,11 +15,13 @@ export function LocatedNote({
   note
 }: LocatedNoteProps): JSX.Element {
   return (
-    <text
+    <g
       className={className(motion, note)}
     >
-      {note.name}
-    </text>
+      <text>
+        {note.name}
+      </text>
+    </g>
   );
 }
 

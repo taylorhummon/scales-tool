@@ -17,11 +17,13 @@ export function LocatedSolfege({
   location
 }: LocatedSolfegeProps): JSX.Element {
   return (
-    <text
+    <g
       className={className(motion, solfege, location)}
     >
-      {solfege}:
-    </text>
+      <text>
+        {solfege}:
+      </text>
+    </g>
   );
 }
 
