@@ -23,43 +23,45 @@ export function Grid({
   derived,
   setState
 }: GridProps): JSX.Element {
-    function buildChangeRoot(
-      isIncrement: boolean
-    ): (() => void) | undefined {
-      if (isIncrement) {
-        if (derived.keyDegree >= MAX_KEY_DEGREE) return undefined;
-        return () => {
-          if (derived.motion !== Motion.Still) return;
-          setState((state: State) => ({ ...state, motion: Motion.IncrementRoot }));
-        }
-      } else {
-        if (derived.keyDegree <= -MAX_KEY_DEGREE) return undefined;
-        return () => {
-          if (derived.motion !== Motion.Still) return;
-          setState((state: State) => ({ ...state, motion: Motion.DecrementRoot }));
-        }
-      }
-    }
+  const isWaiting = derived.motion !== Motion.Still;
 
-    function buildChangeMode(
-      isIncrement: boolean
-    ): (() => void) | undefined {
-      if (isIncrement) {
-        if (derived.mode >= 3) return undefined;
-        if (derived.keyDegree >= MAX_KEY_DEGREE) return undefined;
-        return () => {
-          if (derived.motion !== Motion.Still) return;
-          setState((state: State) => ({ ...state, motion: Motion.IncrementMode }));
-        }
-      } else {
-        if (derived.mode <= -3) return undefined;
-        if (derived.keyDegree <= -MAX_KEY_DEGREE) return undefined;
-        return () => {
-          if (derived.motion !== Motion.Still) return;
-          setState((state: State) => ({ ...state, motion: Motion.DecrementMode }));
-        };
+  function buildChangeRoot(
+    isIncrement: boolean
+  ): (() => void) | undefined {
+    if (isIncrement) {
+      if (derived.keyDegree >= MAX_KEY_DEGREE) return undefined;
+      return () => {
+        if (derived.motion !== Motion.Still) return;
+        setState((state: State) => ({ ...state, motion: Motion.IncrementRoot }));
+      }
+    } else {
+      if (derived.keyDegree <= -MAX_KEY_DEGREE) return undefined;
+      return () => {
+        if (derived.motion !== Motion.Still) return;
+        setState((state: State) => ({ ...state, motion: Motion.DecrementRoot }));
       }
     }
+  }
+
+  function buildChangeMode(
+    isIncrement: boolean
+  ): (() => void) | undefined {
+    if (isIncrement) {
+      if (derived.mode >= 3) return undefined;
+      if (derived.keyDegree >= MAX_KEY_DEGREE) return undefined;
+      return () => {
+        if (derived.motion !== Motion.Still) return;
+        setState((state: State) => ({ ...state, motion: Motion.IncrementMode }));
+      }
+    } else {
+      if (derived.mode <= -3) return undefined;
+      if (derived.keyDegree <= -MAX_KEY_DEGREE) return undefined;
+      return () => {
+        if (derived.motion !== Motion.Still) return;
+        setState((state: State) => ({ ...state, motion: Motion.DecrementMode }));
+      };
+    }
+  }
 
   return (
     <div
@@ -68,10 +70,12 @@ export function Grid({
       <RootNote
         rootNoteName={derived.rootNote.name}
         buildChangeRoot={buildChangeRoot}
+        isWaiting={isWaiting}
       />
       <ModeNote
         modeNoteName={derived.modeNoteName}
         buildChangeMode={buildChangeMode}
+        isWaiting={isWaiting}
       />
       <KeyDescription
         mode={derived.mode}

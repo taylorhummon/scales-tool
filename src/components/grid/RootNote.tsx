@@ -7,11 +7,13 @@ import cssModule from "src/components/grid/RootNote.module.css";
 interface RootNoteProps {
   rootNoteName: string;
   buildChangeRoot: (isIncrement: boolean) => ((() => void) | undefined);
+  isWaiting: boolean;
 }
 
 export function RootNote({
   rootNoteName,
-  buildChangeRoot
+  buildChangeRoot,
+  isWaiting
 }: RootNoteProps): JSX.Element {
   return (
     <>
@@ -26,6 +28,7 @@ export function RootNote({
         <Button
           isPlus={false}
           onClick={buildChangeRoot(false)}
+          isWaiting={isWaiting}
           dataTestid="decrement-root-note"
         />
         <div
@@ -36,6 +39,7 @@ export function RootNote({
         <Button
           isPlus={true}
           onClick={buildChangeRoot(true)}
+          isWaiting={isWaiting}
           dataTestid="increment-root-note"
         />
       </div>

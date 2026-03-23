@@ -5,14 +5,18 @@
   border: none;
   outline: none;
   font-size: 20px;
-
   cursor: pointer;
-  background-color: rgb(128, 85, 245);
   color: rgb(255, 255, 255);
+  background-color: rgb(128, 85, 245);
+
+  &.waiting {
+    cursor: default;
+    color: rgb(230, 210, 255);
+  }
 
   &.disabled {
     cursor: default;
-    background-color: rgb(191, 169, 249);
     color: rgb(230, 210, 255);
+    background-color: rgb(191, 169, 249);
   }
 }

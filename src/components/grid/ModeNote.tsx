@@ -8,11 +8,13 @@ import cssModule from "src/components/grid/ModeNote.module.css";
 interface ModeNoteProps {
   modeNoteName: NaturalNoteName;
   buildChangeMode: (isIncrement: boolean) => ((() => void) | undefined);
+  isWaiting: boolean;
 }
 
 export function ModeNote({
   modeNoteName,
-  buildChangeMode
+  buildChangeMode,
+  isWaiting
 }: ModeNoteProps): JSX.Element {
   return (
     <>
@@ -27,6 +29,7 @@ export function ModeNote({
         <Button
           isPlus={false}
           onClick={buildChangeMode(false)}
+          isWaiting={isWaiting}
           dataTestid="decrement-mode-note"
         />
         <div
@@ -37,6 +40,7 @@ export function ModeNote({
         <Button
           isPlus={true}
           onClick={buildChangeMode(true)}
+          isWaiting={isWaiting}
           dataTestid="increment-mode-note"
         />
       </div>
