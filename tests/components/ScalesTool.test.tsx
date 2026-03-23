@@ -143,7 +143,7 @@ test("<ScalesTool /> shows C-Minor correctly", () => {
   render(
     <ScalesTool
       root={-2}
-      mode={1}
+      mode={-1}
     />
   );
 

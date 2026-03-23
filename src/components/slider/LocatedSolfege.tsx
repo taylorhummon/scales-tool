@@ -38,10 +38,10 @@ function className(
   const classNames = ["located-solfege", solfege];
   if (motion === Motion.IncrementMode) {
     classNames.push("move");
-    classNames.push(`from-${location}-to-${location + 1}`);
+    classNames.push(`from-${location}-to-${location - 1}`);
   } else if (motion === Motion.DecrementMode) {
     classNames.push("move");
-    classNames.push(`from-${location}-to-${location - 1}`);
+    classNames.push(`from-${location}-to-${location + 1}`);
   } else {
     classNames.push(`location-${location}`);
   }

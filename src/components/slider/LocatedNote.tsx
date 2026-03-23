@@ -32,18 +32,12 @@ function className(
 ): string {
   const classNames = ["located-note", note.name];
   const location = note.location;
-  if (motion === Motion.IncrementRoot) {
+  if (motion === Motion.IncrementRoot || motion === Motion.IncrementMode) {
     classNames.push("move");
     classNames.push(`from-${location}-to-${location - 1}`);
-  } else if (motion === Motion.DecrementRoot) {
+  } else if (motion === Motion.DecrementRoot || motion === Motion.DecrementMode) {
     classNames.push("move");
     classNames.push(`from-${location}-to-${location + 1}`);
-  } else if (motion === Motion.IncrementMode) {
-    classNames.push("move");
-    classNames.push(`from-${location}-to-${location + 1}`);
-  } else if (motion === Motion.DecrementMode) {
-    classNames.push("move");
-    classNames.push(`from-${location}-to-${location - 1}`);
   } else {
     classNames.push(`location-${location}`);
   }

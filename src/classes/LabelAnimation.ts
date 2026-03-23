@@ -55,13 +55,15 @@ export class LabelAnimation {
   #getIsIncrementingKeyDegree(
     motion: Motion
   ): boolean {
-    if (motion === Motion.Still) {
-      throw Error("LabelAnimation requires movement");
-    }
-    return (
+    if (
       motion === Motion.IncrementRoot ||
+      motion === Motion.IncrementMode
+    ) return true;
+    if (
+      motion === Motion.DecrementRoot ||
       motion === Motion.DecrementMode
-    );
+    ) return false;
+    throw Error("LabelAnimation requires movement");
   }
 
   #computeStartNote(

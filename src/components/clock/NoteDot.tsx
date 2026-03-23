@@ -45,20 +45,13 @@ function className(
     classNames.push("hide");
     return buildClassString(cssModule, classNames);
   }
-  if (
-    motion === Motion.Still
-  ) {
+  if (motion === Motion.Still) {
     classNames.push(`hour-${noteHour}`);
   } else if (
     motion === Motion.IncrementRoot ||
-    motion === Motion.DecrementMode
-  ) {
-    const motionEndHour = getDotMotionEndHour(motion, noteHour);
-    classNames.push("move");
-    classNames.push(`from-${noteHour}-to-${motionEndHour}`);
-  } else if (
     motion === Motion.DecrementRoot ||
-    motion === Motion.IncrementMode
+    motion === Motion.IncrementMode ||
+    motion === Motion.DecrementMode
   ) {
     const motionEndHour = getDotMotionEndHour(motion, noteHour);
     classNames.push("move");

@@ -46,14 +46,14 @@ export function Grid({
     ): (() => void) | undefined {
       if (isIncrement) {
         if (derived.mode >= 3) return undefined;
-        if (derived.keyDegree <= -MAX_KEY_DEGREE) return undefined;
+        if (derived.keyDegree >= MAX_KEY_DEGREE) return undefined;
         return () => {
           if (derived.motion !== Motion.Still) return;
           setState((state: State) => ({ ...state, motion: Motion.IncrementMode }));
         }
       } else {
         if (derived.mode <= -3) return undefined;
-        if (derived.keyDegree >= MAX_KEY_DEGREE) return undefined;
+        if (derived.keyDegree <= -MAX_KEY_DEGREE) return undefined;
         return () => {
           if (derived.motion !== Motion.Still) return;
           setState((state: State) => ({ ...state, motion: Motion.DecrementMode }));

@@ -18,7 +18,7 @@ interface ScalesToolProps {
 
 export default function ScalesTool({
   root = -2,   // C
-  mode = -2    // Ionian
+  mode = 2     // Ionian
 }: ScalesToolProps): JSX.Element {
   const initialState: State = { motion: Motion.Still, root, mode };
   const [state, setState] = useState(initialState);

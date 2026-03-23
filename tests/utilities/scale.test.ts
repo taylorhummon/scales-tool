@@ -14,17 +14,17 @@ import {
 
 test("getKeyDegree() works", () => {
   expect(
-    getKeyDegree(-2, -2)
+    getKeyDegree(-2, 2)
   ).toBe(
     0
   );
   expect(
-    getKeyDegree(5, 3)
+    getKeyDegree(5, -3)
   ).toBe(
     2
   );
   expect(
-    getKeyDegree(-3, 3)
+    getKeyDegree(-3, -3)
   ).toBe(
     -6
   );
@@ -37,12 +37,12 @@ test("getModeNoteName() works", () => {
     "D"
   );
   expect(
-    getModeNoteName(-2)
+    getModeNoteName(2)
   ).toBe(
     "C"
   );
   expect(
-    getModeNoteName(3)
+    getModeNoteName(-3)
   ).toBe(
     "B"
   );
@@ -55,12 +55,12 @@ test("getModeName() works", () => {
     "Dorian"
   );
   expect(
-    getModeName(-2)
+    getModeName(2)
   ).toBe(
     "Ionian"
   );
   expect(
-    getModeName(3)
+    getModeName(-3)
   ).toBe(
     "Locrian"
   );
@@ -73,7 +73,7 @@ test("getRootNote() works", () => {
     "D"
   );
   expect(
-    getRootNote(getNotes(2, -1), -1).name
+    getRootNote(getNotes(2, 1), 1).name
   ).toBe(
     "E"
   );
@@ -83,7 +83,7 @@ test("getRootNote() works", () => {
     "E"
   );
   expect(
-    getRootNote(getNotes(-1, 3), 3).name
+    getRootNote(getNotes(-1, -3), -3).name
   ).toBe(
     "G"
   );
@@ -96,7 +96,7 @@ test("getNotes() works", () => {
     ["F", "C", "G", "D", "A", "E", "B"]
   );
   expect(
-    getNotes(2, -1).map((note) => note.name)
+    getNotes(2, 1).map((note) => note.name)
   ).toStrictEqual(
     ["D", "A", "E", "B", "F♯", "C♯", "G♯"]
   );
@@ -106,7 +106,7 @@ test("getNotes() works", () => {
     ["G", "D", "A", "E", "B", "F♯", "C♯"]
   );
   expect(
-    getNotes(-1, 3).map((note) => note.name)
+    getNotes(-1, -3).map((note) => note.name)
   ).toStrictEqual(
     ["D♭", "A♭", "E♭", "B♭", "F", "C", "G"]
   );
@@ -130,17 +130,17 @@ test("getSolfege() works", () => {
   );
 
   expect(
-    getSolfege(-2, 3)
+    getSolfege(2, 3)
   ).toBe(
     "re"
   );
   expect(
-    getSolfege(-2, 0)
+    getSolfege(2, 0)
   ).toBe(
     "fa"
   );
   expect(
-    getSolfege(-2, 1)
+    getSolfege(2, 1)
   ).toBe(
     "do"
   );
@@ -170,21 +170,21 @@ test("getDotMotionEndHour() works", () => {
   expect(
     getDotMotionEndHour(Motion.IncrementMode, 3)
   ).toBe(
-    8
+    10
   );
   expect(
     getDotMotionEndHour(Motion.IncrementMode, 8)
   ).toBe(
-    1
+    3
   );
   expect(
     getDotMotionEndHour(Motion.DecrementMode, 3)
   ).toBe(
-    10
+    8
   );
   expect(
     getDotMotionEndHour(Motion.DecrementMode, 8)
   ).toBe(
-    3
+    1
   );
 });

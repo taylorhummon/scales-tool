@@ -36,8 +36,7 @@ function className(
     motion === Motion.DecrementMode
   ) {
     classNames.push(`hour-${rootNoteHour}`);
-  }
-  if (
+  } else if (
     motion === Motion.IncrementRoot ||
     motion === Motion.DecrementRoot
   ) {

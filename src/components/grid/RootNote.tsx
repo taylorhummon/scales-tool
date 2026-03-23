@@ -1,4 +1,4 @@
-import { ArrowButton } from "src/components/grid/ArrowButton";
+import { Button } from "src/components/grid/Button";
 import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/grid/RootNote.module.css";
@@ -23,8 +23,8 @@ export function RootNote({
       <div
         className={buildClassString(cssModule, ["root-note-content"])}
       >
-        <ArrowButton
-          isRight={false}
+        <Button
+          isPlus={false}
           onClick={buildChangeRoot(false)}
           dataTestid="decrement-root-note"
         />
@@ -33,8 +33,8 @@ export function RootNote({
         >
           {rootNoteName}
         </div>
-        <ArrowButton
-          isRight={true}
+        <Button
+          isPlus={true}
           onClick={buildChangeRoot(true)}
           dataTestid="increment-root-note"
         />

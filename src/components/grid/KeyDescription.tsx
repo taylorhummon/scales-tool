@@ -39,14 +39,14 @@ function getKeyDescription(
   rootNoteName: string
 ): JSX.Element {
   const className = buildClassString(cssModule, ["note-font"]);
-  if (mode === -2) {
+  if (mode === 2) {
     return (
       <>
         <span className={className}>{rootNoteName}</span>-Major
       </>
     );
   }
-  if (mode === 1) {
+  if (mode === -1) {
     return (
       <>
         <span className={className}>{rootNoteName}</span>-Minor

@@ -53,7 +53,7 @@ interface ExtraLocatedSolfegeProps {
 function ExtraLocatedSolfege({
   derived
 }: ExtraLocatedSolfegeProps): JSX.Element | null {
-  if (derived.motion === Motion.DecrementMode) {
+  if (derived.motion === Motion.IncrementMode) {
     return (
       <LocatedSolfege
         motion={derived.motion}
@@ -62,7 +62,7 @@ function ExtraLocatedSolfege({
       />
     );
   }
-  if (derived.motion === Motion.IncrementMode) {
+  if (derived.motion === Motion.DecrementMode) {
     return (
       <LocatedSolfege
         motion={derived.motion}
@@ -83,7 +83,7 @@ interface ExtraLocatedNoteProps {
 function ExtraLocatedNote({
   derived
 }: ExtraLocatedNoteProps): JSX.Element | null {
-  if (derived.motion === Motion.IncrementRoot || derived.motion === Motion.DecrementMode) {
+  if (derived.motion === Motion.IncrementRoot || derived.motion === Motion.IncrementMode) {
     const oldNote = derived.notes[0];
     const newNote = new Note(oldNote.naturalNoteName, oldNote.sharpsCount + 1, oldNote.solfege, 7);
     return (
@@ -93,7 +93,7 @@ function ExtraLocatedNote({
       />
     );
   }
-  if (derived.motion === Motion.DecrementRoot || derived.motion === Motion.IncrementMode) {
+  if (derived.motion === Motion.DecrementRoot || derived.motion === Motion.DecrementMode) {
     const oldNote = derived.notes[6];
     const newNote = new Note(oldNote.naturalNoteName, oldNote.sharpsCount - 1, oldNote.solfege, -1);
     return (

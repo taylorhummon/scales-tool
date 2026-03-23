@@ -1,5 +1,5 @@
 import { NaturalNoteName } from "src/enumerations";
-import { ArrowButton } from "src/components/grid/ArrowButton";
+import { Button } from "src/components/grid/Button";
 import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/grid/ModeNote.module.css";
@@ -24,8 +24,8 @@ export function ModeNote({
       <div
         className={buildClassString(cssModule, ["mode-note-content"])}
       >
-        <ArrowButton
-          isRight={false}
+        <Button
+          isPlus={false}
           onClick={buildChangeMode(false)}
           dataTestid="decrement-mode-note"
         />
@@ -34,8 +34,8 @@ export function ModeNote({
         >
           {modeNoteName}
         </div>
-        <ArrowButton
-          isRight={true}
+        <Button
+          isPlus={true}
           onClick={buildChangeMode(true)}
           dataTestid="increment-mode-note"
         />

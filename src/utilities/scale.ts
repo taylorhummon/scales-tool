@@ -21,7 +21,7 @@ export function getKeyDegree(
   root: number,
   mode: number
 ) {
-  return root - mode;
+  return root + mode;
 }
 
 export function getModeNoteName(
@@ -29,7 +29,7 @@ export function getModeNoteName(
 ): NaturalNoteName {
   if (mode < -3 || mode > 3) throw Error(`Invalid mode (${mode})`);
   // mode number 0 corresponds to D
-  return NATURAL_NOTES_IN_FCGDAEB_ORDER[mode + 3];
+  return NATURAL_NOTES_IN_BEADGCF_ORDER[mode + 3];
 }
 
 export function getModeName(
@@ -37,25 +37,25 @@ export function getModeName(
 ): ModeName {
   if (mode < -3 || mode > 3) throw Error(`Invalid mode (${mode})`);
   // mode number 0 corresponds to Dorian
-  return MODE_NAMES_IN_FCGDAEB_ORDER[mode + 3];
+  return MODE_NAMES_IN_BEADGCF_ORDER[mode + 3];
 }
 
-const MODE_NAMES_IN_FCGDAEB_ORDER = [
-  ModeName.Lydian,
-  ModeName.Ionian,
-  ModeName.Mixolydian,
-  ModeName.Dorian,
-  ModeName.Aeolian,
+const MODE_NAMES_IN_BEADGCF_ORDER = [
+  ModeName.Locrian,
   ModeName.Phrygian,
-  ModeName.Locrian
+  ModeName.Aeolian,
+  ModeName.Dorian,
+  ModeName.Mixolydian,
+  ModeName.Ionian,
+  ModeName.Lydian
 ];
 
 export function getRootNote(
   notes: Array<Note>,
   mode: number
 ): Note {
-  // remainderFor(mode + 3, 7) describes how far the root is off-center on the slider
-  return notes[remainderFor(mode + 3, 7)];
+  // 3 - mode describes how far the root is off-center on the slider
+  return notes[3 - mode];
 }
 
 export function getNotes(
@@ -127,7 +127,7 @@ export function getSolfege(
   mode: number,
   location: number
 ): Solfege {
-  return SOLFEGES[remainderFor(location - (mode + 3), 7)];
+  return SOLFEGES[remainderFor(location - (3 - mode), 7)];
 }
 
 const SOLFEGES = [
@@ -154,10 +154,10 @@ export function getDotMotionEndHour(
   motion: Motion,
   hour: number
 ): number | null {
-  if (motion === Motion.IncrementRoot || motion === Motion.DecrementMode) {
+  if (motion === Motion.IncrementRoot || motion === Motion.IncrementMode) {
     return remainderFor(hour + 7, 12);
   }
-  if (motion === Motion.DecrementRoot || motion === Motion.IncrementMode) {
+  if (motion === Motion.DecrementRoot || motion === Motion.DecrementMode) {
     return remainderFor(hour - 7, 12);
   }
   return null;
