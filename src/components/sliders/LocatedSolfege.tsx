@@ -2,7 +2,7 @@ import { Motion } from "src/enumerations";
 import { Solfege } from "src/enumerations";
 import { buildClassString } from "src/utilities/css";
 
-import cssModule from "src/components/slider/LocatedSolfege.module.css";
+import cssModule from "src/components/sliders/LocatedSolfege.module.css";
 
 
 interface LocatedSolfegeProps {

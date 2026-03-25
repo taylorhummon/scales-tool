@@ -1,23 +1,23 @@
 import type { Derived } from "src/types";
 import { Motion } from "src/enumerations";
 import { Note } from "src/classes/Note";
-import { LocatedNote } from "src/components/slider/LocatedNote";
-import { LocatedSolfege } from "src/components/slider/LocatedSolfege";
+import { LocatedNote } from "src/components/sliders/LocatedNote";
+import { LocatedSolfege } from "src/components/sliders/LocatedSolfege";
 import { buildClassString } from "src/utilities/css";
 
-import cssModule from "src/components/slider/Slider.module.css";
+import cssModule from "src/components/sliders/Sliders.module.css";
 
 
-interface SliderProps {
+interface SlidersProps {
   derived: Derived;
 }
 
-export function Slider({
+export function Sliders({
   derived
-}: SliderProps): JSX.Element {
+}: SlidersProps): JSX.Element {
   return (
     <g
-      className={buildClassString(cssModule, ["slider"])}
+      className={buildClassString(cssModule, ["sliders"])}
     >
       {derived.notes.map((note) => (
         <LocatedSolfege

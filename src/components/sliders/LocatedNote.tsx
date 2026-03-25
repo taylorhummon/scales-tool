@@ -2,7 +2,7 @@ import { Motion } from "src/enumerations";
 import { Note } from "src/classes/Note";
 import { buildClassString } from "src/utilities/css";
 
-import cssModule from "src/components/slider/LocatedNote.module.css";
+import cssModule from "src/components/sliders/LocatedNote.module.css";
 
 
 interface LocatedNoteProps {

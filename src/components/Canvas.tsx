@@ -3,9 +3,9 @@ import { useRef, useEffect } from "react";
 
 import { Motion } from "src/enumerations";
 import type { State, Derived } from "src/types";
-import { Button } from "src/components/slider/Button";
+import { Button } from "src/components/sliders/Button";
 import { Clock } from "src/components/clock/Clock";
-import { Slider } from "src/components/slider/Slider";
+import { Sliders } from "src/components/sliders/Sliders";
 import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/Canvas.module.css";
@@ -98,27 +98,39 @@ export function Canvas({
     >
       <Button
         isPlus={false}
-        onClick={buildChangeMode(false)}
+        onClick={undefined}
         isWaiting={isWaiting}
-        dataTestid="decrement-mode-note"
+        dataTestid="move-solfege-slider-up"
       />
       <Button
         isPlus={true}
-        onClick={buildChangeMode(true)}
+        onClick={undefined}
         isWaiting={isWaiting}
-        dataTestid="increment-mode-note"
+        dataTestid="move-solfege-slider-down"
       />
       <Button
         isPlus={false}
         onClick={buildChangeRoot(false)}
         isWaiting={isWaiting}
-        dataTestid="decrement-root-note"
+        dataTestid="move-note-slider-up"
       />
       <Button
         isPlus={true}
         onClick={buildChangeRoot(true)}
         isWaiting={isWaiting}
-        dataTestid="increment-root-note"
+        dataTestid="move-note-slider-down"
+      />
+      <Button
+        isPlus={false}
+        onClick={buildChangeMode(false)}
+        isWaiting={isWaiting}
+        dataTestid="move-both-sliders-up"
+      />
+      <Button
+        isPlus={true}
+        onClick={buildChangeMode(true)}
+        isWaiting={isWaiting}
+        dataTestid="move-both-sliders-down"
       />
       <svg
         className={buildClassString(cssModule, ["canvas-svg"])}
@@ -128,7 +140,7 @@ export function Canvas({
         <Clock
           derived={derived}
         />
-        <Slider
+        <Sliders
           derived={derived}
         />
       </svg>
