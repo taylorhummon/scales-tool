@@ -1,13 +1,13 @@
 .key-description-label {
+  grid-row: 1;
   grid-column: 1;
-  grid-row: 4;
   text-align: right;
   font-weight: bold;
 }
 
 .key-description-content {
+  grid-row: 1;
   grid-column: 2;
-  grid-row: 4;
 }
 
 .note-font {

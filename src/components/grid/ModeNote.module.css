@@ -1,6 +1,6 @@
 .mode-note-label {
+  grid-row: 3;
   grid-column: 1;
-  grid-row: 2;
   display: grid;
   align-items: center;
   text-align: right;
@@ -8,15 +8,7 @@
 }
 
 .mode-note-content {
+  grid-row: 3;
   grid-column: 2;
-  grid-row: 2;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.mode-note-text {
-  width: 45px;
-  text-align: center;
   font-family: "PT Mono", monospace;
 }

@@ -3,11 +3,15 @@ import { useRef, useEffect } from "react";
 
 import { Motion } from "src/enumerations";
 import type { State, Derived } from "src/types";
+import { Button } from "src/components/slider/Button";
 import { Clock } from "src/components/clock/Clock";
 import { Slider } from "src/components/slider/Slider";
 import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/Canvas.module.css";
+
+
+const MAX_KEY_DEGREE = 14;
 
 
 interface CanvasProps {
@@ -21,6 +25,45 @@ export function Canvas({
   setState
 }: CanvasProps): JSX.Element {
   const domNodeRef = useRef<HTMLDivElement>(null);
+  const isWaiting = derived.motion !== Motion.Still;
+
+  function buildChangeRoot(
+    isIncrement: boolean
+  ): (() => void) | undefined {
+    if (isIncrement) {
+      if (derived.keyDegree >= MAX_KEY_DEGREE) return undefined;
+      return () => {
+        if (derived.motion !== Motion.Still) return;
+        setState((state: State) => ({ ...state, motion: Motion.IncrementRoot }));
+      }
+    } else {
+      if (derived.keyDegree <= -MAX_KEY_DEGREE) return undefined;
+      return () => {
+        if (derived.motion !== Motion.Still) return;
+        setState((state: State) => ({ ...state, motion: Motion.DecrementRoot }));
+      }
+    }
+  }
+
+  function buildChangeMode(
+    isIncrement: boolean
+  ): (() => void) | undefined {
+    if (isIncrement) {
+      if (derived.mode >= 3) return undefined;
+      if (derived.keyDegree >= MAX_KEY_DEGREE) return undefined;
+      return () => {
+        if (derived.motion !== Motion.Still) return;
+        setState((state: State) => ({ ...state, motion: Motion.IncrementMode }));
+      }
+    } else {
+      if (derived.mode <= -3) return undefined;
+      if (derived.keyDegree <= -MAX_KEY_DEGREE) return undefined;
+      return () => {
+        if (derived.motion !== Motion.Still) return;
+        setState((state: State) => ({ ...state, motion: Motion.DecrementMode }));
+      };
+    }
+  }
 
   useEffect(() => {
     function animationEndHandler(): void {
@@ -53,9 +96,33 @@ export function Canvas({
       className={buildClassString(cssModule, ["canvas"])}
       ref={domNodeRef}
     >
+      <Button
+        isPlus={false}
+        onClick={buildChangeMode(false)}
+        isWaiting={isWaiting}
+        dataTestid="decrement-mode-note"
+      />
+      <Button
+        isPlus={true}
+        onClick={buildChangeMode(true)}
+        isWaiting={isWaiting}
+        dataTestid="increment-mode-note"
+      />
+      <Button
+        isPlus={false}
+        onClick={buildChangeRoot(false)}
+        isWaiting={isWaiting}
+        dataTestid="decrement-root-note"
+      />
+      <Button
+        isPlus={true}
+        onClick={buildChangeRoot(true)}
+        isWaiting={isWaiting}
+        dataTestid="increment-root-note"
+      />
       <svg
         className={buildClassString(cssModule, ["canvas-svg"])}
-        viewBox="-132 -132 400 264"
+        viewBox="0 -132 400 264"
         xmlns="http://www.w3.org/2000/svg"
       >
         <Clock

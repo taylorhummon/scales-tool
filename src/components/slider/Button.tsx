@@ -1,6 +1,6 @@
 import { buildClassString } from "src/utilities/css";
 
-import cssModule from "src/components/grid/Button.module.css";
+import cssModule from "src/components/slider/Button.module.css";
 
 
 interface ButtonProps {
