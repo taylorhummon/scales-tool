@@ -1,7 +1,7 @@
 import { NaturalNoteName } from "src/enumerations";
 import { buildClassString } from "src/utilities/css";
 
-import cssModule from "src/components/grid/ModeNote.module.css";
+import cssModule from "src/components/summary/ModeNote.module.css";
 
 
 interface ModeNoteProps {

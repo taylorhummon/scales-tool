@@ -1,4 +1,4 @@
-.grid {
+.summary {
   display: grid;
   grid-template-columns: 100px auto;
   column-gap: 20px;

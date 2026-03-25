@@ -1,6 +1,6 @@
 import { buildClassString } from "src/utilities/css";
 
-import cssModule from "src/components/grid/RootNote.module.css";
+import cssModule from "src/components/summary/RootNote.module.css";
 
 
 interface RootNoteProps {

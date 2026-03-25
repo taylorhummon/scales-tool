@@ -1,24 +1,24 @@
 import type { Derived } from "src/types";
-import { KeyDegree } from "src/components/grid/KeyDegree";
-import { KeyDescription } from "src/components/grid/KeyDescription";
-import { ModeNote } from "src/components/grid/ModeNote";
-import { RootNote } from "src/components/grid/RootNote";
+import { KeyDegree } from "src/components/summary/KeyDegree";
+import { KeyDescription } from "src/components/summary/KeyDescription";
+import { ModeNote } from "src/components/summary/ModeNote";
+import { RootNote } from "src/components/summary/RootNote";
 import { buildClassString } from "src/utilities/css";
 
-import cssModule from "src/components/grid/Grid.module.css";
+import cssModule from "src/components/summary/Summary.module.css";
 
 
-interface GridProps{
+interface SummaryProps{
   derived: Derived;
 }
 
-export function Grid({
+export function Summary({
   derived
-}: GridProps): JSX.Element {
+}: SummaryProps): JSX.Element {
 
   return (
     <div
-      className={buildClassString(cssModule, ["grid"])}
+      className={buildClassString(cssModule, ["summary"])}
     >
       <KeyDescription
         mode={derived.mode}
