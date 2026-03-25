@@ -35,14 +35,10 @@ export function Clock({
         cy="0"
         r={CLOCK_RADIUS}
       />
-      {derived.notes.map((note) => (
-        <NoteLabel
-          key={note.name}
-          labelAnimation={getLabelAnimation(derived)}
-          note={note}
-          solfege={note.solfege}
-        />
-      ))}
+      <RootDot
+        motion={derived.motion}
+        rootNoteHour={derived.rootNote.hour}
+      />
       {derived.notes.map((note) => (
         <NoteDot
           key={note.name}
@@ -51,10 +47,14 @@ export function Clock({
           solfege={note.solfege}
         />
       ))}
-      <RootDot
-        motion={derived.motion}
-        rootNoteHour={derived.rootNote.hour}
-      />
+      {derived.notes.map((note) => (
+        <NoteLabel
+          key={note.name}
+          labelAnimation={getLabelAnimation(derived)}
+          note={note}
+          solfege={note.solfege}
+        />
+      ))}
     </g>
   );
 }

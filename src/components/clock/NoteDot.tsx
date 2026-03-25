@@ -19,7 +19,7 @@ export function NoteDot({
 }: NoteDotProps): JSX.Element {
   return (
     <circle
-      className={className(motion, note.hour, solfege)}
+      className={className(motion, note.hour)}
       data-testid={`note-dot-${solfege}`}
       cx="0"
       cy="0"
@@ -30,21 +30,8 @@ export function NoteDot({
 
 function className(
   motion: Motion,
-  noteHour: number,
-  solfege: Solfege
-): string {
+  noteHour: number,): string {
   const classNames = ["note-dot"];
-  if (
-    solfege === Solfege.Do && (
-      motion === Motion.Still ||
-      motion === Motion.IncrementRoot ||
-      motion === Motion.DecrementRoot
-    )
-  ) {
-    // No need to show the root NoteDot behind the RootDot
-    classNames.push("hide");
-    return buildClassString(cssModule, classNames);
-  }
   if (motion === Motion.Still) {
     classNames.push(`hour-${noteHour}`);
   } else if (

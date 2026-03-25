@@ -11,7 +11,9 @@
 
 .root-dot {
   offset-rotate: 0deg;
-  fill: color-blue;
+  stroke: color-blue;
+  fill: rgba(4, 51, 255, 0.20);
+
 
   &.move {
     animation: move-root-dot duration-motion ease-in-out 1 forwards;

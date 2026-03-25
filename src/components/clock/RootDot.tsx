@@ -20,7 +20,8 @@ export function RootDot({
       data-testid={"root-dot"}
       cx="0"
       cy="0"
-      r="11"
+      r="14"
+      strokeWidth={1.3}
     />
   );
 }
