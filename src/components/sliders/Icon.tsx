@@ -1,8 +1,4 @@
 import { Motion } from "src/enumerations";
-import { buildClassString } from "src/utilities/css";
-
-import cssModule from "src/components/sliders/Icon.module.css";
-
 
 interface IconProps {
   motion: Motion;
@@ -11,9 +7,7 @@ interface IconProps {
 }
 
 export function Icon({
-  motion,
-  isDisabled,
-  isWaiting
+  motion
 }: IconProps): JSX.Element | null {
   if (motion === Motion.DecrementDoPosition) {
     return (
@@ -142,15 +136,4 @@ export function Icon({
     );
   }
   return null;
-}
-
-function className(
-  motion: Motion,
-  isDisabled: boolean,
-  isWaiting: boolean
-): string {
-  const classNames = ["icon", motion];
-  if (isDisabled) classNames.push("disabled");
-  if (isWaiting) classNames.push("waiting");
-  return buildClassString(cssModule, classNames);
 }
