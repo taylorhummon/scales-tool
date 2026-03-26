@@ -5,13 +5,6 @@ import { buildClassString } from "src/utilities/css";
 import cssModule from "src/components/clock/NoteLabelText.module.css";
 
 
-export function isNoteAnimated(
-  labelAnimation: LabelAnimation,
-  note: Note
-): boolean {
-  return labelAnimation.startNote.hour === note.hour;
-}
-
 interface NoteLabelTextProps {
   labelAnimation: LabelAnimation | null;
   note: Note;
@@ -21,14 +14,14 @@ export function NoteLabelText({
   labelAnimation,
   note
 }: NoteLabelTextProps): JSX.Element {
-  if (labelAnimation === null || ! isNoteAnimated(labelAnimation, note)) {
+  if (labelAnimation === null || ! labelAnimation.isNoteAnimated(note)) {
     return (
       <text>
         {note.name}
       </text>
     );
   }
-  const noteToDisplay = noteWithLongerName(labelAnimation);
+  const noteToDisplay = labelAnimation.noteWithLongerName;
   if (noteToDisplay.sharpsCount > 0) {
     const opaqueSharpsCount = noteToDisplay.sharpsCount - 1;
     return (
@@ -66,26 +59,10 @@ function className(
   labelAnimation: LabelAnimation
 ): string {
   const classNames = [];
-  if (isLabelGettingLonger(labelAnimation)) {
+  if (labelAnimation.isAddingCharacter) {
     classNames.push("appear");
   } else {
     classNames.push("disappear");
   }
   return buildClassString(cssModule, classNames);
-}
-
-function noteWithLongerName(
-  labelAnimation: LabelAnimation
-): Note {
-  if (isLabelGettingLonger(labelAnimation)) {
-    return labelAnimation.finishNote;
-  } else {
-    return labelAnimation.startNote;
-  }
-}
-
-function isLabelGettingLonger(
-  labelAnimation: LabelAnimation
-) {
-  return labelAnimation.startNote.name.length < labelAnimation.finishNote.name.length;
 }

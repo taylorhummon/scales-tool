@@ -1,6 +1,6 @@
 import type { Note } from "src/classes/Note";
 import type { LabelAnimation } from "src/classes/LabelAnimation";
-import { isNoteAnimated, NoteLabelText } from "src/components/clock/NoteLabelText";
+import { NoteLabelText } from "src/components/clock/NoteLabelText";
 import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/clock/NoteLabel.module.css";
@@ -33,7 +33,7 @@ function className(
   note: Note
 ): string {
   const classNames = ["note-label", note.solfege];
-  if (labelAnimation === null || ! isNoteAnimated(labelAnimation, note)) {
+  if (labelAnimation === null || ! labelAnimation.isNoteAnimated(note)) {
     classNames.push(`note-${note.name}`);
     return buildClassString(cssModule, classNames);
   }

@@ -49,6 +49,10 @@ export class LabelAnimation {
     return this.#finishNote;
   }
 
+  get noteWithLongerName(): Note {
+    return this.isAddingCharacter ? this.finishNote : this.startNote;
+  }
+
   get isIncrement(): boolean {
     return this.#isIncrement;
   }
@@ -61,6 +65,12 @@ export class LabelAnimation {
       return false;
     }
     return true;
+  }
+
+  isNoteAnimated(
+    note: Note
+  ): boolean {
+    return this.startNote.hour === note.hour;
   }
 
   #getIsIncrement(
