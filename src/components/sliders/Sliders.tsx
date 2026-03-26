@@ -26,7 +26,9 @@ export function Sliders({
       className={buildClassString(cssModule, ["sliders"])}
     >
       <defs>
-        <clipPath id="sliders-clip-rectangle">
+        <clipPath
+          id="sliders-clip-rectangle"
+        >
           <rect
             x="-50"
             y="-118"
