@@ -3,11 +3,17 @@ import { Note } from "src/classes/Note";
 import { getNote } from "src/utilities/scale";
 
 
-export function buildLabelAnimation(
-  motion: Motion,
-  doPosition: number,
-  keyDegree: number
-): LabelAnimation | null {
+interface buildLabelAnimationProps {
+  motion: Motion;
+  doPosition: number;
+  keyDegree: number;
+}
+
+export function buildLabelAnimation({
+  motion,
+  doPosition,
+  keyDegree
+}: buildLabelAnimationProps): LabelAnimation | null {
   if (
     motion === Motion.DecrementKeyDegree ||
     motion === Motion.IncrementKeyDegree ||

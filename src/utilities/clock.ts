@@ -1,8 +1,7 @@
 import { cosineOfDegrees, sineOfDegrees } from "src/utilities/math"
 
 
-export const CLOCK_RADIUS = 120;
-export const TICK_LENGTH = 20;
+const CLOCK_RADIUS = 120;
 
 export function xOnClockAt(
   hour: number,

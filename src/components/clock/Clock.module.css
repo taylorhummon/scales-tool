@@ -1,11 +1,3 @@
-@value color-gray from "../../constants.css";
-
 .clock {
   offset-path: path("M 303 -30");
-}
-
-.clock-circle {
-  stroke-width: 2;
-  stroke: color-gray;
-  fill: none;
 }
