@@ -1,7 +1,7 @@
-import { Motion, Solfege } from "src/enumerations";
+import { Motion } from "src/enumerations";
 import type { Note } from "src/classes/Note";
 import { buildClassString } from "src/utilities/css";
-import { getDotMotionEndHour } from "src/utilities/scale";
+import { remainderFor } from "src/utilities/math";
 
 import cssModule from "src/components/clock/NoteDot.module.css";
 
@@ -9,18 +9,16 @@ import cssModule from "src/components/clock/NoteDot.module.css";
 interface NoteDotProps {
   motion: Motion;
   note: Note;
-  solfege: Solfege;
 }
 
 export function NoteDot({
   motion,
-  note,
-  solfege
+  note
 }: NoteDotProps): JSX.Element {
   return (
     <circle
-      className={className(motion, note.hour)}
-      data-testid={`note-dot-${solfege}`}
+      className={className(motion, note)}
+      data-testid={`note-dot-${note.solfege}`}
       cx="0"
       cy="0"
       r="8"
@@ -30,19 +28,31 @@ export function NoteDot({
 
 function className(
   motion: Motion,
-  noteHour: number,): string {
+  note: Note
+): string {
   const classNames = ["note-dot"];
-  if (motion === Motion.Still) {
-    classNames.push(`hour-${noteHour}`);
-  } else if (
-    motion === Motion.IncrementRoot ||
-    motion === Motion.DecrementRoot ||
-    motion === Motion.IncrementMode ||
-    motion === Motion.DecrementMode
+  if (
+    motion === Motion.Still ||
+    motion === Motion.DecrementDoPosition ||
+    motion === Motion.IncrementDoPosition
   ) {
-    const motionEndHour = getDotMotionEndHour(motion, noteHour);
+    classNames.push(`hour-${note.hour}`);
+  } else if (
+    motion === Motion.DecrementKeyDegree ||
+    motion === Motion.DecrementBoth
+  ) {
+    const startHour = note.hour;
+    const finishHour = remainderFor(startHour - 7, 12);
     classNames.push("move");
-    classNames.push(`from-${noteHour}-to-${motionEndHour}`);
+    classNames.push(`from-${startHour}-to-${finishHour}`);
+  } else if (
+    motion === Motion.IncrementKeyDegree ||
+    motion === Motion.IncrementBoth
+  ) {
+    const startHour = note.hour;
+    const finishHour = remainderFor(startHour + 7, 12);
+    classNames.push("move");
+    classNames.push(`from-${startHour}-to-${finishHour}`);
   }
   return buildClassString(cssModule, classNames);
 }

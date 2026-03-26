@@ -1,15 +1,15 @@
-import { NaturalNoteName } from "src/enumerations";
+import { NaturalNote } from "src/enumerations";
 import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/summary/ModeNote.module.css";
 
 
 interface ModeNoteProps {
-  modeNoteName: NaturalNoteName;
+  modeNote: NaturalNote;
 }
 
 export function ModeNote({
-  modeNoteName
+  modeNote
 }: ModeNoteProps): JSX.Element {
   return (
     <>
@@ -21,7 +21,7 @@ export function ModeNote({
       <div
         className={buildClassString(cssModule, ["mode-note-content"])}
       >
-        {modeNoteName}
+        {modeNote}
       </div>
     </>
   );

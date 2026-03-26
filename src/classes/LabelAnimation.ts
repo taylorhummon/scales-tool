@@ -1,29 +1,40 @@
 import { Motion } from "src/enumerations";
 import { Note } from "src/classes/Note";
-import { quotientAndRemainderFor } from "src/utilities/math";
-import {
-  NATURAL_NOTES_IN_FCGDAEB_ORDER,
-  NATURAL_NOTES_IN_BEADGCF_ORDER,
-  getKeyDegree,
-  getSolfege
-} from "src/utilities/scale";
+import { getNote } from "src/utilities/scale";
+
+
+export function buildLabelAnimation(
+  motion: Motion,
+  doPosition: number,
+  keyDegree: number
+): LabelAnimation | null {
+  if (
+    motion === Motion.DecrementKeyDegree ||
+    motion === Motion.IncrementKeyDegree ||
+    motion === Motion.DecrementBoth ||
+    motion === Motion.IncrementBoth
+  ) {
+    return new LabelAnimation(motion, doPosition, keyDegree);
+  }
+  return null;
+}
 
 
 export class LabelAnimation {
-  #mode: number;
-  #isIncrementingKeyDegree: boolean;
+  #doPosition: number;
   #keyDegree: number;
+  #isIncrement: boolean;
   #startNote: Note | null = null;
   #finishNote: Note | null = null;
 
   constructor(
     motion: Motion,
-    root: number,
-    mode: number
+    doPosition: number,
+    keyDegree: number
   ) {
-    this.#mode = mode;
-    this.#isIncrementingKeyDegree = this.#getIsIncrementingKeyDegree(motion);
-    this.#keyDegree = getKeyDegree(root, mode);
+    this.#doPosition = doPosition;
+    this.#keyDegree = keyDegree;
+    this.#isIncrement = this.#getIsIncrement(motion);
   }
 
   get startNote(): Note {
@@ -38,58 +49,47 @@ export class LabelAnimation {
     return this.#finishNote;
   }
 
-  get isIncrementingKeyDegree(): boolean {
-    return this.#isIncrementingKeyDegree;
+  get isIncrement(): boolean {
+    return this.#isIncrement;
   }
 
   get isAddingCharacter(): boolean {
-    if (this.#isIncrementingKeyDegree && this.#keyDegree < 0) {
+    if (this.#isIncrement && this.#keyDegree < 0) {
       return false;
     }
-    if (! this.#isIncrementingKeyDegree && this.#keyDegree > 0) {
+    if (! this.#isIncrement && this.#keyDegree > 0) {
       return false;
     }
     return true;
   }
 
-  #getIsIncrementingKeyDegree(
+  #getIsIncrement(
     motion: Motion
   ): boolean {
     if (
-      motion === Motion.IncrementRoot ||
-      motion === Motion.IncrementMode
-    ) return true;
-    if (
-      motion === Motion.DecrementRoot ||
-      motion === Motion.DecrementMode
+      motion === Motion.DecrementKeyDegree ||
+      motion === Motion.DecrementBoth
     ) return false;
-    throw Error("LabelAnimation requires movement");
+    if (
+      motion === Motion.IncrementKeyDegree ||
+      motion === Motion.IncrementBoth
+    ) return true;
+    throw Error("LabelAnimation requires incrementing or decrementing key degree");
   }
 
   #computeStartNote(
   ): Note {
-    if (this.#isIncrementingKeyDegree) {
-      const { quotient, remainder } = quotientAndRemainderFor(this.#keyDegree, 7);
-      const naturalNoteName = NATURAL_NOTES_IN_FCGDAEB_ORDER[remainder];
-      const location = 0; // first
-      const solfege = getSolfege(this.#mode, location);
-      return new Note(naturalNoteName, quotient, solfege, location);
-    } else {
-      const { quotient, remainder } = quotientAndRemainderFor(- this.#keyDegree, 7);
-      const naturalNoteName = NATURAL_NOTES_IN_BEADGCF_ORDER[remainder];
-      const location = 6; // last
-      const solfege = getSolfege(this.#mode, location);
-      return new Note(naturalNoteName, - quotient, solfege, location);
-    }
+    const position = this.#isIncrement ? 3 : -3;
+    return getNote(this.#doPosition, this.#keyDegree, position);
   }
 
   #computeFinishNote(
   ): Note {
     const startNote = this.startNote;
-    if (this.#isIncrementingKeyDegree) {
-      return new Note(startNote.naturalNoteName, startNote.sharpsCount + 1, startNote.solfege, 6);
+    if (this.#isIncrement) {
+      return new Note(startNote.naturalNote, startNote.sharpsCount + 1, startNote.solfege, -3);
     } else {
-      return new Note(startNote.naturalNoteName, startNote.sharpsCount - 1, startNote.solfege, 0);
+      return new Note(startNote.naturalNote, startNote.sharpsCount - 1, startNote.solfege, 3);
     }
   }
 }

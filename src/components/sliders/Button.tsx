@@ -1,40 +1,67 @@
+import type { Dispatch, SetStateAction } from "react";
+
+import { Motion } from "src/enumerations";
+import type { State, Derived } from "src/types";
+import { Icon } from "src/components/sliders/Icon";
+import { canPerformMotion } from "src/utilities/action";
 import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/sliders/Button.module.css";
 
 
 interface ButtonProps {
-  isPlus: boolean;
-  onClick: (() => void) | undefined;
-  isWaiting: boolean;
+  derived: Derived;
+  motion: Motion;
+  setState: Dispatch<SetStateAction<State>>;
   dataTestid: string;
 }
 
 export function Button({
-  isPlus,
-  onClick,
-  isWaiting,
+  derived,
+  motion,
+  setState,
   dataTestid
 }: ButtonProps): JSX.Element {
-  const isDisabled = ! onClick;
+  const isDisabled = ! canPerformMotion(derived, motion);
+  const isWaiting = derived.motion !== Motion.Still;
+
+  function handleClick(
+  ): void {
+    if (isDisabled || isWaiting) return;
+    setState((state: State) => ({ ...state, motion }));
+  }
+
   return (
-    <button
-      type="button"
-      className={className(isDisabled, isWaiting)}
-      onClick={onClick}
-      disabled={isDisabled}
-      data-testid={dataTestid}
+    <g
+      className={groupClassName(motion)}
     >
-      {isPlus ? "+" : "-"}
-    </button>
+      <Icon
+        motion={motion}
+        isDisabled={isDisabled}
+        isWaiting={isWaiting}
+      />
+      <rect
+        className={rectangleClassName(motion, isDisabled, isWaiting)}
+        onClick={handleClick}
+        data-testid={dataTestid}
+      />
+    </g>
   );
 }
 
-function className(
+function groupClassName(
+  motion: Motion
+): string {
+  const classNames = ["button", motion];
+  return buildClassString(cssModule, classNames);
+}
+
+function rectangleClassName(
+  motion: Motion,
   isDisabled: boolean,
   isWaiting: boolean
 ): string {
-  const classNames = ["button"];
+  const classNames = ["rectangle", motion];
   if (isDisabled) classNames.push("disabled");
   if (isWaiting) classNames.push("waiting");
   return buildClassString(cssModule, classNames);

@@ -20,16 +20,12 @@ export function KeyDegree({
       <div
         className={buildClassString(cssModule, ["key-degree-content"])}
       >
-        <div
-          className={buildClassString(cssModule, ["key-degree-text"])}
+        <span
+          className={buildClassString(cssModule, ["key-degree-font"])}
         >
-          <span
-            className={buildClassString(cssModule, ["key-degree-font"])}
-          >
-            {keyDegree}
-          </span>&nbsp;
-          ({getExplanation(keyDegree)})
-        </div>
+          {keyDegree}
+        </span>&nbsp;
+        ({getExplanation(keyDegree)})
       </div>
     </>
   );

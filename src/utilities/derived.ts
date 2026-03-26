@@ -1,25 +1,22 @@
 import type { State, Derived } from "src/types";
 import {
-  getNotes,
+  getModeNote,
   getRootNote,
-  getModeNoteName,
-  getKeyDegree
+  getScale
 } from "src/utilities/scale";
 
 
 export function derivedFromState({
   motion,
-  root,
-  mode
+  doPosition,
+  keyDegree
 }: State): Derived {
-  const notes = getNotes(root, mode);
   return {
     motion,
-    root,
-    mode,
-    notes,
-    rootNote: getRootNote(notes, mode),
-    modeNoteName: getModeNoteName(mode),
-    keyDegree: getKeyDegree(root, mode),
+    doPosition,
+    keyDegree,
+    modeNote: getModeNote(doPosition),
+    rootNote: getRootNote(doPosition, keyDegree),
+    scale: getScale(doPosition, keyDegree)
   };
 }

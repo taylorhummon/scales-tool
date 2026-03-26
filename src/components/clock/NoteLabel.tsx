@@ -1,4 +1,3 @@
-import { Solfege } from "src/enumerations";
 import type { Note } from "src/classes/Note";
 import type { LabelAnimation } from "src/classes/LabelAnimation";
 import { buildClassString } from "src/utilities/css";
@@ -9,18 +8,16 @@ import cssModule from "src/components/clock/NoteLabel.module.css";
 interface NoteLabelProps {
   labelAnimation: LabelAnimation | null;
   note: Note;
-  solfege: Solfege;
 }
 
 export function NoteLabel({
   labelAnimation,
-  note,
-  solfege
+  note
 }: NoteLabelProps): JSX.Element {
   return (
     <g
-      className={className(labelAnimation, note, solfege)}
-      data-testid={`note-label-${solfege}`}
+      className={className(labelAnimation, note)}
+      data-testid={`note-label-${note.solfege}`}
     >
      {getNameToDisplay(labelAnimation, note)}
     </g>
@@ -29,10 +26,9 @@ export function NoteLabel({
 
 function className(
   labelAnimation: LabelAnimation | null,
-  note: Note,
-  solfege: Solfege
+  note: Note
 ): string {
-  const classNames = ["note-label", solfege];
+  const classNames = ["note-label", note.solfege];
   if (labelAnimation === null || ! isNoteAnimated(labelAnimation, note)) {
     classNames.push(`note-${note.name}`);
     return buildClassString(cssModule, classNames);
@@ -70,7 +66,7 @@ function getNameToDisplay(
       const opaqueSharpsCount = noteToDisplay.sharpsCount - 1;
       return (
         <text>
-          {note.naturalNoteName}
+          {note.naturalNote}
           {"♯".repeat(opaqueSharpsCount)}
           <tspan
             className={internalClassName(labelAnimation)}
@@ -84,7 +80,7 @@ function getNameToDisplay(
       const opaqueFlatsCount = (- noteToDisplay.sharpsCount) - 1;
       return (
         <text>
-          {note.naturalNoteName}
+          {note.naturalNote}
           {"♭".repeat(opaqueFlatsCount)}
           <tspan className={internalClassName(labelAnimation)}>
             ♭

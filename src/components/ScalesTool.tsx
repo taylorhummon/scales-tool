@@ -11,16 +11,20 @@ import cssModule from "src/components/ScalesTool.module.css";
 
 
 interface ScalesToolProps {
-  root?: number;
-  mode?: number;
+  doPosition?: number;
+  keyDegree?: number;
 }
 
 
 export default function ScalesTool({
-  root = -2,   // C
-  mode = 2     // Ionian
+  doPosition = 2,
+  keyDegree = 0
 }: ScalesToolProps): JSX.Element {
-  const initialState: State = { motion: Motion.Still, root, mode };
+  const initialState: State = {
+    motion: Motion.Still,
+    doPosition,
+    keyDegree
+  };
   const [state, setState] = useState(initialState);
   const derived = derivedFromState(state);
 
@@ -33,7 +37,10 @@ export default function ScalesTool({
         setState={setState}
       />
       <Summary
-        derived={derived}
+        keyDegree={derived.keyDegree}
+        modeNote={derived.modeNote}
+        rootNote={derived.rootNote}
+        isEnabled={false}
       />
     </div>
   );

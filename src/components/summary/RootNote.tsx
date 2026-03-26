@@ -1,14 +1,15 @@
+import { Note } from "src/classes/Note";
 import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/summary/RootNote.module.css";
 
 
 interface RootNoteProps {
-  rootNoteName: string;
+  rootNote: Note;
 }
 
 export function RootNote({
-  rootNoteName
+  rootNote
 }: RootNoteProps): JSX.Element {
   return (
     <>
@@ -20,7 +21,7 @@ export function RootNote({
       <div
         className={buildClassString(cssModule, ["root-note-content"])}
       >
-        {rootNoteName}
+        {rootNote.name}
       </div>
     </>
   );

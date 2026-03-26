@@ -1,6 +1,5 @@
-import { Motion } from "src/enumerations";
 import type { Derived } from "src/types";
-import { LabelAnimation } from "src/classes/LabelAnimation";
+import { buildLabelAnimation } from "src/classes/LabelAnimation";
 import { NoteDot } from "src/components/clock/NoteDot";
 import { NoteLabel } from "src/components/clock/NoteLabel";
 import { RootDot } from "src/components/clock/RootDot";
@@ -19,10 +18,15 @@ interface ClockProps {
 export function Clock({
   derived
 }: ClockProps): JSX.Element {
+  const labelAnimation = buildLabelAnimation(derived.motion, derived.doPosition, derived.keyDegree);
   return (
     <g
       className={buildClassString(cssModule, ["clock"])}
     >
+      <RootDot
+        motion={derived.motion}
+        rootNote={derived.rootNote}
+      />
       {buildIndicesArray(12).map((hour) =>
         <Tick
           key={hour}
@@ -35,33 +39,20 @@ export function Clock({
         cy="0"
         r={CLOCK_RADIUS}
       />
-      <RootDot
-        motion={derived.motion}
-        rootNoteHour={derived.rootNote.hour}
-      />
-      {derived.notes.map((note) => (
+      {derived.scale.map((note) => (
         <NoteDot
           key={note.name}
           motion={derived.motion}
           note={note}
-          solfege={note.solfege}
         />
       ))}
-      {derived.notes.map((note) => (
+      {derived.scale.map((note) => (
         <NoteLabel
           key={note.name}
-          labelAnimation={getLabelAnimation(derived)}
+          labelAnimation={labelAnimation}
           note={note}
-          solfege={note.solfege}
         />
       ))}
     </g>
   );
-}
-
-function getLabelAnimation(
-  derived: Derived
-): LabelAnimation | null {
-  if (derived.motion === Motion.Still) return null;
-  return new LabelAnimation(derived.motion, derived.root, derived.mode);
 }

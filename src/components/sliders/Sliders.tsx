@@ -1,73 +1,100 @@
-import type { Derived } from "src/types";
+import type { Dispatch, SetStateAction } from "react";
+
+import type { State, Derived } from "src/types";
 import { Motion } from "src/enumerations";
-import { Note } from "src/classes/Note";
-import { LocatedNote } from "src/components/sliders/LocatedNote";
-import { LocatedSolfege } from "src/components/sliders/LocatedSolfege";
+import { Buttons } from "src/components/sliders/Buttons";
+import { NoteOnSlider } from "src/components/sliders/NoteOnSlider";
+import { SolfegeOnSlider } from "src/components/sliders/SolfegeOnSlider";
 import { buildClassString } from "src/utilities/css";
+import { getNote } from "src/utilities/scale";
 
 import cssModule from "src/components/sliders/Sliders.module.css";
 
 
 interface SlidersProps {
   derived: Derived;
+  setState: Dispatch<SetStateAction<State>>;
 }
 
 export function Sliders({
-  derived
+  derived,
+  setState
 }: SlidersProps): JSX.Element {
   return (
     <g
       className={buildClassString(cssModule, ["sliders"])}
     >
-      {derived.notes.map((note) => (
-        <LocatedSolfege
-          key={note.location}
-          motion={derived.motion}
-          solfege={note.solfege}
-          location={note.location}
+      <defs>
+        <clipPath id="sliders-clip-rectangle">
+          <rect
+            x="-50"
+            y="-118"
+            width="100"
+            height="236"
+          />
+        </clipPath>
+      </defs>
+      <g
+        clipPath="url(#sliders-clip-rectangle)"
+      >
+        {derived.scale.map((note) => (
+          <SolfegeOnSlider
+            key={note.position}
+            motion={derived.motion}
+            note={note}
+          />
+        ))}
+        {derived.scale.map((note) => (
+          <NoteOnSlider
+            key={note.position}
+            motion={derived.motion}
+            note={note}
+          />
+        ))}
+        <ExtraSolfegeOnSlider
+          derived={derived}
         />
-      ))}
-      <ExtraLocatedSolfege
-        derived={derived}
-      />
-      {derived.notes.map((note) => (
-        <LocatedNote
-          key={note.location}
-          motion={derived.motion}
-          note={note}
+        <ExtraNoteOnSlider
+          derived={derived}
         />
-      ))}
-      <ExtraLocatedNote
+      </g>
+      <Buttons
         derived={derived}
+        setState={setState}
       />
     </g>
   );
 }
 
-interface ExtraLocatedSolfegeProps {
+interface ExtraSolfegeOnSliderProps {
   derived: Derived;
 }
 
-// The ExtraLocatedSolfege is a LocatedSolfege that shows up during the
-// IncrementMode or DecrementMode animations.
-function ExtraLocatedSolfege({
+function ExtraSolfegeOnSlider({
   derived
-}: ExtraLocatedSolfegeProps): JSX.Element | null {
-  if (derived.motion === Motion.IncrementMode) {
+}: ExtraSolfegeOnSliderProps): JSX.Element | null {
+  const motion = derived.motion
+  if (
+    motion === Motion.DecrementDoPosition ||
+    motion === Motion.DecrementBoth
+  ) {
+    const position = 4;
     return (
-      <LocatedSolfege
-        motion={derived.motion}
-        solfege={derived.notes[0].solfege}
-        location={7}
+      <SolfegeOnSlider
+        motion={motion}
+        note={getNote(derived.doPosition, derived.keyDegree, position)}
       />
     );
   }
-  if (derived.motion === Motion.DecrementMode) {
+  if (
+    motion === Motion.IncrementDoPosition ||
+    motion === Motion.IncrementBoth
+  ) {
+    const position = -4;
     return (
-      <LocatedSolfege
-        motion={derived.motion}
-        solfege={derived.notes[6].solfege}
-        location={-1}
+      <SolfegeOnSlider
+        motion={motion}
+        note={getNote(derived.doPosition, derived.keyDegree, position)}
       />
     );
   }
@@ -75,31 +102,34 @@ function ExtraLocatedSolfege({
 }
 
 
-interface ExtraLocatedNoteProps {
+interface ExtraNoteOnSliderProps {
   derived: Derived;
 }
 
-// The ExtraLocatedNote is a LocatedNote that shows up during animations.
-function ExtraLocatedNote({
+function ExtraNoteOnSlider({
   derived
-}: ExtraLocatedNoteProps): JSX.Element | null {
-  if (derived.motion === Motion.IncrementRoot || derived.motion === Motion.IncrementMode) {
-    const oldNote = derived.notes[0];
-    const newNote = new Note(oldNote.naturalNoteName, oldNote.sharpsCount + 1, oldNote.solfege, 7);
+}: ExtraNoteOnSliderProps): JSX.Element | null {
+  if (
+    derived.motion === Motion.DecrementKeyDegree ||
+    derived.motion === Motion.DecrementBoth
+  ) {
+    const position = 4;
     return (
-      <LocatedNote
+      <NoteOnSlider
         motion={derived.motion}
-        note={newNote}
+        note={getNote(derived.doPosition, derived.keyDegree, position)}
       />
     );
   }
-  if (derived.motion === Motion.DecrementRoot || derived.motion === Motion.DecrementMode) {
-    const oldNote = derived.notes[6];
-    const newNote = new Note(oldNote.naturalNoteName, oldNote.sharpsCount - 1, oldNote.solfege, -1);
+  if (
+    derived.motion === Motion.IncrementKeyDegree ||
+    derived.motion === Motion.IncrementBoth
+  ) {
+    const position = -4;
     return (
-      <LocatedNote
+      <NoteOnSlider
         motion={derived.motion}
-        note={newNote}
+        note={getNote(derived.doPosition, derived.keyDegree, position)}
       />
     );
   }

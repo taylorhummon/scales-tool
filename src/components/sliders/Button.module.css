@@ -1,22 +1,62 @@
 .button {
-  width: 50px;
-  height: 40px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  font-size: 20px;
+  &.DecrementDoPosition {
+    offset-path: path("M -27 146")
+  }
+
+  &.DecrementKeyDegree {
+    offset-path: path("M 27 146")
+  }
+
+  &.IncrementDoPosition {
+    offset-path: path("M -27 -146")
+  }
+
+  &.IncrementKeyDegree {
+    offset-path: path("M 27 -146")
+  }
+
+  &.DecrementBoth {
+    offset-path: path("M 0 194")
+  }
+
+  &.IncrementBoth {
+    offset-path: path("M 0 -194")
+  }
+}
+
+.rectangle {
+  rx: 8;
+  ry: 8;
+  stroke-width: 2;
+  stroke: rgb(255, 165, 0);
+  fill: rgba(255, 255, 255, 0);
   cursor: pointer;
-  color: rgb(255, 255, 255);
-  background-color: rgb(128, 85, 245);
 
   &.waiting {
     cursor: default;
-    color: rgb(230, 210, 255);
   }
 
   &.disabled {
+    stroke: rgb(166, 139, 89);
+    fill: rgba(156, 136, 99, 0.5);
     cursor: default;
-    color: rgb(230, 210, 255);
-    background-color: rgb(191, 169, 249);
+  }
+
+  &.DecrementDoPosition,
+  &.IncrementDoPosition,
+  &.DecrementKeyDegree,
+  &.IncrementKeyDegree {
+    x: -23;
+    y: -20;
+    width: 46px;
+    height: 40px;
+  }
+
+  &.DecrementBoth,
+  &.IncrementBoth {
+    x: -50;
+    y: -20;
+    width: 100px;
+    height: 40px;
   }
 }

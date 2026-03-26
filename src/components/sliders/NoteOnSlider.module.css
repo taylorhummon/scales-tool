@@ -1,0 +1,111 @@
+@value duration-motion from "../../constants.css";
+
+@keyframes move-note-on-slider {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+.note-on-slider {
+  font-family: "PT Mono", monospace;
+  offset-rotate: 0deg;
+
+  &.position-3 {
+    offset-path: path("M 8 -94");
+  }
+
+  &.position-2 {
+    offset-path: path("M 8 -61");
+  }
+
+  &.position-1 {
+    offset-path: path("M 8 -28");
+  }
+
+  &.position-0 {
+    offset-path: path("M 8 5");
+  }
+
+  &.position--1 {
+    offset-path: path("M 8 38");
+  }
+
+  &.position--2 {
+    offset-path: path("M 8 71");
+  }
+
+  &.position--3 {
+    offset-path: path("M 8 104");
+  }
+
+  &.move {
+    animation: move-note-on-slider duration-motion ease-in-out 1 forwards;
+
+    &.from-4-to-3 {
+      offset-path: path("M 8 -127 L 8 -94");
+    }
+
+    &.from-3-to-2 {
+      offset-path: path("M 8 -94 L 8 -61");
+    }
+
+    &.from-2-to-1 {
+      offset-path: path("M 8 -61 L 8 -28");
+    }
+
+    &.from-1-to-0 {
+      offset-path: path("M 8 -28 L 8 5");
+    }
+
+    &.from-0-to--1 {
+      offset-path: path("M 8 5 L 8 38");
+    }
+
+    &.from--1-to--2 {
+      offset-path: path("M 8 38 L 8 71");
+    }
+
+    &.from--2-to--3 {
+      offset-path: path("M 8 71 L 8 104");
+    }
+
+    &.from--3-to--4 {
+      offset-path: path("M 8 104 L 8 137");
+    }
+
+    &.from--4-to--3 {
+      offset-path: path("M 8 137 L 8 104");
+    }
+
+    &.from--3-to--2 {
+      offset-path: path("M 8 104 L 8 71");
+    }
+
+    &.from--2-to--1 {
+      offset-path: path("M 8 71 L 8 38");
+    }
+
+    &.from--1-to-0 {
+      offset-path: path("M 8 38 L 8 5");
+    }
+
+    &.from-0-to-1 {
+      offset-path: path("M 8 5 L 8 -28");
+    }
+
+    &.from-1-to-2 {
+      offset-path: path("M 8 -28 L 8 -61");
+    }
+
+    &.from-2-to-3 {
+      offset-path: path("M 8 -61 L 8 -94");
+    }
+
+    &.from-3-to-4 {
+      offset-path: path("M 8 -94 L 8 -127");
+    }
+  }
+}

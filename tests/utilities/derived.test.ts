@@ -1,260 +1,238 @@
 import { test, expect } from 'vitest';
 
-import { Motion } from "src/enumerations";
+import { Motion, NaturalNote, Solfege } from "src/enumerations";
 import { derivedFromState } from "src/utilities/derived";
 
 
 test("derivedFromState() includes the motion", () => {
   expect(
-    derivedFromState({ motion: Motion.Still, root: 3, mode: -2 }).motion
+    derivedFromState({ motion: Motion.Still, doPosition: -2, keyDegree: 3 }).motion
   ).toBe(
     Motion.Still
   );
   expect(
-    derivedFromState({ motion: Motion.IncrementRoot, root: -2, mode: 2 }).motion
+    derivedFromState({ motion: Motion.IncrementDoPosition, doPosition: 2, keyDegree: -2 }).motion
   ).toBe(
-    Motion.IncrementRoot
+    Motion.IncrementDoPosition
   );
   expect(
-    derivedFromState({ motion: Motion.DecrementRoot, root: 8, mode: 1 }).motion
+    derivedFromState({ motion: Motion.DecrementKeyDegree, doPosition: 1, keyDegree: 8 }).motion
   ).toBe(
-    Motion.DecrementRoot
+    Motion.DecrementKeyDegree
   );
   expect(
-    derivedFromState({ motion: Motion.IncrementMode, root: -5, mode: -2 }).motion
+    derivedFromState({ motion: Motion.IncrementBoth, doPosition: -2, keyDegree: -5 }).motion
   ).toBe(
-    Motion.IncrementMode
+    Motion.IncrementBoth
   );
 });
 
-test("derivedFromState() includes the root", () => {
+test("derivedFromState() includes the doPosition", () => {
   expect(
-    derivedFromState({ motion: Motion.Still, root: 3, mode: -2 }).root
-  ).toBe(
-    3
-  );
-  expect(
-    derivedFromState({ motion: Motion.IncrementRoot, root: -2, mode: 2 }).root
+    derivedFromState({ motion: Motion.Still, doPosition: -2, keyDegree: 3 }).doPosition
   ).toBe(
     -2
   );
   expect(
-    derivedFromState({ motion: Motion.DecrementRoot, root: 8, mode: 1 }).root
-  ).toBe(
-    8
-  );
-  expect(
-    derivedFromState({ motion: Motion.IncrementMode, root: -5, mode: -2 }).root
-  ).toBe(
-    -5
-  );
-});
-
-test("derivedFromState() includes the mode", () => {
-  expect(
-    derivedFromState({ motion: Motion.Still, root: 3, mode: -2 }).mode
-  ).toBe(
-    -2
-  );
-  expect(
-    derivedFromState({ motion: Motion.IncrementRoot, root: -2, mode: 2 }).mode
+    derivedFromState({ motion: Motion.IncrementDoPosition, doPosition: 2, keyDegree: -2 }).doPosition
   ).toBe(
     2
   );
   expect(
-    derivedFromState({ motion: Motion.DecrementRoot, root: 8, mode: 1 }).mode
+    derivedFromState({ motion: Motion.DecrementKeyDegree, doPosition: 1, keyDegree: 8 }).doPosition
   ).toBe(
     1
   );
   expect(
-    derivedFromState({ motion: Motion.IncrementMode, root: -5, mode: -2 }).mode
+    derivedFromState({ motion: Motion.IncrementBoth, doPosition: -2, keyDegree: -5 }).doPosition
   ).toBe(
     -2
-  );
-});
-
-test("derivedFromState() includes the notes", () => {
-  const noteA = derivedFromState({ motion: Motion.Still, root: 3, mode: -2 }).notes[0];
-  expect(
-    noteA.name
-  ).toBe(
-    "C"
-  );
-  expect(
-    noteA.hour
-  ).toBe(
-    10
-  );
-  expect(
-    noteA.solfege
-  ).toBe(
-    "re"
-  );
-  expect(
-    noteA.location
-  ).toBe(
-    0
-  );
-
-  const noteB = derivedFromState({ motion: Motion.Still, root: -2, mode: 2 }).notes[3];
-  expect(
-    noteB.name
-  ).toBe(
-    "D"
-  );
-  expect(
-    noteB.hour
-  ).toBe(
-    0
-  );
-  expect(
-    noteB.solfege
-  ).toBe(
-    "re"
-  );
-  expect(
-    noteB.location
-  ).toBe(
-    3
-  );
-
-  const noteC = derivedFromState({ motion: Motion.Still, root: 8, mode: 1 }).notes[4];
-  expect(
-    noteC.name
-  ).toBe(
-    "B♯"
-  );
-  expect(
-    noteC.hour
-  ).toBe(
-    10
-  );
-  expect(
-    noteC.solfege
-  ).toBe(
-    "re"
-  );
-  expect(
-    noteC.location
-  ).toBe(
-    4
-  );
-
-  const noteD = derivedFromState({ motion: Motion.Still, root: -5, mode: -2 }).notes[1];
-  expect(
-    noteD.name
-  ).toBe(
-    "C♭"
-  );
-  expect(
-    noteD.hour
-  ).toBe(
-    9
-  );
-  expect(
-    noteD.solfege
-  ).toBe(
-    "la"
-  );
-  expect(
-    noteD.location
-  ).toBe(
-    1
-  );
-});
-
-test("derivedFromState() includes the rootNote", () => {
-  const rootNoteA = derivedFromState({ motion: Motion.Still, root: 3, mode: -2 }).rootNote;
-  expect(
-    rootNoteA.hour
-  ).toBe(
-    9
-  );
-  expect(
-    rootNoteA.name
-  ).toBe(
-    "B"
-  );
-
-  const rootNoteB = derivedFromState({ motion: Motion.Still, root: -2, mode: 2 }).rootNote;
-  expect(
-    rootNoteB.hour
-  ).toBe(
-    10
-  );
-  expect(
-    rootNoteB.name
-  ).toBe(
-    "C"
-  );
-
-  const rootNoteC = derivedFromState({ motion: Motion.Still, root: 8, mode: 1 }).rootNote;
-  expect(
-    rootNoteC.hour
-  ).toBe(
-    8
-  );
-  expect(
-    rootNoteC.name
-  ).toBe(
-    "A♯"
-  );
-
-  const rootNoteD = derivedFromState({ motion: Motion.Still, root: -5, mode: -2 }).rootNote;
-  expect(
-    rootNoteD.hour
-  ).toBe(
-    1
-  );
-  expect(
-    rootNoteD.name
-  ).toBe(
-    "E♭"
-  );
-});
-
-test("derivedFromState() includes the modeNoteName", () => {
-  expect(
-    derivedFromState({ motion: Motion.Still, root: 3, mode: -2 }).modeNoteName
-  ).toBe(
-    "E"
-  );
-  expect(
-    derivedFromState({ motion: Motion.IncrementRoot, root: -2, mode: 2 }).modeNoteName
-  ).toBe(
-    "C"
-  );
-  expect(
-    derivedFromState({ motion: Motion.DecrementRoot, root: 8, mode: 1 }).modeNoteName
-  ).toBe(
-    "G"
-  );
-  expect(
-    derivedFromState({ motion: Motion.IncrementMode, root: -5, mode: -2 }).modeNoteName
-  ).toBe(
-    "E"
   );
 });
 
 test("derivedFromState() includes the keyDegree", () => {
   expect(
-    derivedFromState({ motion: Motion.Still, root: 3, mode: -2 }).keyDegree
+    derivedFromState({ motion: Motion.Still, doPosition: -2, keyDegree: 3 }).keyDegree
+  ).toBe(
+    3
+  );
+  expect(
+    derivedFromState({ motion: Motion.IncrementDoPosition, doPosition: 2, keyDegree: -2 }).keyDegree
+  ).toBe(
+    -2
+  );
+  expect(
+    derivedFromState({ motion: Motion.DecrementKeyDegree, doPosition: 1, keyDegree: 8 }).keyDegree
+  ).toBe(
+    8
+  );
+  expect(
+    derivedFromState({ motion: Motion.IncrementBoth, doPosition: -2, keyDegree: -5 }).keyDegree
+  ).toBe(
+    -5
+  );
+});
+
+test("derivedFromState() includes the modeNote", () => {
+  expect(
+    derivedFromState({ motion: Motion.Still, doPosition: -2, keyDegree: 3 }).modeNote
+  ).toBe(
+    NaturalNote.E
+  );
+  expect(
+    derivedFromState({ motion: Motion.IncrementDoPosition, doPosition: 2, keyDegree: -2 }).modeNote
+  ).toBe(
+    NaturalNote.C
+  );
+  expect(
+    derivedFromState({ motion: Motion.DecrementKeyDegree, doPosition: 1, keyDegree: 8 }).modeNote
+  ).toBe(
+    NaturalNote.G
+  );
+  expect(
+    derivedFromState({ motion: Motion.IncrementBoth, doPosition: -2, keyDegree: -5 }).modeNote
+  ).toBe(
+    NaturalNote.E
+  );
+});
+
+test("derivedFromState() includes the rootNote", () => {
+  const rootNoteA = derivedFromState({ motion: Motion.Still, doPosition: -2, keyDegree: 3 }).rootNote;
+  expect(
+    rootNoteA.hour
+  ).toBe(
+    11
+  );
+  expect(
+    rootNoteA.name
+  ).toBe(
+    "C♯"
+  );
+
+  const rootNoteB = derivedFromState({ motion: Motion.IncrementDoPosition, doPosition: 2, keyDegree: -2 }).rootNote;
+  expect(
+    rootNoteB.hour
+  ).toBe(
+    8
+  );
+  expect(
+    rootNoteB.name
+  ).toBe(
+    "B♭"
+  );
+
+  const rootNoteC = derivedFromState({ motion: Motion.DecrementKeyDegree, doPosition: 1, keyDegree: 8 }).rootNote;
+  expect(
+    rootNoteC.hour
   ).toBe(
     1
   );
   expect(
-    derivedFromState({ motion: Motion.IncrementRoot, root: -2, mode: 2 }).keyDegree
+    rootNoteC.name
+  ).toBe(
+    "D♯"
+  );
+
+  const rootNoteD = derivedFromState({ motion: Motion.IncrementBoth, doPosition: -2, keyDegree: -5 }).rootNote;
+  expect(
+    rootNoteD.hour
+  ).toBe(
+    3
+  );
+  expect(
+    rootNoteD.name
+  ).toBe(
+    "F"
+  );
+});
+
+
+test("derivedFromState() includes the scale", () => {
+  const noteA = derivedFromState({ motion: Motion.Still, doPosition: -2, keyDegree: 3 }).scale[0];
+  expect(
+    noteA.name
+  ).toBe(
+    "D"
+  );
+  expect(
+    noteA.hour
   ).toBe(
     0
   );
   expect(
-    derivedFromState({ motion: Motion.DecrementRoot, root: 8, mode: 1 }).keyDegree
+    noteA.solfege
   ).toBe(
-    9
+    Solfege.Re
   );
   expect(
-    derivedFromState({ motion: Motion.IncrementMode, root: -5, mode: -2 }).keyDegree
+    noteA.position
   ).toBe(
-    -7
+    3
+  );
+
+  const noteB = derivedFromState({ motion: Motion.IncrementDoPosition, doPosition: 2, keyDegree: -2 }).scale[3];
+  expect(
+    noteB.name
+  ).toBe(
+    "C"
+  );
+  expect(
+    noteB.hour
+  ).toBe(
+    10
+  );
+  expect(
+    noteB.solfege
+  ).toBe(
+    Solfege.Re
+  );
+  expect(
+    noteB.position
+  ).toBe(
+    0
+  );
+
+  const noteC = derivedFromState({ motion: Motion.DecrementKeyDegree, doPosition: 1, keyDegree: 8 }).scale[4];
+  expect(
+    noteC.name
+  ).toBe(
+    "E♯"
+  );
+  expect(
+    noteC.hour
+  ).toBe(
+    3
+  );
+  expect(
+    noteC.solfege
+  ).toBe(
+    Solfege.Re
+  );
+  expect(
+    noteC.position
+  ).toBe(
+    -1
+  );
+
+  const noteD = derivedFromState({ motion: Motion.IncrementBoth, doPosition: -2, keyDegree: -5 }).scale[1];
+  expect(
+    noteD.name
+  ).toBe(
+    "D♭"
+  );
+  expect(
+    noteD.hour
+  ).toBe(
+    11
+  );
+  expect(
+    noteD.solfege
+  ).toBe(
+    Solfege.La
+  );
+  expect(
+    noteD.position
+  ).toBe(
+    2
   );
 });

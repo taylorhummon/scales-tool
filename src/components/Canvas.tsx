@@ -1,17 +1,14 @@
 import type { Dispatch, SetStateAction } from "react";
 import { useRef, useEffect } from "react";
 
-import { Motion } from "src/enumerations";
 import type { State, Derived } from "src/types";
-import { Button } from "src/components/sliders/Button";
+import { Key } from "src/components/Key";
 import { Clock } from "src/components/clock/Clock";
 import { Sliders } from "src/components/sliders/Sliders";
 import { buildClassString } from "src/utilities/css";
+import { updateStateAtEndOfAnimation } from "src/utilities/action";
 
 import cssModule from "src/components/Canvas.module.css";
-
-
-const MAX_KEY_DEGREE = 14;
 
 
 interface CanvasProps {
@@ -25,63 +22,10 @@ export function Canvas({
   setState
 }: CanvasProps): JSX.Element {
   const domNodeRef = useRef<HTMLDivElement>(null);
-  const isWaiting = derived.motion !== Motion.Still;
-
-  function buildChangeRoot(
-    isIncrement: boolean
-  ): (() => void) | undefined {
-    if (isIncrement) {
-      if (derived.keyDegree >= MAX_KEY_DEGREE) return undefined;
-      return () => {
-        if (derived.motion !== Motion.Still) return;
-        setState((state: State) => ({ ...state, motion: Motion.IncrementRoot }));
-      }
-    } else {
-      if (derived.keyDegree <= -MAX_KEY_DEGREE) return undefined;
-      return () => {
-        if (derived.motion !== Motion.Still) return;
-        setState((state: State) => ({ ...state, motion: Motion.DecrementRoot }));
-      }
-    }
-  }
-
-  function buildChangeMode(
-    isIncrement: boolean
-  ): (() => void) | undefined {
-    if (isIncrement) {
-      if (derived.mode >= 3) return undefined;
-      if (derived.keyDegree >= MAX_KEY_DEGREE) return undefined;
-      return () => {
-        if (derived.motion !== Motion.Still) return;
-        setState((state: State) => ({ ...state, motion: Motion.IncrementMode }));
-      }
-    } else {
-      if (derived.mode <= -3) return undefined;
-      if (derived.keyDegree <= -MAX_KEY_DEGREE) return undefined;
-      return () => {
-        if (derived.motion !== Motion.Still) return;
-        setState((state: State) => ({ ...state, motion: Motion.DecrementMode }));
-      };
-    }
-  }
 
   useEffect(() => {
     function animationEndHandler(): void {
-      setState((state: State) => {
-        if (state.motion === Motion.IncrementRoot) {
-          return { ...state, motion: Motion.Still, root: state.root + 1 };
-        }
-        if (state.motion === Motion.DecrementRoot) {
-          return { ...state, motion: Motion.Still, root: state.root - 1 };
-        }
-        if (state.motion === Motion.IncrementMode) {
-          return { ...state, motion: Motion.Still, mode: state.mode + 1 };
-        }
-        if (state.motion === Motion.DecrementMode) {
-          return { ...state, motion: Motion.Still, mode: state.mode - 1 };
-        }
-        return state;
-      });
+      setState(updateStateAtEndOfAnimation);
     }
 
     const domNode = domNodeRef.current;
@@ -96,52 +40,21 @@ export function Canvas({
       className={buildClassString(cssModule, ["canvas"])}
       ref={domNodeRef}
     >
-      <Button
-        isPlus={false}
-        onClick={undefined}
-        isWaiting={isWaiting}
-        dataTestid="move-solfege-slider-up"
-      />
-      <Button
-        isPlus={true}
-        onClick={undefined}
-        isWaiting={isWaiting}
-        dataTestid="move-solfege-slider-down"
-      />
-      <Button
-        isPlus={false}
-        onClick={buildChangeRoot(false)}
-        isWaiting={isWaiting}
-        dataTestid="move-note-slider-up"
-      />
-      <Button
-        isPlus={true}
-        onClick={buildChangeRoot(true)}
-        isWaiting={isWaiting}
-        dataTestid="move-note-slider-down"
-      />
-      <Button
-        isPlus={false}
-        onClick={buildChangeMode(false)}
-        isWaiting={isWaiting}
-        dataTestid="move-both-sliders-up"
-      />
-      <Button
-        isPlus={true}
-        onClick={buildChangeMode(true)}
-        isWaiting={isWaiting}
-        dataTestid="move-both-sliders-down"
-      />
       <svg
         className={buildClassString(cssModule, ["canvas-svg"])}
-        viewBox="0 -132 400 264"
+        viewBox="0 -220 440 440"
         xmlns="http://www.w3.org/2000/svg"
       >
+        <Sliders
+          derived={derived}
+          setState={setState}
+        />
         <Clock
           derived={derived}
         />
-        <Sliders
-          derived={derived}
+        <Key
+          modeNote={derived.modeNote}
+          rootNote={derived.rootNote}
         />
       </svg>
     </div>

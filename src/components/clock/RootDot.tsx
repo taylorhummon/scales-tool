@@ -1,49 +1,61 @@
 import { Motion } from "src/enumerations";
+import { Note } from "src/classes/Note";
 import { buildClassString } from "src/utilities/css";
-import { getDotMotionEndHour } from "src/utilities/scale";
+import { remainderFor } from "src/utilities/math";
 
 import cssModule from "src/components/clock/RootDot.module.css";
 
 
 interface RootDotProps {
   motion: Motion;
-  rootNoteHour: number;
+  rootNote: Note;
 }
 
 export function RootDot({
   motion,
-  rootNoteHour
+  rootNote
 }: RootDotProps): JSX.Element {
   return (
     <circle
-      className={className(motion, rootNoteHour)}
+      className={className(motion, rootNote)}
       data-testid={"root-dot"}
       cx="0"
       cy="0"
       r="14"
       strokeWidth={1.3}
+      stroke="rgb(4, 51, 255)"
+      fill="rgb(208, 214, 253)"
     />
   );
 }
 
 function className(
   motion: Motion,
-  rootNoteHour: number
+  rootNote: Note
 ): string {
   const classNames = ["root-dot"];
   if (
     motion === Motion.Still ||
-    motion === Motion.IncrementMode ||
-    motion === Motion.DecrementMode
+    motion === Motion.DecrementBoth ||
+    motion === Motion.IncrementBoth
   ) {
-    classNames.push(`hour-${rootNoteHour}`);
+    classNames.push(`hour-${rootNote.hour}`);
   } else if (
-    motion === Motion.IncrementRoot ||
-    motion === Motion.DecrementRoot
+    motion === Motion.IncrementDoPosition ||
+    motion === Motion.DecrementKeyDegree
   ) {
-    const motionEndHour = getDotMotionEndHour(motion, rootNoteHour);
+    const startHour = rootNote.hour;
+    const finishHour = remainderFor(startHour - 7, 12);
     classNames.push("move");
-    classNames.push(`from-${rootNoteHour}-to-${motionEndHour}`);
+    classNames.push(`from-${startHour}-to-${finishHour}`);
+  } else if (
+    motion === Motion.DecrementDoPosition ||
+    motion === Motion.IncrementKeyDegree
+   ) {
+    const startHour = rootNote.hour;
+    const finishHour = remainderFor(startHour + 7, 12);
+    classNames.push("move");
+    classNames.push(`from-${startHour}-to-${finishHour}`);
   }
   return buildClassString(cssModule, classNames);
 }

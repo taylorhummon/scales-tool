@@ -1,3 +1,5 @@
+import { Note } from "src/classes/Note";
+import { NaturalNote } from "src/enumerations";
 import { buildClassString } from "src/utilities/css";
 import { getModeName } from "src/utilities/scale";
 
@@ -5,15 +7,15 @@ import cssModule from "src/components/summary/KeyDescription.module.css";
 
 
 interface KeyDescriptionProps {
-  mode: number;
-  rootNoteName: string;
+  modeNote: NaturalNote;
+  rootNote: Note;
 }
 
 export function KeyDescription({
-  mode,
-  rootNoteName,
+  modeNote,
+  rootNote,
 }: KeyDescriptionProps): JSX.Element {
-  const keyDescription = getKeyDescription(mode, rootNoteName);
+  const keyDescription = getKeyDescription(modeNote, rootNote);
   return (
     <>
       <div
@@ -24,38 +26,34 @@ export function KeyDescription({
       <div
         className={buildClassString(cssModule, ["key-description-content"])}
       >
-        <div
-          className={buildClassString(cssModule, ["key-description-text"])}
-        >
-          {keyDescription}
-        </div>
+        {keyDescription}
       </div>
     </>
   );
 }
 
 function getKeyDescription(
-  mode: number,
-  rootNoteName: string
+  modeNote: NaturalNote,
+  rootNote: Note
 ): JSX.Element {
   const className = buildClassString(cssModule, ["note-font"]);
-  if (mode === 2) {
+  if (modeNote === NaturalNote.C) {
     return (
       <>
-        <span className={className}>{rootNoteName}</span>-Major
+        <span className={className}>{rootNote.name}</span>-Major
       </>
     );
   }
-  if (mode === -1) {
+  if (modeNote === NaturalNote.A) {
     return (
       <>
-        <span className={className}>{rootNoteName}</span>-Minor
+        <span className={className}>{rootNote.name}</span>-Minor
       </>
     );
   }
   return (
     <>
-      The {getModeName(mode)} mode on <span className={className}>{rootNoteName}</span>
+      The {getModeName(modeNote)} mode on <span className={className}>{rootNote.name}</span>
     </>
   );
 }
