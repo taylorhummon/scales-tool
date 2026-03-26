@@ -2,7 +2,7 @@ import type { Note } from "src/classes/Note";
 import type { LabelAnimation } from "src/classes/LabelAnimation";
 import { buildClassString } from "src/utilities/css";
 
-import cssModule from "src/components/clock/NoteLabel.module.css";
+import cssModule from "src/components/clock/NoteLabelText.module.css";
 
 
 export function isNoteAnimated(

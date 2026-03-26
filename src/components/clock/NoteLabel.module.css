@@ -1,25 +1,5 @@
 @value duration-motion from "../../constants.css";
 
-@keyframes appear {
-  0% {
-    fill-opacity: 0;
-  }
-  40% {
-    fill-opacity: 0;
-  }
-  100% {
-    fill-opacity: 1;
-  }
-}
-
-tspan.appear {
-  animation: appear duration-motion linear 1 forwards;
-}
-
-tspan.disappear {
-  animation: appear duration-motion linear 1 forwards reverse;
-}
-
 @keyframes move-note-label {
   0% {
     offset-distance: 0%;
