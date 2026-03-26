@@ -1,12 +1,12 @@
 import type { Dispatch, SetStateAction } from "react";
 
 import type { State, Derived } from "src/types";
-import { Motion } from "src/enumerations";
 import { Buttons } from "src/components/sliders/Buttons";
+import { ArrivingNote } from "src/components/sliders/ArrivingNote";
+import { ArrivingSolfege } from "src/components/sliders/ArrivingSolfege";
 import { NoteOnSlider } from "src/components/sliders/NoteOnSlider";
 import { SolfegeOnSlider } from "src/components/sliders/SolfegeOnSlider";
 import { buildClassString } from "src/utilities/css";
-import { getNote } from "src/utilities/scale";
 
 import cssModule from "src/components/sliders/Sliders.module.css";
 
@@ -51,10 +51,10 @@ export function Sliders({
             note={note}
           />
         ))}
-        <ExtraSolfegeOnSlider
+        <ArrivingSolfege
           derived={derived}
         />
-        <ExtraNoteOnSlider
+        <ArrivingNote
           derived={derived}
         />
       </g>
@@ -64,74 +64,4 @@ export function Sliders({
       />
     </g>
   );
-}
-
-interface ExtraSolfegeOnSliderProps {
-  derived: Derived;
-}
-
-function ExtraSolfegeOnSlider({
-  derived
-}: ExtraSolfegeOnSliderProps): JSX.Element | null {
-  const motion = derived.motion
-  if (
-    motion === Motion.DecrementDoPosition ||
-    motion === Motion.DecrementBoth
-  ) {
-    const position = 4;
-    return (
-      <SolfegeOnSlider
-        motion={motion}
-        note={getNote(derived.doPosition, derived.keyDegree, position)}
-      />
-    );
-  }
-  if (
-    motion === Motion.IncrementDoPosition ||
-    motion === Motion.IncrementBoth
-  ) {
-    const position = -4;
-    return (
-      <SolfegeOnSlider
-        motion={motion}
-        note={getNote(derived.doPosition, derived.keyDegree, position)}
-      />
-    );
-  }
-  return null;
-}
-
-
-interface ExtraNoteOnSliderProps {
-  derived: Derived;
-}
-
-function ExtraNoteOnSlider({
-  derived
-}: ExtraNoteOnSliderProps): JSX.Element | null {
-  if (
-    derived.motion === Motion.DecrementKeyDegree ||
-    derived.motion === Motion.DecrementBoth
-  ) {
-    const position = 4;
-    return (
-      <NoteOnSlider
-        motion={derived.motion}
-        note={getNote(derived.doPosition, derived.keyDegree, position)}
-      />
-    );
-  }
-  if (
-    derived.motion === Motion.IncrementKeyDegree ||
-    derived.motion === Motion.IncrementBoth
-  ) {
-    const position = -4;
-    return (
-      <NoteOnSlider
-        motion={derived.motion}
-        note={getNote(derived.doPosition, derived.keyDegree, position)}
-      />
-    );
-  }
-  return null;
 }
