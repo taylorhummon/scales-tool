@@ -9,6 +9,12 @@
   }
 }
 
+/*
+WARNING: Be careful not confuse position-3 with position--3.
+The first represents position 3 (the top of the slider), and
+the second represents position -3 (the bottom of the slider).
+*/
+
 .note-on-slider {
   font-family: "PT Mono", monospace;
   offset-rotate: 0deg;

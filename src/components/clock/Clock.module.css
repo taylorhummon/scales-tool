@@ -5,7 +5,7 @@
 }
 
 .clock-circle {
-  fill: none;
   stroke-width: 2;
   stroke: color-gray;
+  fill: none;
 }

@@ -19,7 +19,7 @@ export function NoteLabel({
       className={className(labelAnimation, note)}
       data-testid={`note-label-${note.solfege}`}
     >
-     {getNameToDisplay(labelAnimation, note)}
+      {getNameToDisplay(labelAnimation, note)}
     </g>
   );
 }
