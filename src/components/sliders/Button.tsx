@@ -24,6 +24,13 @@ export function Button({
 }: ButtonProps): JSX.Element {
   const isDisabled = ! canPerformMotion(derived, motion);
   const isWaiting = derived.motion !== Motion.Still;
+  const isWide = (
+    motion === Motion.DecrementBoth ||
+    motion === Motion.IncrementBoth
+  );
+  const width = isWide ? 100 : 46;
+  const height = 40;
+  const borderRadius = 8;
 
   function handleClick(
   ): void {
@@ -44,6 +51,12 @@ export function Button({
         className={rectangleClassName(motion, isDisabled, isWaiting)}
         onClick={handleClick}
         data-testid={dataTestid}
+        x={- width / 2}
+        y={- height / 2}
+        width={width}
+        height={height}
+        rx={borderRadius}
+        ry={borderRadius}
       />
     </g>
   );
@@ -61,7 +74,7 @@ function rectangleClassName(
   isDisabled: boolean,
   isWaiting: boolean
 ): string {
-  const classNames = ["rectangle", motion];
+  const classNames = ["button-rectangle", motion];
   if (isDisabled) classNames.push("disabled");
   if (isWaiting) classNames.push("waiting");
   return buildClassString(cssModule, classNames);
