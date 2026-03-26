@@ -1,0 +1,100 @@
+@value duration-motion from "../../constants.css";
+
+@keyframes move-root-dot {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+/*
+WARNING: Be careful not confuse position-3 with position--3.
+The first represents position 3 (the top of the slider), and
+the second represents position -3 (the bottom of the slider).
+*/
+
+.root-dot {
+  offset-rotate: 0deg;
+
+  &.position-3 {
+    offset-path: path("M -45 -98");
+  }
+
+  &.position-2 {
+    offset-path: path("M -45 -65");
+  }
+
+  &.position-1 {
+    offset-path: path("M -45 -32");
+  }
+
+  &.position-0 {
+    offset-path: path("M -45 1");
+  }
+
+  &.position--1 {
+    offset-path: path("M -45 34");
+  }
+
+  &.position--2 {
+    offset-path: path("M -45 67");
+  }
+
+  &.position--3 {
+    offset-path: path("M -45 100");
+  }
+
+  &.move {
+    animation: move-root-dot duration-motion ease-in-out 1 forwards;
+
+    &.from-3-to-2 {
+      offset-path: path("M -45 -98 L -45 -65");
+    }
+
+    &.from-2-to-1 {
+      offset-path: path("M -45 -65 L -45 -32");
+    }
+
+    &.from-1-to-0 {
+      offset-path: path("M -45 -32 L -45 1");
+    }
+
+    &.from-0-to--1 {
+      offset-path: path("M -45 1 L -45 34");
+    }
+
+    &.from--1-to--2 {
+      offset-path: path("M -45 34 L -45 67");
+    }
+
+    &.from--2-to--3 {
+      offset-path: path("M -45 67 L -45 100");
+    }
+
+    &.from--3-to--2 {
+      offset-path: path("M -45 100 L -45 67");
+    }
+
+    &.from--2-to--1 {
+      offset-path: path("M -45 67 L -45 34");
+    }
+
+    &.from--1-to-0 {
+      offset-path: path("M -45 34 L -45 1");
+    }
+
+    &.from-0-to-1 {
+      offset-path: path("M -45 1 L -45 -32");
+    }
+
+    &.from-1-to-2 {
+      offset-path: path("M -45 -32 L -45 -65");
+    }
+
+    &.from-2-to-3 {
+      offset-path: path("M -45 -65 L -45 -98");
+    }
+  }
+}

@@ -1,9 +1,8 @@
 import { Motion } from "src/enumerations";
 import { Note } from "src/classes/Note";
 import { buildClassString } from "src/utilities/css";
-import { remainderFor } from "src/utilities/math";
 
-import cssModule from "src/components/clock/RootDot.module.css";
+import cssModule from "src/components/sliders/RootDot.module.css";
 
 
 interface RootDotProps {
@@ -18,11 +17,11 @@ export function RootDot({
   return (
     <circle
       className={className(motion, rootNote)}
-      data-testid={"clock-root-dot"}
+      data-testid={"slider-root-dot"}
       cx="0"
       cy="0"
-      r="14"
-      strokeWidth={1.3}
+      r="4"
+      strokeWidth={1.1}
       stroke="rgb(4, 51, 255)"
       fill="rgb(208, 214, 253)"
     />
@@ -34,28 +33,25 @@ function className(
   rootNote: Note
 ): string {
   const classNames = ["root-dot"];
+  classNames.push(`position-${rootNote.position}`);
   if (
     motion === Motion.Still ||
-    motion === Motion.DecrementBoth ||
-    motion === Motion.IncrementBoth
+    motion === Motion.DecrementKeyDegree ||
+    motion === Motion.IncrementKeyDegree
   ) {
-    classNames.push(`hour-${rootNote.hour}`);
+    classNames.push(`position-${rootNote.position}`);
   } else if (
     motion === Motion.IncrementDoPosition ||
-    motion === Motion.DecrementKeyDegree
+    motion === Motion.IncrementBoth
   ) {
-    const startHour = rootNote.hour;
-    const finishHour = remainderFor(startHour - 7, 12);
     classNames.push("move");
-    classNames.push(`from-${startHour}-to-${finishHour}`);
+    classNames.push(`from-${rootNote.position}-to-${rootNote.position + 1}`);
   } else if (
     motion === Motion.DecrementDoPosition ||
-    motion === Motion.IncrementKeyDegree
+    motion === Motion.DecrementBoth
    ) {
-    const startHour = rootNote.hour;
-    const finishHour = remainderFor(startHour + 7, 12);
     classNames.push("move");
-    classNames.push(`from-${startHour}-to-${finishHour}`);
+    classNames.push(`from-${rootNote.position}-to-${rootNote.position - 1}`);
   }
   return buildClassString(cssModule, classNames);
 }

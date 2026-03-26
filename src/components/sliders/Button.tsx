@@ -8,6 +8,10 @@ import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/sliders/Button.module.css";
 
+/*
+Note: the motion passed in IS NOT the current motion (which can be found in derived), but
+rather the motion that will start when the user presses this button.
+*/
 
 interface ButtonProps {
   derived: Derived;

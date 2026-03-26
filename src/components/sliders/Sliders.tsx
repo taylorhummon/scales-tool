@@ -6,6 +6,7 @@ import { Button } from "src/components/sliders/Button";
 import { ArrivingNote } from "src/components/sliders/ArrivingNote";
 import { ArrivingSolfege } from "src/components/sliders/ArrivingSolfege";
 import { NoteOnSlider } from "src/components/sliders/NoteOnSlider";
+import { RootDot } from "src/components/sliders/RootDot";
 import { SolfegeOnSlider } from "src/components/sliders/SolfegeOnSlider";
 import { buildClassString } from "src/utilities/css";
 
@@ -30,9 +31,9 @@ export function Sliders({
           id="sliders-clip-rectangle"
         >
           <rect
-            x="-50"
+            x="-60"
             y="-118"
-            width="100"
+            width="120"
             height="236"
           />
         </clipPath>
@@ -40,6 +41,10 @@ export function Sliders({
       <g
         clipPath="url(#sliders-clip-rectangle)"
       >
+        <RootDot
+          motion={derived.motion}
+          rootNote={derived.rootNote}
+        />
         {derived.scale.map((note) => (
           <SolfegeOnSlider
             key={note.position}

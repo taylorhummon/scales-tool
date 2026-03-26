@@ -14,7 +14,7 @@ function getNoteDot(solfege: Solfege) {
 }
 
 function getRootDot() {
-  return screen.getByTestId("root-dot");
+  return screen.getByTestId("clock-root-dot");
 }
 
 

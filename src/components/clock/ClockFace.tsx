@@ -1,5 +1,5 @@
-export function ClockFace({
-}): JSX.Element {
+export function ClockFace(
+): JSX.Element {
   return (
     <g
       strokeWidth="3"
