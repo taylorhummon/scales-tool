@@ -16,7 +16,7 @@ export function Icon({
           cx="-6"
           cy="4"
           r="7"
-          strokeWidth={1.2}
+          strokeWidth="1.2"
           stroke="rgb(4, 51, 255)"
           fill="rgb(208, 214, 253)"
         />
@@ -25,7 +25,7 @@ export function Icon({
           y1="-3"
           x2="12"
           y2="-11"
-          strokeWidth={1}
+          strokeWidth="1"
           stroke="rgb(110, 110, 110)"
         />
         <line
@@ -33,7 +33,7 @@ export function Icon({
           y1="0"
           x2="14"
           y2="-8"
-          strokeWidth={1}
+          strokeWidth="1"
           stroke="rgb(110, 110, 110)"
         />
         <line
@@ -41,7 +41,7 @@ export function Icon({
           y1="-4"
           x2="8"
           y2="-12"
-          strokeWidth={1}
+          strokeWidth="1"
           stroke="rgb(110, 110, 110)"
         />
       </>
@@ -54,7 +54,7 @@ export function Icon({
           cx="6"
           cy="-4"
           r="7"
-          strokeWidth={1.2}
+          strokeWidth="1.2"
           stroke="rgb(4, 51, 255)"
           fill="rgb(208, 214, 253)"
         />
@@ -63,7 +63,7 @@ export function Icon({
           y1="3"
           x2="-12"
           y2="11"
-          strokeWidth={1}
+          strokeWidth="1"
           stroke="rgb(110, 110, 110)"
         />
         <line
@@ -71,7 +71,7 @@ export function Icon({
           y1="0"
           x2="-14"
           y2="8"
-          strokeWidth={1}
+          strokeWidth="1"
           stroke="rgb(110, 110, 110)"
         />
         <line
@@ -79,7 +79,7 @@ export function Icon({
           y1="4"
           x2="-8"
           y2="12"
-          strokeWidth={1}
+          strokeWidth="1"
           stroke="rgb(110, 110, 110)"
         />
       </>
@@ -93,13 +93,13 @@ export function Icon({
           y1="-8.5"
           x2="-2.5"
           y2="6.5"
-          strokeWidth={0.8}
+          strokeWidth="0.8"
           stroke="black"
         />
         <path
           fill="black"
           stroke="black"
-          strokeWidth={1.5}
+          strokeWidth="1.5"
           d="m -2.5,6.5 c 0,0 6.8039886,-3.502052 5.1449035,-5.77124323 -1.67644584,-2.29293637 -5.1005164,0.80130563 -5.1005164,0.80130563 0,0 3.23252528,-2.5530565 4.4272078,-0.62375756 C 3.3102876,3.0681666 -2.5,6.5 -2.5,6.5 Z"
         />
       </>
@@ -113,7 +113,7 @@ export function Icon({
           y1="-8.5"
           x2="1.5"
           y2="4.7"
-          strokeWidth={0.8}
+          strokeWidth="0.8"
           stroke="black"
         />
         <line
@@ -121,17 +121,17 @@ export function Icon({
           y1="-6.5"
           x2="-2"
           y2="6.7"
-          strokeWidth={0.8}
+          strokeWidth="0.8"
           stroke="black"
         />
         <polygon
           points="-3.5,3.5 3.5,0 3.5,0.3 -3.5,3.8"
-          strokeWidth={1.5}
+          strokeWidth="1.5"
           stroke="black"
         />
         <polygon
           points="-3.5,-1.5 3.5,-5 3.5,-4.7 -3.5,-1.2"
-          strokeWidth={1.5}
+          strokeWidth="1.5"
           stroke="black"
         />
       </>
@@ -141,9 +141,9 @@ export function Icon({
     return (
       <polygon
         points="-20,-8 0,8 20,-8 0,5"
-        fill="black"
-        stroke="black"
         strokeWidth="1"
+        stroke="black"
+        fill="black"
       />
     );
   }
@@ -151,9 +151,9 @@ export function Icon({
     return (
       <polyline
         points="-20,8 0,-8 20,8 0,-5"
-        fill="black"
-        stroke="black"
         strokeWidth="1"
+        stroke="black"
+        fill="black"
       />
     );
   }
