@@ -6,21 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#000000" />
     <title>Scales Tool</title>
-    <!-- use PT Mono font courtesy of Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
-    <!-- the following contains styles for the body, title, and instructions -->
     <link rel="stylesheet" href="/index.css">
   </head>
   <body>
-    <h1 class="title">
-      Scales Tool
-    </h1>
-    <div class="instructions">
-      Explore musical scales visually!
+    <div class="page-content">
+      <h1 class="title">
+        Scales Tool
+      </h1>
+      <div class="instructions">
+        Explore musical scales visually!
+      </div>
+      <div id="scales-tool-mount-point"></div>
+      <script type="module" src="src/index.tsx"></script>
+      <h2>Want to learn more about scales?</h2>
+      <p>
+        Are you interested in digging into the patterns behind musical scales?
+        Tap below to read
+        <a
+          href="/taylors_guide_to_scales.pdf"
+          target="GuideToScalesWindow"
+        >Taylor's Guide to Scales</a>!
+      </p>
+      <a
+        href="/taylors_guide_to_scales.pdf"
+        target="GuideToScalesWindow"
+      >
+        <img
+          class="cover"
+          src="/taylors_guide_to_scales_cover.svg"
+          alt="Taylor's Guide to Scales"
+          title="Taylor's Guide to Scales"
+          height="300px"
+        />
+      </a>
     </div>
-    <div id="scales-tool-mount-point"></div>
-    <script type="module" src="src/index.tsx"></script>
   </body>
 </html>
