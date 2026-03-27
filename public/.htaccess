@@ -1,0 +1,7 @@
+ErrorDocument 403 /missing.html
+ErrorDocument 404 /missing.html
+Options -Indexes
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.scales.taylorhummon.com
+RewriteRule (.*) https://scales.taylorhummon.com/$1 [R=301,L]
