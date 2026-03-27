@@ -15,13 +15,6 @@ export default defineConfig({
     port: 1234,
     strictPort: true
   },
-  build: {
-    rollupOptions: {
-      input: {
-        main: "minimal.html"
-      },
-    },
-  },
   test: {
     dir: "tests",
     environment: "jsdom",
