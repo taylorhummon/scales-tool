@@ -15,15 +15,24 @@ export function KeyDescription({
   musicalKey
 }: KeyDescriptionProps): JSX.Element {
   return (
-    <text
-      className={buildClassString(cssModule, ["key-description"])}
-      textAnchor="middle"
-    >
-      <TextContent
-        modeNote={musicalKey.modeNote}
-        rootNote={musicalKey.rootNote}
-      />
-    </text>
+    <>
+      <text
+        className={buildClassString(cssModule, ["key-description"])}
+        textAnchor="middle"
+      >
+        <TextContent
+          modeNote={musicalKey.modeNote}
+          rootNote={musicalKey.rootNote}
+        />
+        {"\n"}
+      </text>
+      <text
+        className={buildClassString(cssModule, ["degree-explanation"])}
+        textAnchor="middle"
+      >
+        {getDegreeExplanation(musicalKey.degree)}
+      </text>
+    </>
   );
 }
 
@@ -40,20 +49,49 @@ function TextContent({
   if (modeNote === NaturalNote.C) {
     return (
       <>
-        <tspan className={noteFontClassName}>{rootNote.name}</tspan>-Major
+        <tspan className={noteFontClassName}>{rootNote.name}</tspan>-Major.
       </>
     );
   }
   if (modeNote === NaturalNote.A) {
     return (
       <>
-        <tspan className={noteFontClassName}>{rootNote.name}</tspan>-Minor
+        <tspan className={noteFontClassName}>{rootNote.name}</tspan>-Minor.
       </>
     );
   }
   return (
     <>
-      The {getModeName(modeNote)} mode on <tspan className={noteFontClassName}>{rootNote.name}</tspan>
+      The {getModeName(modeNote)} mode on <tspan className={noteFontClassName}>{rootNote.name}</tspan>.
     </>
   );
 }
+
+function getDegreeExplanation(
+  degree: number,
+): string {
+  if (degree === 0)  return "No sharps or flats.";
+  if (degree === 1)  return "One sharp.";
+  if (degree === -1) return "One flat.";
+  if (degree >= 2)   return `${WRITTEN_OUT_NUMBERS[degree]} sharps.`;
+  if (degree <= -2)  return `${WRITTEN_OUT_NUMBERS[- degree]} flats.`;
+  throw `Unexpected degree ${degree}`;
+}
+
+const WRITTEN_OUT_NUMBERS = [
+  "Zero",
+  "One",
+  "Two",
+  "Three",
+  "Four",
+  "Five",
+  "Six",
+  "Seven",
+  "Eight",
+  "Nine",
+  "Ten",
+  "Eleven",
+  "Twelve",
+  "Thirteen",
+  "Fourteen",
+];

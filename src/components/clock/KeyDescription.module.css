@@ -2,6 +2,10 @@
   offset-path: path("M 0 180");
 }
 
+.degree-explanation {
+  offset-path: path("M 0 205");
+}
+
 .note-font {
   font-family: "PT Mono", monospace;
 }
