@@ -1,17 +1,17 @@
 .button {
-  &.DecrementDoPosition {
+  &.DecrementLeft {
     offset-path: path("M -27 146")
   }
 
-  &.DecrementKeyDegree {
+  &.DecrementRight {
     offset-path: path("M 27 146")
   }
 
-  &.IncrementDoPosition {
+  &.IncrementLeft {
     offset-path: path("M -27 -146")
   }
 
-  &.IncrementKeyDegree {
+  &.IncrementRight {
     offset-path: path("M 27 -146")
   }
 

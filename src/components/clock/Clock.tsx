@@ -31,14 +31,14 @@ export function Clock({
       <ClockFace />
       {musicalKey.scale.map((note) => (
         <NoteDot
-          key={note.name}
+          key={note.hour}
           note={note}
           motion={motion}
         />
       ))}
       {musicalKey.scale.map((note) => (
         <NoteLabel
-          key={note.name}
+          key={note.hour}
           note={note}
           labelAnimation={labelAnimation}
         />

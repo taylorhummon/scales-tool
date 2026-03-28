@@ -1,34 +1,40 @@
-import { NaturalNote, Solfege } from "src/enumerations";
+import { Motion, NaturalNote, Solfege } from "src/enumerations";
 import { Note } from "src/classes/Note";
 import { quotientAndRemainderFor, remainderFor } from "src/utilities/math";
 
 
-export const MAX_DO_POSITION = 3;
-export const MAX_KEY_DEGREE = 14;
+const MIN_LEFT_SLIDER_POSITION = -3;
+const MAX_LEFT_SLIDER_POSITION = 3;
+const MIN_RIGHT_SLIDER_POSITION = -14;
+const MAX_RIGHT_SLIDER_POSITION = 14;
 
 // default to C-Major
-export const DEFAULT_DO_POSITION = 2;
-export const DEFAULT_KEY_DEGREE = 0;
+export const DEFAULT_LEFT_SLIDER_POSITION = 2;
+export const DEFAULT_RIGHT_SLIDER_POSITION = 0;
 
 /*
 I'm using the name "MusicalKey" instead of "Key" in order to avoid names colliding with React.
 */
 
 export class MusicalKey {
-  doPosition: number; // the position of the left slider
-  degree: number;     // the position of the right slider
+  #leftSliderPosition: number;
+  #rightSliderPosition: number;
   modeNote: NaturalNote;
   rootNote: Note;
   #scale: Array<Note> | null = null;
 
   constructor(
-    doPosition: number,
-    degree: number
+    leftSliderPosition: number,
+    rightSliderPosition: number
   ) {
-    this.doPosition = doPosition;
-    this.degree = degree;
-    this.modeNote = getModeNote(doPosition);
-    this.rootNote = getRootNote(doPosition, degree);
+    this.#leftSliderPosition = leftSliderPosition;
+    this.#rightSliderPosition = rightSliderPosition;
+    this.modeNote = getModeNote(leftSliderPosition);
+    this.rootNote = getRootNote(leftSliderPosition, rightSliderPosition);
+  }
+
+  get degree(): number {
+    return this.#rightSliderPosition;
   }
 
   // Compute the scale lazily---it's a little expensive and we don't always need it.
@@ -46,20 +52,35 @@ export class MusicalKey {
   noteAt(
     position: number
   ): Note {
-    return getNote(this.doPosition, this.degree, position);
+    return getNote(this.#leftSliderPosition, this.#rightSliderPosition, position);
+  }
+
+  canPerformMotion(
+    motion: Motion
+  ): boolean {
+    if (motion === Motion.DecrementLeft) return this.#leftSliderPosition > MIN_LEFT_SLIDER_POSITION;
+    if (motion === Motion.IncrementLeft) return this.#leftSliderPosition < MAX_LEFT_SLIDER_POSITION;
+    if (motion === Motion.DecrementRight) return this.#rightSliderPosition > MIN_RIGHT_SLIDER_POSITION;
+    if (motion === Motion.IncrementRight) return this.#rightSliderPosition < MAX_RIGHT_SLIDER_POSITION;
+    if (motion === Motion.DecrementBoth) {
+      return (
+        (this.#leftSliderPosition > MIN_LEFT_SLIDER_POSITION) &&
+        (this.#rightSliderPosition > MIN_RIGHT_SLIDER_POSITION)
+      );
+    }
+    if (motion === Motion.IncrementBoth) {
+      return (
+        (this.#leftSliderPosition < MAX_LEFT_SLIDER_POSITION) &&
+        (this.#rightSliderPosition < MAX_RIGHT_SLIDER_POSITION)
+      );
+    }
+    return false;
   }
 
   #getScale(
   ): Array<Note> {
     return [3, 2, 1, 0, -1, -2, -3].map((position) => this.noteAt(position));
   }
-}
-
-export function musicalKeyFromDegreeAndModeNote(
-  degree: number,
-  modeNote: NaturalNote
-): MusicalKey {
-  return new MusicalKey(getDoPosition(modeNote), degree);
 }
 
 // TODO: Use key shorthand as path segment in routing.
@@ -79,13 +100,15 @@ export function musicalKeyFromShorthand(
 // *** Private constants and functions below this line ***
 
 function getModeNote(
-  doPosition: number
+  leftSliderPosition: number
 ): NaturalNote {
-  if (doPosition < -3 || doPosition > 3) throw Error(`Invalid position for Do: ${doPosition}`);
-  return NATURAL_NOTES_IN_BEADGCF_ORDER[doPosition + 3];
+  if (leftSliderPosition < -3 || leftSliderPosition > 3) {
+    throw Error(`Invalid left slider position: ${leftSliderPosition}`);
+  }
+  return NATURAL_NOTES_IN_BEADGCF_ORDER[leftSliderPosition + 3];
 }
 
-function getDoPosition(
+function getLeftSliderPosition(
   modeNote: NaturalNote
 ): number {
   const index = NATURAL_NOTES_IN_BEADGCF_ORDER.indexOf(modeNote);
@@ -94,19 +117,19 @@ function getDoPosition(
 }
 
 function getRootNote(
-  doPosition: number,
-  keyDegree: number
+  leftSliderPosition: number,
+  rightSliderPosition: number
 ): Note {
-  return getNote(doPosition, keyDegree, doPosition);
+  return getNote(leftSliderPosition, rightSliderPosition, leftSliderPosition);
 }
 
 function getNote(
-  doPosition: number,
-  keyDegree: number,
+  leftSliderPosition: number,
+  rightSliderPosition: number,
   position: number
 ): Note {
-  const solfege = getSolfege(doPosition, position);
-  const bigStepCountFromD = keyDegree - position;
+  const solfege = getSolfege(leftSliderPosition, position);
+  const bigStepCountFromD = rightSliderPosition - position;
   if (bigStepCountFromD > 0) {
     const { quotient, remainder } = quotientAndRemainderFor(3 + bigStepCountFromD, 7);
     const sharpsCount = quotient;
@@ -134,10 +157,10 @@ const NATURAL_NOTES_IN_FCGDAEB_ORDER = [
 const NATURAL_NOTES_IN_BEADGCF_ORDER = [...NATURAL_NOTES_IN_FCGDAEB_ORDER].reverse();
 
 function getSolfege(
-  doPosition: number,
+  leftSliderPosition: number,
   position: number
 ): Solfege {
-  return SOLFEGES[remainderFor(position - doPosition, 7)];
+  return SOLFEGES[remainderFor(position - leftSliderPosition, 7)];
 }
 
 const SOLFEGES = [
@@ -155,16 +178,22 @@ function _musicalKeyFromShorthand(
 ): MusicalKey | null {
   const result = KEY_SHORTHAND_REGULAR_EXPRESSION.exec(keyShorthand);
   if (result === null) return null;
-  const keyDegree = parseInt(result[1], 10);
-  if (keyDegree > MAX_KEY_DEGREE || keyDegree < - MAX_KEY_DEGREE) return null;
+  const rightSliderPosition = parseInt(result[1], 10);
+  if (
+    rightSliderPosition > MAX_RIGHT_SLIDER_POSITION ||
+    rightSliderPosition < MIN_RIGHT_SLIDER_POSITION
+  ) {
+    return null;
+  }
   const modeNote = result[2].toUpperCase();
   if (! (modeNote in NaturalNote)) return null;
-  return musicalKeyFromDegreeAndModeNote(keyDegree, modeNote as NaturalNote);
+  const leftSliderPosition = getLeftSliderPosition(modeNote as NaturalNote);
+  return new MusicalKey(leftSliderPosition, rightSliderPosition);
 }
 
 const KEY_SHORTHAND_REGULAR_EXPRESSION = /^(-?[0-9]+)([A-G])$/i;
 
 function getDefaultMusicalKey(
 ): MusicalKey {
-  return new MusicalKey(DEFAULT_DO_POSITION, DEFAULT_KEY_DEGREE);
+  return new MusicalKey(DEFAULT_LEFT_SLIDER_POSITION, DEFAULT_RIGHT_SLIDER_POSITION);
 }

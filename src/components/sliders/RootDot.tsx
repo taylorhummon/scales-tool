@@ -36,18 +36,18 @@ function className(
   classNames.push(`position-${rootNote.position}`);
   if (
     motion === Motion.Still ||
-    motion === Motion.DecrementKeyDegree ||
-    motion === Motion.IncrementKeyDegree
+    motion === Motion.DecrementRight ||
+    motion === Motion.IncrementRight
   ) {
     classNames.push(`position-${rootNote.position}`);
   } else if (
-    motion === Motion.IncrementDoPosition ||
+    motion === Motion.IncrementLeft ||
     motion === Motion.IncrementBoth
   ) {
     classNames.push("move");
     classNames.push(`from-${rootNote.position}-to-${rootNote.position + 1}`);
   } else if (
-    motion === Motion.DecrementDoPosition ||
+    motion === Motion.DecrementLeft ||
     motion === Motion.DecrementBoth
    ) {
     classNames.push("move");

@@ -1,11 +1,11 @@
 export enum Motion {
   Still = "Still",
-  IncrementDoPosition = "IncrementDoPosition",
-  DecrementDoPosition = "DecrementDoPosition",
-  IncrementKeyDegree = "IncrementKeyDegree",
-  DecrementKeyDegree = "DecrementKeyDegree",
-  IncrementBoth = "IncrementBoth",
+  DecrementLeft = "DecrementLeft",
+  IncrementLeft = "IncrementLeft",
+  DecrementRight = "DecrementRight",
+  IncrementRight = "IncrementRight",
   DecrementBoth = "DecrementBoth",
+  IncrementBoth = "IncrementBoth"
 }
 
 export enum NaturalNote {

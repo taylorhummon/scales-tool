@@ -1,9 +1,8 @@
 import { test, expect } from 'vitest';
 
-import { NaturalNote, Solfege } from "src/enumerations";
+import { Motion, NaturalNote, Solfege } from "src/enumerations";
 import {
   MusicalKey,
-  musicalKeyFromDegreeAndModeNote,
   musicalKeyFromShorthand
 } from "src/classes/MusicalKey";
 
@@ -95,48 +94,6 @@ test("MusicalKey works for G-Minor", () => {
   );
 });
 
-test("musicalKeyFromDegreeAndModeNote() works for D-Minor", () => {
-  const musicalKey = musicalKeyFromDegreeAndModeNote(-1, NaturalNote.A);
-  expect(
-    musicalKey.degree
-  ).toBe(
-    -1
-  );
-  expect(
-    musicalKey.doPosition
-  ).toBe(
-    -1
-  );
-});
-
-test("musicalKeyFromDegreeAndModeNote() works for Phrygian F♯", () => {
-  const musicalKey = musicalKeyFromDegreeAndModeNote(2, NaturalNote.E);
-  expect(
-    musicalKey.degree
-  ).toBe(
-    2
-  );
-  expect(
-    musicalKey.doPosition
-  ).toBe(
-    -2
-  );
-});
-
-test("musicalKeyFromDegreeAndModeNote() works for Lydian A", () => {
-  const musicalKey = musicalKeyFromDegreeAndModeNote(4, NaturalNote.F);
-  expect(
-    musicalKey.degree
-  ).toBe(
-    4
-  );
-  expect(
-    musicalKey.doPosition
-  ).toBe(
-    3
-  );
-});
-
 test("musicalKeyFromShorthand() works for D-Minor", () => {
   const musicalKey = musicalKeyFromShorthand("-1A");
   expect(
@@ -145,9 +102,9 @@ test("musicalKeyFromShorthand() works for D-Minor", () => {
     -1
   );
   expect(
-    musicalKey.doPosition
+    musicalKey.modeNote
   ).toBe(
-    -1
+    NaturalNote.A
   );
 });
 
@@ -159,9 +116,9 @@ test("musicalKeyFromShorthand() works for Phrygian F♯", () => {
     2
   );
   expect(
-    musicalKey.doPosition
+    musicalKey.modeNote
   ).toBe(
-    -2
+    NaturalNote.E
   );
 });
 
@@ -173,8 +130,180 @@ test("musicalKeyFromShorthand() works for Lydian A", () => {
     4
   );
   expect(
-    musicalKey.doPosition
+    musicalKey.modeNote
   ).toBe(
-    3
+    NaturalNote.F
+  );
+});
+
+test("canPerformMotion() works for Dorian D", () => {
+  const musicalKey = new MusicalKey(0, 0);
+  expect(
+    musicalKey.canPerformMotion(Motion.DecrementLeft)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.IncrementLeft)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.DecrementRight)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.IncrementRight)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.DecrementBoth)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.IncrementBoth)
+  ).toBe(
+    true
+  );
+});
+
+
+test("canPerformMotion() works for Locrian B", () => {
+  const musicalKey = new MusicalKey(-3, 0);
+  expect(
+    musicalKey.canPerformMotion(Motion.DecrementLeft)
+  ).toBe(
+    false
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.IncrementLeft)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.DecrementRight)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.IncrementRight)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.DecrementBoth)
+  ).toBe(
+    false
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.IncrementBoth)
+  ).toBe(
+    true
+  );
+});
+
+test("canPerformMotion() works for Lydian C", () => {
+  const musicalKey = new MusicalKey(3, 1);
+  expect(
+    musicalKey.canPerformMotion(Motion.DecrementLeft)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.IncrementLeft)
+  ).toBe(
+    false
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.DecrementRight)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.IncrementRight)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.DecrementBoth)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.IncrementBoth)
+  ).toBe(
+    false
+  );
+});
+
+
+test("canPerformMotion() works for 14 sharps", () => {
+  const musicalKey = new MusicalKey(0, 14);
+  expect(
+    musicalKey.canPerformMotion(Motion.DecrementLeft)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.IncrementLeft)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.DecrementRight)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.IncrementRight)
+  ).toBe(
+    false
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.DecrementBoth)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.IncrementBoth)
+  ).toBe(
+    false
+  );
+});
+
+test("canPerformMotion() works for 14 flats", () => {
+  const musicalKey = new MusicalKey(2, -14);
+  expect(
+    musicalKey.canPerformMotion(Motion.DecrementLeft)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.IncrementLeft)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.DecrementRight)
+  ).toBe(
+    false
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.IncrementRight)
+  ).toBe(
+    true
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.DecrementBoth)
+  ).toBe(
+    false
+  );
+  expect(
+    musicalKey.canPerformMotion(Motion.IncrementBoth)
+  ).toBe(
+    true
   );
 });

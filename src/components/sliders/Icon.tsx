@@ -7,7 +7,7 @@ interface IconProps {
 export function Icon({
   motion
 }: IconProps): JSX.Element | null {
-  if (motion === Motion.DecrementDoPosition) {
+  if (motion === Motion.DecrementLeft) {
     return (
       <>
         <circle
@@ -45,7 +45,7 @@ export function Icon({
       </>
     );
   }
-  if (motion === Motion.IncrementDoPosition) {
+  if (motion === Motion.IncrementLeft) {
     return (
       <>
         <circle
@@ -83,7 +83,7 @@ export function Icon({
       </>
     );
   }
-  if (motion === Motion.DecrementKeyDegree) {
+  if (motion === Motion.DecrementRight) {
     return (
       <>
         <line
@@ -103,7 +103,7 @@ export function Icon({
       </>
     );
   }
-  if (motion === Motion.IncrementKeyDegree) {
+  if (motion === Motion.IncrementRight) {
     return (
       <>
         <line
