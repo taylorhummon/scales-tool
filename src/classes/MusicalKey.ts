@@ -6,6 +6,10 @@ import { quotientAndRemainderFor, remainderFor } from "src/utilities/math";
 export const MAX_DO_POSITION = 3;
 export const MAX_KEY_DEGREE = 14;
 
+// default to C-Major
+export const DEFAULT_DO_POSITION = 2;
+export const DEFAULT_KEY_DEGREE = 0;
+
 /*
 I'm using the name "MusicalKey" instead of "Key" in order to avoid names colliding with React.
 */
@@ -162,6 +166,5 @@ const KEY_SHORTHAND_REGULAR_EXPRESSION = /^(-?[0-9]+)([A-G])$/i;
 
 function getDefaultMusicalKey(
 ): MusicalKey {
-  // default to C-Major
-  return musicalKeyFromDegreeAndModeNote(0, NaturalNote.C);
+  return new MusicalKey(DEFAULT_DO_POSITION, DEFAULT_KEY_DEGREE);
 }

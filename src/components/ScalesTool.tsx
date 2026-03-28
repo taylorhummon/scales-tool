@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Motion } from "src/enumerations";
 import type { State } from "src/types";
-import { MusicalKey } from "src/classes/MusicalKey";
+import { MusicalKey, DEFAULT_DO_POSITION, DEFAULT_KEY_DEGREE } from "src/classes/MusicalKey";
 import { Canvas } from "src/components/Canvas";
 import { buildClassString } from "src/utilities/css";
 
@@ -16,8 +16,8 @@ interface ScalesToolProps {
 
 
 export default function ScalesTool({
-  doPosition = 2,
-  keyDegree = 0
+  doPosition = DEFAULT_DO_POSITION,
+  keyDegree = DEFAULT_KEY_DEGREE
 }: ScalesToolProps): JSX.Element {
   const initialState: State = {
     motion: Motion.Still,
