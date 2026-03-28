@@ -1,42 +1,41 @@
 import { Note } from "src/classes/Note";
 import { NaturalNote } from "src/enumerations";
+import { MusicalKey } from "src/classes/MusicalKey";
 import { buildClassString } from "src/utilities/css";
-import { getModeName } from "src/utilities/scale";
+import { getModeName } from "src/utilities/mode";
 
-import cssModule from "src/components/Key.module.css";
+import cssModule from "src/components/KeyDescription.module.css";
 
 
-interface KeyProps {
-  modeNote: NaturalNote;
-  rootNote: Note;
+interface KeyDescriptionProps {
+  musicalKey: MusicalKey;
 }
 
-export function Key({
-  modeNote,
-  rootNote
-}: KeyProps): JSX.Element {
+export function KeyDescription({
+  musicalKey
+}: KeyDescriptionProps): JSX.Element {
   return (
     <text
-      className={buildClassString(cssModule, ["key"])}
+      className={buildClassString(cssModule, ["key-description"])}
       textAnchor="middle"
     >
-      <KeyTextContent
-        modeNote={modeNote}
-        rootNote={rootNote}
+      <TextContent
+        modeNote={musicalKey.modeNote}
+        rootNote={musicalKey.rootNote}
       />
     </text>
   );
 }
 
-interface KeyTextContentProps {
+interface TextContentProps {
   modeNote: NaturalNote;
   rootNote: Note;
 }
 
-function KeyTextContent({
+function TextContent({
   modeNote,
   rootNote
-}: KeyTextContentProps): JSX.Element {
+}: TextContentProps): JSX.Element {
   const noteFontClassName = buildClassString(cssModule, ["note-font"]);
   if (modeNote === NaturalNote.C) {
     return (

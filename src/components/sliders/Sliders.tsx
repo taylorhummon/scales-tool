@@ -1,7 +1,8 @@
 import type { Dispatch, SetStateAction } from "react";
 
 import { Motion } from "src/enumerations";
-import type { State, Derived } from "src/types";
+import type { State } from "src/types";
+import { MusicalKey } from "src/classes/MusicalKey";
 import { Button } from "src/components/sliders/Button";
 import { ArrivingNote } from "src/components/sliders/ArrivingNote";
 import { ArrivingSolfege } from "src/components/sliders/ArrivingSolfege";
@@ -14,12 +15,14 @@ import cssModule from "src/components/sliders/Sliders.module.css";
 
 
 interface SlidersProps {
-  derived: Derived;
+  musicalKey: MusicalKey;
+  motion: Motion;
   setState: Dispatch<SetStateAction<State>>;
 }
 
 export function Sliders({
-  derived,
+  musicalKey,
+  motion,
   setState
 }: SlidersProps): JSX.Element {
   return (
@@ -42,63 +45,71 @@ export function Sliders({
         clipPath="url(#sliders-clip-rectangle)"
       >
         <RootDot
-          motion={derived.motion}
-          rootNote={derived.rootNote}
+          rootNote={musicalKey.rootNote}
+          motion={motion}
         />
-        {derived.scale.map((note) => (
+        {musicalKey.scale.map((note) => (
           <SolfegeOnSlider
             key={note.position}
-            motion={derived.motion}
             note={note}
+            motion={motion}
           />
         ))}
-        {derived.scale.map((note) => (
+        {musicalKey.scale.map((note) => (
           <NoteOnSlider
             key={note.position}
-            motion={derived.motion}
             note={note}
+            motion={motion}
           />
         ))}
         <ArrivingSolfege
-          derived={derived}
+          musicalKey={musicalKey}
+          motion={motion}
         />
         <ArrivingNote
-          derived={derived}
+          musicalKey={musicalKey}
+          motion={motion}
         />
       </g>
       <Button
-        derived={derived}
-        motion={Motion.DecrementDoPosition}
+        musicalKey={musicalKey}
+        motion={motion}
+        onClickMotion={Motion.DecrementDoPosition}
         setState={setState}
         dataTestid="decrement-do-position"
       />
       <Button
-        derived={derived}
-        motion={Motion.IncrementDoPosition}
+        musicalKey={musicalKey}
+        motion={motion}
+        onClickMotion={Motion.IncrementDoPosition}
         setState={setState}
         dataTestid="increment-do-position"
       />
       <Button
-        derived={derived}
-        motion={Motion.DecrementKeyDegree}
+        musicalKey={musicalKey}
+        motion={motion}
+        onClickMotion={Motion.DecrementKeyDegree}
         setState={setState}
         dataTestid="decrement-key-degree"
       />
       <Button
-        derived={derived}
-        motion={Motion.IncrementKeyDegree}
+        musicalKey={musicalKey}
+        motion={motion}
+        onClickMotion={Motion.IncrementKeyDegree}
         setState={setState}
         dataTestid="increment-key-degree"
       />
       <Button
-        derived={derived}
-        motion={Motion.DecrementBoth}
+        musicalKey={musicalKey}
+        motion={motion}
+        onClickMotion={Motion.DecrementBoth}
         setState={setState}
         dataTestid="decrement-both"
       />
       <Button
-        derived={derived}
-        motion={Motion.IncrementBoth}
+        musicalKey={musicalKey}
+        motion={motion}
+        onClickMotion={Motion.IncrementBoth}
         setState={setState}
         dataTestid="increment-both"
       />

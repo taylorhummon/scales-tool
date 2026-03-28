@@ -2,166 +2,173 @@ import { test, expect } from 'vitest';
 
 import { Motion } from "src/enumerations"
 import { LabelAnimation } from "src/classes/LabelAnimation";
+import { MusicalKey } from "src/classes/MusicalKey";
 
 
 test("LabelAnimation works for keyDegree = 0", () => {
+  const musicalKey = new MusicalKey(2, 0);
+
   expect(
-    (new LabelAnimation(Motion.DecrementKeyDegree, 2, 0)).startNote.name
+    (new LabelAnimation(musicalKey, Motion.DecrementKeyDegree)).startNote.name
   ).toBe(
     "B"
   );
   expect(
-    (new LabelAnimation(Motion.DecrementKeyDegree, 2, 0)).finishNote.name
+    (new LabelAnimation(musicalKey, Motion.DecrementKeyDegree)).finishNote.name
   ).toBe(
     "B♭"
   );
   expect(
-    (new LabelAnimation(Motion.DecrementKeyDegree, 2, 0)).noteWithLongerName.name
-  ).toBe(
-    "B♭"
-  );
-  expect(
-    (new LabelAnimation(Motion.DecrementKeyDegree, 2, 0)).isIncrement
+    (new LabelAnimation(musicalKey, Motion.DecrementKeyDegree)).isIncrement
   ).toBe(
     false
   );
   expect(
-    (new LabelAnimation(Motion.DecrementKeyDegree, 2, 0)).isAddingCharacter
+    (new LabelAnimation(musicalKey, Motion.DecrementKeyDegree)).isAddingCharacter
   ).toBe(
     true
   );
+  expect(
+    (new LabelAnimation(musicalKey, Motion.DecrementKeyDegree)).noteWithLongerName.name
+  ).toBe(
+    "B♭"
+  );
 
   expect(
-    (new LabelAnimation(Motion.IncrementKeyDegree, 2, 0)).startNote.name
+    (new LabelAnimation(musicalKey, Motion.IncrementKeyDegree)).startNote.name
   ).toBe(
     "F"
   );
   expect(
-    (new LabelAnimation(Motion.IncrementKeyDegree, 2, 0)).finishNote.name
+    (new LabelAnimation(musicalKey, Motion.IncrementKeyDegree)).finishNote.name
   ).toBe(
     "F♯"
   );
   expect(
-    (new LabelAnimation(Motion.IncrementKeyDegree, 2, 0)).noteWithLongerName.name
+    (new LabelAnimation(musicalKey, Motion.IncrementKeyDegree)).isIncrement
+  ).toBe(
+    true
+  );
+  expect(
+    (new LabelAnimation(musicalKey, Motion.IncrementKeyDegree)).isAddingCharacter
+  ).toBe(
+    true
+  );
+  expect(
+    (new LabelAnimation(musicalKey, Motion.IncrementKeyDegree)).noteWithLongerName.name
   ).toBe(
     "F♯"
-  );
-  expect(
-    (new LabelAnimation(Motion.IncrementKeyDegree, 2, 0)).isIncrement
-  ).toBe(
-    true
-  );
-  expect(
-    (new LabelAnimation(Motion.IncrementKeyDegree, 2, 0)).isAddingCharacter
-  ).toBe(
-    true
   );
 });
 
 test("LabelAnimation works for keyDegree = 1", () => {
+  const musicalKey = new MusicalKey(1, 1);
+
   expect(
-    (new LabelAnimation(Motion.DecrementKeyDegree, 1, 1)).startNote.name
+    (new LabelAnimation(musicalKey, Motion.DecrementKeyDegree)).startNote.name
   ).toBe(
     "F♯"
   );
   expect(
-    (new LabelAnimation(Motion.DecrementKeyDegree, 1, 1)).finishNote.name
+    (new LabelAnimation(musicalKey, Motion.DecrementKeyDegree)).finishNote.name
   ).toBe(
     "F"
   );
   expect(
-    (new LabelAnimation(Motion.DecrementKeyDegree, 1, 1)).noteWithLongerName.name
+    (new LabelAnimation(musicalKey, Motion.DecrementKeyDegree)).isIncrement
+  ).toBe(
+    false
+  );
+  expect(
+    (new LabelAnimation(musicalKey, Motion.DecrementKeyDegree)).isAddingCharacter
+  ).toBe(
+    false
+  );
+  expect(
+    (new LabelAnimation(musicalKey, Motion.DecrementKeyDegree)).noteWithLongerName.name
   ).toBe(
     "F♯"
   );
-  expect(
-    (new LabelAnimation(Motion.DecrementKeyDegree, 1, 1)).isIncrement
-  ).toBe(
-    false
-  );
-  expect(
-    (new LabelAnimation(Motion.DecrementKeyDegree, 1, 1)).isAddingCharacter
-  ).toBe(
-    false
-  );
 
   expect(
-    (new LabelAnimation(Motion.IncrementKeyDegree, 1, 1)).startNote.name
+    (new LabelAnimation(musicalKey, Motion.IncrementKeyDegree)).startNote.name
   ).toBe(
     "C"
   );
   expect(
-    (new LabelAnimation(Motion.IncrementKeyDegree, 1, 1)).finishNote.name
+    (new LabelAnimation(musicalKey, Motion.IncrementKeyDegree)).finishNote.name
   ).toBe(
     "C♯"
   );
   expect(
-    (new LabelAnimation(Motion.IncrementKeyDegree, 1, 1)).noteWithLongerName.name
+    (new LabelAnimation(musicalKey, Motion.IncrementKeyDegree)).isIncrement
+  ).toBe(
+    true
+  );
+  expect(
+    (new LabelAnimation(musicalKey, Motion.IncrementKeyDegree)).isAddingCharacter
+  ).toBe(
+    true
+  );
+  expect(
+    (new LabelAnimation(musicalKey, Motion.IncrementKeyDegree)).noteWithLongerName.name
   ).toBe(
     "C♯"
-  );
-  expect(
-    (new LabelAnimation(Motion.IncrementKeyDegree, 1, 1)).isIncrement
-  ).toBe(
-    true
-  );
-  expect(
-    (new LabelAnimation(Motion.IncrementKeyDegree, 1, 1)).isAddingCharacter
-  ).toBe(
-    true
   );
 });
 
 test("LabelAnimation works for keyDegree = -3", () => {
+  const musicalKey = new MusicalKey(0, -3);
+
   expect(
-    (new LabelAnimation(Motion.DecrementKeyDegree, 0, -3)).startNote.name
+    (new LabelAnimation(musicalKey, Motion.DecrementKeyDegree)).startNote.name
   ).toBe(
     "D"
   );
   expect(
-    (new LabelAnimation(Motion.DecrementKeyDegree, 0, -3)).finishNote.name
+    (new LabelAnimation(musicalKey, Motion.DecrementKeyDegree)).finishNote.name
   ).toBe(
     "D♭"
   );
   expect(
-    (new LabelAnimation(Motion.DecrementKeyDegree, 0, -3)).noteWithLongerName.name
-  ).toBe(
-    "D♭"
-  );
-  expect(
-    (new LabelAnimation(Motion.DecrementKeyDegree, 0, -3)).isIncrement
+    (new LabelAnimation(musicalKey, Motion.DecrementKeyDegree)).isIncrement
   ).toBe(
     false
   );
   expect(
-    (new LabelAnimation(Motion.DecrementKeyDegree, 0, -3)).isAddingCharacter
+    (new LabelAnimation(musicalKey, Motion.DecrementKeyDegree)).isAddingCharacter
   ).toBe(
     true
   );
+  expect(
+    (new LabelAnimation(musicalKey, Motion.DecrementKeyDegree)).noteWithLongerName.name
+  ).toBe(
+    "D♭"
+  );
 
   expect(
-    (new LabelAnimation(Motion.IncrementKeyDegree, 0, -3)).startNote.name
+    (new LabelAnimation(musicalKey, Motion.IncrementKeyDegree)).startNote.name
   ).toBe(
     "A♭"
   );
   expect(
-    (new LabelAnimation(Motion.IncrementKeyDegree, 0, -3)).finishNote.name
+    (new LabelAnimation(musicalKey, Motion.IncrementKeyDegree)).finishNote.name
   ).toBe(
     "A"
   );
   expect(
-    (new LabelAnimation(Motion.IncrementKeyDegree, 0, -3)).noteWithLongerName.name
-  ).toBe(
-    "A♭"
-  );
-  expect(
-    (new LabelAnimation(Motion.IncrementKeyDegree, 0, -3)).isIncrement
+    (new LabelAnimation(musicalKey, Motion.IncrementKeyDegree)).isIncrement
   ).toBe(
     true
   );
   expect(
-    (new LabelAnimation(Motion.IncrementKeyDegree, 0, -3)).isAddingCharacter
+    (new LabelAnimation(musicalKey, Motion.IncrementKeyDegree)).isAddingCharacter
   ).toBe(
     false
+  );
+  expect(
+    (new LabelAnimation(musicalKey, Motion.IncrementKeyDegree)).noteWithLongerName.name
+  ).toBe(
+    "A♭"
   );
 });

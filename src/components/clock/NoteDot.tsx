@@ -7,17 +7,17 @@ import cssModule from "src/components/clock/NoteDot.module.css";
 
 
 interface NoteDotProps {
-  motion: Motion;
   note: Note;
+  motion: Motion;
 }
 
 export function NoteDot({
-  motion,
-  note
+  note,
+  motion
 }: NoteDotProps): JSX.Element {
   return (
     <circle
-      className={className(motion, note)}
+      className={className(note, motion)}
       data-testid={`note-dot-${note.solfege}`}
       cx="0"
       cy="0"
@@ -27,8 +27,8 @@ export function NoteDot({
 }
 
 function className(
-  motion: Motion,
-  note: Note
+  note: Note,
+  motion: Motion
 ): string {
   const classNames = ["note-dot"];
   if (

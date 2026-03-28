@@ -6,13 +6,13 @@ import cssModule from "src/components/clock/NoteLabelText.module.css";
 
 
 interface NoteLabelTextProps {
-  labelAnimation: LabelAnimation | null;
   note: Note;
+  labelAnimation: LabelAnimation | null;
 }
 
 export function NoteLabelText({
-  labelAnimation,
-  note
+  note,
+  labelAnimation
 }: NoteLabelTextProps): JSX.Element {
   if (labelAnimation === null || ! labelAnimation.isNoteAnimated(note)) {
     return (

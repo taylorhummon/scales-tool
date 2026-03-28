@@ -1,18 +1,8 @@
-import { Motion, NaturalNote } from "src/enumerations";
-import type { Note } from "src/classes/Note";
+import { Motion } from "src/enumerations";
 
 
 export interface State {
+  doPosition: number; // the position of the left slider
+  keyDegree: number;  // the position of the right slider
   motion: Motion;
-  doPosition: number;
-  keyDegree: number;
-}
-
-export interface Derived {
-  motion: Motion;
-  doPosition: number;
-  keyDegree: number;
-  modeNote: NaturalNote;
-  rootNote: Note;
-  scale: Array<Note>;
 }

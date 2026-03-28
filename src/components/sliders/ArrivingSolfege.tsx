@@ -1,7 +1,6 @@
-import type { Derived } from "src/types";
 import { Motion } from "src/enumerations";
+import { MusicalKey } from "src/classes/MusicalKey";
 import { SolfegeOnSlider } from "src/components/sliders/SolfegeOnSlider";
-import { getNote } from "src/utilities/scale";
 
 
 /*
@@ -9,22 +8,22 @@ As one solfege is departing from one end of the slider, another solfege is arriv
 */
 
 interface ArrivingSolfegeProps {
-  derived: Derived;
+  musicalKey: MusicalKey;
+  motion: Motion;
 }
 
 export function ArrivingSolfege({
-  derived
+  musicalKey,
+  motion
 }: ArrivingSolfegeProps): JSX.Element | null {
-  const motion = derived.motion
   if (
     motion === Motion.DecrementDoPosition ||
     motion === Motion.DecrementBoth
   ) {
-    const position = 4;
     return (
       <SolfegeOnSlider
         motion={motion}
-        note={getNote(derived.doPosition, derived.keyDegree, position)}
+        note={musicalKey.noteAt(4)}
       />
     );
   }
@@ -32,11 +31,10 @@ export function ArrivingSolfege({
     motion === Motion.IncrementDoPosition ||
     motion === Motion.IncrementBoth
   ) {
-    const position = -4;
     return (
       <SolfegeOnSlider
         motion={motion}
-        note={getNote(derived.doPosition, derived.keyDegree, position)}
+        note={musicalKey.noteAt(-4)}
       />
     );
   }

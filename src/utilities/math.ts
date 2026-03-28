@@ -26,15 +26,3 @@ function ensureZeroIsPositive(
   // Note: -0 === 0, and that's OK
   return n === 0 ? 0 : n;
 }
-
-export function cosineOfDegrees(
-  degrees: number
-): number {
-  return Math.cos(degrees * 2 * Math.PI / 360)
-}
-
-export function sineOfDegrees(
-  degrees: number
-): number {
-  return Math.sin(degrees * 2 * Math.PI / 360)
-}

@@ -1,36 +1,35 @@
 import type { Dispatch, SetStateAction } from "react";
 
 import { Motion } from "src/enumerations";
-import type { State, Derived } from "src/types";
+import type { State } from "src/types";
+import { MusicalKey } from "src/classes/MusicalKey";
 import { Icon } from "src/components/sliders/Icon";
 import { canPerformMotion } from "src/utilities/action";
 import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/sliders/Button.module.css";
 
-/*
-Note: the motion passed in IS NOT the current motion (which can be found in derived), but
-rather the motion that will start when the user presses this button.
-*/
 
 interface ButtonProps {
-  derived: Derived;
+  musicalKey: MusicalKey;
   motion: Motion;
+  onClickMotion: Motion;
   setState: Dispatch<SetStateAction<State>>;
   dataTestid: string;
 }
 
 export function Button({
-  derived,
+  musicalKey,
   motion,
+  onClickMotion,
   setState,
   dataTestid
 }: ButtonProps): JSX.Element {
-  const isDisabled = ! canPerformMotion(derived, motion);
-  const isWaiting = derived.motion !== Motion.Still;
+  const isDisabled = ! canPerformMotion(musicalKey, onClickMotion);
+  const isWaiting = motion !== Motion.Still;
   const isWide = (
-    motion === Motion.DecrementBoth ||
-    motion === Motion.IncrementBoth
+    onClickMotion === Motion.DecrementBoth ||
+    onClickMotion === Motion.IncrementBoth
   );
   const width = isWide ? 100 : 46;
   const height = 40;
@@ -39,20 +38,18 @@ export function Button({
   function handleClick(
   ): void {
     if (isDisabled || isWaiting) return;
-    setState((state: State) => ({ ...state, motion }));
+    setState((state: State) => ({ ...state, motion: onClickMotion }));
   }
 
   return (
     <g
-      className={groupClassName(motion)}
+      className={groupClassName(onClickMotion)}
     >
       <Icon
-        motion={motion}
-        isDisabled={isDisabled}
-        isWaiting={isWaiting}
+        motion={onClickMotion}
       />
       <rect
-        className={rectangleClassName(motion, isDisabled, isWaiting)}
+        className={rectangleClassName(onClickMotion, isDisabled, isWaiting)}
         onClick={handleClick}
         data-testid={dataTestid}
         x={- width / 2}
@@ -67,18 +64,18 @@ export function Button({
 }
 
 function groupClassName(
-  motion: Motion
+  onClickMotion: Motion
 ): string {
-  const classNames = ["button", motion];
+  const classNames = ["button", onClickMotion];
   return buildClassString(cssModule, classNames);
 }
 
 function rectangleClassName(
-  motion: Motion,
+  onClickMotion: Motion,
   isDisabled: boolean,
   isWaiting: boolean
 ): string {
-  const classNames = ["button-rectangle", motion];
+  const classNames = ["button-rectangle", onClickMotion];
   if (isDisabled) classNames.push("disabled");
   if (isWaiting) classNames.push("waiting");
   return buildClassString(cssModule, classNames);

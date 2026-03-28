@@ -1,7 +1,6 @@
-import type { Derived } from "src/types";
 import { Motion } from "src/enumerations";
+import { MusicalKey } from "src/classes/MusicalKey";
 import { NoteOnSlider } from "src/components/sliders/NoteOnSlider";
-import { getNote } from "src/utilities/scale";
 
 
 /*
@@ -9,33 +8,33 @@ As one note is departing from one end of the slider, another note is arriving at
 */
 
 interface ArrivingNoteProps {
-  derived: Derived;
+  musicalKey: MusicalKey;
+  motion: Motion;
 }
 
 export function ArrivingNote({
-  derived
+  musicalKey,
+  motion
 }: ArrivingNoteProps): JSX.Element | null {
   if (
-    derived.motion === Motion.DecrementKeyDegree ||
-    derived.motion === Motion.DecrementBoth
+    motion === Motion.DecrementKeyDegree ||
+    motion === Motion.DecrementBoth
   ) {
-    const position = 4;
     return (
       <NoteOnSlider
-        motion={derived.motion}
-        note={getNote(derived.doPosition, derived.keyDegree, position)}
+        motion={motion}
+        note={musicalKey.noteAt(4)}
       />
     );
   }
   if (
-    derived.motion === Motion.IncrementKeyDegree ||
-    derived.motion === Motion.IncrementBoth
+    motion === Motion.IncrementKeyDegree ||
+    motion === Motion.IncrementBoth
   ) {
-    const position = -4;
     return (
       <NoteOnSlider
-        motion={derived.motion}
-        note={getNote(derived.doPosition, derived.keyDegree, position)}
+        motion={motion}
+        note={musicalKey.noteAt(-4)}
       />
     );
   }

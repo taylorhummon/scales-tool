@@ -2,9 +2,7 @@ import { test, expect } from 'vitest';
 
 import {
   quotientAndRemainderFor,
-  remainderFor,
-  cosineOfDegrees,
-  sineOfDegrees
+  remainderFor
 } from "src/utilities/math";
 
 
@@ -81,50 +79,4 @@ test("remainderFor() throws when the denominator is zero or negative", () => {
   expect(() => {
     remainderFor(14, -3);
   }).toThrow();
-});
-
-test("cosineOfDegrees() should work for common degree values", () => {
-  expect(
-    cosineOfDegrees(0)
-  ).toBeCloseTo(
-    1
-  );
-  expect(
-    cosineOfDegrees(90)
-  ).toBeCloseTo(
-    0
-  );
-  expect(
-    cosineOfDegrees(180)
-  ).toBeCloseTo(
-    -1
-  );
-  expect(
-    cosineOfDegrees(-90)
-  ).toBeCloseTo(
-    0
-  );
-});
-
-test("sineOfDegrees() should work for common degree values", () => {
-  expect(
-    sineOfDegrees(0)
-  ).toBeCloseTo(
-    0
-  );
-  expect(
-    sineOfDegrees(90)
-  ).toBeCloseTo(
-    1
-  );
-  expect(
-    sineOfDegrees(180)
-  ).toBeCloseTo(
-    0
-  );
-  expect(
-    sineOfDegrees(-90)
-  ).toBeCloseTo(
-    -1
-  );
 });

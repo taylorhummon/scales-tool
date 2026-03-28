@@ -7,17 +7,17 @@ import cssModule from "src/components/sliders/SolfegeOnSlider.module.css";
 
 
 interface SolfegeOnSliderProps {
-  motion: Motion;
   note: Note;
+  motion: Motion;
 }
 
 export function SolfegeOnSlider({
-  motion,
-  note
+  note,
+  motion
 }: SolfegeOnSliderProps): JSX.Element {
   return (
     <g
-      className={className(motion, note)}
+      className={className(note, motion)}
     >
       <text
         className={buildClassString(cssModule, ["solfege-text"])}
@@ -30,8 +30,8 @@ export function SolfegeOnSlider({
 
 
 function className(
-  motion: Motion,
   note: Note,
+  motion: Motion
 ): string {
   const classNames = ["solfege-on-slider", note.solfege];
   if (

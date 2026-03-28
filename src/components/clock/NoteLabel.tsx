@@ -7,30 +7,30 @@ import cssModule from "src/components/clock/NoteLabel.module.css";
 
 
 interface NoteLabelProps {
-  labelAnimation: LabelAnimation | null;
   note: Note;
+  labelAnimation: LabelAnimation | null;
 }
 
 export function NoteLabel({
-  labelAnimation,
-  note
+  note,
+  labelAnimation
 }: NoteLabelProps): JSX.Element {
   return (
     <g
-      className={className(labelAnimation, note)}
+      className={className(note, labelAnimation)}
       data-testid={`note-label-${note.solfege}`}
     >
       <NoteLabelText
-        labelAnimation={labelAnimation}
         note={note}
+        labelAnimation={labelAnimation}
       />
     </g>
   );
 }
 
 function className(
-  labelAnimation: LabelAnimation | null,
-  note: Note
+  note: Note,
+  labelAnimation: LabelAnimation | null
 ): string {
   const classNames = ["note-label", note.solfege];
   if (labelAnimation === null || ! labelAnimation.isNoteAnimated(note)) {

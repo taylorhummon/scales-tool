@@ -1,5 +1,6 @@
-import type { Derived } from "src/types";
+import { Motion } from "src/enumerations";
 import { buildLabelAnimation } from "src/classes/LabelAnimation";
+import { MusicalKey } from "src/classes/MusicalKey";
 import { ClockFace } from "src/components/clock/ClockFace";
 import { NoteDot } from "src/components/clock/NoteDot";
 import { NoteLabel } from "src/components/clock/NoteLabel";
@@ -10,34 +11,36 @@ import cssModule from "src/components/clock/Clock.module.css";
 
 
 interface ClockProps {
-  derived: Derived;
+  musicalKey: MusicalKey;
+  motion: Motion;
 }
 
 export function Clock({
-  derived
+  musicalKey,
+  motion
 }: ClockProps): JSX.Element {
-  const labelAnimation = buildLabelAnimation(derived);
+  const labelAnimation = buildLabelAnimation(musicalKey, motion);
   return (
     <g
       className={buildClassString(cssModule, ["clock"])}
     >
       <RootDot
-        motion={derived.motion}
-        rootNote={derived.rootNote}
+        rootNote={musicalKey.rootNote}
+        motion={motion}
       />
       <ClockFace />
-      {derived.scale.map((note) => (
+      {musicalKey.scale.map((note) => (
         <NoteDot
           key={note.name}
-          motion={derived.motion}
           note={note}
+          motion={motion}
         />
       ))}
-      {derived.scale.map((note) => (
+      {musicalKey.scale.map((note) => (
         <NoteLabel
           key={note.name}
-          labelAnimation={labelAnimation}
           note={note}
+          labelAnimation={labelAnimation}
         />
       ))}
     </g>

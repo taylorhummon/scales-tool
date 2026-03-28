@@ -2,10 +2,9 @@ import { useState } from "react";
 
 import { Motion } from "src/enumerations";
 import type { State } from "src/types";
+import { MusicalKey } from "src/classes/MusicalKey";
 import { Canvas } from "src/components/Canvas";
-import { Summary } from "src/components/summary/Summary";
 import { buildClassString } from "src/utilities/css";
-import { derivedFromState } from "src/utilities/derived";
 
 import cssModule from "src/components/ScalesTool.module.css";
 
@@ -26,21 +25,16 @@ export default function ScalesTool({
     keyDegree
   };
   const [state, setState] = useState(initialState);
-  const derived = derivedFromState(state);
+  const musicalKey = new MusicalKey(state.doPosition, state.keyDegree);
 
   return (
     <div
       className={buildClassString(cssModule, ["scales-tool"])}
     >
       <Canvas
-        derived={derived}
+        musicalKey={musicalKey}
+        motion={state.motion}
         setState={setState}
-      />
-      <Summary
-        keyDegree={derived.keyDegree}
-        modeNote={derived.modeNote}
-        rootNote={derived.rootNote}
-        isEnabled={false}
       />
     </div>
   );

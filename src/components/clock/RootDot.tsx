@@ -7,17 +7,17 @@ import cssModule from "src/components/clock/RootDot.module.css";
 
 
 interface RootDotProps {
-  motion: Motion;
   rootNote: Note;
+  motion: Motion;
 }
 
 export function RootDot({
-  motion,
-  rootNote
+  rootNote,
+  motion
 }: RootDotProps): JSX.Element {
   return (
     <circle
-      className={className(motion, rootNote)}
+      className={className(rootNote, motion)}
       data-testid={"clock-root-dot"}
       cx="0"
       cy="0"
@@ -30,8 +30,8 @@ export function RootDot({
 }
 
 function className(
-  motion: Motion,
-  rootNote: Note
+  rootNote: Note,
+  motion: Motion
 ): string {
   const classNames = ["root-dot"];
   if (

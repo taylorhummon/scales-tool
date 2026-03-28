@@ -1,46 +1,20 @@
-import type { State, Derived } from "src/types";
+import type { State } from "src/types";
 import { Motion } from "src/enumerations";
-
-
-const MAX_DO_POSITION = 3;
-const MAX_KEY_DEGREE = 14;  // this maximum is artificial
+import { MusicalKey } from "src/classes/MusicalKey";
+import { MAX_DO_POSITION, MAX_KEY_DEGREE } from "src/classes/MusicalKey";
 
 
 export function canPerformMotion(
-  derived: Derived,
+  musicalKey: MusicalKey,
   motion: Motion
 ): boolean {
-  if (motion === Motion.DecrementDoPosition) return canDecrementDoPosition(derived);
-  if (motion === Motion.IncrementDoPosition) return canIncrementDoPosition(derived);
-  if (motion === Motion.DecrementKeyDegree) return canDecrementKeyDegree(derived);
-  if (motion === Motion.IncrementKeyDegree) return canIncrementKeyDegree(derived);
-  if (motion === Motion.DecrementBoth) return canDecrementDoPosition(derived) && canDecrementKeyDegree(derived);
-  if (motion === Motion.IncrementBoth) return canIncrementDoPosition(derived) && canIncrementKeyDegree(derived);
+  if (motion === Motion.DecrementDoPosition) return canDecrementDoPosition(musicalKey);
+  if (motion === Motion.IncrementDoPosition) return canIncrementDoPosition(musicalKey);
+  if (motion === Motion.DecrementKeyDegree) return canDecrementKeyDegree(musicalKey);
+  if (motion === Motion.IncrementKeyDegree) return canIncrementKeyDegree(musicalKey);
+  if (motion === Motion.DecrementBoth) return canDecrementDoPosition(musicalKey) && canDecrementKeyDegree(musicalKey);
+  if (motion === Motion.IncrementBoth) return canIncrementDoPosition(musicalKey) && canIncrementKeyDegree(musicalKey);
   return false;
-}
-
-function canDecrementDoPosition(
-  derived: Derived
-): boolean {
-  return derived.doPosition > - MAX_DO_POSITION;
-}
-
-function canIncrementDoPosition(
-  derived: Derived
-): boolean {
-  return derived.doPosition < MAX_DO_POSITION;
-}
-
-function canDecrementKeyDegree(
-  derived: Derived
-): boolean {
-  return derived.keyDegree > - MAX_KEY_DEGREE;
-}
-
-function canIncrementKeyDegree(
-  derived: Derived
-): boolean {
-  return derived.keyDegree < MAX_KEY_DEGREE;
 }
 
 export function updateStateAtEndOfAnimation(
@@ -91,4 +65,30 @@ export function updateStateAtEndOfAnimation(
     };
   }
   return state;
+}
+
+// *** Private functions below this line ***
+
+function canDecrementDoPosition(
+  musicalKey: MusicalKey
+): boolean {
+  return musicalKey.doPosition > - MAX_DO_POSITION;
+}
+
+function canIncrementDoPosition(
+  musicalKey: MusicalKey
+): boolean {
+  return musicalKey.doPosition < MAX_DO_POSITION;
+}
+
+function canDecrementKeyDegree(
+  musicalKey: MusicalKey
+): boolean {
+  return musicalKey.degree > - MAX_KEY_DEGREE;
+}
+
+function canIncrementKeyDegree(
+  musicalKey: MusicalKey
+): boolean {
+  return musicalKey.degree < MAX_KEY_DEGREE;
 }

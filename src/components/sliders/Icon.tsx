@@ -2,8 +2,6 @@ import { Motion } from "src/enumerations";
 
 interface IconProps {
   motion: Motion;
-  isDisabled: boolean;
-  isWaiting: boolean;
 }
 
 export function Icon({

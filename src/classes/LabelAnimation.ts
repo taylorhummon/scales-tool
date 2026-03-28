@@ -1,76 +1,41 @@
 import { Motion } from "src/enumerations";
+import { MusicalKey } from "src/classes/MusicalKey";
 import { Note } from "src/classes/Note";
-import { getNote } from "src/utilities/scale";
 
 
-interface buildLabelAnimationProps {
-  motion: Motion;
-  doPosition: number;
-  keyDegree: number;
-}
-
-export function buildLabelAnimation({
-  motion,
-  doPosition,
-  keyDegree
-}: buildLabelAnimationProps): LabelAnimation | null {
+export function buildLabelAnimation(
+  musicalKey: MusicalKey,
+  motion: Motion
+): LabelAnimation | null {
   if (
     motion === Motion.DecrementKeyDegree ||
     motion === Motion.IncrementKeyDegree ||
     motion === Motion.DecrementBoth ||
     motion === Motion.IncrementBoth
   ) {
-    return new LabelAnimation(motion, doPosition, keyDegree);
+    return new LabelAnimation(musicalKey, motion);
   }
   return null;
 }
 
 
 export class LabelAnimation {
-  #doPosition: number;
-  #keyDegree: number;
-  #isIncrement: boolean;
-  #startNote: Note | null = null;
-  #finishNote: Note | null = null;
+  startNote: Note;
+  finishNote: Note;
+  isIncrement: boolean;
+  isAddingCharacter: boolean;
+  noteWithLongerName: Note;
 
   constructor(
-    motion: Motion,
-    doPosition: number,
-    keyDegree: number
+    musicalKey: MusicalKey,
+    motion: Motion
   ) {
-    this.#doPosition = doPosition;
-    this.#keyDegree = keyDegree;
-    this.#isIncrement = this.#getIsIncrement(motion);
-  }
-
-  get startNote(): Note {
-    if (this.#startNote !== null) return this.#startNote;
-    this.#startNote = this.#computeStartNote();
-    return this.#startNote;
-  }
-
-  get finishNote(): Note {
-    if (this.#finishNote !== null) return this.#finishNote;
-    this.#finishNote = this.#computeFinishNote();
-    return this.#finishNote;
-  }
-
-  get noteWithLongerName(): Note {
-    return this.isAddingCharacter ? this.finishNote : this.startNote;
-  }
-
-  get isIncrement(): boolean {
-    return this.#isIncrement;
-  }
-
-  get isAddingCharacter(): boolean {
-    if (this.#isIncrement && this.#keyDegree < 0) {
-      return false;
-    }
-    if (! this.#isIncrement && this.#keyDegree > 0) {
-      return false;
-    }
-    return true;
+    const isIncrement = getIsIncrement(motion);
+    this.startNote = getStartNote(musicalKey, isIncrement);
+    this.finishNote = getFinishNote(isIncrement, this.startNote);
+    this.isIncrement = isIncrement;
+    this.isAddingCharacter = getIsAddingCharacter(musicalKey, isIncrement);
+    this.noteWithLongerName = getNoteWithLongerName(this.isAddingCharacter, this.startNote, this.finishNote);
   }
 
   isNoteAnimated(
@@ -78,34 +43,60 @@ export class LabelAnimation {
   ): boolean {
     return this.startNote.hour === note.hour;
   }
+}
 
-  #getIsIncrement(
-    motion: Motion
-  ): boolean {
-    if (
-      motion === Motion.DecrementKeyDegree ||
-      motion === Motion.DecrementBoth
-    ) return false;
-    if (
-      motion === Motion.IncrementKeyDegree ||
-      motion === Motion.IncrementBoth
-    ) return true;
-    throw Error("LabelAnimation requires incrementing or decrementing key degree");
-  }
+// *** Private functions below this line ***
 
-  #computeStartNote(
-  ): Note {
-    const position = this.#isIncrement ? 3 : -3;
-    return getNote(this.#doPosition, this.#keyDegree, position);
-  }
+function getStartNote(
+  musicalKey: MusicalKey,
+  isIncrement: boolean
+): Note {
+  const position = isIncrement ? 3 : -3;
+  return musicalKey.noteAt(position);
+}
 
-  #computeFinishNote(
-  ): Note {
-    const startNote = this.startNote;
-    if (this.#isIncrement) {
-      return new Note(startNote.naturalNote, startNote.sharpsCount + 1, startNote.solfege, -3);
-    } else {
-      return new Note(startNote.naturalNote, startNote.sharpsCount - 1, startNote.solfege, 3);
-    }
+function getFinishNote(
+  isIncrement: boolean,
+  startNote: Note
+): Note {
+  if (isIncrement) {
+    return new Note(startNote.naturalNote, startNote.sharpsCount + 1, startNote.solfege, -3);
+  } else {
+    return new Note(startNote.naturalNote, startNote.sharpsCount - 1, startNote.solfege, 3);
   }
+}
+
+function getIsIncrement(
+  motion: Motion
+): boolean {
+  if (
+    motion === Motion.DecrementKeyDegree ||
+    motion === Motion.DecrementBoth
+  ) return false;
+  if (
+    motion === Motion.IncrementKeyDegree ||
+    motion === Motion.IncrementBoth
+  ) return true;
+  throw Error("LabelAnimation requires incrementing or decrementing key degree");
+}
+
+function getIsAddingCharacter(
+  musicalKey: MusicalKey,
+  isIncrement: boolean
+): boolean {
+  if (isIncrement && musicalKey.degree < 0) {
+    return false;
+  }
+  if (! isIncrement && musicalKey.degree > 0) {
+    return false;
+  }
+  return true;
+}
+
+function getNoteWithLongerName(
+  isAddingCharacter: boolean,
+  startNote: Note,
+  finishNote: Note
+): Note {
+  return isAddingCharacter ? finishNote : startNote;
 }

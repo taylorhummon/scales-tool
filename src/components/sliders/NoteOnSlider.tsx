@@ -6,17 +6,17 @@ import cssModule from "src/components/sliders/NoteOnSlider.module.css";
 
 
 interface NoteOnSliderProps {
-  motion: Motion;
   note: Note;
+  motion: Motion;
 }
 
 export function NoteOnSlider({
-  motion,
-  note
+  note,
+  motion
 }: NoteOnSliderProps): JSX.Element {
   return (
     <g
-      className={className(motion, note)}
+      className={className(note, motion)}
     >
       <text>
         {note.name}
@@ -27,8 +27,8 @@ export function NoteOnSlider({
 
 
 function className(
-  motion: Motion,
-  note: Note
+  note: Note,
+  motion: Motion
 ): string {
   const classNames = ["note-on-slider", note.name];
   const position = note.position;
