@@ -6,8 +6,8 @@ export class Note {
   naturalNote: NaturalNote;
   sharpsCount: number;
   solfege: Solfege;
-  position: number;
-  hour: number;
+  position: number;   // where on slider
+  hour: number;       // where on clock
   name: string;
 
   constructor(
