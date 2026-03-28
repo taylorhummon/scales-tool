@@ -41,16 +41,16 @@ function className(
   ) {
     classNames.push(`hour-${rootNote.hour}`);
   } else if (
-    motion === Motion.IncrementLeft ||
-    motion === Motion.DecrementRight
+    motion === Motion.IncrementMode ||
+    motion === Motion.DecrementDegree
   ) {
     const startHour = rootNote.hour;
     const finishHour = remainderFor(startHour - 7, 12);
     classNames.push("move");
     classNames.push(`from-${startHour}-to-${finishHour}`);
   } else if (
-    motion === Motion.DecrementLeft ||
-    motion === Motion.IncrementRight
+    motion === Motion.DecrementMode ||
+    motion === Motion.IncrementDegree
    ) {
     const startHour = rootNote.hour;
     const finishHour = remainderFor(startHour + 7, 12);

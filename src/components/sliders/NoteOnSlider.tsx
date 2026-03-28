@@ -33,13 +33,13 @@ function className(
   const classNames = ["note-on-slider", note.name];
   const position = note.position;
   if (
-    motion === Motion.DecrementRight ||
+    motion === Motion.DecrementDegree ||
     motion === Motion.DecrementBoth
   ) {
     classNames.push("move");
     classNames.push(`from-${position}-to-${position - 1}`);
   } else if (
-    motion === Motion.IncrementRight ||
+    motion === Motion.IncrementDegree ||
     motion === Motion.IncrementBoth
   ) {
     classNames.push("move");

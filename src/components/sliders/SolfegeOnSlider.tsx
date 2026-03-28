@@ -35,13 +35,13 @@ function className(
 ): string {
   const classNames = ["solfege-on-slider", note.solfege];
   if (
-    motion === Motion.DecrementLeft ||
+    motion === Motion.DecrementMode ||
     motion === Motion.DecrementBoth
   ) {
     classNames.push("move");
     classNames.push(`from-${note.position}-to-${note.position - 1}`);
   } else if (
-    motion === Motion.IncrementLeft ||
+    motion === Motion.IncrementMode ||
     motion === Motion.IncrementBoth
   ) {
     classNames.push("move");

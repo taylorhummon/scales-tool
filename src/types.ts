@@ -2,7 +2,7 @@ import { Motion } from "src/enumerations";
 
 
 export interface State {
-  leftSliderPosition: number;
-  rightSliderPosition: number;
+  mode: number;
+  degree: number;
   motion: Motion;
 }

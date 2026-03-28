@@ -17,7 +17,7 @@ export function ArrivingNote({
   motion
 }: ArrivingNoteProps): JSX.Element | null {
   if (
-    motion === Motion.DecrementRight ||
+    motion === Motion.DecrementDegree ||
     motion === Motion.DecrementBoth
   ) {
     return (
@@ -28,7 +28,7 @@ export function ArrivingNote({
     );
   }
   if (
-    motion === Motion.IncrementRight ||
+    motion === Motion.IncrementDegree ||
     motion === Motion.IncrementBoth
   ) {
     return (

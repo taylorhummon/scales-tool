@@ -33,12 +33,12 @@ function className(
   const classNames = ["note-dot"];
   if (
     motion === Motion.Still ||
-    motion === Motion.DecrementLeft ||
-    motion === Motion.IncrementLeft
+    motion === Motion.DecrementMode ||
+    motion === Motion.IncrementMode
   ) {
     classNames.push(`hour-${note.hour}`);
   } else if (
-    motion === Motion.DecrementRight ||
+    motion === Motion.DecrementDegree ||
     motion === Motion.DecrementBoth
   ) {
     const startHour = note.hour;
@@ -46,7 +46,7 @@ function className(
     classNames.push("move");
     classNames.push(`from-${startHour}-to-${finishHour}`);
   } else if (
-    motion === Motion.IncrementRight ||
+    motion === Motion.IncrementDegree ||
     motion === Motion.IncrementBoth
   ) {
     const startHour = note.hour;

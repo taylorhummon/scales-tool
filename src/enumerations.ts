@@ -1,9 +1,9 @@
 export enum Motion {
   Still = "Still",
-  DecrementLeft = "DecrementLeft",
-  IncrementLeft = "IncrementLeft",
-  DecrementRight = "DecrementRight",
-  IncrementRight = "IncrementRight",
+  DecrementMode = "DecrementMode",
+  IncrementMode = "IncrementMode",
+  DecrementDegree = "DecrementDegree",
+  IncrementDegree = "IncrementDegree",
   DecrementBoth = "DecrementBoth",
   IncrementBoth = "IncrementBoth"
 }

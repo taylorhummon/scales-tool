@@ -17,7 +17,7 @@ export function ArrivingSolfege({
   motion
 }: ArrivingSolfegeProps): JSX.Element | null {
   if (
-    motion === Motion.DecrementLeft ||
+    motion === Motion.DecrementMode ||
     motion === Motion.DecrementBoth
   ) {
     return (
@@ -28,7 +28,7 @@ export function ArrivingSolfege({
     );
   }
   if (
-    motion === Motion.IncrementLeft ||
+    motion === Motion.IncrementMode ||
     motion === Motion.IncrementBoth
   ) {
     return (

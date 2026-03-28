@@ -74,30 +74,30 @@ export function Sliders({
       <Button
         musicalKey={musicalKey}
         motion={motion}
-        onClickMotion={Motion.DecrementLeft}
+        onClickMotion={Motion.DecrementMode}
         setState={setState}
-        dataTestid="decrement-left"
+        dataTestid="decrement-mode"
       />
       <Button
         musicalKey={musicalKey}
         motion={motion}
-        onClickMotion={Motion.IncrementLeft}
+        onClickMotion={Motion.IncrementMode}
         setState={setState}
-        dataTestid="increment-left"
+        dataTestid="increment-mode"
       />
       <Button
         musicalKey={musicalKey}
         motion={motion}
-        onClickMotion={Motion.DecrementRight}
+        onClickMotion={Motion.DecrementDegree}
         setState={setState}
-        dataTestid="decrement-right"
+        dataTestid="decrement-degree"
       />
       <Button
         musicalKey={musicalKey}
         motion={motion}
-        onClickMotion={Motion.IncrementRight}
+        onClickMotion={Motion.IncrementDegree}
         setState={setState}
-        dataTestid="increment-right"
+        dataTestid="increment-degree"
       />
       <Button
         musicalKey={musicalKey}

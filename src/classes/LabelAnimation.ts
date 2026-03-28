@@ -8,8 +8,8 @@ export function buildLabelAnimation(
   motion: Motion
 ): LabelAnimation | null {
   if (
-    motion === Motion.DecrementRight ||
-    motion === Motion.IncrementRight ||
+    motion === Motion.DecrementDegree ||
+    motion === Motion.IncrementDegree ||
     motion === Motion.DecrementBoth ||
     motion === Motion.IncrementBoth
   ) {
@@ -70,11 +70,11 @@ function getIsIncrement(
   motion: Motion
 ): boolean {
   if (
-    motion === Motion.DecrementRight ||
+    motion === Motion.DecrementDegree ||
     motion === Motion.DecrementBoth
   ) return false;
   if (
-    motion === Motion.IncrementRight ||
+    motion === Motion.IncrementDegree ||
     motion === Motion.IncrementBoth
   ) return true;
   throw Error("LabelAnimation requires incrementing or decrementing key degree");

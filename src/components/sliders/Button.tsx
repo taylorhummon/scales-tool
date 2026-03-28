@@ -4,6 +4,7 @@ import { Motion } from "src/enumerations";
 import type { State } from "src/types";
 import { MusicalKey } from "src/classes/MusicalKey";
 import { Icon } from "src/components/sliders/Icon";
+import { canPerformMotion } from "src/utilities/action";
 import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/sliders/Button.module.css";
@@ -24,7 +25,7 @@ export function Button({
   setState,
   dataTestid
 }: ButtonProps): JSX.Element {
-  const isDisabled = ! musicalKey.canPerformMotion(onClickMotion);
+  const isDisabled = ! canPerformMotion(musicalKey, onClickMotion);
   const isWaiting = motion !== Motion.Still;
   const isWide = (
     onClickMotion === Motion.DecrementBoth ||
