@@ -4,6 +4,7 @@ import { Motion } from "src/enumerations";
 import type { State } from "src/types";
 import { DEFAULT_MODE, DEFAULT_DEGREE, MusicalKey } from "src/classes/MusicalKey";
 import { Canvas } from "src/components/Canvas";
+import { KeySummary } from "src/components/KeySummary";
 import { buildClassString } from "src/utilities/css";
 
 import cssModule from "src/components/ScalesTool.module.css";
@@ -30,6 +31,10 @@ export default function ScalesTool({
         musicalKey={musicalKey}
         motion={state.motion}
         setState={setState}
+      />
+      <KeySummary
+        musicalKey={musicalKey}
+        isEnabled={true}
       />
     </div>
   );

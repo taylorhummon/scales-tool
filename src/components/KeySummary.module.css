@@ -1,0 +1,51 @@
+.key-summary {
+  margin: 0 2px;
+  display: grid;
+  grid-template-columns: 105px auto;
+  column-gap: 0px;
+  row-gap: 5px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.content {
+  font-family: "PT Mono", monospace;
+}
+
+.key-degree {
+  &.label {
+    grid-row: 3;
+    grid-column: 1;
+  }
+
+  &.content {
+    grid-row: 3;
+    grid-column: 2;
+  }
+}
+
+.mode-note {
+  &.label {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  &.content {
+    grid-row: 2;
+    grid-column: 2;
+  }
+}
+
+.root-note {
+  &.label {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  &.content {
+    grid-row: 1;
+    grid-column: 2;
+  }
+}
