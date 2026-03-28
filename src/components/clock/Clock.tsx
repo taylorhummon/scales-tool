@@ -2,6 +2,7 @@ import { Motion } from "src/enumerations";
 import { buildLabelAnimation } from "src/classes/LabelAnimation";
 import { MusicalKey } from "src/classes/MusicalKey";
 import { ClockFace } from "src/components/clock/ClockFace";
+import { KeyDescription } from "src/components/clock/KeyDescription";
 import { NoteDot } from "src/components/clock/NoteDot";
 import { NoteLabel } from "src/components/clock/NoteLabel";
 import { RootDot } from "src/components/clock/RootDot";
@@ -43,6 +44,9 @@ export function Clock({
           labelAnimation={labelAnimation}
         />
       ))}
+      <KeyDescription
+        musicalKey={musicalKey}
+      />
     </g>
   );
 }

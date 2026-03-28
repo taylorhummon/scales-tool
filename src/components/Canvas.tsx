@@ -4,7 +4,6 @@ import { useRef, useEffect } from "react";
 import { Motion } from "src/enumerations";
 import type { State } from "src/types";
 import { MusicalKey } from "src/classes/MusicalKey";
-import { KeyDescription } from "src/components/KeyDescription";
 import { Clock } from "src/components/clock/Clock";
 import { Sliders } from "src/components/sliders/Sliders";
 import { buildClassString } from "src/utilities/css";
@@ -70,9 +69,6 @@ export function Canvas({
         <Clock
           musicalKey={musicalKey}
           motion={motion}
-        />
-        <KeyDescription
-          musicalKey={musicalKey}
         />
       </svg>
     </div>

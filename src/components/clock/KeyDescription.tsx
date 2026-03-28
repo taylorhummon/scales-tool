@@ -4,7 +4,7 @@ import { MusicalKey } from "src/classes/MusicalKey";
 import { buildClassString } from "src/utilities/css";
 import { getModeName } from "src/utilities/mode";
 
-import cssModule from "src/components/KeyDescription.module.css";
+import cssModule from "src/components/clock/KeyDescription.module.css";
 
 
 interface KeyDescriptionProps {
