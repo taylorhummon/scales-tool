@@ -15,8 +15,8 @@ I'm using the name "MusicalKey" instead of "Key" in order to avoid names collidi
 */
 
 export class MusicalKey {
-  doPosition: number;
-  degree: number;
+  doPosition: number; // the position of the left slider
+  degree: number;     // the position of the right slider
   modeNote: NaturalNote;
   rootNote: Note;
   #scale: Array<Note> | null = null;
