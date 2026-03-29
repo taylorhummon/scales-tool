@@ -18,7 +18,7 @@ export default function ScalesTool({
   degree = DEFAULT_DEGREE,
   mode = DEFAULT_MODE
 }: ScalesToolProps): JSX.Element {
-  const initialState: State = { motion: Motion.Still, mode, degree };
+  const initialState: State = { degree, mode, motion: Motion.Still };
   const [state, setState] = useState(initialState);
   const musicalKey = new MusicalKey(state.degree, state.mode);
 

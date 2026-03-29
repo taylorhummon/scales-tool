@@ -22,7 +22,7 @@ export function RootDot({
       cx="0"
       cy="0"
       r="14"
-      strokeWidth={1.3}
+      strokeWidth="1.3"
       stroke="rgb(4, 51, 255)"
       fill="rgb(208, 214, 253)"
     />
