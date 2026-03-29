@@ -1,8 +1,5 @@
-import { Note } from "src/classes/Note";
-import { NaturalNote } from "src/enumerations";
 import { MusicalKey } from "src/classes/MusicalKey";
 import { buildClassString } from "src/utilities/css";
-import { getModeName } from "src/utilities/mode";
 
 import cssModule from "src/components/clock/KeyDescription.module.css";
 
@@ -21,8 +18,7 @@ export function KeyDescription({
         textAnchor="middle"
       >
         <TextContent
-          modeNote={musicalKey.modeNote}
-          rootNote={musicalKey.rootNote}
+          musicalKey={musicalKey}
         />
         {"\n"}
       </text>
@@ -37,32 +33,31 @@ export function KeyDescription({
 }
 
 interface TextContentProps {
-  modeNote: NaturalNote;
-  rootNote: Note;
+  musicalKey: MusicalKey;
 }
 
 function TextContent({
-  modeNote,
-  rootNote
+  musicalKey
 }: TextContentProps): JSX.Element {
   const noteFontClassName = buildClassString(cssModule, ["note-font"]);
-  if (modeNote === NaturalNote.C) {
+  const rootNoteName = musicalKey.rootNote.name;
+  if (musicalKey.mode === 2) {
     return (
       <>
-        <tspan className={noteFontClassName}>{rootNote.name}</tspan>-Major.
+        <tspan className={noteFontClassName}>{rootNoteName}</tspan>-Major.
       </>
     );
   }
-  if (modeNote === NaturalNote.A) {
+  if (musicalKey.mode === -1) {
     return (
       <>
-        <tspan className={noteFontClassName}>{rootNote.name}</tspan>-Minor.
+        <tspan className={noteFontClassName}>{rootNoteName}</tspan>-Minor.
       </>
     );
   }
   return (
     <>
-      The {getModeName(modeNote)} mode on <tspan className={noteFontClassName}>{rootNote.name}</tspan>.
+      The {musicalKey.modeName} mode on <tspan className={noteFontClassName}>{rootNoteName}</tspan>.
     </>
   );
 }
@@ -73,9 +68,16 @@ function getDegreeExplanation(
   if (degree === 0)  return "No sharps or flats.";
   if (degree === 1)  return "One sharp.";
   if (degree === -1) return "One flat.";
-  if (degree >= 2)   return `${WRITTEN_OUT_NUMBERS[degree]} sharps.`;
-  if (degree <= -2)  return `${WRITTEN_OUT_NUMBERS[- degree]} flats.`;
+  if (degree >= 2)   return `${getWrittenOutNumber(degree)} sharps.`;
+  if (degree <= -2)  return `${getWrittenOutNumber(- degree)} flats.`;
   throw `Unexpected degree ${degree}`;
+}
+
+function getWrittenOutNumber(
+  n: number
+): string {
+  if (n >= WRITTEN_OUT_NUMBERS.length) return "Many";
+  return WRITTEN_OUT_NUMBERS[n];
 }
 
 const WRITTEN_OUT_NUMBERS = [

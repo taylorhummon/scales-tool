@@ -40,7 +40,7 @@ test("canPerformMotion() works for Dorian D", () => {
 });
 
 test("canPerformMotion() works for Locrian B", () => {
-  const musicalKey = new MusicalKey(-3, 0);
+  const musicalKey = new MusicalKey(0, -3);
   expect(
     canPerformMotion(musicalKey, Motion.DecrementMode)
   ).toBe(
@@ -74,7 +74,7 @@ test("canPerformMotion() works for Locrian B", () => {
 });
 
 test("canPerformMotion() works for Lydian C", () => {
-  const musicalKey = new MusicalKey(3, 1);
+  const musicalKey = new MusicalKey(1, 3);
   expect(
     canPerformMotion(musicalKey, Motion.DecrementMode)
   ).toBe(
@@ -108,7 +108,7 @@ test("canPerformMotion() works for Lydian C", () => {
 });
 
 test("canPerformMotion() works for 14 sharps", () => {
-  const musicalKey = new MusicalKey(0, 14);
+  const musicalKey = new MusicalKey(14, 0);
   expect(
     canPerformMotion(musicalKey, Motion.DecrementMode)
   ).toBe(
@@ -142,7 +142,7 @@ test("canPerformMotion() works for 14 sharps", () => {
 });
 
 test("canPerformMotion() works for 14 flats", () => {
-  const musicalKey = new MusicalKey(2, -14);
+  const musicalKey = new MusicalKey(-14, 2);
   expect(
     canPerformMotion(musicalKey, Motion.DecrementMode)
   ).toBe(

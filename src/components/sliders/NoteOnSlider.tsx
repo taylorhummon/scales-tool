@@ -18,7 +18,9 @@ export function NoteOnSlider({
     <g
       className={className(note, motion)}
     >
-      <text>
+      <text
+        className={buildClassString(cssModule, ["note-text"])}
+      >
         {note.name}
       </text>
     </g>

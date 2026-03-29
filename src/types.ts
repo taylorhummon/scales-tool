@@ -2,7 +2,7 @@ import { Motion } from "src/enumerations";
 
 
 export interface State {
-  mode: number;
   degree: number;
+  mode: number;
   motion: Motion;
 }

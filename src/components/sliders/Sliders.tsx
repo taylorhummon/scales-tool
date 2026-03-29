@@ -3,13 +3,15 @@ import type { Dispatch, SetStateAction } from "react";
 import { Motion } from "src/enumerations";
 import type { State } from "src/types";
 import { MusicalKey } from "src/classes/MusicalKey";
-import { Button } from "src/components/sliders/Button";
 import { ArrivingNote } from "src/components/sliders/ArrivingNote";
 import { ArrivingSolfege } from "src/components/sliders/ArrivingSolfege";
+import { Button } from "src/components/sliders/Button";
+import { ModeLabel } from "src/components/sliders/ModeLabel";
 import { NoteOnSlider } from "src/components/sliders/NoteOnSlider";
-import { RootDot } from "src/components/sliders/RootDot";
 import { SolfegeOnSlider } from "src/components/sliders/SolfegeOnSlider";
 import { buildClassString } from "src/utilities/css";
+import { arrayFromMap } from "src/utilities/map";
+import { MODE_NAME_BY_POSITION } from "src/utilities/mode";
 
 import cssModule from "src/components/sliders/Sliders.module.css";
 
@@ -44,19 +46,15 @@ export function Sliders({
       <g
         clipPath="url(#sliders-clip-rectangle)"
       >
-        <RootDot
-          rootNote={musicalKey.rootNote}
-          motion={motion}
-        />
         {musicalKey.scale.map((note) => (
-          <SolfegeOnSlider
+          <NoteOnSlider
             key={note.position}
             note={note}
             motion={motion}
           />
         ))}
         {musicalKey.scale.map((note) => (
-          <NoteOnSlider
+          <SolfegeOnSlider
             key={note.position}
             note={note}
             motion={motion}
@@ -71,20 +69,13 @@ export function Sliders({
           motion={motion}
         />
       </g>
-      <Button
-        musicalKey={musicalKey}
-        motion={motion}
-        onClickMotion={Motion.DecrementMode}
-        setState={setState}
-        dataTestid="decrement-mode"
-      />
-      <Button
-        musicalKey={musicalKey}
-        motion={motion}
-        onClickMotion={Motion.IncrementMode}
-        setState={setState}
-        dataTestid="increment-mode"
-      />
+      {arrayFromMap(MODE_NAME_BY_POSITION, (modeName, position) =>
+        <ModeLabel
+          key={position}
+          modeName={modeName}
+          position={position}
+        />
+      )}
       <Button
         musicalKey={musicalKey}
         motion={motion}
@@ -98,6 +89,20 @@ export function Sliders({
         onClickMotion={Motion.IncrementDegree}
         setState={setState}
         dataTestid="increment-degree"
+      />
+      <Button
+        musicalKey={musicalKey}
+        motion={motion}
+        onClickMotion={Motion.DecrementMode}
+        setState={setState}
+        dataTestid="decrement-mode"
+      />
+      <Button
+        musicalKey={musicalKey}
+        motion={motion}
+        onClickMotion={Motion.IncrementMode}
+        setState={setState}
+        dataTestid="increment-mode"
       />
       <Button
         musicalKey={musicalKey}

@@ -1,3 +1,9 @@
+/*
+Note: These functions only make sense where the floating point representation of integers
+are dense enough to have consecutive integers. That is, up until
+Number.MAX_SAFE_INTEGER = 9,007,199,254,740,991.
+*/
+
 export function quotientAndRemainderFor(
   numerator: number,
   denominator: number

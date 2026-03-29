@@ -1,0 +1,31 @@
+.mode-label {
+  offset-rotate: 0deg;
+
+  &.position-3 {
+    offset-path: path("M 74 -94");
+  }
+
+  &.position-2 {
+    offset-path: path("M 74 -61");
+  }
+
+  &.position-1 {
+    offset-path: path("M 74 -28");
+  }
+
+  &.position-0 {
+    offset-path: path("M 74 5");
+  }
+
+  &.position--1 {
+    offset-path: path("M 74 38");
+  }
+
+  &.position--2 {
+    offset-path: path("M 74 71");
+  }
+
+  &.position--3 {
+    offset-path: path("M 74 104");
+  }
+}

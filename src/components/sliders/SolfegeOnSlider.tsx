@@ -15,15 +15,19 @@ export function SolfegeOnSlider({
   note,
   motion
 }: SolfegeOnSliderProps): JSX.Element {
+  const isRootNote = note.solfege === Solfege.Do;
   return (
     <g
-      className={className(note, motion)}
+      className={className(note, motion, isRootNote)}
     >
       <text
         className={buildClassString(cssModule, ["solfege-text"])}
       >
-        {note.solfege}:
+        {note.solfege}
       </text>
+      <RootTriangles
+        isRootNote={isRootNote}
+      />
     </g>
   );
 }
@@ -31,9 +35,13 @@ export function SolfegeOnSlider({
 
 function className(
   note: Note,
-  motion: Motion
+  motion: Motion,
+  isRootNote: boolean
 ): string {
   const classNames = ["solfege-on-slider", note.solfege];
+  if (isRootNote) {
+    classNames.push("root");
+  }
   if (
     motion === Motion.DecrementMode ||
     motion === Motion.DecrementBoth
@@ -49,8 +57,34 @@ function className(
   } else {
     classNames.push(`position-${note.position}`);
   }
-  if (note.solfege === Solfege.Do) {
-    classNames.push("root");
-  }
   return buildClassString(cssModule, classNames);
+}
+
+
+interface RootTrianglesProps {
+  isRootNote: boolean;
+}
+
+function RootTriangles({
+  isRootNote
+}: RootTrianglesProps): JSX.Element | null {
+  if (! isRootNote) return null;
+  return (
+    <>
+      <polygon
+        className={buildClassString(cssModule, ["root-triangles"])}
+        points="-33,-5 -22,0 -22,-10"
+        strokeWidth={1.1}
+        stroke="rgb(4, 51, 255)"
+        fill="rgb(208, 214, 253)"
+      />
+      <polygon
+        className={buildClassString(cssModule, ["root-triangles"])}
+        points="33,-5 22,0 22,-10"
+        strokeWidth={1.1}
+        stroke="rgb(4, 51, 255)"
+        fill="rgb(208, 214, 253)"
+      />
+    </>
+  );
 }

@@ -6,7 +6,7 @@ import { MusicalKey } from "src/classes/MusicalKey";
 
 
 test("LabelAnimation works for key degree = 0", () => {
-  const musicalKey = new MusicalKey(2, 0);
+  const musicalKey = new MusicalKey(0, 2);
 
   expect(
     (new LabelAnimation(musicalKey, Motion.DecrementDegree)).startNote.name
@@ -118,7 +118,7 @@ test("LabelAnimation works for key degree = 1", () => {
 });
 
 test("LabelAnimation works for key degree = -3", () => {
-  const musicalKey = new MusicalKey(0, -3);
+  const musicalKey = new MusicalKey(-3, 0);
 
   expect(
     (new LabelAnimation(musicalKey, Motion.DecrementDegree)).startNote.name

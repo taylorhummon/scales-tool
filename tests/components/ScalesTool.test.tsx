@@ -142,8 +142,8 @@ test("<ScalesTool /> shows C-Major correctly", () => {
 test("<ScalesTool /> shows C-Minor correctly", () => {
   render(
     <ScalesTool
-      mode={-1}
       degree={-3}
+      mode={-1}
     />
   );
 
@@ -264,8 +264,8 @@ test("<ScalesTool /> shows C-Minor correctly", () => {
 test("<ScalesTool /> shows Dorian E correctly", () => {
   render(
     <ScalesTool
-      mode={0}
       degree={2}
+      mode={0}
     />
   );
 

@@ -29,9 +29,9 @@ export enum Solfege {
 }
 
 export enum ModeName {
-  Aeolian = "Aeolian",
+  Minor = "Minor",    // Aeolian
   Locrian = "Locrian",
-  Ionian = "Ionian",
+  Major = "Major",    // Ionian
   Dorian = "Dorian",
   Phrygian = "Phrygian",
   Lydian = "Lydian",

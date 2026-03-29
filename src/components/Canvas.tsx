@@ -58,7 +58,7 @@ export function Canvas({
     >
       <svg
         className={buildClassString(cssModule, ["canvas-svg"])}
-        viewBox="0 -220 440 435"
+        viewBox="0 -220 550 440"
         xmlns="http://www.w3.org/2000/svg"
       >
         <Sliders

@@ -10,6 +10,11 @@ import {
 test("MusicalKey works for Dorian D", () => {
   const musicalKey = new MusicalKey(0, 0);
   expect(
+    musicalKey.modeName
+  ).toBe(
+    "Dorian"
+  );
+  expect(
     musicalKey.modeNote
   ).toBe(
     NaturalNote.D
@@ -37,7 +42,12 @@ test("MusicalKey works for Dorian D", () => {
 });
 
 test("MusicalKey works for A-Major", () => {
-  const musicalKey = new MusicalKey(2, 3);
+  const musicalKey = new MusicalKey(3, 2);
+  expect(
+    musicalKey.modeName
+  ).toBe(
+    "Major"
+  );
   expect(
     musicalKey.modeNote
   ).toBe(
@@ -66,7 +76,12 @@ test("MusicalKey works for A-Major", () => {
 });
 
 test("MusicalKey works for G-Minor", () => {
-  const musicalKey = new MusicalKey(-1, -2);
+  const musicalKey = new MusicalKey(-2, -1);
+  expect(
+    musicalKey.modeName
+  ).toBe(
+    "Minor"
+  );
   expect(
     musicalKey.modeNote
   ).toBe(

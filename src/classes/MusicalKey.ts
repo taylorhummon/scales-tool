@@ -1,30 +1,30 @@
-import { NaturalNote, Solfege } from "src/enumerations";
+import { NaturalNote, Solfege, ModeName } from "src/enumerations";
 import { Note } from "src/classes/Note";
 import { quotientAndRemainderFor, remainderFor } from "src/utilities/math";
 
 
 /*
+Degree:
+  * The position of the left slider: how far D is above/below center.
+  * How many sharps/flats are in the scale.
 Mode:
-  * The position of the left slider: how far Do is above/below center.
+  * The position of the right slider: how far Do is above/below center.
   *  3 ~ F ~ Lydian
-  *  2 ~ C ~ Ionian
+  *  2 ~ C ~ Ionian (a.k.a. Major)
   *  1 ~ G ~ Mixolydian
   *  0 ~ D ~ Dorian
-  * -1 ~ A ~ Aeolian
+  * -1 ~ A ~ Aeolian (a.k.a Minor)
   * -2 ~ E ~ Phrygian
   * -3 ~ B ~ Locrian
-Degree:
-  * The position of the right slider: how far D is above/below center.
-  * How many sharps/flats are in the scale.
  */
 
 
-export const MAX_MODE = 3;
-export const MIN_MODE = - MAX_MODE;
 export const MAX_DEGREE = 14;
 export const MIN_DEGREE = - MAX_DEGREE;
+export const MAX_MODE = 3;
+export const MIN_MODE = - MAX_MODE;
 
-// Default to Ionian with no sharps or flats, a.k.a. C-Major.
+// Default to Major with no sharps or flats, a.k.a. C-Major.
 export const DEFAULT_MODE = 2;
 export const DEFAULT_DEGREE = 0;
 
@@ -33,20 +33,22 @@ I'm using the name "MusicalKey" instead of "Key" in order to avoid names collidi
 */
 
 export class MusicalKey {
-  mode: number;
   degree: number;
+  mode: number;
+  modeName: string;
   modeNote: NaturalNote;
   rootNote: Note;
   #scale: Array<Note> | null = null;
 
   constructor(
-    mode: number,
-    degree: number
+    degree: number,
+    mode: number
   ) {
-    this.mode = mode;
     this.degree = degree;
+    this.mode = mode;
+    this.modeName = getModeName(mode);
     this.modeNote = getModeNote(mode);
-    this.rootNote = getRootNote(mode, degree);
+    this.rootNote = getRootNote(degree, mode);
   }
 
   // Compute the scale lazily---it's a little expensive and we don't always need it.
@@ -64,12 +66,12 @@ export class MusicalKey {
   noteAt(
     position: number
   ): Note {
-    return getNote(this.mode, this.degree, position);
+    return getNote(this.degree, this.mode, position);
   }
 
   #getScale(
   ): Array<Note> {
-    return [3, 2, 1, 0, -1, -2, -3].map((position) => this.noteAt(position));
+    return POSITIONS.map((position) => this.noteAt(position));
   }
 }
 
@@ -89,33 +91,60 @@ export function musicalKeyFromShorthand(
 
 // *** Private constants and functions below this line ***
 
+const POSITIONS = [3, 2, 1, 0, -1, -2, -3];
+const MODE_NAMES_IN_FCGDAEB_ORDER = [
+  ModeName.Lydian,
+  ModeName.Major,
+  ModeName.Mixolydian,
+  ModeName.Dorian,
+  ModeName.Minor,
+  ModeName.Phrygian,
+  ModeName.Locrian
+];
+const NATURAL_NOTES_IN_FCGDAEB_ORDER = [
+  NaturalNote.F,
+  NaturalNote.C,
+  NaturalNote.G,
+  NaturalNote.D,
+  NaturalNote.A,
+  NaturalNote.E,
+  NaturalNote.B
+];
+const NATURAL_NOTES_IN_BEADGCF_ORDER = [...NATURAL_NOTES_IN_FCGDAEB_ORDER].reverse();
+const SOLFEGES = [
+  Solfege.Do,
+  Solfege.Fa,
+  Solfege.Ti,
+  Solfege.Mi,
+  Solfege.La,
+  Solfege.Re,
+  Solfege.Sol,
+];
+
+function getModeName(
+  mode: number
+): string {
+  if (mode < -3 || mode > 3) throw Error(`Invalid mode: ${mode}`);
+  return MODE_NAMES_IN_FCGDAEB_ORDER[3 - mode];
+}
+
 function getModeNote(
   mode: number
 ): NaturalNote {
-  if (mode < -3 || mode > 3) {
-    throw Error(`Invalid mode: ${mode}`);
-  }
-  return NATURAL_NOTES_IN_BEADGCF_ORDER[mode + 3];
-}
-
-function getMode(
-  modeNote: NaturalNote
-): number {
-  const index = NATURAL_NOTES_IN_BEADGCF_ORDER.indexOf(modeNote);
-  if (index === null) throw(`Invalid mode note: ${modeNote}`);
-  return index - 3;
+  if (mode < -3 || mode > 3) throw Error(`Invalid mode: ${mode}`);
+  return NATURAL_NOTES_IN_FCGDAEB_ORDER[3 - mode];
 }
 
 function getRootNote(
-  mode: number,
-  degree: number
+  degree: number,
+  mode: number
 ): Note {
-  return getNote(mode, degree, mode);
+  return getNote(degree, mode, mode);
 }
 
 function getNote(
-  mode: number,
   degree: number,
+  mode: number,
   position: number
 ): Note {
   const solfege = getSolfege(mode, position);
@@ -135,33 +164,12 @@ function getNote(
   return new Note(NaturalNote.D, 0, solfege, position);
 }
 
-const NATURAL_NOTES_IN_FCGDAEB_ORDER = [
-  NaturalNote.F,
-  NaturalNote.C,
-  NaturalNote.G,
-  NaturalNote.D,
-  NaturalNote.A,
-  NaturalNote.E,
-  NaturalNote.B
-];
-const NATURAL_NOTES_IN_BEADGCF_ORDER = [...NATURAL_NOTES_IN_FCGDAEB_ORDER].reverse();
-
 function getSolfege(
   mode: number,
   position: number
 ): Solfege {
   return SOLFEGES[remainderFor(position - mode, 7)];
 }
-
-const SOLFEGES = [
-  Solfege.Do,
-  Solfege.Fa,
-  Solfege.Ti,
-  Solfege.Mi,
-  Solfege.La,
-  Solfege.Re,
-  Solfege.Sol,
-];
 
 function _musicalKeyFromShorthand(
   keyShorthand: string
@@ -173,12 +181,20 @@ function _musicalKeyFromShorthand(
   const modeNote = result[2].toUpperCase();
   if (! (modeNote in NaturalNote)) return null;
   const mode = getMode(modeNote as NaturalNote);
-  return new MusicalKey(mode, degree);
+  return new MusicalKey(degree, mode);
 }
 
 const KEY_SHORTHAND_REGULAR_EXPRESSION = /^(-?[0-9]+)([A-G])$/i;
 
+function getMode(
+  modeNote: NaturalNote
+): number {
+  const index = NATURAL_NOTES_IN_FCGDAEB_ORDER.indexOf(modeNote);
+  if (index === null) throw(`Invalid mode note: ${modeNote}`);
+  return 3 - index;
+}
+
 function getDefaultMusicalKey(
 ): MusicalKey {
-  return new MusicalKey(DEFAULT_MODE, DEFAULT_DEGREE);
+  return new MusicalKey(DEFAULT_DEGREE, DEFAULT_MODE);
 }

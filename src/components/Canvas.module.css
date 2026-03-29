@@ -1,5 +1,8 @@
 .canvas {
-  margin: 20px 0;
-  max-width: 440px;
-  min-width: 275px;
+  max-width: 550px;
+  min-width: 350px;
+}
+
+.canvas-svg {
+  display: block;
 }
