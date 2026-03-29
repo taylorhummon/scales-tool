@@ -61,14 +61,14 @@ export function Canvas({
         viewBox="0 -220 550 440"
         xmlns="http://www.w3.org/2000/svg"
       >
+        <Clock
+          musicalKey={musicalKey}
+          motion={motion}
+        />
         <Sliders
           musicalKey={musicalKey}
           motion={motion}
           setState={setState}
-        />
-        <Clock
-          musicalKey={musicalKey}
-          motion={motion}
         />
       </svg>
     </div>
