@@ -77,7 +77,7 @@ export class MusicalKey {
 
   #getRootNote(
   ): Note {
-    return getNote(this.degree, this.mode, this.mode);
+    return this.noteAt(this.mode);
   }
 
   #getScale(
