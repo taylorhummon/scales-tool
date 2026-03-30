@@ -35,27 +35,33 @@ I'm using the name "MusicalKey" instead of "Key" in order to avoid names collidi
 export class MusicalKey {
   degree: number;
   mode: number;
-  modeName: string;
-  modeNote: NaturalNote;
-  rootNote: Note;
+  #rootNote: Note | null = null;
   #scale: Array<Note> | null = null;
 
   constructor(
     degree: number,
     mode: number
   ) {
+    if (mode < -3 || mode > 3) throw Error(`Invalid mode: ${mode}`);
     this.degree = degree;
     this.mode = mode;
-    this.modeName = getModeName(mode);
-    this.modeNote = getModeNote(mode);
-    this.rootNote = getRootNote(degree, mode);
   }
 
-  // Compute the scale lazily---it's a little expensive and we don't always need it.
+  get modeName(): string {
+    return MODE_NAMES_IN_FCGDAEB_ORDER[3 - this.mode];
+  }
+
+  get modeNote(): NaturalNote {
+    return NATURAL_NOTES_IN_FCGDAEB_ORDER[3 - this.mode];
+  }
+
+  get rootNote(): Note {
+    if (this.#rootNote === null) this.#rootNote = this.#getRootNote();
+    return this.#rootNote;
+  }
+
   get scale(): Array<Note> {
-    if (this.#scale === null) {
-      this.#scale = this.#getScale();
-    }
+    if (this.#scale === null) this.#scale = this.#getScale();
     return this.#scale;
   }
 
@@ -67,6 +73,11 @@ export class MusicalKey {
     position: number
   ): Note {
     return getNote(this.degree, this.mode, position);
+  }
+
+  #getRootNote(
+  ): Note {
+    return getNote(this.degree, this.mode, this.mode);
   }
 
   #getScale(
@@ -121,25 +132,9 @@ const SOLFEGES = [
   Solfege.Sol,
 ];
 
-function getModeName(
-  mode: number
-): string {
-  if (mode < -3 || mode > 3) throw Error(`Invalid mode: ${mode}`);
-  return MODE_NAMES_IN_FCGDAEB_ORDER[3 - mode];
-}
-
-function getModeNote(
-  mode: number
-): NaturalNote {
-  if (mode < -3 || mode > 3) throw Error(`Invalid mode: ${mode}`);
-  return NATURAL_NOTES_IN_FCGDAEB_ORDER[3 - mode];
-}
-
-function getRootNote(
-  degree: number,
-  mode: number
-): Note {
-  return getNote(degree, mode, mode);
+function getDefaultMusicalKey(
+): MusicalKey {
+  return new MusicalKey(DEFAULT_DEGREE, DEFAULT_MODE);
 }
 
 function getNote(
@@ -192,9 +187,4 @@ function getMode(
   const index = NATURAL_NOTES_IN_FCGDAEB_ORDER.indexOf(modeNote);
   if (index === null) throw(`Invalid mode note: ${modeNote}`);
   return 3 - index;
-}
-
-function getDefaultMusicalKey(
-): MusicalKey {
-  return new MusicalKey(DEFAULT_DEGREE, DEFAULT_MODE);
 }

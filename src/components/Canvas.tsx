@@ -7,7 +7,7 @@ import { MusicalKey } from "src/classes/MusicalKey";
 import { Clock } from "src/components/clock/Clock";
 import { Sliders } from "src/components/sliders/Sliders";
 import { buildClassString } from "src/utilities/css";
-import { updateStateAtEndOfAnimation } from "src/utilities/action";
+import { getNextMusicalKey } from "src/utilities/action";
 
 import cssModule from "src/components/Canvas.module.css";
 
@@ -42,14 +42,19 @@ export function Canvas({
     function animationEndHandler(): void {
       animationsCountRef.current -= 1;
       if (animationsCountRef.current >= 1) return;
-      setState(updateStateAtEndOfAnimation);
+      const nextMusicalKey = getNextMusicalKey(musicalKey, motion);
+      setState({
+        degree: nextMusicalKey.degree,
+        mode: nextMusicalKey.mode,
+        motion: Motion.Still
+      });
     }
     const domNode = domNodeRef.current;
     if (domNode) domNode.addEventListener("animationend", animationEndHandler, false);
     return () => {
       if (domNode) domNode.removeEventListener("animationend", animationEndHandler);
     };
-  }, [setState]);
+  }, [musicalKey, motion, setState]);
 
   return (
     <div
