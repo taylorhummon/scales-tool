@@ -1,4 +1,4 @@
-import { test, expect } from 'vitest';
+import { test, expect } from "vitest";
 
 import { Motion } from "src/enumerations";
 import { MusicalKey } from "src/classes/MusicalKey";

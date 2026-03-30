@@ -1,11 +1,11 @@
 import type { Dispatch, SetStateAction } from "react";
 
 import { Motion } from "src/enumerations";
-import type { State } from "src/types";
 import { MusicalKey } from "src/classes/MusicalKey";
 import { Icon } from "src/components/sliders/Icon";
 import { canPerformMotion } from "src/utilities/action";
 import { buildClassString } from "src/utilities/css";
+import type { State } from "src/utilities/state";
 
 import cssModule from "src/components/sliders/Button.module.css";
 

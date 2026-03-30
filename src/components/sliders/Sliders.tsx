@@ -1,7 +1,6 @@
 import type { Dispatch, SetStateAction } from "react";
 
 import { Motion } from "src/enumerations";
-import type { State } from "src/types";
 import { MusicalKey } from "src/classes/MusicalKey";
 import { ArrivingNote } from "src/components/sliders/ArrivingNote";
 import { ArrivingSolfege } from "src/components/sliders/ArrivingSolfege";
@@ -12,6 +11,7 @@ import { SolfegeOnSlider } from "src/components/sliders/SolfegeOnSlider";
 import { buildClassString } from "src/utilities/css";
 import { arrayFromMap } from "src/utilities/map";
 import { MODE_NAME_BY_POSITION } from "src/utilities/mode";
+import type { State } from "src/utilities/state";
 
 import cssModule from "src/components/sliders/Sliders.module.css";
 

@@ -2,12 +2,13 @@ import type { Dispatch, SetStateAction } from "react";
 import { useRef, useEffect } from "react";
 
 import { Motion } from "src/enumerations";
-import type { State } from "src/types";
 import { MusicalKey } from "src/classes/MusicalKey";
 import { Clock } from "src/components/clock/Clock";
 import { Sliders } from "src/components/sliders/Sliders";
-import { buildClassString } from "src/utilities/css";
 import { getNextMusicalKey } from "src/utilities/action";
+import { buildClassString } from "src/utilities/css";
+import { addToBrowserHistory } from "src/utilities/routing";
+import { State, stateFromMusicalKey } from "src/utilities/state";
 
 import cssModule from "src/components/Canvas.module.css";
 
@@ -43,11 +44,8 @@ export function Canvas({
       animationsCountRef.current -= 1;
       if (animationsCountRef.current >= 1) return;
       const nextMusicalKey = getNextMusicalKey(musicalKey, motion);
-      setState({
-        degree: nextMusicalKey.degree,
-        mode: nextMusicalKey.mode,
-        motion: Motion.Still
-      });
+      addToBrowserHistory(nextMusicalKey);
+      setState(stateFromMusicalKey(nextMusicalKey));
     }
     const domNode = domNodeRef.current;
     if (domNode) domNode.addEventListener("animationend", animationEndHandler, false);

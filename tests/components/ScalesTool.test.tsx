@@ -1,8 +1,12 @@
-import { test, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { test, expect, afterEach } from "vitest";
+import { render, screen } from "@testing-library/react";
 
 import { Solfege } from "src/enumerations";
 import ScalesTool from "src/components/ScalesTool";
+import { cleanHistory } from "../testHelpers";
+
+
+afterEach(cleanHistory);
 
 
 function getNoteLabel(solfege: Solfege) {
@@ -22,7 +26,7 @@ test("<ScalesTool /> renders without crashing", () => {
   render(<ScalesTool />);
 });
 
-test("<ScalesTool /> shows C-Major correctly", () => {
+test("<ScalesTool /> shows C-Major as default correctly", () => {
   render(<ScalesTool />);
 
   expect(
@@ -138,13 +142,10 @@ test("<ScalesTool /> shows C-Major correctly", () => {
   );
 });
 
-
 test("<ScalesTool /> shows C-Minor correctly", () => {
+  window.history.pushState(null, "", "key/-3A");
   render(
-    <ScalesTool
-      degree={-3}
-      mode={-1}
-    />
+    <ScalesTool />
   );
 
   expect(
@@ -260,13 +261,10 @@ test("<ScalesTool /> shows C-Minor correctly", () => {
   );
 });
 
-
 test("<ScalesTool /> shows Dorian E correctly", () => {
+  window.history.pushState(null, "", "key/2D");
   render(
-    <ScalesTool
-      degree={2}
-      mode={0}
-    />
+    <ScalesTool />
   );
 
   expect(

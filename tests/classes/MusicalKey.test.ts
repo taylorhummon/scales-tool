@@ -1,4 +1,4 @@
-import { test, expect } from 'vitest';
+import { test, expect } from "vitest";
 
 import { NaturalNote, Solfege } from "src/enumerations";
 import {
@@ -112,12 +112,12 @@ test("MusicalKey works for G-Minor", () => {
 test("musicalKeyFromShorthand() works for D-Minor", () => {
   const musicalKey = musicalKeyFromShorthand("-1A");
   expect(
-    musicalKey.degree
+    musicalKey?.degree
   ).toBe(
     -1
   );
   expect(
-    musicalKey.modeNote
+    musicalKey?.modeNote
   ).toBe(
     NaturalNote.A
   );
@@ -126,12 +126,12 @@ test("musicalKeyFromShorthand() works for D-Minor", () => {
 test("musicalKeyFromShorthand() works for Phrygian F♯", () => {
   const musicalKey = musicalKeyFromShorthand("2e");
   expect(
-    musicalKey.degree
+    musicalKey?.degree
   ).toBe(
     2
   );
   expect(
-    musicalKey.modeNote
+    musicalKey?.modeNote
   ).toBe(
     NaturalNote.E
   );
@@ -140,12 +140,12 @@ test("musicalKeyFromShorthand() works for Phrygian F♯", () => {
 test("musicalKeyFromShorthand() works for Lydian A", () => {
   const musicalKey = musicalKeyFromShorthand("4F");
   expect(
-    musicalKey.degree
+    musicalKey?.degree
   ).toBe(
     4
   );
   expect(
-    musicalKey.modeNote
+    musicalKey?.modeNote
   ).toBe(
     NaturalNote.F
   );

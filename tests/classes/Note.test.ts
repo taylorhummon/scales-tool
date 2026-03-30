@@ -1,4 +1,4 @@
-import { test, expect } from 'vitest';
+import { test, expect } from "vitest";
 
 import { NaturalNote, Solfege } from "src/enumerations"
 import { Note } from "src/classes/Note";

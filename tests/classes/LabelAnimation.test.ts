@@ -1,4 +1,4 @@
-import { test, expect } from 'vitest';
+import { test, expect } from "vitest";
 
 import { Motion } from "src/enumerations"
 import { LabelAnimation } from "src/classes/LabelAnimation";

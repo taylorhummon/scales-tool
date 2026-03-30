@@ -86,18 +86,22 @@ export class MusicalKey {
   }
 }
 
-// TODO: Use key shorthand as path segment in routing.
-
 export function musicalKeyFromShorthand(
-  keyShorthand: string | undefined
+  keyShorthand: string
+): MusicalKey | null {
+  const result = /^(-?[0-9]+)([A-Ga-g])$/.exec(keyShorthand);
+  if (result === null) return null;
+  const degree = parseInt(result[1], 10);
+  if (degree > MAX_DEGREE || degree < MIN_DEGREE) return null;
+  const modeNote = result[2].toUpperCase();
+  if (! (modeNote in NaturalNote)) return null;
+  const mode = getMode(modeNote as NaturalNote);
+  return new MusicalKey(degree, mode);
+}
+
+export function getDefaultMusicalKey(
 ): MusicalKey {
-  if (keyShorthand === undefined) return getDefaultMusicalKey();
-  const musicalKey = _musicalKeyFromShorthand(keyShorthand);
-  if (musicalKey === null) {
-    console.log(`Could not parse key shorthand: ${keyShorthand}`);
-    return getDefaultMusicalKey();
-  }
-  return musicalKey;
+  return new MusicalKey(DEFAULT_DEGREE, DEFAULT_MODE);
 }
 
 // *** Private constants and functions below this line ***
@@ -132,11 +136,6 @@ const SOLFEGES = [
   Solfege.Sol,
 ];
 
-function getDefaultMusicalKey(
-): MusicalKey {
-  return new MusicalKey(DEFAULT_DEGREE, DEFAULT_MODE);
-}
-
 function getNote(
   degree: number,
   mode: number,
@@ -165,21 +164,6 @@ function getSolfege(
 ): Solfege {
   return SOLFEGES[remainderFor(position - mode, 7)];
 }
-
-function _musicalKeyFromShorthand(
-  keyShorthand: string
-): MusicalKey | null {
-  const result = KEY_SHORTHAND_REGULAR_EXPRESSION.exec(keyShorthand);
-  if (result === null) return null;
-  const degree = parseInt(result[1], 10);
-  if (degree > MAX_DEGREE || degree < MIN_DEGREE) return null;
-  const modeNote = result[2].toUpperCase();
-  if (! (modeNote in NaturalNote)) return null;
-  const mode = getMode(modeNote as NaturalNote);
-  return new MusicalKey(degree, mode);
-}
-
-const KEY_SHORTHAND_REGULAR_EXPRESSION = /^(-?[0-9]+)([A-G])$/i;
 
 function getMode(
   modeNote: NaturalNote
