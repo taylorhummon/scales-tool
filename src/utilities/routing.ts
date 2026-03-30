@@ -24,6 +24,7 @@ export function musicalKeyFromCurrentURL(
   const musicalKey = musicalKeyFromPath(path);
   if (musicalKey === null) {
     console.log(`Could not parse URL path: ${path}`);
+    window.history.replaceState(null, "", "/");
     return getDefaultMusicalKey();
   }
   return musicalKey;

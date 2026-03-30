@@ -79,4 +79,21 @@ test("musicalKeyFromCurrentURL() works", () => {
   ).toBe(
     -1
   );
+  // User enters a garbage path in the URL
+  window.history.pushState(null, "", "garbage/path/here");
+  expect(
+    musicalKeyFromCurrentURL().degree
+  ).toBe(
+    0
+  );
+  expect(
+    musicalKeyFromCurrentURL().mode
+  ).toBe(
+    2
+  );
+  expect(
+    document.location.pathname
+  ).toBe(
+    "/"
+  );
 });
