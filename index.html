@@ -12,37 +12,46 @@
     <link rel="stylesheet" href="/index.css">
   </head>
   <body>
-    <div class="page-content">
-      <h1 class="title">
-        Scales Tool
-      </h1>
-      <div class="instructions">
-        Explore musical scales visually!
+    <header class="header-relative" role="banner">
+      <div class="header-absolute">
+        <div class="header-content">
+          <a class="site-title" href="https://taylorhummon.com/">Taylor&nbsp;Hummon</a>
+        </div>
       </div>
-      <div id="scales-tool-mount-point"></div>
-      <script type="module" src="src/index.tsx"></script>
-      <h2>Want to learn more about scales?</h2>
-      <p>
-        Are you interested in digging into the patterns behind musical scales?
-        Tap below to read
+    </header>
+    <div class="page">
+      <main class="main-content" aria-label="Content">
+        <h1 class="title">
+          Scales Tool
+        </h1>
+        <div class="instructions">
+          Explore musical scales visually!
+        </div>
+        <div id="scales-tool-mount-point"></div>
+        <script type="module" src="src/index.tsx"></script>
+        <h2>Want to learn more about scales?</h2>
+        <p>
+          Are you interested in digging into the patterns behind musical scales?
+          Tap below to read
+          <a
+            href="/taylors_guide_to_scales.pdf"
+            target="GuideToScalesWindow"
+          >Taylor's Guide to Scales</a>!
+        </p>
         <a
+          class="cover-link"
           href="/taylors_guide_to_scales.pdf"
           target="GuideToScalesWindow"
-        >Taylor's Guide to Scales</a>!
-      </p>
-      <a
-        class="cover-link"
-        href="/taylors_guide_to_scales.pdf"
-        target="GuideToScalesWindow"
-      >
-        <img
-          class="cover-image"
-          src="/taylors_guide_to_scales_cover.svg"
-          alt="Taylor's Guide to Scales"
-          title="Taylor's Guide to Scales"
-          width="225px"
-        />
-      </a>
+        >
+          <img
+            class="cover-image"
+            title="Taylor's Guide to Scales"
+            alt="Taylor's Guide to Scales"
+            width="225px"
+            src="/taylors_guide_to_scales_cover.svg"
+          />
+        </a>
+      </main>
     </div>
   </body>
 </html>
