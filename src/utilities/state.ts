@@ -7,6 +7,7 @@ export interface State {
   mode: number;
   motion: Motion;
 }
+
 // We don't store the current motion in the brower's history.
 export interface HistoricalState {
   degree: number;
