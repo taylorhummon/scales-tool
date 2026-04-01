@@ -24,6 +24,11 @@ Positions 4 and -4 are just outside of the clipping region.
   font-family: "PT Mono", monospace;
   offset-rotate: 0deg;
 
+  &.position-4 {
+    offset-path: path("M -27 -127");
+    visibility: hidden;
+  }
+
   &.position-3 {
     offset-path: path("M -27 -94");
   }
@@ -52,8 +57,17 @@ Positions 4 and -4 are just outside of the clipping region.
     offset-path: path("M -27 104");
   }
 
+  &.position--4 {
+    offset-path: path("M -27 137");
+    visibility: hidden;
+  }
+
   &.move {
     animation: move-note-on-slider duration-motion ease-in-out 1 forwards;
+
+    &.from-5-to-4 {
+      visibility: hidden;
+    }
 
     &.from-4-to-3 {
       offset-path: path("M -27 -127 L -27 -94");
@@ -87,6 +101,14 @@ Positions 4 and -4 are just outside of the clipping region.
       offset-path: path("M -27 104 L -27 137");
     }
 
+    &.from--4-to--5 {
+      visibility: hidden;
+    }
+
+    &.from--5-to--4 {
+      visibility: hidden;
+    }
+
     &.from--4-to--3 {
       offset-path: path("M -27 137 L -27 104");
     }
@@ -117,6 +139,10 @@ Positions 4 and -4 are just outside of the clipping region.
 
     &.from-3-to-4 {
       offset-path: path("M -27 -94 L -27 -127");
+    }
+
+    &.from-4-to-5 {
+      visibility: hidden;
     }
   }
 }

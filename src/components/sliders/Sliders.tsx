@@ -2,8 +2,6 @@ import type { Dispatch, SetStateAction } from "react";
 
 import { Motion } from "src/enumerations";
 import { MusicalKey } from "src/classes/MusicalKey";
-import { ArrivingNote } from "src/components/sliders/ArrivingNote";
-import { ArrivingSolfege } from "src/components/sliders/ArrivingSolfege";
 import { Button } from "src/components/sliders/Button";
 import { ModeLabel } from "src/components/sliders/ModeLabel";
 import { NoteOnSlider } from "src/components/sliders/NoteOnSlider";
@@ -46,28 +44,20 @@ export function Sliders({
       <g
         clipPath="url(#sliders-clip-rectangle)"
       >
-        {musicalKey.scale.map((note) => (
+        {musicalKey.extendedScale.map((note) => (
           <NoteOnSlider
             key={note.position}
             note={note}
             motion={motion}
           />
         ))}
-        {musicalKey.scale.map((note) => (
+        {musicalKey.extendedScale.map((note) => (
           <SolfegeOnSlider
             key={note.position}
             note={note}
             motion={motion}
           />
         ))}
-        <ArrivingSolfege
-          musicalKey={musicalKey}
-          motion={motion}
-        />
-        <ArrivingNote
-          musicalKey={musicalKey}
-          motion={motion}
-        />
       </g>
       {arrayFromMap(MODE_NAME_BY_POSITION, (modeName, position) =>
         <ModeLabel

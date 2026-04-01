@@ -36,7 +36,7 @@ export class MusicalKey {
   degree: number;
   mode: number;
   #rootNote: Note | null = null;
-  #scale: Array<Note> | null = null;
+  #extendedScale: Array<Note> | null = null;
 
   constructor(
     degree: number,
@@ -61,8 +61,13 @@ export class MusicalKey {
   }
 
   get scale(): Array<Note> {
-    if (this.#scale === null) this.#scale = this.#getScale();
-    return this.#scale;
+    // drop first and last notes from extended scale
+    return this.extendedScale.slice(1, -1);
+  }
+
+  get extendedScale(): Array<Note> {
+    if (this.#extendedScale === null) this.#extendedScale = this.#getScale(true);
+    return this.#extendedScale;
   }
 
   get shorthand(): string {
@@ -81,8 +86,10 @@ export class MusicalKey {
   }
 
   #getScale(
+    isExtended: boolean = false
   ): Array<Note> {
-    return POSITIONS.map((position) => this.noteAt(position));
+    const positions = isExtended ? EXTENDED_POSITIONS : POSITIONS;
+    return positions.map((position) => this.noteAt(position));
   }
 }
 
@@ -107,6 +114,7 @@ export function getDefaultMusicalKey(
 // *** Private constants and functions below this line ***
 
 const POSITIONS = [3, 2, 1, 0, -1, -2, -3];
+const EXTENDED_POSITIONS = [4, 3, 2, 1, 0, -1, -2, -3, -4];  // positions 4 and -4 are useful when animating
 const MODE_NAMES_IN_FCGDAEB_ORDER = [
   ModeName.Lydian,
   ModeName.Major,
