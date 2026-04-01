@@ -2,30 +2,30 @@
   offset-rotate: 0deg;
 
   &.position-3 {
-    offset-path: path("M 74 -94");
+    offset-path: path("M 0 -99");
   }
 
   &.position-2 {
-    offset-path: path("M 74 -61");
+    offset-path: path("M 0 -66");
   }
 
   &.position-1 {
-    offset-path: path("M 74 -28");
+    offset-path: path("M 0 -33");
   }
 
   &.position-0 {
-    offset-path: path("M 74 5");
+    offset-path: path("M 0 0");
   }
 
   &.position--1 {
-    offset-path: path("M 74 38");
+    offset-path: path("M 0 33");
   }
 
   &.position--2 {
-    offset-path: path("M 74 71");
+    offset-path: path("M 0 66");
   }
 
   &.position--3 {
-    offset-path: path("M 74 104");
+    offset-path: path("M 0 99");
   }
 }

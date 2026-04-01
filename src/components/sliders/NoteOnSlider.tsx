@@ -1,4 +1,3 @@
-import { Motion } from "src/enumerations";
 import { Note } from "src/classes/Note";
 import { buildClassString } from "src/utilities/css";
 
@@ -7,16 +6,14 @@ import cssModule from "src/components/sliders/NoteOnSlider.module.css";
 
 interface NoteOnSliderProps {
   note: Note;
-  motion: Motion;
 }
 
 export function NoteOnSlider({
-  note,
-  motion
+  note
 }: NoteOnSliderProps): JSX.Element {
   return (
     <g
-      className={className(note, motion)}
+      className={className(note)}
     >
       <text
         className={buildClassString(cssModule, ["note-text"])}
@@ -27,27 +24,9 @@ export function NoteOnSlider({
   );
 }
 
-
 function className(
-  note: Note,
-  motion: Motion
+  note: Note
 ): string {
-  const classNames = ["note-on-slider", note.name];
-  const position = note.position;
-  if (
-    motion === Motion.DecrementDegree ||
-    motion === Motion.DecrementBoth
-  ) {
-    classNames.push("move");
-    classNames.push(`from-${position}-to-${position - 1}`);
-  } else if (
-    motion === Motion.IncrementDegree ||
-    motion === Motion.IncrementBoth
-  ) {
-    classNames.push("move");
-    classNames.push(`from-${position}-to-${position + 1}`);
-  } else {
-    classNames.push(`position-${position}`);
-  }
+  const classNames = ["note-on-slider", note.name, `position-${note.position}`];
   return buildClassString(cssModule, classNames);
 }

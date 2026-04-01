@@ -1,0 +1,30 @@
+@value duration-motion from "../../constants.css";
+
+@keyframes move-notes-slider {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+
+.degree-slider {
+  offset-path: path("M -27 0");
+}
+
+.degree-slider-inner {
+  offset-path: path("M 0 5");
+  offset-rotate: 0deg;
+
+  &.move-down {
+    animation: move-notes-slider duration-motion ease-in-out 1 forwards;
+    offset-path: path("M 0 5 L 0 38");
+  }
+
+  &.move-up {
+    animation: move-notes-slider duration-motion ease-in-out 1 forwards;
+    offset-path: path("M 0 5 L 0 -28");
+  }
+}

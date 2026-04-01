@@ -3,12 +3,10 @@ import type { Dispatch, SetStateAction } from "react";
 import { Motion } from "src/enumerations";
 import { MusicalKey } from "src/classes/MusicalKey";
 import { Button } from "src/components/sliders/Button";
-import { ModeLabel } from "src/components/sliders/ModeLabel";
-import { NoteOnSlider } from "src/components/sliders/NoteOnSlider";
-import { SolfegeOnSlider } from "src/components/sliders/SolfegeOnSlider";
+import { DegreeSlider } from "src/components/sliders/DegreeSlider";
+import { ModeLabels } from "src/components/sliders/ModeLabels";
+import { ModeSlider } from "src/components/sliders/ModeSlider";
 import { buildClassString } from "src/utilities/css";
-import { arrayFromMap } from "src/utilities/map";
-import { MODE_NAME_BY_POSITION } from "src/utilities/mode";
 import type { State } from "src/utilities/state";
 
 import cssModule from "src/components/sliders/Sliders.module.css";
@@ -29,43 +27,15 @@ export function Sliders({
     <g
       className={buildClassString(cssModule, ["sliders"])}
     >
-      <defs>
-        <clipPath
-          id="sliders-clip-rectangle"
-        >
-          <rect
-            x="-60"
-            y="-118"
-            width="120"
-            height="236"
-          />
-        </clipPath>
-      </defs>
-      <g
-        clipPath="url(#sliders-clip-rectangle)"
-      >
-        {musicalKey.extendedScale.map((note) => (
-          <NoteOnSlider
-            key={note.position}
-            note={note}
-            motion={motion}
-          />
-        ))}
-        {musicalKey.extendedScale.map((note) => (
-          <SolfegeOnSlider
-            key={note.position}
-            note={note}
-            motion={motion}
-          />
-        ))}
-      </g>
-      {arrayFromMap(MODE_NAME_BY_POSITION, (modeName, position) =>
-        <ModeLabel
-          key={position}
-          modeName={modeName}
-          position={position}
-        />
-      )}
+      <DegreeSlider
+        musicalKey={musicalKey}
+        motion={motion}
+      />
+      <ModeSlider
+        musicalKey={musicalKey}
+        motion={motion}
+      />
+      <ModeLabels />
       <Button
         musicalKey={musicalKey}
         motion={motion}
