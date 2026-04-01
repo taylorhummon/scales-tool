@@ -1,26 +1,26 @@
 .button {
   &.DecrementDegree {
-    offset-path: path("M -27 146")
+    offset-path: path("M -27 146");
   }
 
   &.IncrementDegree {
-    offset-path: path("M -27 -146")
+    offset-path: path("M -27 -146");
   }
 
   &.DecrementMode {
-    offset-path: path("M 27 146")
+    offset-path: path("M 27 146");
   }
 
   &.IncrementMode {
-    offset-path: path("M 27 -146")
+    offset-path: path("M 27 -146");
   }
 
   &.DecrementBoth {
-    offset-path: path("M 0 194")
+    offset-path: path("M 0 194");
   }
 
   &.IncrementBoth {
-    offset-path: path("M 0 -194")
+    offset-path: path("M 0 -194");
   }
 }
 

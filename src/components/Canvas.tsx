@@ -1,14 +1,11 @@
 import type { Dispatch, SetStateAction } from "react";
-import { useRef, useEffect } from "react";
 
 import { Motion } from "src/enumerations";
 import { MusicalKey } from "src/classes/MusicalKey";
 import { Clock } from "src/components/clock/Clock";
 import { Sliders } from "src/components/sliders/Sliders";
-import { getNextMusicalKey } from "src/utilities/action";
 import { buildClassString } from "src/utilities/css";
-import { addToBrowserHistory } from "src/utilities/routing";
-import { State, stateFromMusicalKey } from "src/utilities/state";
+import { State } from "src/utilities/state";
 
 import cssModule from "src/components/Canvas.module.css";
 
@@ -25,55 +22,21 @@ export function Canvas({
   motion,
   setState
 }: CanvasProps): JSX.Element {
-  const domNodeRef = useRef<HTMLDivElement>(null);
-  const animationsCountRef = useRef<number>(0);
-
-  useEffect(() => {
-    function animationStartHandler(): void {
-      animationsCountRef.current += 1;
-    }
-    const domNode = domNodeRef.current;
-    if (domNode) domNode.addEventListener("animationstart", animationStartHandler, false);
-    return () => {
-      if (domNode) domNode.removeEventListener("animationstart", animationStartHandler);
-    };
-  });
-
-  useEffect(() => {
-    function animationEndHandler(): void {
-      animationsCountRef.current -= 1;
-      if (animationsCountRef.current >= 1) return;
-      const nextMusicalKey = getNextMusicalKey(musicalKey, motion);
-      addToBrowserHistory(nextMusicalKey);
-      setState(stateFromMusicalKey(nextMusicalKey));
-    }
-    const domNode = domNodeRef.current;
-    if (domNode) domNode.addEventListener("animationend", animationEndHandler, false);
-    return () => {
-      if (domNode) domNode.removeEventListener("animationend", animationEndHandler);
-    };
-  }, [musicalKey, motion, setState]);
-
   return (
-    <div
+    <svg
       className={buildClassString(cssModule, ["canvas"])}
-      ref={domNodeRef}
+      viewBox="0 -220 550 440"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <svg
-        className={buildClassString(cssModule, ["canvas-svg"])}
-        viewBox="0 -220 550 440"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <Clock
-          musicalKey={musicalKey}
-          motion={motion}
-        />
-        <Sliders
-          musicalKey={musicalKey}
-          motion={motion}
-          setState={setState}
-        />
-      </svg>
-    </div>
+      <Clock
+        musicalKey={musicalKey}
+        motion={motion}
+      />
+      <Sliders
+        musicalKey={musicalKey}
+        motion={motion}
+        setState={setState}
+      />
+    </svg>
   );
 }

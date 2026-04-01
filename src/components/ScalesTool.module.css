@@ -1,2 +1,6 @@
 .scales-tool {
+  width: 550px;
+  min-width: 320px;
+  max-width: 100%;
+  aspect-ratio: auto 550 / 440;
 }
