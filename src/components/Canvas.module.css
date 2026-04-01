@@ -1,6 +1,8 @@
 .canvas {
-  max-width: 550px;
+  width: 550px;
   min-width: 320px;
+  max-width: 100%;
+  aspect-ratio: auto 550 / 440;
 }
 
 .canvas-svg {
