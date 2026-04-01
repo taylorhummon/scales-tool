@@ -1,5 +1,7 @@
+import { MIN_DEGREE, MAX_DEGREE } from "src/config";
 import { Motion } from "src/enumerations";
-import { MIN_DEGREE, MAX_DEGREE, MIN_MODE, MAX_MODE, MusicalKey } from "src/classes/MusicalKey";
+import { MusicalKey } from "src/classes/MusicalKey";
+import { MIN_MODE, MAX_MODE } from "src/utilities/mode";
 
 
 export function canPerformMotion(

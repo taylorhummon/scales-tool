@@ -10,3 +10,6 @@ export const MODE_NAME_BY_POSITION: Map<number, ModeName> = new Map([
   [-2, ModeName.Phrygian],
   [-3, ModeName.Locrian]
 ]);
+
+export const MAX_MODE = 3;
+export const MIN_MODE = - MAX_MODE;

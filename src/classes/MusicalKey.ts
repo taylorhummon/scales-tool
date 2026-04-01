@@ -1,3 +1,4 @@
+import { MAX_DEGREE, MIN_DEGREE, DEFAULT_MODE, DEFAULT_DEGREE } from "src/config";
 import { NaturalNote, Solfege, ModeName } from "src/enumerations";
 import { Note } from "src/classes/Note";
 import { quotientAndRemainderFor, remainderFor } from "src/utilities/math";
@@ -18,19 +19,6 @@ Mode:
   * -3 ~ B ~ Locrian
  */
 
-
-export const MAX_DEGREE = 14;
-export const MIN_DEGREE = - MAX_DEGREE;
-export const MAX_MODE = 3;
-export const MIN_MODE = - MAX_MODE;
-
-// Default to Major with no sharps or flats, a.k.a. C-Major.
-export const DEFAULT_MODE = 2;
-export const DEFAULT_DEGREE = 0;
-
-/*
-I'm using the name "MusicalKey" instead of "Key" in order to avoid names colliding with React.
-*/
 
 export class MusicalKey {
   degree: number;
