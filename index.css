@@ -55,7 +55,7 @@ p {
 }
 
 a {
-  color: #2a7ae2;
+  color: rgb(42, 122, 226);
   text-decoration: none;
 }
 
@@ -100,7 +100,7 @@ a.site-title {
 .page {
   display: flow-root;
   margin-bottom: 80px;
-  background: white;
+  background: rgb(255, 255, 255);
 }
 
 .main-content {
