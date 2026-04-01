@@ -46,16 +46,14 @@ function className(
   ) {
     const startHour = rootNote.hour;
     const finishHour = remainderFor(startHour - 7, 12);
-    classNames.push("move");
-    classNames.push(`from-${startHour}-to-${finishHour}`);
+    classNames.push(`move-from-${startHour}-to-${finishHour}`);
   } else if (
     motion === Motion.DecrementMode ||
     motion === Motion.IncrementDegree
    ) {
     const startHour = rootNote.hour;
     const finishHour = remainderFor(startHour + 7, 12);
-    classNames.push("move");
-    classNames.push(`from-${startHour}-to-${finishHour}`);
+    classNames.push(`move-from-${startHour}-to-${finishHour}`);
   }
   return buildClassString(cssModule, classNames);
 }

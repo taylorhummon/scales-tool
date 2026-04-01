@@ -37,7 +37,6 @@ function className(
     classNames.push(`note-${note.name}`);
     return buildClassString(cssModule, classNames);
   }
-  classNames.push("move");
-  classNames.push(`from-${labelAnimation.startNote.name}-to-${labelAnimation.finishNote.name}`);
+  classNames.push(`move-from-${labelAnimation.startNote.name}-to-${labelAnimation.finishNote.name}`);
   return buildClassString(cssModule, classNames);
 }
