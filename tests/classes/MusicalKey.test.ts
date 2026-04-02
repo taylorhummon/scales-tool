@@ -39,6 +39,41 @@ test("MusicalKey works for Dorian D", () => {
   ).toStrictEqual(
     [3, 2, 1, 0, -1, -2, -3]
   );
+  expect(
+    musicalKey.extendedScale.map((note) => note.name)
+  ).toStrictEqual(
+    ["B♭", "F", "C", "G", "D", "A", "E", "B", "F♯"]
+  );
+  expect(
+    musicalKey.extendedScale.map((note) => note.solfege)
+  ).toStrictEqual(
+    [Solfege.La, Solfege.Mi, Solfege.Ti, Solfege.Fa, Solfege.Do, Solfege.Sol, Solfege.Re, Solfege.La, Solfege.Mi]
+  );
+  expect(
+    musicalKey.extendedScale.map((note) => note.position)
+  ).toStrictEqual(
+    [4, 3, 2, 1, 0, -1, -2, -3, -4]
+  );
+  expect(
+    musicalKey.shorthand
+  ).toBe(
+    "0D"
+  );
+  expect(
+    musicalKey.noteAt(3).name
+  ).toBe(
+    "F"
+  );
+  expect(
+    musicalKey.noteAt(0).name
+  ).toBe(
+    "D"
+  );
+  expect(
+    musicalKey.noteAt(-3).name
+  ).toBe(
+    "B"
+  );
 });
 
 test("MusicalKey works for A-Major", () => {
@@ -73,6 +108,41 @@ test("MusicalKey works for A-Major", () => {
   ).toStrictEqual(
     [3, 2, 1, 0, -1, -2, -3]
   );
+  expect(
+    musicalKey.extendedScale.map((note) => note.name)
+  ).toStrictEqual(
+    ["G", "D", "A", "E", "B", "F♯", "C♯", "G♯", "D♯"]
+  );
+  expect(
+    musicalKey.extendedScale.map((note) => note.solfege)
+  ).toStrictEqual(
+    [Solfege.Ti, Solfege.Fa, Solfege.Do, Solfege.Sol, Solfege.Re, Solfege.La, Solfege.Mi, Solfege.Ti, Solfege.Fa]
+  );
+  expect(
+    musicalKey.extendedScale.map((note) => note.position)
+  ).toStrictEqual(
+    [4, 3, 2, 1, 0, -1, -2, -3, -4]
+  );
+  expect(
+    musicalKey.shorthand
+  ).toBe(
+    "3C"
+  );
+  expect(
+    musicalKey.noteAt(3).name
+  ).toBe(
+    "D"
+  );
+  expect(
+    musicalKey.noteAt(0).name
+  ).toBe(
+    "B"
+  );
+  expect(
+    musicalKey.noteAt(-3).name
+  ).toBe(
+    "G♯"
+  );
 });
 
 test("MusicalKey works for G-Minor", () => {
@@ -106,6 +176,41 @@ test("MusicalKey works for G-Minor", () => {
     musicalKey.scale.map((note) => note.position)
   ).toStrictEqual(
     [3, 2, 1, 0, -1, -2, -3]
+  );
+  expect(
+    musicalKey.extendedScale.map((note) => note.name)
+  ).toStrictEqual(
+    ["A♭", "E♭", "B♭", "F", "C", "G", "D", "A", "E"]
+  );
+  expect(
+    musicalKey.extendedScale.map((note) => note.solfege)
+  ).toStrictEqual(
+    [Solfege.Re, Solfege.La, Solfege.Mi, Solfege.Ti, Solfege.Fa, Solfege.Do, Solfege.Sol, Solfege.Re, Solfege.La]
+  );
+  expect(
+    musicalKey.extendedScale.map((note) => note.position)
+  ).toStrictEqual(
+    [4, 3, 2, 1, 0, -1, -2, -3, -4]
+  );
+  expect(
+    musicalKey.shorthand
+  ).toBe(
+    "-2A"
+  );
+  expect(
+    musicalKey.noteAt(3).name
+  ).toBe(
+    "E♭"
+  );
+  expect(
+    musicalKey.noteAt(0).name
+  ).toBe(
+    "C"
+  );
+  expect(
+    musicalKey.noteAt(-3).name
+  ).toBe(
+    "A"
   );
 });
 

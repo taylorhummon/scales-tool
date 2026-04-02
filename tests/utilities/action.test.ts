@@ -2,7 +2,7 @@ import { test, expect } from "vitest";
 
 import { Motion } from "src/enumerations";
 import { MusicalKey } from "src/classes/MusicalKey";
-import { canPerformMotion } from "src/utilities/action";
+import { canPerformMotion, getNextMusicalKey } from "src/utilities/action";
 
 
 test("canPerformMotion() works for Dorian D", () => {
@@ -172,5 +172,69 @@ test("canPerformMotion() works for 14 flats", () => {
     canPerformMotion(musicalKey, Motion.IncrementBoth)
   ).toBe(
     true
+  );
+});
+
+test("getNextMusicalKey() works", () => {
+  const musicalKey = new MusicalKey(0, 0);
+  expect(
+    getNextMusicalKey(musicalKey, Motion.DecrementMode).degree
+  ).toBe(
+    0
+  );
+  expect(
+    getNextMusicalKey(musicalKey, Motion.DecrementMode).mode
+  ).toBe(
+    -1
+  );
+  expect(
+    getNextMusicalKey(musicalKey, Motion.IncrementMode).degree
+  ).toBe(
+    0
+  );
+  expect(
+    getNextMusicalKey(musicalKey, Motion.IncrementMode).mode
+  ).toBe(
+    1
+  );
+  expect(
+    getNextMusicalKey(musicalKey, Motion.DecrementDegree).degree
+  ).toBe(
+    -1
+  );
+  expect(
+    getNextMusicalKey(musicalKey, Motion.DecrementDegree).mode
+  ).toBe(
+    0
+  );
+  expect(
+    getNextMusicalKey(musicalKey, Motion.IncrementDegree).degree
+  ).toBe(
+    1
+  );
+  expect(
+    getNextMusicalKey(musicalKey, Motion.IncrementDegree).mode
+  ).toBe(
+    0
+  );
+  expect(
+    getNextMusicalKey(musicalKey, Motion.DecrementBoth).degree
+  ).toBe(
+    -1
+  );
+  expect(
+    getNextMusicalKey(musicalKey, Motion.DecrementBoth).mode
+  ).toBe(
+    -1
+  );
+  expect(
+    getNextMusicalKey(musicalKey, Motion.IncrementBoth).degree
+  ).toBe(
+    1
+  );
+  expect(
+    getNextMusicalKey(musicalKey, Motion.IncrementBoth).mode
+  ).toBe(
+    1
   );
 });
