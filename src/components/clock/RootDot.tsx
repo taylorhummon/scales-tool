@@ -1,7 +1,7 @@
 import { Motion } from "@/enumerations";
 import type { Note } from "@/classes/Note";
 import { buildClassString } from "@/utilities/css";
-import { remainderFor } from "@/utilities/math";
+import { getRootDotFinishHour } from "@/utilities/motion";
 
 import cssModule from "@/components/clock/RootDot.module.css";
 
@@ -34,25 +34,11 @@ function className(
   motion: Motion
 ): string {
   const classNames = ["root-dot"];
-  if (
-    motion === Motion.Still ||
-    motion === Motion.DecrementBoth ||
-    motion === Motion.IncrementBoth
-  ) {
+  const startHour = rootNote.hour;
+  const finishHour = getRootDotFinishHour(rootNote, motion);
+  if (finishHour === startHour) {
     classNames.push(`hour-${rootNote.hour}`);
-  } else if (
-    motion === Motion.IncrementMode ||
-    motion === Motion.DecrementDegree
-  ) {
-    const startHour = rootNote.hour;
-    const finishHour = remainderFor(startHour - 7, 12);
-    classNames.push(`move-from-${startHour}-to-${finishHour}`);
-  } else if (
-    motion === Motion.DecrementMode ||
-    motion === Motion.IncrementDegree
-   ) {
-    const startHour = rootNote.hour;
-    const finishHour = remainderFor(startHour + 7, 12);
+  } else {
     classNames.push(`move-from-${startHour}-to-${finishHour}`);
   }
   return buildClassString(cssModule, classNames);
