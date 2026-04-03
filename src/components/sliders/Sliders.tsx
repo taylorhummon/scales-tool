@@ -35,7 +35,9 @@ export function Sliders({
         musicalKey={musicalKey}
         motion={motion}
       />
-      <ModeLabels />
+      <ModeLabels
+        musicalKey={musicalKey}
+      />
       <Button
         musicalKey={musicalKey}
         motion={motion}

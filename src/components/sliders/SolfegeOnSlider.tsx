@@ -91,7 +91,7 @@ function SmallTriangle({
   return (
     <polygon
       className={buildClassString(cssModule, ["root-triangle"])}
-      points="30,-6 18,-1 18,-11"
+      points="34,-6 20,-1 20,-11"
       strokeWidth="1.1"
       stroke={ROOT_DOT_STROKE_COLOR}
       fill={ROOT_DOT_FILL_COLOR}

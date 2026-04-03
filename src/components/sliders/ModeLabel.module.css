@@ -1,5 +1,10 @@
 .mode-label {
+  opacity: 0.3;
   offset-rotate: 0deg;
+
+  &.selected {
+    opacity: 1;
+  }
 
   &.position-3 {
     offset-path: path("M 0 -99");
