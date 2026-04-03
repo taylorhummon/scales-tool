@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 
 import { Canvas } from "@/components/Canvas";
-import { getNextMusicalKey } from "@/utilities/action";
 import { buildClassString } from "@/utilities/css";
+import { getNextMusicalKey } from "@/utilities/motion";
 import { musicalKeyFromCurrentURL, addToBrowserHistory } from "@/utilities/routing";
 import {
   stateFromMusicalKey,

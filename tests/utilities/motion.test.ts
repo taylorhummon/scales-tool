@@ -2,7 +2,7 @@ import { test, expect } from "vitest";
 
 import { Motion } from "@/enumerations";
 import { MusicalKey } from "@/classes/MusicalKey";
-import { canPerformMotion, getNextMusicalKey } from "@/utilities/action";
+import { canPerformMotion, getNextMusicalKey } from "@/utilities/motion";
 
 
 test("canPerformMotion() works for Dorian D", () => {

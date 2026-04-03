@@ -3,8 +3,8 @@ import type { Dispatch, SetStateAction } from "react";
 import { Motion } from "@/enumerations";
 import { MusicalKey } from "@/classes/MusicalKey";
 import { Icon } from "@/components/sliders/Icon";
-import { canPerformMotion } from "@/utilities/action";
 import { buildClassString } from "@/utilities/css";
+import { canPerformMotion } from "@/utilities/motion";
 import type { State } from "@/utilities/state";
 
 import cssModule from "@/components/sliders/Button.module.css";
