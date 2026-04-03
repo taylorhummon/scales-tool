@@ -13,10 +13,6 @@ Positions 4 and -4 are just outside of the clipping region.
   offset-rotate: 0deg;
   font-family: "PT Mono", monospace;
 
-  &.root {
-    stroke: rgb(4, 51, 255);
-  }
-
   &.position-4 {
     offset-path: path("M 0 -132");
   }

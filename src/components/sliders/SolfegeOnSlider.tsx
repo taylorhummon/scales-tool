@@ -1,3 +1,4 @@
+import { SHOW_SOLFEGE_ON_SLIDER, ROOT_DOT_STROKE_COLOR, ROOT_DOT_FILL_COLOR } from "@/config";
 import { Solfege } from "@/enumerations";
 import type { Note } from "@/classes/Note";
 import { buildClassString } from "@/utilities/css";
@@ -15,47 +16,85 @@ export function SolfegeOnSlider({
   const isRootNote = note.solfege === Solfege.Do;
   return (
     <g
-      className={className(note, isRootNote)}
+      className={className(note)}
     >
-      <text
-        className={buildClassString(cssModule, ["solfege-text"])}
-      >
-        {note.solfege}
-      </text>
-      {isRootNote ? <RootTriangles /> : null }
+      <LargeTriangle
+        isRootNote={isRootNote}
+      />
+      <SolfegeText
+        note={note}
+        isRootNote={isRootNote}
+      />
     </g>
   );
 }
 
 function className(
-  note: Note,
-  isRootNote: boolean
+  note: Note
 ): string {
   const classNames = ["solfege-on-slider", note.solfege, `position-${note.position}`];
-  if (isRootNote) {
-    classNames.push("root");
-  }
   return buildClassString(cssModule, classNames);
 }
 
-function RootTriangles(
-): JSX.Element | null {
+interface LargeTriangleProps {
+  isRootNote: boolean;
+}
+
+function LargeTriangle({
+  isRootNote
+}: LargeTriangleProps): JSX.Element | null {
+  if (SHOW_SOLFEGE_ON_SLIDER) return null;
+  if (! isRootNote) return null;
+  return (
+    <polygon
+      points="18,-6 -11,0 -11,-12"
+      strokeWidth="1.2"
+      stroke={ROOT_DOT_STROKE_COLOR}
+      fill={ROOT_DOT_FILL_COLOR}
+    />
+  );
+}
+
+interface SolfegeTextProps {
+  note: Note;
+  isRootNote: boolean;
+}
+
+function SolfegeText({
+  note,
+  isRootNote
+}: SolfegeTextProps): JSX.Element | null {
+  if (! SHOW_SOLFEGE_ON_SLIDER) return null;
   return (
     <>
-      <polygon
-        className={buildClassString(cssModule, ["root-triangle"])}
-        points="-33,-5 -22,0 -22,-10"
-        strokeWidth="1.1"
-        stroke="rgb(4, 51, 255)"
-        fill="rgb(208, 214, 253)"
-      />
-      <polygon
-        className={buildClassString(cssModule, ["root-triangle"])}
-        points="33,-5 22,0 22,-10"
-        strokeWidth="1.1"
-        stroke="rgb(4, 51, 255)"
-        fill="rgb(208, 214, 253)"
+      <text
+        className={buildClassString(cssModule, ["solfege-text"])}
+        style={isRootNote ? { "stroke": ROOT_DOT_STROKE_COLOR } : {}}
+      >
+        {note.solfege}
+      </text>
+      <SmallTriangle
+        isRootNote={isRootNote}
       />
     </>
+  );
+}
+
+interface SmallTriangleProps {
+  isRootNote: boolean
+}
+
+function SmallTriangle({
+  isRootNote
+}: SmallTriangleProps): JSX.Element | null {
+  if (! isRootNote) return null;
+  return (
+    <polygon
+      className={buildClassString(cssModule, ["root-triangle"])}
+      points="30,-6 18,-1 18,-11"
+      strokeWidth="1.1"
+      stroke={ROOT_DOT_STROKE_COLOR}
+      fill={ROOT_DOT_FILL_COLOR}
+    />
   );
 }

@@ -1,4 +1,4 @@
-@value duration-motion from "../../constants.css";
+@value duration-motion from "../../config.css";
 
 @keyframes move-note-dot {
   0% {

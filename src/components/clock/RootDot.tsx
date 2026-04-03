@@ -1,3 +1,4 @@
+import { ROOT_DOT_STROKE_COLOR, ROOT_DOT_FILL_COLOR } from "@/config";
 import { Motion } from "@/enumerations";
 import type { Note } from "@/classes/Note";
 import { buildClassString } from "@/utilities/css";
@@ -23,8 +24,8 @@ export function RootDot({
       cy="0"
       r="14"
       strokeWidth="1.3"
-      stroke="rgb(4, 51, 255)"
-      fill="rgb(208, 214, 253)"
+      stroke={ROOT_DOT_STROKE_COLOR}
+      fill={ROOT_DOT_FILL_COLOR}
     />
   );
 }

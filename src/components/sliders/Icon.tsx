@@ -1,4 +1,9 @@
+import { ROOT_DOT_STROKE_COLOR, ROOT_DOT_FILL_COLOR } from "@/config";
 import { Motion } from "@/enumerations";
+
+
+const ICON_MOTION_COLOR = "rgb(110, 110, 110)";
+
 
 interface IconProps {
   motion: Motion;
@@ -15,8 +20,8 @@ export function Icon({
           cy="4"
           r="7"
           strokeWidth="1.2"
-          stroke="rgb(4, 51, 255)"
-          fill="rgb(208, 214, 253)"
+          stroke={ROOT_DOT_STROKE_COLOR}
+          fill={ROOT_DOT_FILL_COLOR}
         />
         <line
           x1="3"
@@ -24,7 +29,7 @@ export function Icon({
           x2="12"
           y2="-11"
           strokeWidth="1"
-          stroke="rgb(110, 110, 110)"
+          stroke={ICON_MOTION_COLOR}
         />
         <line
           x1="5"
@@ -32,7 +37,7 @@ export function Icon({
           x2="14"
           y2="-8"
           strokeWidth="1"
-          stroke="rgb(110, 110, 110)"
+          stroke={ICON_MOTION_COLOR}
         />
         <line
           x1="-1"
@@ -40,7 +45,7 @@ export function Icon({
           x2="8"
           y2="-12"
           strokeWidth="1"
-          stroke="rgb(110, 110, 110)"
+          stroke={ICON_MOTION_COLOR}
         />
       </>
     );
@@ -53,8 +58,8 @@ export function Icon({
           cy="-4"
           r="7"
           strokeWidth="1.2"
-          stroke="rgb(4, 51, 255)"
-          fill="rgb(208, 214, 253)"
+          stroke={ROOT_DOT_STROKE_COLOR}
+          fill={ROOT_DOT_FILL_COLOR}
         />
         <line
           x1="-3"
@@ -62,7 +67,7 @@ export function Icon({
           x2="-12"
           y2="11"
           strokeWidth="1"
-          stroke="rgb(110, 110, 110)"
+          stroke={ICON_MOTION_COLOR}
         />
         <line
           x1="-5"
@@ -70,7 +75,7 @@ export function Icon({
           x2="-14"
           y2="8"
           strokeWidth="1"
-          stroke="rgb(110, 110, 110)"
+          stroke={ICON_MOTION_COLOR}
         />
         <line
           x1="1"
@@ -78,7 +83,7 @@ export function Icon({
           x2="-8"
           y2="12"
           strokeWidth="1"
-          stroke="rgb(110, 110, 110)"
+          stroke={ICON_MOTION_COLOR}
         />
       </>
     );
