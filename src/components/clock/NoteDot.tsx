@@ -1,7 +1,8 @@
-import { Motion } from "@/enumerations";
+import type { Motion } from "@/enumerations";
 import type { Note } from "@/classes/Note";
 import { buildClassString } from "@/utilities/css";
 import { remainderFor } from "@/utilities/math";
+import { willDecrementDegree, willIncrementDegree } from "@/utilities/motion";
 
 import cssModule from "@/components/clock/NoteDot.module.css";
 
@@ -31,26 +32,16 @@ function className(
   motion: Motion
 ): string {
   const classNames = ["note-dot"];
-  if (
-    motion === Motion.Still ||
-    motion === Motion.DecrementMode ||
-    motion === Motion.IncrementMode
-  ) {
-    classNames.push(`hour-${note.hour}`);
-  } else if (
-    motion === Motion.DecrementDegree ||
-    motion === Motion.DecrementBoth
-  ) {
+  if (willDecrementDegree(motion)) {
     const startHour = note.hour;
     const finishHour = remainderFor(startHour - 7, 12);
     classNames.push(`move-from-${startHour}-to-${finishHour}`);
-  } else if (
-    motion === Motion.IncrementDegree ||
-    motion === Motion.IncrementBoth
-  ) {
+  } else if (willIncrementDegree(motion)) {
     const startHour = note.hour;
     const finishHour = remainderFor(startHour + 7, 12);
     classNames.push(`move-from-${startHour}-to-${finishHour}`);
+  } else {
+    classNames.push(`hour-${note.hour}`);
   }
   return buildClassString(cssModule, classNames);
 }

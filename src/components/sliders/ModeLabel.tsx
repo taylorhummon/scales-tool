@@ -1,4 +1,4 @@
-import { ModeName } from "@/enumerations";
+import type { ModeName } from "@/enumerations";
 import { buildClassString } from "@/utilities/css";
 
 import cssModule from "@/components/sliders/ModeLabel.module.css";

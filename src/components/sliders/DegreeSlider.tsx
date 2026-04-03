@@ -1,7 +1,8 @@
-import { Motion } from "@/enumerations";
-import { MusicalKey } from "@/classes/MusicalKey";
+import type { Motion } from "@/enumerations";
+import type { MusicalKey } from "@/classes/MusicalKey";
 import { NoteOnSlider } from "@/components/sliders/NoteOnSlider";
 import { buildClassString } from "@/utilities/css";
+import { willDecrementDegree, willIncrementDegree } from "@/utilities/motion";
 
 import cssModule from "@/components/sliders/DegreeSlider.module.css";
 
@@ -53,15 +54,9 @@ function className(
   motion: Motion
 ): string {
   const classNames = ["degree-slider-inner"];
-  if (
-    motion === Motion.DecrementDegree ||
-    motion === Motion.DecrementBoth
-  ) {
+  if (willDecrementDegree(motion)) {
     classNames.push("move-down");
-  } else if (
-    motion === Motion.IncrementDegree ||
-    motion === Motion.IncrementBoth
-  ) {
+  } else if (willIncrementDegree(motion)) {
     classNames.push("move-up");
   }
   return buildClassString(cssModule, classNames);

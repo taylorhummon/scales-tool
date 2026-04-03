@@ -53,3 +53,27 @@ export function getNextMusicalKey(
   }
   return musicalKey;
 }
+
+export function willDecrementDegree(
+  motion: Motion
+): boolean {
+  return motion === Motion.DecrementDegree || motion === Motion.DecrementBoth;
+}
+
+export function willIncrementDegree(
+  motion: Motion
+): boolean {
+  return motion === Motion.IncrementDegree || motion === Motion.IncrementBoth;
+}
+
+export function willDecrementMode(
+  motion: Motion
+): boolean {
+  return motion === Motion.DecrementMode || motion === Motion.DecrementBoth;
+}
+
+export function willIncrementMode(
+  motion: Motion
+): boolean {
+  return motion === Motion.IncrementMode || motion === Motion.IncrementBoth;
+}

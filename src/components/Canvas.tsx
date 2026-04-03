@@ -1,11 +1,11 @@
 import type { Dispatch, SetStateAction } from "react";
 
-import { Motion } from "@/enumerations";
-import { MusicalKey } from "@/classes/MusicalKey";
+import type { Motion } from "@/enumerations";
+import type { MusicalKey } from "@/classes/MusicalKey";
 import { Clock } from "@/components/clock/Clock";
 import { Sliders } from "@/components/sliders/Sliders";
 import { buildClassString } from "@/utilities/css";
-import { State } from "@/utilities/state";
+import type { State } from "@/utilities/state";
 
 import cssModule from "@/components/Canvas.module.css";
 

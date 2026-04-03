@@ -1,5 +1,5 @@
 import { Solfege } from "@/enumerations";
-import { Note } from "@/classes/Note";
+import type { Note } from "@/classes/Note";
 import { buildClassString } from "@/utilities/css";
 
 import cssModule from "@/components/sliders/SolfegeOnSlider.module.css";

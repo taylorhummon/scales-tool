@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from "react";
 
 import { Motion } from "@/enumerations";
-import { MusicalKey } from "@/classes/MusicalKey";
+import type { MusicalKey } from "@/classes/MusicalKey";
 import { Icon } from "@/components/sliders/Icon";
 import { buildClassString } from "@/utilities/css";
 import { canPerformMotion } from "@/utilities/motion";

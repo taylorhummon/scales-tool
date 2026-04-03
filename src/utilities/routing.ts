@@ -1,8 +1,5 @@
-import {
-  MusicalKey,
-  musicalKeyFromShorthand,
-  getDefaultMusicalKey,
-} from "@/classes/MusicalKey";
+import type { MusicalKey } from "@/classes/MusicalKey";
+import { musicalKeyFromShorthand, getDefaultMusicalKey } from "@/classes/MusicalKey";
 import { historicalStateFromMusicalKey } from "@/utilities/state";
 
 

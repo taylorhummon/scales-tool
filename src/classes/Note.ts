@@ -1,4 +1,5 @@
-import { NaturalNote, Solfege } from "@/enumerations";
+import type { Solfege } from "@/enumerations";
+import { NaturalNote } from "@/enumerations";
 import { remainderFor } from "@/utilities/math";
 
 

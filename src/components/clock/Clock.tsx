@@ -1,6 +1,6 @@
-import { Motion } from "@/enumerations";
+import type { Motion } from "@/enumerations";
 import { buildLabelAnimation } from "@/classes/LabelAnimation";
-import { MusicalKey } from "@/classes/MusicalKey";
+import type { MusicalKey } from "@/classes/MusicalKey";
 import { ClockFace } from "@/components/clock/ClockFace";
 import { KeyDescription } from "@/components/clock/KeyDescription";
 import { NoteDot } from "@/components/clock/NoteDot";
