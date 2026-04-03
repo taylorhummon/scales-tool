@@ -17,7 +17,7 @@ export function NoteLabel({
 }: NoteLabelProps): JSX.Element {
   return (
     <g
-      className={className(note, labelAnimation)}
+      className={getClassName(note, labelAnimation)}
       data-testid={`note-label-${note.solfege}`}
     >
       <NoteLabelText
@@ -28,7 +28,7 @@ export function NoteLabel({
   );
 }
 
-function className(
+function getClassName(
   note: Note,
   labelAnimation: LabelAnimation | null
 ): string {

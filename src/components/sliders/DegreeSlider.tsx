@@ -36,7 +36,7 @@ export function DegreeSlider({
         clipPath="url(#degree-slider-clip-path)"
       >
         <g
-          className={className(motion)}
+          className={getClassName(motion)}
         >
           {musicalKey.extendedScale.map((note) => (
             <NoteOnSlider
@@ -50,7 +50,7 @@ export function DegreeSlider({
   );
 }
 
-function className(
+function getClassName(
   motion: Motion
 ): string {
   const classNames = ["degree-slider-inner"];

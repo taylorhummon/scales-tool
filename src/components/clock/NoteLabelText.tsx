@@ -29,7 +29,7 @@ export function NoteLabelText({
         {note.naturalNote}
         {"♯".repeat(opaqueSharpsCount)}
         <tspan
-          className={className(labelAnimation)}
+          className={getClassName(labelAnimation)}
         >
           ♯
         </tspan>
@@ -42,7 +42,7 @@ export function NoteLabelText({
       <text>
         {note.naturalNote}
         {"♭".repeat(opaqueFlatsCount)}
-        <tspan className={className(labelAnimation)}>
+        <tspan className={getClassName(labelAnimation)}>
           ♭
         </tspan>
       </text>
@@ -55,7 +55,7 @@ export function NoteLabelText({
   );
 }
 
-function className(
+function getClassName(
   labelAnimation: LabelAnimation
 ): string {
   const classNames = [];

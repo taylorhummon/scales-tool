@@ -18,7 +18,7 @@ export function RootDot({
 }: RootDotProps): JSX.Element {
   return (
     <circle
-      className={className(rootNote, motion)}
+      className={getClassName(rootNote, motion)}
       data-testid={"clock-root-dot"}
       cx="0"
       cy="0"
@@ -30,7 +30,7 @@ export function RootDot({
   );
 }
 
-function className(
+function getClassName(
   rootNote: Note,
   motion: Motion
 ): string {

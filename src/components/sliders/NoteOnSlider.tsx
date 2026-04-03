@@ -13,7 +13,7 @@ export function NoteOnSlider({
 }: NoteOnSliderProps): JSX.Element {
   return (
     <g
-      className={className(note)}
+      className={getClassName(note)}
     >
       <text
         className={buildClassString(cssModule, ["note-text"])}
@@ -24,7 +24,7 @@ export function NoteOnSlider({
   );
 }
 
-function className(
+function getClassName(
   note: Note
 ): string {
   const classNames = ["note-on-slider", note.name, `position-${note.position}`];

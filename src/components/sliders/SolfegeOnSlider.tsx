@@ -16,7 +16,7 @@ export function SolfegeOnSlider({
   const isRootNote = note.solfege === Solfege.Do;
   return (
     <g
-      className={className(note)}
+      className={getClassName(note)}
     >
       <LargeTriangle
         isRootNote={isRootNote}
@@ -29,7 +29,7 @@ export function SolfegeOnSlider({
   );
 }
 
-function className(
+function getClassName(
   note: Note
 ): string {
   const classNames = ["solfege-on-slider", note.solfege, `position-${note.position}`];

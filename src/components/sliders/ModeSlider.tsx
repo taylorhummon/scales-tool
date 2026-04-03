@@ -36,7 +36,7 @@ export function ModeSlider({
         clipPath="url(#mode-slider-clip-path)"
       >
         <g
-          className={className(motion)}
+          className={getClassName(motion)}
         >
           {musicalKey.extendedScale.map((note) => (
             <SolfegeOnSlider
@@ -50,7 +50,7 @@ export function ModeSlider({
   );
 }
 
-function className(
+function getClassName(
   motion: Motion
 ): string {
   const classNames = ["mode-slider-inner"];

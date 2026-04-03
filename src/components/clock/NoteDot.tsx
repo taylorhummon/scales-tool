@@ -17,7 +17,7 @@ export function NoteDot({
 }: NoteDotProps): JSX.Element {
   return (
     <circle
-      className={className(note, motion)}
+      className={getClassName(note, motion)}
       data-testid={`note-dot-${note.solfege}`}
       cx="0"
       cy="0"
@@ -26,7 +26,7 @@ export function NoteDot({
   );
 }
 
-function className(
+function getClassName(
   note: Note,
   motion: Motion
 ): string {
