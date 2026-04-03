@@ -1,6 +1,6 @@
-import { Motion } from "src/enumerations";
-import { MusicalKey } from "src/classes/MusicalKey";
-import { Note } from "src/classes/Note";
+import { Motion } from "@/enumerations";
+import { MusicalKey } from "@/classes/MusicalKey";
+import { Note } from "@/classes/Note";
 
 
 export function buildLabelAnimation(

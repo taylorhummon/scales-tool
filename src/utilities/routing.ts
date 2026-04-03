@@ -2,8 +2,8 @@ import {
   MusicalKey,
   musicalKeyFromShorthand,
   getDefaultMusicalKey,
-} from "src/classes/MusicalKey";
-import { historicalStateFromMusicalKey } from "src/utilities/state";
+} from "@/classes/MusicalKey";
+import { historicalStateFromMusicalKey } from "@/utilities/state";
 
 
 export function addToBrowserHistory(

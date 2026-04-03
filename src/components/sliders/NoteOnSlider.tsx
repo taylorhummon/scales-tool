@@ -1,7 +1,7 @@
-import { Note } from "src/classes/Note";
-import { buildClassString } from "src/utilities/css";
+import { Note } from "@/classes/Note";
+import { buildClassString } from "@/utilities/css";
 
-import cssModule from "src/components/sliders/NoteOnSlider.module.css";
+import cssModule from "@/components/sliders/NoteOnSlider.module.css";
 
 
 interface NoteOnSliderProps {

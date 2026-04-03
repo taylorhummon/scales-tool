@@ -1,10 +1,10 @@
 import { test, expect, afterEach } from "vitest";
 
-import { MusicalKey } from "src/classes/MusicalKey";
+import { MusicalKey } from "@/classes/MusicalKey";
 import {
   addToBrowserHistory,
   musicalKeyFromCurrentURL,
-} from "src/utilities/routing";
+} from "@/utilities/routing";
 import { cleanHistory } from "../testHelpers";
 
 

@@ -1,9 +1,9 @@
-import { Motion } from "src/enumerations";
-import { MusicalKey } from "src/classes/MusicalKey";
-import { SolfegeOnSlider } from "src/components/sliders/SolfegeOnSlider";
-import { buildClassString } from "src/utilities/css";
+import { Motion } from "@/enumerations";
+import { MusicalKey } from "@/classes/MusicalKey";
+import { SolfegeOnSlider } from "@/components/sliders/SolfegeOnSlider";
+import { buildClassString } from "@/utilities/css";
 
-import cssModule from "src/components/sliders/ModeSlider.module.css";
+import cssModule from "@/components/sliders/ModeSlider.module.css";
 
 
 interface ModeSliderProps {

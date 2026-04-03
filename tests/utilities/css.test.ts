@@ -1,6 +1,6 @@
 import { test, expect } from "vitest";
 
-import { buildClassString } from "src/utilities/css";
+import { buildClassString } from "@/utilities/css";
 
 
 test("buildClassString() looks up class names and then joins them with spaces in between", () => {

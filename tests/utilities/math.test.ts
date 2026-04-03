@@ -3,7 +3,7 @@ import { test, expect } from "vitest";
 import {
   quotientAndRemainderFor,
   remainderFor
-} from "src/utilities/math";
+} from "@/utilities/math";
 
 
 test("quotientAndRemainderFor() works when the denominator is positive", () => {

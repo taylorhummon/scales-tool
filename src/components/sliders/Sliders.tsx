@@ -1,15 +1,15 @@
 import type { Dispatch, SetStateAction } from "react";
 
-import { Motion } from "src/enumerations";
-import { MusicalKey } from "src/classes/MusicalKey";
-import { Button } from "src/components/sliders/Button";
-import { DegreeSlider } from "src/components/sliders/DegreeSlider";
-import { ModeLabels } from "src/components/sliders/ModeLabels";
-import { ModeSlider } from "src/components/sliders/ModeSlider";
-import { buildClassString } from "src/utilities/css";
-import type { State } from "src/utilities/state";
+import { Motion } from "@/enumerations";
+import { MusicalKey } from "@/classes/MusicalKey";
+import { Button } from "@/components/sliders/Button";
+import { DegreeSlider } from "@/components/sliders/DegreeSlider";
+import { ModeLabels } from "@/components/sliders/ModeLabels";
+import { ModeSlider } from "@/components/sliders/ModeSlider";
+import { buildClassString } from "@/utilities/css";
+import type { State } from "@/utilities/state";
 
-import cssModule from "src/components/sliders/Sliders.module.css";
+import cssModule from "@/components/sliders/Sliders.module.css";
 
 
 interface SlidersProps {

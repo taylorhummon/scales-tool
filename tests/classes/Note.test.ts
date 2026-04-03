@@ -1,7 +1,7 @@
 import { test, expect } from "vitest";
 
-import { NaturalNote, Solfege } from "src/enumerations"
-import { Note } from "src/classes/Note";
+import { NaturalNote, Solfege } from "@/enumerations"
+import { Note } from "@/classes/Note";
 
 
 test("Note.hour works", () => {

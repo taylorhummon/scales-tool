@@ -1,4 +1,4 @@
-import { ModeName } from "src/enumerations";
+import { ModeName } from "@/enumerations";
 
 
 export const MAX_MODE = 3;

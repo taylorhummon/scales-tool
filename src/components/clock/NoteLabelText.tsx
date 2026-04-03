@@ -1,8 +1,8 @@
-import type { Note } from "src/classes/Note";
-import type { LabelAnimation } from "src/classes/LabelAnimation";
-import { buildClassString } from "src/utilities/css";
+import type { Note } from "@/classes/Note";
+import type { LabelAnimation } from "@/classes/LabelAnimation";
+import { buildClassString } from "@/utilities/css";
 
-import cssModule from "src/components/clock/NoteLabelText.module.css";
+import cssModule from "@/components/clock/NoteLabelText.module.css";
 
 
 interface NoteLabelTextProps {

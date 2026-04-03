@@ -1,5 +1,5 @@
-import { NaturalNote, Solfege } from "src/enumerations";
-import { remainderFor } from "src/utilities/math";
+import { NaturalNote, Solfege } from "@/enumerations";
+import { remainderFor } from "@/utilities/math";
 
 
 export class Note {

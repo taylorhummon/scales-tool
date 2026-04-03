@@ -1,8 +1,8 @@
 import { test, expect } from "vitest";
 
-import { Motion } from "src/enumerations";
-import { MusicalKey } from "src/classes/MusicalKey";
-import { canPerformMotion, getNextMusicalKey } from "src/utilities/action";
+import { Motion } from "@/enumerations";
+import { MusicalKey } from "@/classes/MusicalKey";
+import { canPerformMotion, getNextMusicalKey } from "@/utilities/action";
 
 
 test("canPerformMotion() works for Dorian D", () => {

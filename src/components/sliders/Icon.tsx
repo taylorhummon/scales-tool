@@ -1,4 +1,4 @@
-import { Motion } from "src/enumerations";
+import { Motion } from "@/enumerations";
 
 interface IconProps {
   motion: Motion;

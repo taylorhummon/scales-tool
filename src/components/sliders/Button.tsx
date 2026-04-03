@@ -1,13 +1,13 @@
 import type { Dispatch, SetStateAction } from "react";
 
-import { Motion } from "src/enumerations";
-import { MusicalKey } from "src/classes/MusicalKey";
-import { Icon } from "src/components/sliders/Icon";
-import { canPerformMotion } from "src/utilities/action";
-import { buildClassString } from "src/utilities/css";
-import type { State } from "src/utilities/state";
+import { Motion } from "@/enumerations";
+import { MusicalKey } from "@/classes/MusicalKey";
+import { Icon } from "@/components/sliders/Icon";
+import { canPerformMotion } from "@/utilities/action";
+import { buildClassString } from "@/utilities/css";
+import type { State } from "@/utilities/state";
 
-import cssModule from "src/components/sliders/Button.module.css";
+import cssModule from "@/components/sliders/Button.module.css";
 
 
 interface ButtonProps {

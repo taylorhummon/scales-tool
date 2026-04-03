@@ -1,14 +1,14 @@
-import { Motion } from "src/enumerations";
-import { buildLabelAnimation } from "src/classes/LabelAnimation";
-import { MusicalKey } from "src/classes/MusicalKey";
-import { ClockFace } from "src/components/clock/ClockFace";
-import { KeyDescription } from "src/components/clock/KeyDescription";
-import { NoteDot } from "src/components/clock/NoteDot";
-import { NoteLabel } from "src/components/clock/NoteLabel";
-import { RootDot } from "src/components/clock/RootDot";
-import { buildClassString } from "src/utilities/css";
+import { Motion } from "@/enumerations";
+import { buildLabelAnimation } from "@/classes/LabelAnimation";
+import { MusicalKey } from "@/classes/MusicalKey";
+import { ClockFace } from "@/components/clock/ClockFace";
+import { KeyDescription } from "@/components/clock/KeyDescription";
+import { NoteDot } from "@/components/clock/NoteDot";
+import { NoteLabel } from "@/components/clock/NoteLabel";
+import { RootDot } from "@/components/clock/RootDot";
+import { buildClassString } from "@/utilities/css";
 
-import cssModule from "src/components/clock/Clock.module.css";
+import cssModule from "@/components/clock/Clock.module.css";
 
 
 interface ClockProps {

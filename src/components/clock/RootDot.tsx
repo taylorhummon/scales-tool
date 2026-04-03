@@ -1,9 +1,9 @@
-import { Motion } from "src/enumerations";
-import { Note } from "src/classes/Note";
-import { buildClassString } from "src/utilities/css";
-import { remainderFor } from "src/utilities/math";
+import { Motion } from "@/enumerations";
+import { Note } from "@/classes/Note";
+import { buildClassString } from "@/utilities/css";
+import { remainderFor } from "@/utilities/math";
 
-import cssModule from "src/components/clock/RootDot.module.css";
+import cssModule from "@/components/clock/RootDot.module.css";
 
 
 interface RootDotProps {

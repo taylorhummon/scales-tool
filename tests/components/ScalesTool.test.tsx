@@ -1,8 +1,8 @@
 import { test, expect, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 
-import { Solfege } from "src/enumerations";
-import ScalesTool from "src/components/ScalesTool";
+import { Solfege } from "@/enumerations";
+import ScalesTool from "@/components/ScalesTool";
 import { cleanHistory } from "../testHelpers";
 
 

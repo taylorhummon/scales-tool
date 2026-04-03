@@ -1,7 +1,7 @@
-import { MAX_DEGREE, MIN_DEGREE, DEFAULT_MODE, DEFAULT_DEGREE } from "src/config";
-import { NaturalNote, Solfege, ModeName } from "src/enumerations";
-import { Note } from "src/classes/Note";
-import { quotientAndRemainderFor, remainderFor } from "src/utilities/math";
+import { MAX_DEGREE, MIN_DEGREE, DEFAULT_MODE, DEFAULT_DEGREE } from "@/config";
+import { NaturalNote, Solfege, ModeName } from "@/enumerations";
+import { Note } from "@/classes/Note";
+import { quotientAndRemainderFor, remainderFor } from "@/utilities/math";
 
 
 /*

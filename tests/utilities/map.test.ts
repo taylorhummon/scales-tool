@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import { buildMap, arrayFromMap } from "src/utilities/map";
+import { buildMap, arrayFromMap } from "@/utilities/map";
 
 
 test("buildMap() builds a map from the given keys and function", () => {

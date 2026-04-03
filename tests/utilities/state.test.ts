@@ -1,13 +1,13 @@
 import { test, expect } from "vitest";
 
-import { Motion } from "src/enumerations";
-import { MusicalKey } from "src/classes/MusicalKey";
+import { Motion } from "@/enumerations";
+import { MusicalKey } from "@/classes/MusicalKey";
 import {
   stateFromHistoricalState,
   stateFromMusicalKey,
   musicalKeyFromState,
   historicalStateFromMusicalKey,
-} from "src/utilities/state";
+} from "@/utilities/state";
 
 
 test("stateFromHistoricalState() works", () => {

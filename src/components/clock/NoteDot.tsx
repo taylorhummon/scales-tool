@@ -1,9 +1,9 @@
-import { Motion } from "src/enumerations";
-import type { Note } from "src/classes/Note";
-import { buildClassString } from "src/utilities/css";
-import { remainderFor } from "src/utilities/math";
+import { Motion } from "@/enumerations";
+import type { Note } from "@/classes/Note";
+import { buildClassString } from "@/utilities/css";
+import { remainderFor } from "@/utilities/math";
 
-import cssModule from "src/components/clock/NoteDot.module.css";
+import cssModule from "@/components/clock/NoteDot.module.css";
 
 
 interface NoteDotProps {

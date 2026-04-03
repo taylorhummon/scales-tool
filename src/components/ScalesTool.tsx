@@ -1,16 +1,16 @@
 import { useState, useRef, useEffect } from "react";
 
-import { Canvas } from "src/components/Canvas";
-import { getNextMusicalKey } from "src/utilities/action";
-import { buildClassString } from "src/utilities/css";
-import { musicalKeyFromCurrentURL, addToBrowserHistory } from "src/utilities/routing";
+import { Canvas } from "@/components/Canvas";
+import { getNextMusicalKey } from "@/utilities/action";
+import { buildClassString } from "@/utilities/css";
+import { musicalKeyFromCurrentURL, addToBrowserHistory } from "@/utilities/routing";
 import {
   stateFromMusicalKey,
   stateFromHistoricalState,
   musicalKeyFromState,
-} from "src/utilities/state";
+} from "@/utilities/state";
 
-import cssModule from "src/components/ScalesTool.module.css";
+import cssModule from "@/components/ScalesTool.module.css";
 
 
 export default function ScalesTool(

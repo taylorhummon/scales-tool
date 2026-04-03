@@ -1,7 +1,7 @@
-import { ModeName } from "src/enumerations";
-import { buildClassString } from "src/utilities/css";
+import { ModeName } from "@/enumerations";
+import { buildClassString } from "@/utilities/css";
 
-import cssModule from "src/components/sliders/ModeLabel.module.css";
+import cssModule from "@/components/sliders/ModeLabel.module.css";
 
 
 interface ModeLabelProps {

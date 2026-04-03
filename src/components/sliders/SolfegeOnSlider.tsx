@@ -1,8 +1,8 @@
-import { Solfege } from "src/enumerations";
-import { Note } from "src/classes/Note";
-import { buildClassString } from "src/utilities/css";
+import { Solfege } from "@/enumerations";
+import { Note } from "@/classes/Note";
+import { buildClassString } from "@/utilities/css";
 
-import cssModule from "src/components/sliders/SolfegeOnSlider.module.css";
+import cssModule from "@/components/sliders/SolfegeOnSlider.module.css";
 
 
 interface SolfegeOnSliderProps {

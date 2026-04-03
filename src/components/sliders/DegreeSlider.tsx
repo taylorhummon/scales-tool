@@ -1,9 +1,9 @@
-import { Motion } from "src/enumerations";
-import { MusicalKey } from "src/classes/MusicalKey";
-import { NoteOnSlider } from "src/components/sliders/NoteOnSlider";
-import { buildClassString } from "src/utilities/css";
+import { Motion } from "@/enumerations";
+import { MusicalKey } from "@/classes/MusicalKey";
+import { NoteOnSlider } from "@/components/sliders/NoteOnSlider";
+import { buildClassString } from "@/utilities/css";
 
-import cssModule from "src/components/sliders/DegreeSlider.module.css";
+import cssModule from "@/components/sliders/DegreeSlider.module.css";
 
 
 interface DegreeSliderProps {

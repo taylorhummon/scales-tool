@@ -1,5 +1,5 @@
-import { Motion } from "src/enumerations";
-import { getDefaultMusicalKey, MusicalKey } from "src/classes/MusicalKey";
+import { Motion } from "@/enumerations";
+import { getDefaultMusicalKey, MusicalKey } from "@/classes/MusicalKey";
 
 
 export interface State {

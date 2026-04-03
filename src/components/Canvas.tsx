@@ -1,13 +1,13 @@
 import type { Dispatch, SetStateAction } from "react";
 
-import { Motion } from "src/enumerations";
-import { MusicalKey } from "src/classes/MusicalKey";
-import { Clock } from "src/components/clock/Clock";
-import { Sliders } from "src/components/sliders/Sliders";
-import { buildClassString } from "src/utilities/css";
-import { State } from "src/utilities/state";
+import { Motion } from "@/enumerations";
+import { MusicalKey } from "@/classes/MusicalKey";
+import { Clock } from "@/components/clock/Clock";
+import { Sliders } from "@/components/sliders/Sliders";
+import { buildClassString } from "@/utilities/css";
+import { State } from "@/utilities/state";
 
-import cssModule from "src/components/Canvas.module.css";
+import cssModule from "@/components/Canvas.module.css";
 
 
 interface CanvasProps {
