@@ -27,11 +27,11 @@ export function Sliders({
     <g
       className={buildClassString(cssModule, ["sliders"])}
     >
-      <DegreeSlider
+      <ModeSlider
         musicalKey={musicalKey}
         motion={motion}
       />
-      <ModeSlider
+      <DegreeSlider
         musicalKey={musicalKey}
         motion={motion}
       />
