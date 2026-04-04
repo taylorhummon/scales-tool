@@ -56,13 +56,13 @@ export function willIncrementDegree(
   return motion === Motion.IncrementDegree || motion === Motion.IncrementBoth;
 }
 
-export function willDecrementMode(
+export function getWillDecrementMode(
   motion: Motion
 ): boolean {
   return motion === Motion.DecrementMode || motion === Motion.DecrementBoth;
 }
 
-export function willIncrementMode(
+export function getWillIncrementMode(
   motion: Motion
 ): boolean {
   return motion === Motion.IncrementMode || motion === Motion.IncrementBoth;

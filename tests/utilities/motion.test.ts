@@ -9,8 +9,8 @@ import {
   getNextMusicalKey,
   willDecrementDegree,
   willIncrementDegree,
-  willDecrementMode,
-  willIncrementMode,
+  getWillDecrementMode,
+  getWillIncrementMode,
   getNoteFinishHour,
   getRootDotFinishHour,
 } from "@/utilities/motion";
@@ -298,37 +298,37 @@ test("willIncrementDegree() works", () => {
   );
 });
 
-test("willDecrementMode() works", () => {
+test("getWillDecrementMode() works", () => {
   expect(
-    willDecrementMode(Motion.DecrementMode)
+    getWillDecrementMode(Motion.DecrementMode)
   ).toBe(
     true
   );
   expect(
-    willDecrementMode(Motion.DecrementBoth)
+    getWillDecrementMode(Motion.DecrementBoth)
   ).toBe(
     true
   );
   expect(
-    willDecrementMode(Motion.DecrementDegree)
+    getWillDecrementMode(Motion.DecrementDegree)
   ).toBe(
     false
   );
 });
 
-test("willIncrementMode() works", () => {
+test("getWillIncrementMode() works", () => {
   expect(
-    willIncrementMode(Motion.IncrementMode)
+    getWillIncrementMode(Motion.IncrementMode)
   ).toBe(
     true
   );
   expect(
-    willIncrementMode(Motion.IncrementBoth)
+    getWillIncrementMode(Motion.IncrementBoth)
   ).toBe(
     true
   );
   expect(
-    willIncrementMode(Motion.IncrementDegree)
+    getWillIncrementMode(Motion.IncrementDegree)
   ).toBe(
     false
   );

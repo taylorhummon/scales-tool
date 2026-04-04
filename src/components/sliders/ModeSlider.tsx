@@ -2,7 +2,7 @@ import type { Motion } from "@/enumerations";
 import type { MusicalKey } from "@/classes/MusicalKey";
 import { SolfegeOnSlider } from "@/components/sliders/SolfegeOnSlider";
 import { buildClassString } from "@/utilities/css";
-import { willDecrementMode, willIncrementMode } from "@/utilities/motion";
+import { getWillDecrementMode, getWillIncrementMode } from "@/utilities/motion";
 
 import cssModule from "@/components/sliders/ModeSlider.module.css";
 
@@ -54,9 +54,9 @@ function getClassName(
   motion: Motion
 ): string {
   const classNames = ["mode-slider-inner"];
-  if (willDecrementMode(motion)) {
+  if (getWillDecrementMode(motion)) {
     classNames.push("move-down");
-  } else if (willIncrementMode(motion)) {
+  } else if (getWillIncrementMode(motion)) {
     classNames.push("move-up");
   }
   return buildClassString(cssModule, classNames);

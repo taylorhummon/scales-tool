@@ -1,3 +1,4 @@
+import type { Motion } from "@/enumerations";
 import type { MusicalKey } from "@/classes/MusicalKey";
 import { ModeLabel } from "@/components/sliders/ModeLabel";
 import { buildClassString } from "@/utilities/css";
@@ -9,10 +10,12 @@ import cssModule from "@/components/sliders/ModeLabels.module.css";
 
 interface ModeLabelsProps {
   musicalKey: MusicalKey;
+  motion: Motion
 }
 
 export function ModeLabels({
-  musicalKey
+  musicalKey,
+  motion
 }: ModeLabelsProps): JSX.Element {
   return (
     <g
@@ -21,9 +24,10 @@ export function ModeLabels({
       {arrayFromMap(MODE_NAME_BY_POSITION, (modeName, position) =>
         <ModeLabel
           key={position}
+          musicalKey={musicalKey}
+          motion={motion}
           modeName={modeName}
           position={position}
-          isSelected={musicalKey.mode === position}
         />
       )}
     </g>
