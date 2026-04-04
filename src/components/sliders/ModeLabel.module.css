@@ -2,10 +2,10 @@
 
 @keyframes fading-in {
   0% {
-    opacity: 0.25;
+    opacity: 0.24;
   }
   60% {
-    opacity: 0.25;
+    opacity: 0.24;
   }
   100% {
     opacity: 1;
@@ -13,7 +13,7 @@
 }
 
 .mode-label {
-  opacity: 0.25;
+  opacity: 0.24;
   offset-rotate: 0deg;
 
   &.selected {

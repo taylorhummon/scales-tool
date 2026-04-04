@@ -69,7 +69,7 @@ function SolfegeText({
     <>
       <text
         className={buildClassString(cssModule, ["solfege-text"])}
-        style={isRootNote ? { "stroke": ROOT_DOT_STROKE_COLOR } : {}}
+        style={isRootNote ? { stroke: ROOT_DOT_STROKE_COLOR } : {}}
       >
         {note.solfege}
       </text>
