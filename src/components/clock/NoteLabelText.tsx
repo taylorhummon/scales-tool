@@ -2,7 +2,7 @@ import type { Note } from "@/classes/Note";
 import type { LabelAnimation } from "@/classes/LabelAnimation";
 import { buildClassString } from "@/utilities/css";
 
-import cssModule from "@/components/clock/NoteLabelText.module.css";
+import cssModule from "@/components/clock/NoteLabelText.module.scss";
 
 
 interface NoteLabelTextProps {

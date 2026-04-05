@@ -4,7 +4,7 @@ import { SolfegeOnSlider } from "@/components/sliders/SolfegeOnSlider";
 import { buildClassString } from "@/utilities/css";
 import { getWillDecrementMode, getWillIncrementMode } from "@/utilities/motion";
 
-import cssModule from "@/components/sliders/ModeSlider.module.css";
+import cssModule from "@/components/sliders/ModeSlider.module.scss";
 
 
 interface ModeSliderProps {

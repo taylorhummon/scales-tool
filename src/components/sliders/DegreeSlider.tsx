@@ -4,7 +4,7 @@ import { NoteOnSlider } from "@/components/sliders/NoteOnSlider";
 import { buildClassString } from "@/utilities/css";
 import { willDecrementDegree, willIncrementDegree } from "@/utilities/motion";
 
-import cssModule from "@/components/sliders/DegreeSlider.module.css";
+import cssModule from "@/components/sliders/DegreeSlider.module.scss";
 
 
 interface DegreeSliderProps {

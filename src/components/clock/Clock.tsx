@@ -8,7 +8,7 @@ import { NoteLabel } from "@/components/clock/NoteLabel";
 import { RootDot } from "@/components/clock/RootDot";
 import { buildClassString } from "@/utilities/css";
 
-import cssModule from "@/components/clock/Clock.module.css";
+import cssModule from "@/components/clock/Clock.module.scss";
 
 
 interface ClockProps {

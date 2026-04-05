@@ -5,7 +5,7 @@ import { buildClassString } from "@/utilities/css";
 import { MIN_MODE, MAX_MODE } from "@/utilities/mode";
 import { getWillDecrementMode, getWillIncrementMode } from "@/utilities/motion";
 
-import cssModule from "@/components/sliders/ModeLabel.module.css";
+import cssModule from "@/components/sliders/ModeLabel.module.scss";
 
 
 interface ModeLabelProps {

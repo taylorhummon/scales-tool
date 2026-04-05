@@ -1,7 +1,7 @@
 import type { MusicalKey } from "@/classes/MusicalKey";
 import { buildClassString } from "@/utilities/css";
 
-import cssModule from "@/components/clock/KeyDescription.module.css";
+import cssModule from "@/components/clock/KeyDescription.module.scss";
 
 
 interface KeyDescriptionProps {

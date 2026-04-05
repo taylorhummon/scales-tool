@@ -4,7 +4,7 @@ import type { Note } from "@/classes/Note";
 import { buildClassString } from "@/utilities/css";
 import { getRootDotFinishHour } from "@/utilities/motion";
 
-import cssModule from "@/components/clock/RootDot.module.css";
+import cssModule from "@/components/clock/RootDot.module.scss";
 
 
 interface RootDotProps {

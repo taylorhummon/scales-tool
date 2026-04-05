@@ -7,7 +7,7 @@ import { Sliders } from "@/components/sliders/Sliders";
 import { buildClassString } from "@/utilities/css";
 import type { State } from "@/utilities/state";
 
-import cssModule from "@/components/Canvas.module.css";
+import cssModule from "@/components/Canvas.module.scss";
 
 
 interface CanvasProps {

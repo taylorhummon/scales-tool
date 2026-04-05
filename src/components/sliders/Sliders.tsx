@@ -9,7 +9,7 @@ import { ModeSlider } from "@/components/sliders/ModeSlider";
 import { buildClassString } from "@/utilities/css";
 import type { State } from "@/utilities/state";
 
-import cssModule from "@/components/sliders/Sliders.module.css";
+import cssModule from "@/components/sliders/Sliders.module.scss";
 
 
 interface SlidersProps {

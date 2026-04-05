@@ -10,7 +10,7 @@ import {
   musicalKeyFromState,
 } from "@/utilities/state";
 
-import cssModule from "@/components/ScalesTool.module.css";
+import cssModule from "@/components/ScalesTool.module.scss";
 
 
 export default function ScalesTool(

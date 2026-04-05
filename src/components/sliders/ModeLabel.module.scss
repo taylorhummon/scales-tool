@@ -1,4 +1,5 @@
-@value duration-motion from "../../config.css";
+@use "../../config.scss" as config;
+
 
 @keyframes fading-in {
   0% {
@@ -12,6 +13,7 @@
   }
 }
 
+
 .mode-label {
   opacity: 0.24;
   offset-rotate: 0deg;
@@ -21,11 +23,11 @@
   }
 
   &.fading-in {
-    animation: fading-in duration-motion linear 1 forwards;
+    animation: fading-in config.$duration-motion linear 1 forwards;
   }
 
   &.fading-out {
-    animation: fading-in duration-motion linear 1 forwards reverse;
+    animation: fading-in config.$duration-motion linear 1 forwards reverse;
   }
 
   &.position-3 {

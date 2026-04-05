@@ -5,7 +5,7 @@ import { buildClassString } from "@/utilities/css";
 import { arrayFromMap } from "@/utilities/map";
 import { MODE_NAME_BY_POSITION } from "@/utilities/mode";
 
-import cssModule from "@/components/sliders/ModeLabels.module.css";
+import cssModule from "@/components/sliders/ModeLabels.module.scss";
 
 
 interface ModeLabelsProps {

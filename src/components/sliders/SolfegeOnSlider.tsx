@@ -3,7 +3,7 @@ import { Solfege } from "@/enumerations";
 import type { Note } from "@/classes/Note";
 import { buildClassString } from "@/utilities/css";
 
-import cssModule from "@/components/sliders/SolfegeOnSlider.module.css";
+import cssModule from "@/components/sliders/SolfegeOnSlider.module.scss";
 
 
 interface SolfegeOnSliderProps {

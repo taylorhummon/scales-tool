@@ -10,7 +10,7 @@ import { addToBrowserHistory } from "@/utilities/routing";
 import type { State } from "@/utilities/state";
 import { stateFromMusicalKey } from "@/utilities/state";
 
-import cssModule from "@/components/sliders/Button.module.css";
+import cssModule from "@/components/sliders/Button.module.scss";
 
 
 interface ButtonProps {
