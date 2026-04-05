@@ -6,6 +6,8 @@ export const DEFAULT_DEGREE: number = 0;
 export const MAX_DEGREE: number = 14;
 export const MIN_DEGREE: number = -14;
 
+export const USE_ANIMATION: boolean = true;
+
 export const ALLOW_LYDIAN_LOCRIAN_LOOP: boolean = true;
 
 export const SHOW_SOLFEGE_ON_SLIDER: boolean = true;

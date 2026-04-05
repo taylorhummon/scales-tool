@@ -1,11 +1,14 @@
 import type { Dispatch, SetStateAction } from "react";
 
+import { USE_ANIMATION } from "@/config";
 import { Motion } from "@/enumerations";
 import type { MusicalKey } from "@/classes/MusicalKey";
 import { Icon } from "@/components/sliders/Icon";
 import { buildClassString } from "@/utilities/css";
-import { canPerformMotion } from "@/utilities/motion";
+import { canPerformMotion, getNextMusicalKey } from "@/utilities/motion";
+import { addToBrowserHistory } from "@/utilities/routing";
 import type { State } from "@/utilities/state";
+import { stateFromMusicalKey } from "@/utilities/state";
 
 import cssModule from "@/components/sliders/Button.module.css";
 
@@ -38,7 +41,13 @@ export function Button({
   function handleClick(
   ): void {
     if (isDisabled || isWaiting) return;
-    setState((state: State) => ({ ...state, motion: onClickMotion }));
+    if (USE_ANIMATION) {
+      setState((state: State) => ({ ...state, motion: onClickMotion }));
+    } else {
+      const nextMusicalKey = getNextMusicalKey(musicalKey, onClickMotion);
+      addToBrowserHistory(nextMusicalKey);
+      setState(stateFromMusicalKey(nextMusicalKey));
+    }
   }
 
   return (
