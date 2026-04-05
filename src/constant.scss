@@ -1,0 +1,77 @@
+@use "sass:math" as math;
+
+
+$position-spacing: -33;
+
+$position-4-y: calc(4 * $position-spacing);
+$position-3-y: calc(3 * $position-spacing);
+$position-2-y: calc(2 * $position-spacing);
+$position-1-y: calc(1 * $position-spacing);
+$position-0-y: calc(0 * $position-spacing);
+$position--1-y: calc(-1 * $position-spacing);
+$position--2-y: calc(-2 * $position-spacing);
+$position--3-y: calc(-3 * $position-spacing);
+$position--4-y: calc(-4 * $position-spacing);
+
+$position-4-offset-path: path("M 0 #{$position-4-y}");
+$position-3-offset-path: path("M 0 #{$position-3-y}");
+$position-2-offset-path: path("M 0 #{$position-2-y}");
+$position-1-offset-path: path("M 0 #{$position-1-y}");
+$position-0-offset-path: path("M 0 #{$position-0-y}");
+$position--1-offset-path: path("M 0 #{$position--1-y}");
+$position--2-offset-path: path("M 0 #{$position--2-y}");
+$position--3-offset-path: path("M 0 #{$position--3-y}");
+$position--4-offset-path: path("M 0 #{$position--4-y}");
+
+
+$hour-0-x: 0;
+$hour-1-x: 60;
+$hour-2-x: 103.92304845413263;
+$hour-3-x: 120;
+$hour-4-x: 103.92304845413263;
+$hour-5-x: 60;
+$hour-6-x: 0;
+$hour-7-x: -60;
+$hour-8-x: -103.92304845413263;
+$hour-9-x: -120;
+$hour-10-x: -103.92304845413263;
+$hour-11-x: -60;
+
+$hour-0-y: -120;
+$hour-1-y: -103.92304845413263;
+$hour-2-y: -60;
+$hour-3-y: 0;
+$hour-4-y: 60;
+$hour-5-y: 103.92304845413263;
+$hour-6-y: 120;
+$hour-7-y: 103.92304845413263;
+$hour-8-y: 60;
+$hour-9-y: 0;
+$hour-10-y: -60;
+$hour-11-y: -103.92304845413263;
+
+$hour-0-x-y: "#{$hour-0-x} #{$hour-0-y}";
+$hour-1-x-y: "#{$hour-1-x} #{$hour-1-y}";
+$hour-2-x-y: "#{$hour-2-x} #{$hour-2-y}";
+$hour-3-x-y: "#{$hour-3-x} #{$hour-3-y}";
+$hour-4-x-y: "#{$hour-4-x} #{$hour-4-y}";
+$hour-5-x-y: "#{$hour-5-x} #{$hour-5-y}";
+$hour-6-x-y: "#{$hour-6-x} #{$hour-6-y}";
+$hour-7-x-y: "#{$hour-7-x} #{$hour-7-y}";
+$hour-8-x-y: "#{$hour-8-x} #{$hour-8-y}";
+$hour-9-x-y: "#{$hour-9-x} #{$hour-9-y}";
+$hour-10-x-y: "#{$hour-10-x} #{$hour-10-y}";
+$hour-11-x-y: "#{$hour-11-x} #{$hour-11-y}";
+
+$hour-0-offset-path: path("M #{$hour-0-x-y}");
+$hour-1-offset-path: path("M #{$hour-1-x-y}");
+$hour-2-offset-path: path("M #{$hour-2-x-y}");
+$hour-3-offset-path: path("M #{$hour-3-x-y}");
+$hour-4-offset-path: path("M #{$hour-4-x-y}");
+$hour-5-offset-path: path("M #{$hour-5-x-y}");
+$hour-6-offset-path: path("M #{$hour-6-x-y}");
+$hour-7-offset-path: path("M #{$hour-7-x-y}");
+$hour-8-offset-path: path("M #{$hour-8-x-y}");
+$hour-9-offset-path: path("M #{$hour-9-x-y}");
+$hour-10-offset-path: path("M #{$hour-10-x-y}");
+$hour-11-offset-path: path("M #{$hour-11-x-y}");

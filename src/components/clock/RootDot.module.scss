@@ -1,4 +1,5 @@
 @use "../../config.scss" as config;
+@use "../../constant.scss" as constant;
 
 
 @keyframes move-root-dot {
@@ -15,51 +16,51 @@
   offset-rotate: 0deg;
 
   &.hour-0 {
-    offset-path: path("M 0 -120");
+    offset-path: constant.$hour-0-offset-path;
   }
 
   &.hour-1 {
-    offset-path: path("M 60 -103.92304845413263");
+    offset-path: constant.$hour-1-offset-path;
   }
 
   &.hour-2 {
-    offset-path: path("M 103.92304845413263 -60");
+    offset-path: constant.$hour-2-offset-path;
   }
 
   &.hour-3 {
-    offset-path: path("M 120 0");
+    offset-path: constant.$hour-3-offset-path;
   }
 
   &.hour-4 {
-    offset-path: path("M 103.92304845413263 60");
+    offset-path: constant.$hour-4-offset-path;
   }
 
   &.hour-5 {
-    offset-path: path("M 60 103.92304845413263");
+    offset-path: constant.$hour-5-offset-path;
   }
 
   &.hour-6 {
-    offset-path: path("M 0 120");
+    offset-path: constant.$hour-6-offset-path;
   }
 
   &.hour-7 {
-    offset-path: path("M -60 103.92304845413263");
+    offset-path: constant.$hour-7-offset-path;
   }
 
   &.hour-8 {
-    offset-path: path("M -103.92304845413263 60");
+    offset-path: constant.$hour-8-offset-path;
   }
 
   &.hour-9 {
-    offset-path: path("M -120 0");
+    offset-path: constant.$hour-9-offset-path;
   }
 
   &.hour-10 {
-    offset-path: path("M -103.92304845413263 -60");
+    offset-path: constant.$hour-10-offset-path;
   }
 
   &.hour-11 {
-    offset-path: path("M -60 -103.92304845413263");
+    offset-path: constant.$hour-11-offset-path;
   }
 
   &.move-from-0-to-7 {

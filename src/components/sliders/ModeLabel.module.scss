@@ -1,4 +1,5 @@
 @use "../../config.scss" as config;
+@use "../../constant.scss" as constant;
 
 
 @keyframes fading-in {
@@ -31,30 +32,30 @@
   }
 
   &.position-3 {
-    offset-path: path("M 0 -99");
+    offset-path: constant.$position-3-offset-path;
   }
 
   &.position-2 {
-    offset-path: path("M 0 -66");
+    offset-path: constant.$position-2-offset-path;
   }
 
   &.position-1 {
-    offset-path: path("M 0 -33");
+    offset-path: constant.$position-1-offset-path;
   }
 
   &.position-0 {
-    offset-path: path("M 0 0");
+    offset-path: constant.$position-0-offset-path;
   }
 
   &.position--1 {
-    offset-path: path("M 0 33");
+    offset-path: constant.$position--1-offset-path;
   }
 
   &.position--2 {
-    offset-path: path("M 0 66");
+    offset-path: constant.$position--2-offset-path;
   }
 
   &.position--3 {
-    offset-path: path("M 0 99");
+    offset-path: constant.$position--3-offset-path;
   }
 }

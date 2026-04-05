@@ -1,3 +1,6 @@
+@use "../../constant.scss" as constant;
+
+
 .solfege-text {
   text-anchor: middle;
 }
@@ -14,38 +17,38 @@ Positions 4 and -4 are just outside of the clipping region.
   font-family: "PT Mono", monospace;
 
   &.position-4 {
-    offset-path: path("M 0 -132");
+    offset-path: constant.$position-4-offset-path;
   }
 
   &.position-3 {
-    offset-path: path("M 0 -99");
+    offset-path: constant.$position-3-offset-path;
   }
 
   &.position-2 {
-    offset-path: path("M 0 -66");
+    offset-path: constant.$position-2-offset-path;
   }
 
   &.position-1 {
-    offset-path: path("M 0 -33");
+    offset-path: constant.$position-1-offset-path;
   }
 
   &.position-0 {
-    offset-path: path("M 0 0");
+    offset-path: constant.$position-0-offset-path;
   }
 
   &.position--1 {
-    offset-path: path("M 0 33");
+    offset-path: constant.$position--1-offset-path;
   }
 
   &.position--2 {
-    offset-path: path("M 0 66");
+    offset-path: constant.$position--2-offset-path;
   }
 
   &.position--3 {
-    offset-path: path("M 0 99");
+    offset-path: constant.$position--3-offset-path;
   }
 
   &.position--4 {
-    offset-path: path("M 0 132");
+    offset-path: constant.$position--4-offset-path;
   }
 }
