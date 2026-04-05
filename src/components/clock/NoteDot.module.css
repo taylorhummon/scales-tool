@@ -180,4 +180,124 @@
     animation: move-note-dot duration-motion ease-in-out 1 forwards;
     offset-path: path("M -60 103.92304845413263 L 0 -120");
   }
+
+  &.move-from-0-to-1 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M 0 -120 a 120 120, 0, 0, 1, 60 16.07695154586737");
+  }
+
+  &.move-from-1-to-2 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M 60 -103.92304845413263 a 120 120, 0, 0, 1, 43.923048454132626 43.923048454132626");
+  }
+
+  &.move-from-2-to-3 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M 103.92304845413263 -60 a 120 120, 0, 0, 1, 16.07695154586737 60");
+  }
+
+  &.move-from-3-to-4 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M 120 0 a 120 120, 0, 0, 1, -16.07695154586737 60");
+  }
+
+  &.move-from-4-to-5 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M 103.92304845413263 60 a 120 120, 0, 0, 1, -43.923048454132626 43.923048454132626");
+  }
+
+  &.move-from-5-to-6 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M 60 103.92304845413263 a 120 120, 0, 0, 1, -60 16.07695154586737");
+  }
+
+  &.move-from-6-to-7 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M 0 120 a 120 120, 0, 0, 1, -60 -16.07695154586737");
+  }
+
+  &.move-from-7-to-8 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M -60 103.92304845413263 a 120 120, 0, 0, 1, -43.923048454132626 -43.923048454132626");
+  }
+
+  &.move-from-8-to-9 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M -103.92304845413263 60 a 120 120, 0, 0, 1, -16.07695154586737 -60");
+  }
+
+  &.move-from-9-to-10 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M -120 0 a 120 120, 0, 0, 1, 16.07695154586737 -60");
+  }
+
+  &.move-from-10-to-11 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M -103.92304845413263 -60 a 120 120, 0, 0, 1, 43.923048454132626 -43.923048454132626");
+  }
+
+  &.move-from-11-to-0 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M -60 -103.92304845413263 a 120 120, 0, 0, 1, 60 -16.07695154586737");
+  }
+
+  &.move-from-0-to-11 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M 0 -120 a 120 120, 0, 0, 0, -60 16.07695154586737");
+  }
+
+  &.move-from-11-to-10 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M -60 -103.92304845413263 a 120 120, 0, 0, 0, -43.923048454132626 43.923048454132626");
+  }
+
+  &.move-from-10-to-9 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M -103.92304845413263 -60 a 120 120, 0, 0, 0, -16.07695154586737 60");
+  }
+
+  &.move-from-9-to-8 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M -120 0 a 120 120, 0, 0, 0, 16.07695154586737 60");
+  }
+
+  &.move-from-8-to-7 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M -103.92304845413263 60 a 120 120, 0, 0, 0, 43.923048454132626 43.923048454132626");
+  }
+
+  &.move-from-7-to-6 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M -60 103.92304845413263 a 120 120, 0, 0, 0, 60 16.07695154586737");
+  }
+
+  &.move-from-6-to-5 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M 0 120 a 120 120, 0, 0, 0, 60 -16.07695154586737");
+  }
+
+  &.move-from-5-to-4 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M 60 103.92304845413263 a 120 120, 0, 0, 0, 43.923048454132626 -43.923048454132626");
+  }
+
+  &.move-from-4-to-3 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M 103.92304845413263 60 a 120 120, 0, 0, 0, 16.07695154586737 -60");
+  }
+
+  &.move-from-3-to-2 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M 120 0 a 120 120, 0, 0, 0, -16.07695154586737 -60");
+  }
+
+  &.move-from-2-to-1 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M 103.92304845413263 -60 a 120 120, 0, 0, 0, -43.923048454132626 -43.923048454132626");
+  }
+
+  &.move-from-1-to-0 {
+    animation: move-note-dot duration-motion ease-in-out 1 forwards;
+    offset-path: path("M 60 -103.92304845413263 a 120 120, 0, 0, 0, -60 -16.07695154586737");
+  }
 }

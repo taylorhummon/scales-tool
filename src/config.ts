@@ -8,6 +8,8 @@ export const MIN_DEGREE: number = -14;
 
 export const USE_ANIMATION: boolean = true;
 
+export const PREFER_FULL_ANIMATION: boolean = false;
+
 export const ALLOW_LYDIAN_LOCRIAN_LOOP: boolean = true;
 
 export const SHOW_SOLFEGE_ON_SLIDER: boolean = true;

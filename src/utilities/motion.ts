@@ -1,4 +1,9 @@
-import { MIN_DEGREE, MAX_DEGREE, ALLOW_LYDIAN_LOCRIAN_LOOP } from "@/config";
+import {
+  MIN_DEGREE,
+  MAX_DEGREE,
+  ALLOW_LYDIAN_LOCRIAN_LOOP,
+  PREFER_FULL_ANIMATION,
+} from "@/config";
 import { Motion } from "@/enumerations";
 import { MusicalKey } from "@/classes/MusicalKey";
 import type { Note } from "@/classes/Note";
@@ -72,12 +77,22 @@ export function getNoteFinishHour(
   note: Note,
   motion: Motion
 ): number {
-  if (willDecrementDegree(motion)) {
-    return remainderFor(note.hour - 7, 12);
-  } else if (willIncrementDegree(motion)) {
-    return remainderFor(note.hour + 7, 12);
+  if (PREFER_FULL_ANIMATION) {
+    if (willDecrementDegree(motion)) {
+      return remainderFor(note.hour - 7, 12);
+    } else if (willIncrementDegree(motion)) {
+      return remainderFor(note.hour + 7, 12);
+    } else {
+      return note.hour;
+    }
   } else {
-    return note.hour;
+    if (willDecrementDegree(motion) && note.position === MIN_MODE) {
+      return remainderFor(note.hour - 1, 12);
+    } else if (willIncrementDegree(motion) && note.position === MAX_MODE) {
+      return remainderFor(note.hour + 1, 12);
+    } else {
+      return note.hour;
+    }
   }
 }
 
