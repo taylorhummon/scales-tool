@@ -15,6 +15,13 @@ export default defineConfig({
     port: 1234,
     strictPort: true
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: "modern-compiler"
+      }
+    }
+  },
   test: {
     dir: "tests",
     environment: "jsdom",
