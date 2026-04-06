@@ -1,6 +1,6 @@
 @use "sass:math" as math;
-@use "./unit-circle" as unit-circle;
-@use "./path" as path;
+@use "@/shared-css/unit-circle" as unit-circle;
+@use "@/shared-css/path" as path;
 
 
 $radius: 120;

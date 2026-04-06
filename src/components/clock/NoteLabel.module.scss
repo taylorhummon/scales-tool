@@ -1,6 +1,6 @@
-@use "../../shared-css/animation" as animation;
-@use "../../shared-css/label" as label;
-@use "../../shared-css/path" as path;
+@use "@/shared-css/animation" as animation;
+@use "@/shared-css/label" as label;
+@use "@/shared-css/path" as path;
 
 
 @keyframes move-note-label {
