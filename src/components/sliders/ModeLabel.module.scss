@@ -1,5 +1,5 @@
-@use "../../config.scss" as config;
-@use "../../shared-css/position.scss" as position;
+@use "../../shared-css/animation" as animation;
+@use "../../shared-css/position" as position;
 
 
 @keyframes fading-in {
@@ -24,11 +24,11 @@
   }
 
   &.fading-in {
-    animation: fading-in config.$duration-motion linear 1 forwards;
+    animation: fading-in animation.$duration linear 1 forwards;
   }
 
   &.fading-out {
-    animation: fading-in config.$duration-motion linear 1 forwards reverse;
+    animation: fading-in animation.$duration linear 1 forwards reverse;
   }
 
   &.position-3 {

@@ -1,6 +1,6 @@
-@use "../../config.scss" as config;
-@use "../../shared-css/clock.scss" as clock;
-@use "../../shared-css/path.scss" as path;
+@use "../../shared-css/animation" as animation;
+@use "../../shared-css/clock" as clock;
+@use "../../shared-css/path" as path;
 
 
 @keyframes move-note-dot {
@@ -66,242 +66,242 @@
   }
 
   &.move-from-0-to-1 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-0-to-1-offset-path;
   }
 
   &.move-from-1-to-2 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-1-to-2-offset-path;
   }
 
   &.move-from-2-to-3 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-2-to-3-offset-path;
   }
 
   &.move-from-3-to-4 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-3-to-4-offset-path;
   }
 
   &.move-from-4-to-5 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-4-to-5-offset-path;
   }
 
   &.move-from-5-to-6 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-5-to-6-offset-path;
   }
 
   &.move-from-6-to-7 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-6-to-7-offset-path;
   }
 
   &.move-from-7-to-8 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-7-to-8-offset-path;
   }
 
   &.move-from-8-to-9 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-8-to-9-offset-path;
   }
 
   &.move-from-9-to-10 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-9-to-10-offset-path;
   }
 
   &.move-from-10-to-11 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-10-to-11-offset-path;
   }
 
   &.move-from-11-to-0 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-11-to-0-offset-path;
   }
 
   &.move-from-0-to-11 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-0-to-11-offset-path;
   }
 
   &.move-from-11-to-10 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-11-to-10-offset-path;
   }
 
   &.move-from-10-to-9 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-10-to-9-offset-path;
   }
 
   &.move-from-9-to-8 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-9-to-8-offset-path;
   }
 
   &.move-from-8-to-7 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-8-to-7-offset-path;
   }
 
   &.move-from-7-to-6 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-7-to-6-offset-path;
   }
 
   &.move-from-6-to-5 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-6-to-5-offset-path;
   }
 
   &.move-from-5-to-4 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-5-to-4-offset-path;
   }
 
   &.move-from-4-to-3 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-4-to-3-offset-path;
   }
 
   &.move-from-3-to-2 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-3-to-2-offset-path;
   }
 
   &.move-from-2-to-1 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-2-to-1-offset-path;
   }
 
   &.move-from-1-to-0 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: clock.$from-1-to-0-offset-path;
   }
 
   &.move-from-0-to-7 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-0-point, clock.$hour-7-point);
   }
 
   &.move-from-7-to-2 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-7-point, clock.$hour-2-point);
   }
 
   &.move-from-2-to-9 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-2-point, clock.$hour-9-point);
   }
 
   &.move-from-9-to-4 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-9-point, clock.$hour-4-point);
   }
 
   &.move-from-4-to-11 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-4-point, clock.$hour-11-point);
   }
 
   &.move-from-11-to-6 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-11-point, clock.$hour-6-point);
   }
 
   &.move-from-6-to-1 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-6-point, clock.$hour-1-point);
   }
 
   &.move-from-1-to-8 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-1-point, clock.$hour-8-point);
   }
 
   &.move-from-8-to-3 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-8-point, clock.$hour-3-point);
   }
 
   &.move-from-3-to-10 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-3-point, clock.$hour-10-point);
   }
 
   &.move-from-10-to-5 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-10-point, clock.$hour-5-point);
   }
 
   &.move-from-5-to-0 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-5-point, clock.$hour-0-point);
   }
 
   &.move-from-0-to-5 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-0-point, clock.$hour-5-point);
   }
 
   &.move-from-5-to-10 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-5-point, clock.$hour-10-point);
   }
 
   &.move-from-10-to-3 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-10-point, clock.$hour-3-point);
   }
 
   &.move-from-3-to-8 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-3-point, clock.$hour-8-point);
   }
 
   &.move-from-8-to-1 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-8-point, clock.$hour-1-point);
   }
 
   &.move-from-1-to-6 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-1-point, clock.$hour-6-point);
   }
 
   &.move-from-6-to-11 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-6-point, clock.$hour-11-point);
   }
 
   &.move-from-11-to-4 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-11-point, clock.$hour-4-point);
   }
 
   &.move-from-4-to-9 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-4-point, clock.$hour-9-point);
   }
 
   &.move-from-9-to-2 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-9-point, clock.$hour-2-point);
   }
 
   &.move-from-2-to-7 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-2-point, clock.$hour-7-point);
   }
 
   &.move-from-7-to-0 {
-    animation: move-note-dot config.$duration-motion ease-in-out 1 forwards;
+    animation: move-note-dot animation.$duration ease-in-out 1 forwards;
     offset-path: path.linear-path(clock.$hour-7-point, clock.$hour-0-point);
   }
 }

@@ -1,4 +1,4 @@
-@use "../../config.scss" as config;
+@use "../../shared-css/animation" as animation;
 
 
 @keyframes appear {
@@ -15,9 +15,9 @@
 
 
 tspan.appear {
-  animation: appear config.$duration-motion linear 1 forwards;
+  animation: appear animation.$duration linear 1 forwards;
 }
 
 tspan.disappear {
-  animation: appear config.$duration-motion linear 1 forwards reverse;
+  animation: appear animation.$duration linear 1 forwards reverse;
 }

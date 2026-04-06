@@ -1,4 +1,4 @@
-@use "../../config.scss" as config;
+@use "../../shared-css/animation" as animation;
 
 
 @keyframes move-solfeges-slider {
@@ -20,12 +20,12 @@
   offset-rotate: 0deg;
 
   &.move-down {
-    animation: move-solfeges-slider config.$duration-motion ease-in-out 1 forwards;
+    animation: move-solfeges-slider animation.$duration ease-in-out 1 forwards;
     offset-path: path("M 0 5 L 0 38");
   }
 
   &.move-up {
-    animation: move-solfeges-slider config.$duration-motion ease-in-out 1 forwards;
+    animation: move-solfeges-slider animation.$duration ease-in-out 1 forwards;
     offset-path: path("M 0 5 L 0 -28");
   }
 }
