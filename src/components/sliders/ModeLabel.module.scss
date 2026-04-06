@@ -1,5 +1,5 @@
 @use "../../config.scss" as config;
-@use "../../constant.scss" as constant;
+@use "../../shared-css/position.scss" as position;
 
 
 @keyframes fading-in {
@@ -32,30 +32,30 @@
   }
 
   &.position-3 {
-    offset-path: constant.$position-3-offset-path;
+    offset-path: position.position-still-path(3);
   }
 
   &.position-2 {
-    offset-path: constant.$position-2-offset-path;
+    offset-path: position.position-still-path(2);
   }
 
   &.position-1 {
-    offset-path: constant.$position-1-offset-path;
+    offset-path: position.position-still-path(1);
   }
 
   &.position-0 {
-    offset-path: constant.$position-0-offset-path;
+    offset-path: position.position-still-path(0);
   }
 
   &.position--1 {
-    offset-path: constant.$position--1-offset-path;
+    offset-path: position.position-still-path(-1);
   }
 
   &.position--2 {
-    offset-path: constant.$position--2-offset-path;
+    offset-path: position.position-still-path(-2);
   }
 
   &.position--3 {
-    offset-path: constant.$position--3-offset-path;
+    offset-path: position.position-still-path(-3);
   }
 }

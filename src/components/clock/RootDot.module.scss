@@ -1,5 +1,6 @@
 @use "../../config.scss" as config;
-@use "../../constant.scss" as constant;
+@use "../../shared-css/clock.scss" as clock;
+@use "../../shared-css/path.scss" as path;
 
 
 @keyframes move-root-dot {
@@ -16,350 +17,350 @@
   offset-rotate: 0deg;
 
   &.hour-0 {
-    offset-path: constant.$hour-0-offset-path;
+    offset-path: path.still-path(clock.$hour-0-point);
   }
 
   &.hour-1 {
-    offset-path: constant.$hour-1-offset-path;
+    offset-path: path.still-path(clock.$hour-1-point);
   }
 
   &.hour-2 {
-    offset-path: constant.$hour-2-offset-path;
+    offset-path: path.still-path(clock.$hour-2-point);
   }
 
   &.hour-3 {
-    offset-path: constant.$hour-3-offset-path;
+    offset-path: path.still-path(clock.$hour-3-point);
   }
 
   &.hour-4 {
-    offset-path: constant.$hour-4-offset-path;
+    offset-path: path.still-path(clock.$hour-4-point);
   }
 
   &.hour-5 {
-    offset-path: constant.$hour-5-offset-path;
+    offset-path: path.still-path(clock.$hour-5-point);
   }
 
   &.hour-6 {
-    offset-path: constant.$hour-6-offset-path;
+    offset-path: path.still-path(clock.$hour-6-point);
   }
 
   &.hour-7 {
-    offset-path: constant.$hour-7-offset-path;
+    offset-path: path.still-path(clock.$hour-7-point);
   }
 
   &.hour-8 {
-    offset-path: constant.$hour-8-offset-path;
+    offset-path: path.still-path(clock.$hour-8-point);
   }
 
   &.hour-9 {
-    offset-path: constant.$hour-9-offset-path;
+    offset-path: path.still-path(clock.$hour-9-point);
   }
 
   &.hour-10 {
-    offset-path: constant.$hour-10-offset-path;
+    offset-path: path.still-path(clock.$hour-10-point);
   }
 
   &.hour-11 {
-    offset-path: constant.$hour-11-offset-path;
-  }
-
-  &.move-from-0-to-7 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 0 -120 L -60 103.92304845413263");
-  }
-
-  &.move-from-7-to-2 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -60 103.92304845413263 L 103.92304845413263 -60");
-  }
-
-  &.move-from-2-to-9 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 103.92304845413263 -60 L -120 0");
-  }
-
-  &.move-from-9-to-4 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -120 0 L 103.92304845413263 60");
-  }
-
-  &.move-from-4-to-11 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 103.92304845413263 60 L -60 -103.92304845413263");
-  }
-
-  &.move-from-11-to-6 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -60 -103.92304845413263 L 0 120");
-  }
-
-  &.move-from-6-to-1 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 0 120 L 60 -103.92304845413263");
-  }
-
-  &.move-from-1-to-8 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 60 -103.92304845413263 L -103.92304845413263 60");
-  }
-
-  &.move-from-8-to-3 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -103.92304845413263 60 L 120 0");
-  }
-
-  &.move-from-3-to-10 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 120 0 L -103.92304845413263 -60");
-  }
-
-  &.move-from-10-to-5 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -103.92304845413263 -60 L 60 103.92304845413263");
-  }
-
-  &.move-from-5-to-0 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 60 103.92304845413263 L 0 -120");
-  }
-
-  &.move-from-0-to-5 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 0 -120 L 60 103.92304845413263");
-  }
-
-  &.move-from-5-to-10 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 60 103.92304845413263 L -103.92304845413263 -60");
-  }
-
-  &.move-from-10-to-3 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -103.92304845413263 -60 L 120 0");
-  }
-
-  &.move-from-3-to-8 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 120 0 L -103.92304845413263 60");
-  }
-
-  &.move-from-8-to-1 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -103.92304845413263 60 L 60 -103.92304845413263");
-  }
-
-  &.move-from-1-to-6 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 60 -103.92304845413263 L 0 120");
-  }
-
-  &.move-from-6-to-11 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 0 120 L -60 -103.92304845413263");
-  }
-
-  &.move-from-11-to-4 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -60 -103.92304845413263 L 103.92304845413263 60");
-  }
-
-  &.move-from-4-to-9 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 103.92304845413263 60 L -120 0");
-  }
-
-  &.move-from-9-to-2 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -120 0 L 103.92304845413263 -60");
-  }
-
-  &.move-from-2-to-7 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 103.92304845413263 -60 L -60 103.92304845413263");
-  }
-
-  &.move-from-7-to-0 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -60 103.92304845413263 L 0 -120");
-  }
-
-  &.move-from-0-to-6 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 0 -120 L 0 120");
-  }
-
-  &.move-from-1-to-7 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 60 -103.92304845413263 L -60 103.92304845413263");
-  }
-
-  &.move-from-2-to-8 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 103.92304845413263 -60 L -103.92304845413263 60");
-  }
-
-  &.move-from-3-to-9 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 120 0 L -120 0");
-  }
-
-  &.move-from-4-to-10 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 103.92304845413263 60 L -103.92304845413263 -60");
-  }
-
-  &.move-from-5-to-11 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 60 103.92304845413263 L -60 -103.92304845413263");
-  }
-
-  &.move-from-6-to-0 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 0 120 L 0 -120");
-  }
-
-  &.move-from-7-to-1 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -60 103.92304845413263 L 60 -103.92304845413263");
-  }
-
-  &.move-from-8-to-2 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -103.92304845413263 60 L 103.92304845413263 -60");
-  }
-
-  &.move-from-9-to-3 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -120 0 L 120 0");
-  }
-
-  &.move-from-10-to-4 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -103.92304845413263 -60 L 103.92304845413263 60");
-  }
-
-  &.move-from-11-to-5 {
-    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -60 -103.92304845413263 L 60 103.92304845413263");
+    offset-path: path.still-path(clock.$hour-11-point);
   }
 
   &.move-from-0-to-1 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 0 -120 a 120 120, 0, 0, 1, 60 16.07695154586737");
+    offset-path: clock.$from-0-to-1-offset-path;
   }
 
   &.move-from-1-to-2 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 60 -103.92304845413263 a 120 120, 0, 0, 1, 43.923048454132626 43.923048454132626");
+    offset-path: clock.$from-1-to-2-offset-path;
   }
 
   &.move-from-2-to-3 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 103.92304845413263 -60 a 120 120, 0, 0, 1, 16.07695154586737 60");
+    offset-path: clock.$from-2-to-3-offset-path;
   }
 
   &.move-from-3-to-4 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 120 0 a 120 120, 0, 0, 1, -16.07695154586737 60");
+    offset-path: clock.$from-3-to-4-offset-path;
   }
 
   &.move-from-4-to-5 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 103.92304845413263 60 a 120 120, 0, 0, 1, -43.923048454132626 43.923048454132626");
+    offset-path: clock.$from-4-to-5-offset-path;
   }
 
   &.move-from-5-to-6 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 60 103.92304845413263 a 120 120, 0, 0, 1, -60 16.07695154586737");
+    offset-path: clock.$from-5-to-6-offset-path;
   }
 
   &.move-from-6-to-7 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 0 120 a 120 120, 0, 0, 1, -60 -16.07695154586737");
+    offset-path: clock.$from-6-to-7-offset-path;
   }
 
   &.move-from-7-to-8 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -60 103.92304845413263 a 120 120, 0, 0, 1, -43.923048454132626 -43.923048454132626");
+    offset-path: clock.$from-7-to-8-offset-path;
   }
 
   &.move-from-8-to-9 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -103.92304845413263 60 a 120 120, 0, 0, 1, -16.07695154586737 -60");
+    offset-path: clock.$from-8-to-9-offset-path;
   }
 
   &.move-from-9-to-10 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -120 0 a 120 120, 0, 0, 1, 16.07695154586737 -60");
+    offset-path: clock.$from-9-to-10-offset-path;
   }
 
   &.move-from-10-to-11 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -103.92304845413263 -60 a 120 120, 0, 0, 1, 43.923048454132626 -43.923048454132626");
+    offset-path: clock.$from-10-to-11-offset-path;
   }
 
   &.move-from-11-to-0 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -60 -103.92304845413263 a 120 120, 0, 0, 1, 60 -16.07695154586737");
+    offset-path: clock.$from-11-to-0-offset-path;
   }
 
   &.move-from-0-to-11 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 0 -120 a 120 120, 0, 0, 0, -60 16.07695154586737");
+    offset-path: clock.$from-0-to-11-offset-path;
   }
 
   &.move-from-11-to-10 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -60 -103.92304845413263 a 120 120, 0, 0, 0, -43.923048454132626 43.923048454132626");
+    offset-path: clock.$from-11-to-10-offset-path;
   }
 
   &.move-from-10-to-9 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -103.92304845413263 -60 a 120 120, 0, 0, 0, -16.07695154586737 60");
+    offset-path: clock.$from-10-to-9-offset-path;
   }
 
   &.move-from-9-to-8 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -120 0 a 120 120, 0, 0, 0, 16.07695154586737 60");
+    offset-path: clock.$from-9-to-8-offset-path;
   }
 
   &.move-from-8-to-7 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -103.92304845413263 60 a 120 120, 0, 0, 0, 43.923048454132626 43.923048454132626");
+    offset-path: clock.$from-8-to-7-offset-path;
   }
 
   &.move-from-7-to-6 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M -60 103.92304845413263 a 120 120, 0, 0, 0, 60 16.07695154586737");
+    offset-path: clock.$from-7-to-6-offset-path;
   }
 
   &.move-from-6-to-5 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 0 120 a 120 120, 0, 0, 0, 60 -16.07695154586737");
+    offset-path: clock.$from-6-to-5-offset-path;
   }
 
   &.move-from-5-to-4 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 60 103.92304845413263 a 120 120, 0, 0, 0, 43.923048454132626 -43.923048454132626");
+    offset-path: clock.$from-5-to-4-offset-path;
   }
 
   &.move-from-4-to-3 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 103.92304845413263 60 a 120 120, 0, 0, 0, 16.07695154586737 -60");
+    offset-path: clock.$from-4-to-3-offset-path;
   }
 
   &.move-from-3-to-2 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 120 0 a 120 120, 0, 0, 0, -16.07695154586737 -60");
+    offset-path: clock.$from-3-to-2-offset-path;
   }
 
   &.move-from-2-to-1 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 103.92304845413263 -60 a 120 120, 0, 0, 0, -43.923048454132626 -43.923048454132626");
+    offset-path: clock.$from-2-to-1-offset-path;
   }
 
   &.move-from-1-to-0 {
     animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
-    offset-path: path("M 60 -103.92304845413263 a 120 120, 0, 0, 0, -60 -16.07695154586737");
+    offset-path: clock.$from-1-to-0-offset-path;
+  }
+
+  &.move-from-0-to-7 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-0-point, clock.$hour-7-point);
+  }
+
+  &.move-from-7-to-2 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-7-point, clock.$hour-2-point);
+  }
+
+  &.move-from-2-to-9 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-2-point, clock.$hour-9-point);
+  }
+
+  &.move-from-9-to-4 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-9-point, clock.$hour-4-point);
+  }
+
+  &.move-from-4-to-11 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-4-point, clock.$hour-11-point);
+  }
+
+  &.move-from-11-to-6 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-11-point, clock.$hour-6-point);
+  }
+
+  &.move-from-6-to-1 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-6-point, clock.$hour-1-point);
+  }
+
+  &.move-from-1-to-8 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-1-point, clock.$hour-8-point);
+  }
+
+  &.move-from-8-to-3 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-8-point, clock.$hour-3-point);
+  }
+
+  &.move-from-3-to-10 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-3-point, clock.$hour-10-point);
+  }
+
+  &.move-from-10-to-5 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-10-point, clock.$hour-5-point);
+  }
+
+  &.move-from-5-to-0 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-5-point, clock.$hour-0-point);
+  }
+
+  &.move-from-0-to-5 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-0-point, clock.$hour-5-point);
+  }
+
+  &.move-from-5-to-10 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-5-point, clock.$hour-10-point);
+  }
+
+  &.move-from-10-to-3 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-10-point, clock.$hour-3-point);
+  }
+
+  &.move-from-3-to-8 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-3-point, clock.$hour-8-point);
+  }
+
+  &.move-from-8-to-1 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-8-point, clock.$hour-1-point);
+  }
+
+  &.move-from-1-to-6 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-1-point, clock.$hour-6-point);
+  }
+
+  &.move-from-6-to-11 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-6-point, clock.$hour-11-point);
+  }
+
+  &.move-from-11-to-4 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-11-point, clock.$hour-4-point);
+  }
+
+  &.move-from-4-to-9 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-4-point, clock.$hour-9-point);
+  }
+
+  &.move-from-9-to-2 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-9-point, clock.$hour-2-point);
+  }
+
+  &.move-from-2-to-7 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-2-point, clock.$hour-7-point);
+  }
+
+  &.move-from-7-to-0 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-7-point, clock.$hour-0-point);
+  }
+
+  &.move-from-0-to-6 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-0-point, clock.$hour-6-point);
+  }
+
+  &.move-from-1-to-7 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-1-point, clock.$hour-7-point);
+  }
+
+  &.move-from-2-to-8 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-2-point, clock.$hour-8-point);
+  }
+
+  &.move-from-3-to-9 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-3-point, clock.$hour-9-point);
+  }
+
+  &.move-from-4-to-10 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-4-point, clock.$hour-10-point);
+  }
+
+  &.move-from-5-to-11 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-5-point, clock.$hour-11-point);
+  }
+
+  &.move-from-6-to-0 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-6-point, clock.$hour-0-point);
+  }
+
+  &.move-from-7-to-1 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-7-point, clock.$hour-1-point);
+  }
+
+  &.move-from-8-to-2 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-8-point, clock.$hour-2-point);
+  }
+
+  &.move-from-9-to-3 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-9-point, clock.$hour-3-point);
+  }
+
+  &.move-from-10-to-4 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-10-point, clock.$hour-4-point);
+  }
+
+  &.move-from-11-to-5 {
+    animation: move-root-dot config.$duration-motion ease-in-out 1 forwards;
+    offset-path: path.linear-path(clock.$hour-11-point, clock.$hour-5-point);
   }
 }

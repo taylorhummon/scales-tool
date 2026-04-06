@@ -1,0 +1,7 @@
+@function still-path($point) {
+  @return path("M #{$point}");
+}
+
+@function linear-path($start, $finish) {
+  @return path("M #{$start} L #{$finish}");
+}

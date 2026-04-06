@@ -1,0 +1,30 @@
+@use "sass:math" as math;
+
+
+$sqrt_3_over_2: math.div(math.sqrt(3), 2);
+
+$x-0: 0;
+$x-1: 0.5;
+$x-2: $sqrt_3_over_2;
+$x-3: 1;
+$x-4: $sqrt_3_over_2;
+$x-5: 0.5;
+$x-6: 0;
+$x-7: -0.5;
+$x-8: calc(-1 * $sqrt_3_over_2);
+$x-9: -1;
+$x-10: calc(-1 * $sqrt_3_over_2);
+$x-11: -0.5;
+
+$y-0: -1;
+$y-1: calc(-1 * $sqrt_3_over_2);
+$y-2: -0.5;
+$y-3: 0;
+$y-4: 0.5;
+$y-5: $sqrt_3_over_2;
+$y-6: 1;
+$y-7: $sqrt_3_over_2;
+$y-8: 0.5;
+$y-9: 0;
+$y-10: -0.5;
+$y-11: calc(-1 * $sqrt_3_over_2);

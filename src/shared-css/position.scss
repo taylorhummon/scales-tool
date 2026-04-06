@@ -1,0 +1,6 @@
+$position-spacing: -33;
+
+@function position-still-path($position) {
+  $y: calc($position-spacing * $position);
+  @return path("M 0 #{$y}");
+}

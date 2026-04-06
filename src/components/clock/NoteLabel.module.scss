@@ -1,4 +1,6 @@
 @use "../../config.scss" as config;
+@use "../../shared-css/label.scss" as label;
+@use "../../shared-css/path" as path;
 
 
 @keyframes move-note-label {
@@ -11,150 +13,148 @@
 }
 
 
-/* TODO: Generate these offset-paths programmatically */
-
 .note-label {
   offset-rotate: 0deg;
   font-family: "PT Mono", monospace;
 
   &.note-D♭♭ {
-    offset-path: path("M -84.28203230275508 -35");
+    offset-path: path.still-path(label.$D♭♭-point);
   }
 
   &.note-D♭ {
-    offset-path: path("M -50 -64.28203230275508");
+    offset-path: path.still-path(label.$D♭-point);
   }
 
   &.note-D {
-    offset-path: path("M -5 -75");
+    offset-path: path.still-path(label.$D-point);
   }
 
   &.note-D♯ {
-    offset-path: path("M 30 -64.28203230275508");
+    offset-path: path.still-path(label.$D♯-point);
   }
 
   &.note-D♯♯ {
-    offset-path: path("M 54.28203230275508 -35");
+    offset-path: path.still-path(label.$D♯♯-point);
   }
 
   &.note-E♭♭ {
-    offset-path: path("M -15 -75");
+    offset-path: path.still-path(label.$E♭♭-point);
   }
 
   &.note-E♭ {
-    offset-path: path("M 30 -64.28203230275508");
+    offset-path: path.still-path(label.$E♭-point);
   }
 
   &.note-E {
-    offset-path: path("M 64.28203230275508 -35");
+    offset-path: path.still-path(label.$E-point);
   }
 
   &.note-E♯ {
-    offset-path: path("M 70 5");
+    offset-path: path.still-path(label.$E♯-point);
   }
 
   &.note-E♯♯ {
-    offset-path: path("M 54.28203230275508 45");
+    offset-path: path.still-path(label.$E♯♯-point);
   }
 
   &.note-F♭♭ {
-    offset-path: path("M 25 -64.28203230275508");
+    offset-path: path.still-path(label.$F♭♭-point);
   }
 
   &.note-F♭ {
-    offset-path: path("M 59.28203230275508 -35");
+    offset-path: path.still-path(label.$F♭-point);
   }
 
   &.note-F {
-    offset-path: path("M 75 5");
+    offset-path: path.still-path(label.$F-point);
   }
 
   &.note-F♯ {
-    offset-path: path("M 59.28203230275508 45");
+    offset-path: path.still-path(label.$F♯-point);
   }
 
   &.note-F♯♯ {
-    offset-path: path("M 25 74.28203230275508");
+    offset-path: path.still-path(label.$F♯♯-point);
   }
 
   &.note-G♭♭ {
-    offset-path: path("M 65 5");
+    offset-path: path.still-path(label.$F♭♭-point);
   }
 
   &.note-G♭ {
-    offset-path: path("M 59.28203230275508 45");
+    offset-path: path.still-path(label.$G♭-point);
   }
 
   &.note-G {
-    offset-path: path("M 35 74.28203230275508");
+    offset-path: path.still-path(label.$G-point);
   }
 
   &.note-G♯ {
-    offset-path: path("M -10 85");
+    offset-path: path.still-path(label.$G♯-point);
   }
 
   &.note-G♯♯ {
-    offset-path: path("M -55 74.28203230275508");
+    offset-path: path.still-path(label.$G♯♯-point);
   }
 
   &.note-A♭♭ {
-    offset-path: path("M 25 74.28203230275508");
+    offset-path: path.still-path(label.$A♭♭-point);
   }
 
   &.note-A♭ {
-    offset-path: path("M -10 85");
+    offset-path: path.still-path(label.$A♭-point);
   }
 
   &.note-A {
-    offset-path: path("M -45 74.28203230275508");
+    offset-path: path.still-path(label.$A-point);
   }
 
   &.note-A♯ {
-    offset-path: path("M -79.28203230275508 45");
+    offset-path: path.still-path(label.$A♯-point);
   }
 
   &.note-A♯♯ {
-    offset-path: path("M -95 5");
+    offset-path: path.still-path(label.$A♯♯-point);
   }
 
   &.note-B♭♭ {
-    offset-path: path("M -55 74.28203230275508");
+    offset-path: path.still-path(label.$B♭♭-point);
   }
 
   &.note-B♭ {
-    offset-path: path("M -79.28203230275508 45");
+    offset-path: path.still-path(label.$B♭-point);
   }
 
   &.note-B {
-    offset-path: path("M -85 5");
+    offset-path: path.still-path(label.$B-point);
   }
 
   &.note-B♯ {
-    offset-path: path("M -79.28203230275508 -35");
+    offset-path: path.still-path(label.$B♯-point);
   }
 
   &.note-B♯♯ {
-    offset-path: path("M -55 -64.28203230275508");
+    offset-path: path.still-path(label.$B♯♯-point);
   }
-
+S
   &.note-C♭♭ {
-    offset-path: path("M -84.28203230275508 45");
+    offset-path: path.still-path(label.$C♭♭-point);
   }
 
   &.note-C♭ {
-    offset-path: path("M -90 5");
+    offset-path: path.still-path(label.$C♭-point);
   }
 
   &.note-C {
-    offset-path: path("M -74.28203230275508 -35");
+    offset-path: path.still-path(label.$C-point);
   }
 
   &.note-C♯ {
-    offset-path: path("M -50 -64.28203230275508");
+    offset-path: path.still-path(label.$C♯-point);
   }
 
   &.note-C♯♯ {
-    offset-path: path("M -15 -75");
+    offset-path: path.still-path(label.$C♯♯-point);
   }
 
   &.move-from-D♭♭-to-D♭ {
