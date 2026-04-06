@@ -136,7 +136,7 @@
   &.note-B♯♯ {
     offset-path: path.still-path(label.$B♯♯-point);
   }
-S
+
   &.note-C♭♭ {
     offset-path: path.still-path(label.$C♭♭-point);
   }
@@ -159,281 +159,281 @@ S
 
   &.move-from-D♭♭-to-D♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -84.28203230275508 -35 L -50 -64.28203230275508");
+    offset-path: path.linear-path(label.$D♭♭-point, label.$D♭-point);
   }
 
   &.move-from-D♭-to-D {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -50 -64.28203230275508 L -5 -75");
+    offset-path: path.linear-path(label.$D♭-point, label.$D-point);
   }
 
   &.move-from-D-to-D♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -5 -75 L 30 -64.28203230275508");
+    offset-path: path.linear-path(label.$D-point, label.$D♯-point);
   }
 
   &.move-from-D♯-to-D♯♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 30 -64.28203230275508 L 54.28203230275508 -35");
+    offset-path: path.linear-path(label.$D♯-point, label.$D♯♯-point);
   }
 
   &.move-from-E♭♭-to-E♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -15 -75 L 30 -64.28203230275508");
+    offset-path: path.linear-path(label.$E♭♭-point, label.$E♭-point);
   }
 
   &.move-from-E♭-to-E {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 30 -64.28203230275508 L 64.28203230275508 -35");
+    offset-path: path.linear-path(label.$E♭-point, label.$E-point);
   }
 
   &.move-from-E-to-E♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 64.28203230275508 -35 L 70 5");
+    offset-path: path.linear-path(label.$E-point, label.$E♯-point);
   }
 
   &.move-from-E♯-to-E♯♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 70 5 L 54.28203230275508 45");
+    offset-path: path.linear-path(label.$E♯-point, label.$E♯♯-point);
   }
 
   &.move-from-F♭♭-to-F♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 25 -64.28203230275508 L 59.28203230275508 -35");
+    offset-path: path.linear-path(label.$F♭♭-point, label.$F♭-point);
   }
 
   &.move-from-F♭-to-F {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 59.28203230275508 -35 L 75 5");
+    offset-path: path.linear-path(label.$F♭-point, label.$F-point);
   }
 
   &.move-from-F-to-F♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 75 5 L 59.28203230275508 45");
+    offset-path: path.linear-path(label.$F-point, label.$F♯-point);
   }
 
   &.move-from-F♯-to-F♯♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 59.28203230275508 45 L 25 74.28203230275508");
+    offset-path: path.linear-path(label.$F♯-point, label.$F♯♯-point);
   }
 
   &.move-from-G♭♭-to-G♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 65 5 L 59.28203230275508 45");
+    offset-path: path.linear-path(label.$G♭♭-point, label.$G♭-point);
   }
 
   &.move-from-G♭-to-G {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 59.28203230275508 45 L 35 74.28203230275508");
+    offset-path: path.linear-path(label.$G♭-point, label.$G-point);
   }
 
   &.move-from-G-to-G♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 35 74.28203230275508 L -10 85");
+    offset-path: path.linear-path(label.$G-point, label.$G♯-point);
   }
 
   &.move-from-G♯-to-G♯♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -10 85 L -55 74.28203230275508");
+    offset-path: path.linear-path(label.$G♯-point, label.$G♯♯-point);
   }
 
   &.move-from-A♭♭-to-A♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 25 74.28203230275508 L -10 85");
+    offset-path: path.linear-path(label.$A♭♭-point, label.$A♭-point);
   }
 
   &.move-from-A♭-to-A {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -10 85 L -45 74.28203230275508");
+    offset-path: path.linear-path(label.$A♭-point, label.$A-point);
   }
 
   &.move-from-A-to-A♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -45 74.28203230275508 L -79.28203230275508 45");
+    offset-path: path.linear-path(label.$A-point, label.$A♯-point);
   }
 
   &.move-from-A♯-to-A♯♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -79.28203230275508 45 L -95 5");
+    offset-path: path.linear-path(label.$A♯-point, label.$A♯♯-point);
   }
 
   &.move-from-B♭♭-to-B♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -55 74.28203230275508 L -79.28203230275508 45");
+    offset-path: path.linear-path(label.$B♭♭-point, label.$B♭-point);
   }
 
   &.move-from-B♭-to-B {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -79.28203230275508 45 L -85 5");
+    offset-path: path.linear-path(label.$B♭-point, label.$B-point);
   }
 
   &.move-from-B-to-B♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -85 5 L -79.28203230275508 -35");
+    offset-path: path.linear-path(label.$B-point, label.$B♯-point);
   }
 
   &.move-from-B♯-to-B♯♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -79.28203230275508 -35 L -55 -64.28203230275508");
+    offset-path: path.linear-path(label.$B♯-point, label.$B♯♯-point);
   }
 
   &.move-from-C♭♭-to-C♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -84.28203230275508 45 L -90 5");
+    offset-path: path.linear-path(label.$C♭♭-point, label.$C♭-point);
   }
 
   &.move-from-C♭-to-C {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -90 5 L -74.28203230275508 -35");
+    offset-path: path.linear-path(label.$C♭-point, label.$C-point);
   }
 
   &.move-from-C-to-C♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -74.28203230275508 -35 L -50 -64.28203230275508");
+    offset-path: path.linear-path(label.$C-point, label.$C♯-point);
   }
 
   &.move-from-C♯-to-C♯♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -50 -64.28203230275508 L -15 -75");
+    offset-path: path.linear-path(label.$C♯-point, label.$C♯♯-point);
   }
 
   &.move-from-D♯♯-to-D♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 54.28203230275508 -35 L 30 -64.28203230275508");
+    offset-path: path.linear-path(label.$D♯♯-point, label.$D♯-point);
   }
 
   &.move-from-D♯-to-D {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 30 -64.28203230275508 L -5 -75");
+    offset-path: path.linear-path(label.$D♯-point, label.$D-point);
   }
 
   &.move-from-D-to-D♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -5 -75 L -50 -64.28203230275508");
+    offset-path: path.linear-path(label.$D-point, label.$D♭-point);
   }
 
   &.move-from-D♭-to-D♭♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -50 -64.28203230275508 L -84.28203230275508 -35");
+    offset-path: path.linear-path(label.$D♭-point, label.$D♭♭-point);
   }
 
   &.move-from-E♯♯-to-E♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 54.28203230275508 45 L 70 5");
+    offset-path: path.linear-path(label.$E♯♯-point, label.$E♯-point);
   }
 
   &.move-from-E♯-to-E {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 70 5 L 64.28203230275508 -35");
+    offset-path: path.linear-path(label.$E♯-point, label.$E-point);
   }
 
   &.move-from-E-to-E♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 64.28203230275508 -35 L 30 -64.28203230275508");
+    offset-path: path.linear-path(label.$E-point, label.$E♭-point);
   }
 
   &.move-from-E♭-to-E♭♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 30 -64.28203230275508 L -15 -75");
+    offset-path: path.linear-path(label.$E♭-point, label.$E♭♭-point);
   }
 
   &.move-from-F♯♯-to-F♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 25 74.28203230275508 L 59.28203230275508 45");
+    offset-path: path.linear-path(label.$F♯♯-point, label.$F♯-point);
   }
 
   &.move-from-F♯-to-F {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 59.28203230275508 45 L 75 5");
+    offset-path: path.linear-path(label.$F♯-point, label.$F-point);
   }
 
   &.move-from-F-to-F♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 75 5 L 59.28203230275508 -35");
+    offset-path: path.linear-path(label.$F-point, label.$F♭-point);
   }
 
   &.move-from-F♭-to-F♭♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 59.28203230275508 -35 L 25 -64.28203230275508");
+    offset-path: path.linear-path(label.$F♭-point, label.$F♭♭-point);
   }
 
   &.move-from-G♯♯-to-G♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -55 74.28203230275508 L -10 85");
+    offset-path: path.linear-path(label.$G♯♯-point, label.$G♯-point);
   }
 
   &.move-from-G♯-to-G {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -10 85 L 35 74.28203230275508");
+    offset-path: path.linear-path(label.$G♯-point, label.$G-point);
   }
 
   &.move-from-G-to-G♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 35 74.28203230275508 L 59.28203230275508 45");
+    offset-path: path.linear-path(label.$G-point, label.$G♭-point);
   }
 
   &.move-from-G♭-to-G♭♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 59.28203230275508 45 L 65 5");
+    offset-path: path.linear-path(label.$G♭-point, label.$G♭♭-point);
   }
 
   &.move-from-A♯♯-to-A♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -95 5 L -79.28203230275508 45");
+    offset-path: path.linear-path(label.$A♯♯-point, label.$A♯-point);
   }
 
   &.move-from-A♯-to-A {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -79.28203230275508 45 L -45 74.28203230275508");
+    offset-path: path.linear-path(label.$A♯-point, label.$A-point);
   }
 
   &.move-from-A-to-A♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -45 74.28203230275508 L -10 85");
+    offset-path: path.linear-path(label.$A-point, label.$A♭-point);
   }
 
   &.move-from-A♭-to-A♭♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -10 85 L 25 74.28203230275508");
+    offset-path: path.linear-path(label.$A♭-point, label.$A♭♭-point);
   }
 
   &.move-from-B♯♯-to-B♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -55 -64.28203230275508 L -79.28203230275508 -35");
+    offset-path: path.linear-path(label.$B♯♯-point, label.$B♯-point);
   }
 
   &.move-from-B♯-to-B {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -79.28203230275508 -35 L -85 5");
+    offset-path: path.linear-path(label.$B♯-point, label.$B-point);
   }
 
   &.move-from-B-to-B♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -85 5 L -79.28203230275508 45");
+    offset-path: path.linear-path(label.$B-point, label.$B♭-point);
   }
 
   &.move-from-B♭-to-B♭♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -79.28203230275508 45 L -55 74.28203230275508");
+    offset-path: path.linear-path(label.$B♭-point, label.$B♭♭-point);
   }
 
   &.move-from-C♯♯-to-C♯ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -15 -75 L -50 -64.28203230275508");
+    offset-path: path.linear-path(label.$C♯♯-point, label.$C♯-point);
   }
 
   &.move-from-C♯-to-C {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -50 -64.28203230275508 L -74.28203230275508 -35");
+    offset-path: path.linear-path(label.$C♯-point, label.$C-point);
   }
 
   &.move-from-C-to-C♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -74.28203230275508 -35 L -90 5");
+    offset-path: path.linear-path(label.$C-point, label.$C♭-point);
   }
 
   &.move-from-C♭-to-C♭♭ {
     animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M -90 5 L -84.28203230275508 45");
+    offset-path: path.linear-path(label.$C♭-point, label.$C♭♭-point);
   }
 }
