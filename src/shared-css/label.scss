@@ -1,3 +1,5 @@
+@use "sass:map";
+@use "sass:math";
 @use "@/shared-css/unit-circle" as unit-circle;
 @use "@/shared-css/path" as path;
 
@@ -6,133 +8,24 @@ $radius: 80;
 $x-font-offset: -5;
 $y-font-offset: 5;
 
-
-$D♭♭-x: calc($radius * unit-circle.$x-10 + 3 * $x-font-offset);
-$D♭-x: calc($radius * unit-circle.$x-11 + 2 * $x-font-offset);
-$D-x: calc($radius * unit-circle.$x-0 + 1 * $x-font-offset);
-$D♯-x: calc($radius * unit-circle.$x-1 + 2 * $x-font-offset);
-$D♯♯-x: calc($radius * unit-circle.$x-2 + 3 * $x-font-offset);
-
-$D♭♭-y: calc($radius * unit-circle.$y-10 + $y-font-offset);
-$D♭-y: calc($radius * unit-circle.$y-11 + $y-font-offset);
-$D-y: calc($radius * unit-circle.$y-0 + $y-font-offset);
-$D♯-y: calc($radius * unit-circle.$y-1 + $y-font-offset);
-$D♯♯-y: calc($radius * unit-circle.$y-2 + $y-font-offset);
-
-$E♭♭-x: calc($radius * unit-circle.$x-0 + 3 * $x-font-offset);
-$E♭-x: calc($radius * unit-circle.$x-1 + 2 * $x-font-offset);
-$E-x: calc($radius * unit-circle.$x-2 + 1 * $x-font-offset);
-$E♯-x: calc($radius * unit-circle.$x-3 + 2 * $x-font-offset);
-$E♯♯-x: calc($radius * unit-circle.$x-4 + 3 * $x-font-offset);
-
-$E♭♭-y: calc($radius * unit-circle.$y-0 + $y-font-offset);
-$E♭-y: calc($radius * unit-circle.$y-1 + $y-font-offset);
-$E-y: calc($radius * unit-circle.$y-2 + $y-font-offset);
-$E♯-y: calc($radius * unit-circle.$y-3 + $y-font-offset);
-$E♯♯-y: calc($radius * unit-circle.$y-4 + $y-font-offset);
-
-$F♭♭-x: calc($radius * unit-circle.$x-1 + 3 * $x-font-offset);
-$F♭-x: calc($radius * unit-circle.$x-2 + 2 * $x-font-offset);
-$F-x: calc($radius * unit-circle.$x-3 + 1 * $x-font-offset);
-$F♯-x: calc($radius * unit-circle.$x-4 + 2 * $x-font-offset);
-$F♯♯-x: calc($radius * unit-circle.$x-5 + 3 * $x-font-offset);
-
-$F♭♭-y: calc($radius * unit-circle.$y-1 + $y-font-offset);
-$F♭-y: calc($radius * unit-circle.$y-2 + $y-font-offset);
-$F-y: calc($radius * unit-circle.$y-3 + $y-font-offset);
-$F♯-y: calc($radius * unit-circle.$y-4 + $y-font-offset);
-$F♯♯-y: calc($radius * unit-circle.$y-5 + $y-font-offset);
-
-$G♭♭-x: calc($radius * unit-circle.$x-3 + 3 * $x-font-offset);
-$G♭-x: calc($radius * unit-circle.$x-4 + 2 * $x-font-offset);
-$G-x: calc($radius * unit-circle.$x-5 + 1 * $x-font-offset);
-$G♯-x: calc($radius * unit-circle.$x-6 + 2 * $x-font-offset);
-$G♯♯-x: calc($radius * unit-circle.$x-7 + 3 * $x-font-offset);
-
-$G♭♭-y: calc($radius * unit-circle.$y-3 + $y-font-offset);
-$G♭-y: calc($radius * unit-circle.$y-4 + $y-font-offset);
-$G-y: calc($radius * unit-circle.$y-5 + $y-font-offset);
-$G♯-y: calc($radius * unit-circle.$y-6 + $y-font-offset);
-$G♯♯-y: calc($radius * unit-circle.$y-7 + $y-font-offset);
-
-$A♭♭-x: calc($radius * unit-circle.$x-5 + 3 * $x-font-offset);
-$A♭-x: calc($radius * unit-circle.$x-6 + 2 * $x-font-offset);
-$A-x: calc($radius * unit-circle.$x-7 + 1 * $x-font-offset);
-$A♯-x: calc($radius * unit-circle.$x-8 + 2 * $x-font-offset);
-$A♯♯-x: calc($radius * unit-circle.$x-9 + 3 * $x-font-offset);
-
-$A♭♭-y: calc($radius * unit-circle.$y-5 + $y-font-offset);
-$A♭-y: calc($radius * unit-circle.$y-6 + $y-font-offset);
-$A-y: calc($radius * unit-circle.$y-7 + $y-font-offset);
-$A♯-y: calc($radius * unit-circle.$y-8 + $y-font-offset);
-$A♯♯-y: calc($radius * unit-circle.$y-9 + $y-font-offset);
-
-$B♭♭-x: calc($radius * unit-circle.$x-7 + 3 * $x-font-offset);
-$B♭-x: calc($radius * unit-circle.$x-8 + 2 * $x-font-offset);
-$B-x: calc($radius * unit-circle.$x-9 + 1 * $x-font-offset);
-$B♯-x: calc($radius * unit-circle.$x-10 + 2 * $x-font-offset);
-$B♯♯-x: calc($radius * unit-circle.$x-11 + 3 * $x-font-offset);
-
-$B♭♭-y: calc($radius * unit-circle.$y-7 + $y-font-offset);
-$B♭-y: calc($radius * unit-circle.$y-8 + $y-font-offset);
-$B-y: calc($radius * unit-circle.$y-9 + $y-font-offset);
-$B♯-y: calc($radius * unit-circle.$y-10 + $y-font-offset);
-$B♯♯-y: calc($radius * unit-circle.$y-11 + $y-font-offset);
-
-$C♭♭-x: calc($radius * unit-circle.$x-8 + 3 * $x-font-offset);
-$C♭-x: calc($radius * unit-circle.$x-9 + 2 * $x-font-offset);
-$C-x: calc($radius * unit-circle.$x-10 + 1 * $x-font-offset);
-$C♯-x: calc($radius * unit-circle.$x-11 + 2 * $x-font-offset);
-$C♯♯-x: calc($radius * unit-circle.$x-0 + 3 * $x-font-offset);
-
-$C♭♭-y: calc($radius * unit-circle.$y-8 + $y-font-offset);
-$C♭-y: calc($radius * unit-circle.$y-9 + $y-font-offset);
-$C-y: calc($radius * unit-circle.$y-10 + $y-font-offset);
-$C♯-y: calc($radius * unit-circle.$y-11 + $y-font-offset);
-$C♯♯-y: calc($radius * unit-circle.$y-0 + $y-font-offset);
-
-@function point($x, $y) {
-  @return "#{$x} #{$y}"
+@function point-for($natural-note, $sharps-count) {
+  $hour-of-natural-note: map.get($hour-by-natural-note, $natural-note);
+  // Unlike JavaScript, this modulo returns an integer between 0 and 11, even when
+  //   ($hour-of-natural + $sharps-count)
+  // is negative.
+  $hour: ($hour-of-natural-note + $sharps-count) % 12;
+  $character-count: math.abs($sharps-count) + 1;
+  $x: $radius * unit-circle.x-at($hour) + $character-count * $x-font-offset;
+  $y: $radius * unit-circle.y-at($hour) + $y-font-offset;
+  @return "#{$x} #{$y}";
 }
 
-$D♭♭-point: point($D♭♭-x, $D♭♭-y);
-$D♭-point: point($D♭-x, $D♭-y);
-$D-point: point($D-x, $D-y);
-$D♯-point: point($D♯-x, $D♯-y);
-$D♯♯-point: point($D♯♯-x, $D♯♯-y);
-
-$E♭♭-point: point($E♭♭-x, $E♭♭-y);
-$E♭-point: point($E♭-x, $E♭-y);
-$E-point: point($E-x, $E-y);
-$E♯-point: point($E♯-x, $E♯-y);
-$E♯♯-point: point($E♯♯-x, $E♯♯-y);
-
-$F♭♭-point: point($F♭♭-x, $F♭♭-y);
-$F♭-point: point($F♭-x, $F♭-y);
-$F-point: point($F-x, $F-y);
-$F♯-point: point($F♯-x, $F♯-y);
-$F♯♯-point: point($F♯♯-x, $F♯♯-y);
-
-$G♭♭-point: point($G♭♭-x, $G♭♭-y);
-$G♭-point: point($G♭-x, $G♭-y);
-$G-point: point($G-x, $G-y);
-$G♯-point: point($G♯-x, $G♯-y);
-$G♯♯-point: point($G♯♯-x, $G♯♯-y);
-
-$A♭♭-point: point($A♭♭-x, $A♭♭-y);
-$A♭-point: point($A♭-x, $A♭-y);
-$A-point: point($A-x, $A-y);
-$A♯-point: point($A♯-x, $A♯-y);
-$A♯♯-point: point($A♯♯-x, $A♯♯-y);
-
-$B♭♭-point: point($B♭♭-x, $B♭♭-y);
-$B♭-point: point($B♭-x, $B♭-y);
-$B-point: point($B-x, $B-y);
-$B♯-point: point($B♯-x, $B♯-y);
-$B♯♯-point: point($B♯♯-x, $B♯♯-y);
-
-$C♭♭-point: point($C♭♭-x, $C♭♭-y);
-$C♭-point: point($C♭-x, $C♭-y);
-$C-point: point($C-x, $C-y);
-$C♯-point: point($C♯-x, $C♯-y);
-$C♯♯-point: point($C♯♯-x, $C♯♯-y);
+$hour-by-natural-note: (
+  "D": 0,
+  "E": 2,
+  "F": 3,
+  "G": 5,
+  "A": 7,
+  "B": 9,
+  "C": 10
+);

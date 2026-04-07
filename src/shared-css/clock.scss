@@ -1,88 +1,69 @@
 @use "sass:math" as math;
+@use "sass:map" as map;
 @use "@/shared-css/unit-circle" as unit-circle;
 @use "@/shared-css/path" as path;
 
 
 $radius: 120;
 
-$hour-0-x: calc($radius * unit-circle.$x-0);
-$hour-1-x: calc($radius * unit-circle.$x-1);
-$hour-2-x: calc($radius * unit-circle.$x-2);
-$hour-3-x: calc($radius * unit-circle.$x-3);
-$hour-4-x: calc($radius * unit-circle.$x-4);
-$hour-5-x: calc($radius * unit-circle.$x-5);
-$hour-6-x: calc($radius * unit-circle.$x-6);
-$hour-7-x: calc($radius * unit-circle.$x-7);
-$hour-8-x: calc($radius * unit-circle.$x-8);
-$hour-9-x: calc($radius * unit-circle.$x-9);
-$hour-10-x: calc($radius * unit-circle.$x-10);
-$hour-11-x: calc($radius * unit-circle.$x-11);
-
-$hour-0-y: calc($radius * unit-circle.$y-0);
-$hour-1-y: calc($radius * unit-circle.$y-1);
-$hour-2-y: calc($radius * unit-circle.$y-2);
-$hour-3-y: calc($radius * unit-circle.$y-3);
-$hour-4-y: calc($radius * unit-circle.$y-4);
-$hour-5-y: calc($radius * unit-circle.$y-5);
-$hour-6-y: calc($radius * unit-circle.$y-6);
-$hour-7-y: calc($radius * unit-circle.$y-7);
-$hour-8-y: calc($radius * unit-circle.$y-8);
-$hour-9-y: calc($radius * unit-circle.$y-9);
-$hour-10-y: calc($radius * unit-circle.$y-10);
-$hour-11-y: calc($radius * unit-circle.$y-11);
-
-$hour-0-point: "#{$hour-0-x} #{$hour-0-y}";
-$hour-1-point: "#{$hour-1-x} #{$hour-1-y}";
-$hour-2-point: "#{$hour-2-x} #{$hour-2-y}";
-$hour-3-point: "#{$hour-3-x} #{$hour-3-y}";
-$hour-4-point: "#{$hour-4-x} #{$hour-4-y}";
-$hour-5-point: "#{$hour-5-x} #{$hour-5-y}";
-$hour-6-point: "#{$hour-6-x} #{$hour-6-y}";
-$hour-7-point: "#{$hour-7-x} #{$hour-7-y}";
-$hour-8-point: "#{$hour-8-x} #{$hour-8-y}";
-$hour-9-point: "#{$hour-9-x} #{$hour-9-y}";
-$hour-10-point: "#{$hour-10-x} #{$hour-10-y}";
-$hour-11-point: "#{$hour-11-x} #{$hour-11-y}";
-
-
-
-@function arc-path($point, $diff-x, $diff-y, $radius, $isClockwise) {
-  @if ($isClockwise) {
-    @return path("M #{$point} a #{$radius} #{$radius}, 0, 0, 1, #{$diff-x} #{$diff-y}");
-  } @else {
-    @return path("M #{$point} a #{$radius} #{$radius}, 0, 0, 0, #{$diff-x} #{$diff-y}");
-  }
+@function hour-point($hour) {
+  $x: $radius * unit-circle.x-at($hour);
+  $y: $radius * unit-circle.y-at($hour);
+  @return "#{$x} #{$y}";
 }
 
-$diff-1: 60;
-$diff-2: 43.923048454132626;
-$diff-3: 16.07695154586737;
-$diff-4: calc(-1 * $diff-3);
-$diff-5: calc(-1 * $diff-2);
-$diff-6: calc(-1 * $diff-1);
+@function cw-arc-path($hour) {
+  @return map.get($cw-arc-path-by-hour, $hour);
+}
 
-$from-0-to-1-offset-path: arc-path($hour-0-point, $diff-1, $diff-3, $radius, true);
-$from-1-to-2-offset-path: arc-path($hour-1-point, $diff-2, $diff-2, $radius, true);
-$from-2-to-3-offset-path: arc-path($hour-2-point, $diff-3, $diff-1, $radius, true);
-$from-3-to-4-offset-path: arc-path($hour-3-point, $diff-4, $diff-1, $radius, true);
-$from-4-to-5-offset-path: arc-path($hour-4-point, $diff-5, $diff-2, $radius, true);
-$from-5-to-6-offset-path: arc-path($hour-5-point, $diff-6, $diff-3, $radius, true);
-$from-6-to-7-offset-path: arc-path($hour-6-point, $diff-6, $diff-4, $radius, true);
-$from-7-to-8-offset-path: arc-path($hour-7-point, $diff-5, $diff-5, $radius, true);
-$from-8-to-9-offset-path: arc-path($hour-8-point, $diff-4, $diff-6, $radius, true);
-$from-9-to-10-offset-path: arc-path($hour-9-point, $diff-3, $diff-6, $radius, true);
-$from-10-to-11-offset-path: arc-path($hour-10-point, $diff-2, $diff-5, $radius, true);
-$from-11-to-0-offset-path: arc-path($hour-11-point, $diff-1, $diff-4, $radius, true);
+@function ccw-arc-path($hour) {
+  @return map.get($ccw-arc-path-by-hour, $hour);
+}
 
-$from-0-to-11-offset-path: arc-path($hour-0-point, $diff-6, $diff-3, $radius, false);
-$from-11-to-10-offset-path: arc-path($hour-11-point, $diff-5, $diff-2, $radius, false);
-$from-10-to-9-offset-path: arc-path($hour-10-point, $diff-4, $diff-1, $radius, false);
-$from-9-to-8-offset-path: arc-path($hour-9-point, $diff-3, $diff-1, $radius, false);
-$from-8-to-7-offset-path: arc-path($hour-8-point, $diff-2, $diff-2, $radius, false);
-$from-7-to-6-offset-path: arc-path($hour-7-point, $diff-1, $diff-3, $radius, false);
-$from-6-to-5-offset-path: arc-path($hour-6-point, $diff-1, $diff-4, $radius, false);
-$from-5-to-4-offset-path: arc-path($hour-5-point, $diff-2, $diff-5, $radius, false);
-$from-4-to-3-offset-path: arc-path($hour-4-point, $diff-3, $diff-6, $radius, false);
-$from-3-to-2-offset-path: arc-path($hour-3-point, $diff-4, $diff-6, $radius, false);
-$from-2-to-1-offset-path: arc-path($hour-2-point, $diff-5, $diff-5, $radius, false);
-$from-1-to-0-offset-path: arc-path($hour-1-point, $diff-6, $diff-4, $radius, false);
+@function private-cw-arc-path($hour, $diff-x, $diff-y) {
+  $point: hour-point($hour);
+  @return path("M #{$point} a #{$radius} #{$radius}, 0, 0, 1, #{$diff-x} #{$diff-y}");
+}
+
+@function private-ccw-arc-path($hour, $diff-x, $diff-y) {
+  $point: hour-point($hour);
+  @return path("M #{$point} a #{$radius} #{$radius}, 0, 0, 0, #{$diff-x} #{$diff-y}");
+}
+
+
+$diff-1: $radius * (unit-circle.x-at(1) - unit-circle.x-at(0)); // 60
+$diff-2: $radius * (unit-circle.x-at(2) - unit-circle.x-at(1)); // 43.923048454132626
+$diff-3: $radius * (unit-circle.x-at(3) - unit-circle.x-at(2)); // 16.07695154586737
+$diff-4: -1 * $diff-3;
+$diff-5: -1 * $diff-2;
+$diff-6: -1 * $diff-1;
+
+$cw-arc-path-by-hour: (
+  0: private-cw-arc-path(0, $diff-1, $diff-3),
+  1: private-cw-arc-path(1, $diff-2, $diff-2),
+  2: private-cw-arc-path(2, $diff-3, $diff-1),
+  3: private-cw-arc-path(3, $diff-4, $diff-1),
+  4: private-cw-arc-path(4, $diff-5, $diff-2),
+  5: private-cw-arc-path(5, $diff-6, $diff-3),
+  6: private-cw-arc-path(6, $diff-6, $diff-4),
+  7: private-cw-arc-path(7, $diff-5, $diff-5),
+  8: private-cw-arc-path(8, $diff-4, $diff-6),
+  9: private-cw-arc-path(9, $diff-3, $diff-6),
+  10: private-cw-arc-path(10, $diff-2, $diff-5),
+  11: private-cw-arc-path(11, $diff-1, $diff-4)
+);
+
+$ccw-arc-path-by-hour: (
+  0: private-ccw-arc-path(0, $diff-6, $diff-3),
+  11: private-ccw-arc-path(11, $diff-5, $diff-2),
+  10: private-ccw-arc-path(10, $diff-4, $diff-1),
+  9: private-ccw-arc-path(9, $diff-3, $diff-1),
+  8: private-ccw-arc-path(8, $diff-2, $diff-2),
+  7: private-ccw-arc-path(7, $diff-1, $diff-3),
+  6: private-ccw-arc-path(6, $diff-1, $diff-4),
+  5: private-ccw-arc-path(5, $diff-2, $diff-5),
+  4: private-ccw-arc-path(4, $diff-3, $diff-6),
+  3: private-ccw-arc-path(3, $diff-4, $diff-6),
+  2: private-ccw-arc-path(2, $diff-5, $diff-5),
+  1: private-ccw-arc-path(1, $diff-6, $diff-4)
+);
