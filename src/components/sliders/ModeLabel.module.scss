@@ -31,31 +31,9 @@
     animation: fading-in animation.$duration linear 1 forwards reverse;
   }
 
-  &.position-3 {
-    offset-path: position.position-still-path(3);
-  }
-
-  &.position-2 {
-    offset-path: position.position-still-path(2);
-  }
-
-  &.position-1 {
-    offset-path: position.position-still-path(1);
-  }
-
-  &.position-0 {
-    offset-path: position.position-still-path(0);
-  }
-
-  &.position--1 {
-    offset-path: position.position-still-path(-1);
-  }
-
-  &.position--2 {
-    offset-path: position.position-still-path(-2);
-  }
-
-  &.position--3 {
-    offset-path: position.position-still-path(-3);
+  @for $p from -3 through 3 {
+    &.position-#{$p} {
+      offset-path: position.position-still-path($p);
+    }
   }
 }

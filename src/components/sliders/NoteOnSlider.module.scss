@@ -5,50 +5,13 @@
   text-anchor: middle;
 }
 
-/*
-WARNING: Be careful not confuse position-3 with position--3.
-The first represents position 3 (the top of the slider), and
-the second represents position -3 (the bottom of the slider).
-Positions 4 and -4 are just outside of the clipping region.
-*/
-
 .note-on-slider {
   offset-rotate: 0deg;
   font-family: "PT Mono", monospace;
 
-  &.position-4 {
-    offset-path: position.position-still-path(4);
-  }
-
-  &.position-3 {
-    offset-path: position.position-still-path(3);
-  }
-
-  &.position-2 {
-    offset-path: position.position-still-path(2);
-  }
-
-  &.position-1 {
-    offset-path: position.position-still-path(1);
-  }
-
-  &.position-0 {
-    offset-path: position.position-still-path(0);
-  }
-
-  &.position--1 {
-    offset-path: position.position-still-path(-1);
-  }
-
-  &.position--2 {
-    offset-path: position.position-still-path(-2);
-  }
-
-  &.position--3 {
-    offset-path: position.position-still-path(-3);
-  }
-
-  &.position--4 {
-    offset-path: position.position-still-path(-4);
+  @for $p from -4 through 4 {
+    &.position-#{$p} {
+      offset-path: position.position-still-path($p);
+    }
   }
 }
