@@ -9,11 +9,11 @@
 }
 
 @function x-at($number) {
-  @return map.get($x, hour(number));
+  @return map.get($x, hour($number));
 }
 
 @function y-at($number) {
-  @return map.get($y, hour(number));
+  @return map.get($y, hour($number));
 }
 
 
