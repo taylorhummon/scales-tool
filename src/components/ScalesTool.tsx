@@ -1,13 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 
+import { MusicalKey } from "@/classes/MusicalKey";
 import { Canvas } from "@/components/Canvas";
 import { buildClassString } from "@/utilities/css";
 import { getNextMusicalKey } from "@/utilities/motion";
-import { musicalKeyFromCurrentURL, addToBrowserHistory } from "@/utilities/routing";
+import { addToBrowserHistory } from "@/utilities/routing";
+import type { State } from "@/utilities/state";
 import {
-  stateFromMusicalKey,
-  stateFromHistoricalState,
-  musicalKeyFromState,
+  getInitialState,
+  handleBrowserHistoryPop,
+  advanceStateUsingMusicalKey,
 } from "@/utilities/state";
 
 import cssModule from "@/components/ScalesTool.module.scss";
@@ -17,20 +19,18 @@ export default function ScalesTool(
 ): JSX.Element {
   const domNodeRef = useRef<HTMLDivElement>(null);
   const animationsCountRef = useRef<number>(0);
-  const initialState = stateFromMusicalKey(musicalKeyFromCurrentURL());
-  const [state, setState] = useState(initialState);
-
-  const musicalKey = musicalKeyFromState(state);
+  const [state, setState] = useState(getInitialState());
+  const musicalKey = new MusicalKey(state.degree, state.mode);
   const motion = state.motion;
 
   // Handle the browser's "Back" and "Forward" buttons
   useEffect(() => {
-    function handleBrowserHistoryPop(event: PopStateEvent) {
-      setState(stateFromHistoricalState(event.state));
+    function handlePopstate(event: PopStateEvent) {
+      setState((state: State) => handleBrowserHistoryPop(state, event.state));
     }
-    window.addEventListener("popstate", handleBrowserHistoryPop);
+    window.addEventListener("popstate", handlePopstate);
     return () => {
-      window.removeEventListener("popstate", handleBrowserHistoryPop);
+      window.removeEventListener("popstate", handlePopstate);
     };
   });
 
@@ -53,7 +53,7 @@ export default function ScalesTool(
       if (animationsCountRef.current >= 1) return;
       const nextMusicalKey = getNextMusicalKey(musicalKey, motion);
       addToBrowserHistory(nextMusicalKey);
-      setState(stateFromMusicalKey(nextMusicalKey));
+      setState((state: State) => advanceStateUsingMusicalKey(state, nextMusicalKey));
     }
     const domNode = domNodeRef.current;
     if (domNode) domNode.addEventListener("animationend", animationEndHandler, false);

@@ -1,43 +1,61 @@
-import { Motion } from "@/enumerations";
-import { getDefaultMusicalKey, MusicalKey } from "@/classes/MusicalKey";
+import { AnimationType, Motion } from "@/enumerations";
+import { MusicalKey, getDefaultMusicalKey } from "@/classes/MusicalKey";
+import { musicalKeyFromCurrentURL } from "@/utilities/routing";
 
 
 export interface State {
   degree: number;
   mode: number;
+  animationType: AnimationType;
   motion: Motion;
 }
 
-// We don't store the current motion in the brower's history.
+// The state that's stored in the browser's history
 export interface HistoricalState {
   degree: number;
   mode: number;
 }
 
-
-export function stateFromHistoricalState(
-  historicalState: HistoricalState | null | undefined
+export function getInitialState(
 ): State {
-  if (! historicalState) {
-    return stateFromMusicalKey(getDefaultMusicalKey());
-  }
-  return { ...historicalState, motion: Motion.Still };
-}
-
-export function stateFromMusicalKey(
-  musicalKey: MusicalKey
-): State {
+  const musicalKey = musicalKeyFromCurrentURL();
   return {
     degree: musicalKey.degree,
     mode: musicalKey.mode,
+    animationType: AnimationType.Simple,
     motion: Motion.Still
-  }
+  };
 }
 
-export function musicalKeyFromState(
-  state: State
+export function handleBrowserHistoryPop(
+  state: State,
+  historicalState: HistoricalState | undefined
+): State {
+  const musicalKey = historicalState ? musicalKeyFromHistoricalState(historicalState) : getDefaultMusicalKey();
+  return {
+    ...state,
+    degree: musicalKey.degree,
+    mode: musicalKey.mode,
+    motion: Motion.Still
+  };
+}
+
+export function advanceStateUsingMusicalKey(
+  state: State,
+  nextMusicalKey: MusicalKey
+): State {
+  return {
+    ...state,
+    degree: nextMusicalKey.degree,
+    mode: nextMusicalKey.mode,
+    motion: Motion.Still
+  };
+}
+
+export function musicalKeyFromHistoricalState(
+  historicalState: HistoricalState
 ): MusicalKey {
-  return new MusicalKey(state.degree, state.mode);
+  return new MusicalKey(historicalState.degree, historicalState.mode);
 }
 
 export function historicalStateFromMusicalKey(

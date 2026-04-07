@@ -1,33 +1,71 @@
-import { test, expect } from "vitest";
+import { test, expect, afterEach } from "vitest";
 
-import { Motion } from "@/enumerations";
+import { AnimationType, Motion } from "@/enumerations";
 import { MusicalKey } from "@/classes/MusicalKey";
+import { addToBrowserHistory } from "@/utilities/routing";
 import {
-  stateFromHistoricalState,
-  stateFromMusicalKey,
-  musicalKeyFromState,
+  getInitialState,
+  handleBrowserHistoryPop,
+  advanceStateUsingMusicalKey,
+  musicalKeyFromHistoricalState,
   historicalStateFromMusicalKey,
 } from "@/utilities/state";
+import { cleanHistory } from "../testHelpers";
 
 
-test("stateFromHistoricalState() works", () => {
+afterEach(cleanHistory);
+
+test("getInitialState() works", () => {
   expect(
-    stateFromHistoricalState({ degree: 1, mode: 2 })
+    getInitialState()
   ).toStrictEqual(
-    { degree: 1, mode: 2, motion: Motion.Still }
+    { degree: 0, mode: 2, animationType: AnimationType.Simple, motion: Motion.Still }
+  );
+  addToBrowserHistory(new MusicalKey(0, 0));
+  expect(
+    getInitialState()
+  ).toStrictEqual(
+    { degree: 0, mode: 0, animationType: AnimationType.Simple, motion: Motion.Still }
+  );
+  addToBrowserHistory(new MusicalKey(2, -1));
+  expect(
+    getInitialState()
+  ).toStrictEqual(
+    { degree: 2, mode: -1, animationType: AnimationType.Simple, motion: Motion.Still }
   );
 });
 
-test("stateFromMusicalKey() works", () => {
+
+test("handleBrowserHistoryPop() works", () => {
+  const state = {
+    degree: 0,
+    mode: 0,
+    animationType: AnimationType.Ballet,
+    motion: Motion.IncrementMode,
+  }
   expect(
-    stateFromMusicalKey(new MusicalKey(-1, -2))
+    handleBrowserHistoryPop(state, { degree: 1, mode: 2 })
   ).toStrictEqual(
-    { degree: -1, mode: -2, motion: Motion.Still }
+    { degree: 1, mode: 2, animationType: AnimationType.Ballet, motion: Motion.Still }
   );
 });
 
-test("musicalKeyFromState() works", () => {
-  const musicalKey = musicalKeyFromState({ degree: 2, mode: 3, motion: Motion.Still });
+test("advanceStateUsingMusicalKey() works", () => {
+  const state = {
+    degree: 0,
+    mode: 0,
+    animationType: AnimationType.Ballet,
+    motion: Motion.IncrementMode,
+  }
+  expect(
+    advanceStateUsingMusicalKey(state, new MusicalKey(-1, -2))
+  ).toStrictEqual(
+    { degree: -1, mode: -2, animationType: AnimationType.Ballet, motion: Motion.Still }
+  );
+});
+
+test("musicalKeyFromHistoricalState() works", () => {
+  const musicalKey = musicalKeyFromHistoricalState({ degree: 2, mode: 3 });
   expect(
     musicalKey.degree
   ).toBe(

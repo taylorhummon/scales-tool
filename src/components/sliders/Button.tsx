@@ -8,7 +8,7 @@ import { buildClassString } from "@/utilities/css";
 import { canPerformMotion, getNextMusicalKey } from "@/utilities/motion";
 import { addToBrowserHistory } from "@/utilities/routing";
 import type { State } from "@/utilities/state";
-import { stateFromMusicalKey } from "@/utilities/state";
+import { advanceStateUsingMusicalKey } from "@/utilities/state";
 
 import cssModule from "@/components/sliders/Button.module.scss";
 
@@ -45,7 +45,7 @@ export function Button({
     } else {
       const nextMusicalKey = getNextMusicalKey(musicalKey, onClickMotion);
       addToBrowserHistory(nextMusicalKey);
-      setState(stateFromMusicalKey(nextMusicalKey));
+      setState((state: State) => advanceStateUsingMusicalKey(state, nextMusicalKey));
     }
   }
 

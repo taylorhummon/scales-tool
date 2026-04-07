@@ -1,3 +1,9 @@
+export enum AnimationType {
+  None = "None",
+  Simple = "Simple",
+  Ballet = "Ballet"
+}
+
 export enum Motion {
   Still = "Still",
   DecrementMode = "DecrementMode",
