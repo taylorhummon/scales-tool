@@ -44,11 +44,6 @@
       animation: move-root-dot animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(clock.hour-point($hour-a), clock.hour-point($hour-b));
     }
-
-    &.move-from-#{$hour-b}-to-#{$hour-a} {
-      animation: move-root-dot animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(clock.hour-point($hour-b), clock.hour-point($hour-a));
-    }
   }
 
   @for $hour-a from 0 through 11 {
