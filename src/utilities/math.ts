@@ -1,3 +1,33 @@
+export const UNIT_CIRCLE_XS = [
+  0,
+  0.5,
+  Math.sqrt(3) / 2,
+  1,
+  Math.sqrt(3) / 2,
+  0.5,
+  0,
+  -0.5,
+  - Math.sqrt(3) / 2,
+  -1,
+  - Math.sqrt(3) / 2,
+  -0.5
+];
+export const UNIT_CIRCLE_YS = [
+  -1,
+  - Math.sqrt(3) / 2,
+  -0.5,
+  0,
+  0.5,
+  Math.sqrt(3) / 2,
+  1,
+  Math.sqrt(3) / 2,
+  0.5,
+  0,
+  -0.5,
+  - Math.sqrt(3) / 2
+];
+
+
 /*
 Note: These functions only make sense where the floating point representation of integers
 are dense enough to have consecutive integers. That is, up until
