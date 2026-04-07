@@ -1,9 +1,4 @@
-import {
-  MIN_DEGREE,
-  MAX_DEGREE,
-  ALLOW_LYDIAN_LOCRIAN_LOOP,
-  PREFER_FULL_ANIMATION,
-} from "@/config";
+import { MIN_DEGREE, MAX_DEGREE } from "@/config";
 import { Motion } from "@/enumerations";
 import { MusicalKey } from "@/classes/MusicalKey";
 import type { Note } from "@/classes/Note";
@@ -17,10 +12,10 @@ export function canPerformMotion(
 ): boolean {
   if (motion === Motion.DecrementDegree) return canDecrementDegree(musicalKey);
   if (motion === Motion.IncrementDegree) return canIncrementDegree(musicalKey);
-  if (motion === Motion.DecrementMode) return canDecrementMode(musicalKey);
-  if (motion === Motion.IncrementMode) return canIncrementMode(musicalKey);
-  if (motion === Motion.DecrementBoth) return canDecrementDegree(musicalKey) && canDecrementMode(musicalKey);
-  if (motion === Motion.IncrementBoth) return canIncrementDegree(musicalKey) && canIncrementMode(musicalKey);
+  if (motion === Motion.DecrementMode) return true;
+  if (motion === Motion.IncrementMode) return true;
+  if (motion === Motion.DecrementBoth) return canDecrementDegree(musicalKey);
+  if (motion === Motion.IncrementBoth) return canIncrementDegree(musicalKey);
   return false;
 }
 
@@ -77,22 +72,12 @@ export function getNoteFinishHour(
   note: Note,
   motion: Motion
 ): number {
-  if (PREFER_FULL_ANIMATION) {
-    if (willDecrementDegree(motion)) {
-      return remainderFor(note.hour - 7, 12);
-    } else if (willIncrementDegree(motion)) {
-      return remainderFor(note.hour + 7, 12);
-    } else {
-      return note.hour;
-    }
+  if (willDecrementDegree(motion) && note.position === MIN_MODE) {
+    return remainderFor(note.hour - 1, 12);
+  } else if (willIncrementDegree(motion) && note.position === MAX_MODE) {
+    return remainderFor(note.hour + 1, 12);
   } else {
-    if (willDecrementDegree(motion) && note.position === MIN_MODE) {
-      return remainderFor(note.hour - 1, 12);
-    } else if (willIncrementDegree(motion) && note.position === MAX_MODE) {
-      return remainderFor(note.hour + 1, 12);
-    } else {
-      return note.hour;
-    }
+    return note.hour;
   }
 }
 
@@ -137,22 +122,6 @@ function canIncrementDegree(
   musicalKey: MusicalKey
 ): boolean {
   return musicalKey.degree < MAX_DEGREE && musicalKey.degree >= MIN_DEGREE;
-}
-
-function canDecrementMode(
-  musicalKey: MusicalKey
-): boolean {
-  if (musicalKey.mode > MIN_MODE && musicalKey.mode <= MAX_MODE) return true;
-  if (musicalKey.mode === MIN_MODE && ALLOW_LYDIAN_LOCRIAN_LOOP) return true;
-  return false;
-}
-
-function canIncrementMode(
-  musicalKey: MusicalKey
-): boolean {
-  if (musicalKey.mode < MAX_MODE && musicalKey.mode >= MIN_MODE) return true;
-  if (musicalKey.mode === MAX_MODE && ALLOW_LYDIAN_LOCRIAN_LOOP) return true;
-  return false;
 }
 
 function decrementMode(

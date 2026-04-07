@@ -1,4 +1,4 @@
-import { SHOW_SOLFEGE_ON_SLIDER, ROOT_DOT_STROKE_COLOR, ROOT_DOT_FILL_COLOR } from "@/config";
+import { ROOT_DOT_STROKE_COLOR, ROOT_DOT_FILL_COLOR } from "@/config";
 import { Solfege } from "@/enumerations";
 import type { Note } from "@/classes/Note";
 import { buildClassString } from "@/utilities/css";
@@ -18,11 +18,13 @@ export function SolfegeOnSlider({
     <g
       className={getClassName(note)}
     >
-      <LargeTriangle
-        isRootNote={isRootNote}
-      />
-      <SolfegeText
-        note={note}
+      <text
+        className={buildClassString(cssModule, ["solfege-text"])}
+        style={isRootNote ? { stroke: ROOT_DOT_STROKE_COLOR } : {}}
+      >
+        {note.solfege}
+      </text>
+      <Triangle
         isRootNote={isRootNote}
       />
     </g>
@@ -36,57 +38,13 @@ function getClassName(
   return buildClassString(cssModule, classNames);
 }
 
-interface LargeTriangleProps {
-  isRootNote: boolean;
-}
-
-function LargeTriangle({
-  isRootNote
-}: LargeTriangleProps): JSX.Element | null {
-  if (SHOW_SOLFEGE_ON_SLIDER) return null;
-  if (! isRootNote) return null;
-  return (
-    <polygon
-      points="18,-6 -11,0 -11,-12"
-      strokeWidth="1.2"
-      stroke={ROOT_DOT_STROKE_COLOR}
-      fill={ROOT_DOT_FILL_COLOR}
-    />
-  );
-}
-
-interface SolfegeTextProps {
-  note: Note;
-  isRootNote: boolean;
-}
-
-function SolfegeText({
-  note,
-  isRootNote
-}: SolfegeTextProps): JSX.Element | null {
-  if (! SHOW_SOLFEGE_ON_SLIDER) return null;
-  return (
-    <>
-      <text
-        className={buildClassString(cssModule, ["solfege-text"])}
-        style={isRootNote ? { stroke: ROOT_DOT_STROKE_COLOR } : {}}
-      >
-        {note.solfege}
-      </text>
-      <SmallTriangle
-        isRootNote={isRootNote}
-      />
-    </>
-  );
-}
-
-interface SmallTriangleProps {
+interface TriangleProps {
   isRootNote: boolean
 }
 
-function SmallTriangle({
+function Triangle({
   isRootNote
-}: SmallTriangleProps): JSX.Element | null {
+}: TriangleProps): JSX.Element | null {
   if (! isRootNote) return null;
   return (
     <polygon

@@ -1,6 +1,5 @@
-import { test, expect, vi, beforeEach } from "vitest";
+import { test, expect } from "vitest";
 
-import * as config from "@/config.ts";
 import { Motion, NaturalNote, Solfege } from "@/enumerations";
 import { Note } from "@/classes/Note";
 import { MusicalKey } from "@/classes/MusicalKey";
@@ -16,17 +15,7 @@ import {
 } from "@/utilities/motion";
 
 
-const ALLOW_LYDIAN_LOCRIAN_LOOP_SPY = vi.spyOn(config, "ALLOW_LYDIAN_LOCRIAN_LOOP", "get");
-const PREFER_FULL_ANIMATION_SPY = vi.spyOn(config, "PREFER_FULL_ANIMATION", "get");
-
-beforeEach(() => {
-  ALLOW_LYDIAN_LOCRIAN_LOOP_SPY.mockReset();
-  PREFER_FULL_ANIMATION_SPY.mockReset();
-});
-
-
 test("canPerformMotion() works for Dorian D", () => {
-  ALLOW_LYDIAN_LOCRIAN_LOOP_SPY.mockReturnValue(false);
   const musicalKey = new MusicalKey(0, 0);
   expect(
     canPerformMotion(musicalKey, Motion.DecrementMode)
@@ -60,78 +49,7 @@ test("canPerformMotion() works for Dorian D", () => {
   );
 });
 
-test("canPerformMotion() works for Locrian B", () => {
-  ALLOW_LYDIAN_LOCRIAN_LOOP_SPY.mockReturnValue(false);
-  const musicalKey = new MusicalKey(0, -3);
-  expect(
-    canPerformMotion(musicalKey, Motion.DecrementMode)
-  ).toBe(
-    false
-  );
-  expect(
-    canPerformMotion(musicalKey, Motion.IncrementMode)
-  ).toBe(
-    true
-  );
-  expect(
-    canPerformMotion(musicalKey, Motion.DecrementDegree)
-  ).toBe(
-    true
-  );
-  expect(
-    canPerformMotion(musicalKey, Motion.IncrementDegree)
-  ).toBe(
-    true
-  );
-  expect(
-    canPerformMotion(musicalKey, Motion.DecrementBoth)
-  ).toBe(
-    false
-  );
-  expect(
-    canPerformMotion(musicalKey, Motion.IncrementBoth)
-  ).toBe(
-    true
-  );
-});
-
-test("canPerformMotion() works for Lydian C", () => {
-  ALLOW_LYDIAN_LOCRIAN_LOOP_SPY.mockReturnValue(false);
-  const musicalKey = new MusicalKey(1, 3);
-  expect(
-    canPerformMotion(musicalKey, Motion.DecrementMode)
-  ).toBe(
-    true
-  );
-  expect(
-    canPerformMotion(musicalKey, Motion.IncrementMode)
-  ).toBe(
-    false
-  );
-  expect(
-    canPerformMotion(musicalKey, Motion.DecrementDegree)
-  ).toBe(
-    true
-  );
-  expect(
-    canPerformMotion(musicalKey, Motion.IncrementDegree)
-  ).toBe(
-    true
-  );
-  expect(
-    canPerformMotion(musicalKey, Motion.DecrementBoth)
-  ).toBe(
-    true
-  );
-  expect(
-    canPerformMotion(musicalKey, Motion.IncrementBoth)
-  ).toBe(
-    false
-  );
-});
-
 test("canPerformMotion() works for 14 sharps", () => {
-  ALLOW_LYDIAN_LOCRIAN_LOOP_SPY.mockReturnValue(false);
   const musicalKey = new MusicalKey(14, 0);
   expect(
     canPerformMotion(musicalKey, Motion.DecrementMode)
@@ -166,7 +84,6 @@ test("canPerformMotion() works for 14 sharps", () => {
 });
 
 test("canPerformMotion() works for 14 flats", () => {
-  ALLOW_LYDIAN_LOCRIAN_LOOP_SPY.mockReturnValue(false);
   const musicalKey = new MusicalKey(-14, 2);
   expect(
     canPerformMotion(musicalKey, Motion.DecrementMode)
@@ -337,26 +254,26 @@ test("getWillIncrementMode() works", () => {
 });
 
 test("getNoteFinishHour() works", () => {
-  PREFER_FULL_ANIMATION_SPY.mockReturnValue(true);
+  const noteD = new Note(NaturalNote.D, 0, Solfege.Do, 0);
   expect(
     getNoteFinishHour(
-      new Note(NaturalNote.D, 0, Solfege.Do, 0),
+      noteD,
       Motion.DecrementDegree
     )
   ).toBe(
-    5
+    0
   );
   expect(
     getNoteFinishHour(
-      new Note(NaturalNote.D, 0, Solfege.Do, 0),
+      noteD,
       Motion.IncrementDegree
     )
   ).toBe(
-    7
+    0
   );
   expect(
     getNoteFinishHour(
-      new Note(NaturalNote.D, 0, Solfege.Do, 0),
+      noteD,
       Motion.DecrementMode
     )
   ).toBe(
@@ -364,7 +281,7 @@ test("getNoteFinishHour() works", () => {
   );
   expect(
     getNoteFinishHour(
-      new Note(NaturalNote.D, 0, Solfege.Do, 0),
+      noteD,
       Motion.IncrementMode
     )
   ).toBe(
@@ -372,19 +289,69 @@ test("getNoteFinishHour() works", () => {
   );
   expect(
     getNoteFinishHour(
-      new Note(NaturalNote.D, 0, Solfege.Do, 0),
+      noteD,
       Motion.DecrementBoth
     )
   ).toBe(
-    5
+    0
   );
   expect(
     getNoteFinishHour(
-      new Note(NaturalNote.D, 0, Solfege.Do, 0),
+      noteD,
       Motion.IncrementBoth
     )
   ).toBe(
-    7
+    0
+  );
+
+  const noteF = new Note(NaturalNote.F, 0, Solfege.Mi, 3);
+  expect(
+    getNoteFinishHour(
+      noteF,
+      Motion.DecrementDegree
+    )
+  ).toBe(
+    3
+  );
+  expect(
+    getNoteFinishHour(
+      noteF,
+      Motion.IncrementDegree
+    )
+  ).toBe(
+    4
+  );
+  expect(
+    getNoteFinishHour(
+      noteF,
+      Motion.DecrementMode
+    )
+  ).toBe(
+    3
+  );
+  expect(
+    getNoteFinishHour(
+      noteF,
+      Motion.IncrementMode
+    )
+  ).toBe(
+    3
+  );
+  expect(
+    getNoteFinishHour(
+      noteF,
+      Motion.DecrementBoth
+    )
+  ).toBe(
+    3
+  );
+  expect(
+    getNoteFinishHour(
+      noteF,
+      Motion.IncrementBoth
+    )
+  ).toBe(
+    4
   );
 });
 
