@@ -16,15 +16,17 @@ import {
 } from "@/utilities/motion";
 
 
-const spy = vi.spyOn(config, "ALLOW_LYDIAN_LOCRIAN_LOOP", "get");
+const ALLOW_LYDIAN_LOCRIAN_LOOP_SPY = vi.spyOn(config, "ALLOW_LYDIAN_LOCRIAN_LOOP", "get");
+const PREFER_FULL_ANIMATION_SPY = vi.spyOn(config, "PREFER_FULL_ANIMATION", "get");
 
 beforeEach(() => {
-  spy.mockReset();
+  ALLOW_LYDIAN_LOCRIAN_LOOP_SPY.mockReset();
+  PREFER_FULL_ANIMATION_SPY.mockReset();
 });
 
 
 test("canPerformMotion() works for Dorian D", () => {
-  spy.mockReturnValue(false);
+  ALLOW_LYDIAN_LOCRIAN_LOOP_SPY.mockReturnValue(false);
   const musicalKey = new MusicalKey(0, 0);
   expect(
     canPerformMotion(musicalKey, Motion.DecrementMode)
@@ -59,7 +61,7 @@ test("canPerformMotion() works for Dorian D", () => {
 });
 
 test("canPerformMotion() works for Locrian B", () => {
-  spy.mockReturnValue(false);
+  ALLOW_LYDIAN_LOCRIAN_LOOP_SPY.mockReturnValue(false);
   const musicalKey = new MusicalKey(0, -3);
   expect(
     canPerformMotion(musicalKey, Motion.DecrementMode)
@@ -94,7 +96,7 @@ test("canPerformMotion() works for Locrian B", () => {
 });
 
 test("canPerformMotion() works for Lydian C", () => {
-  spy.mockReturnValue(false);
+  ALLOW_LYDIAN_LOCRIAN_LOOP_SPY.mockReturnValue(false);
   const musicalKey = new MusicalKey(1, 3);
   expect(
     canPerformMotion(musicalKey, Motion.DecrementMode)
@@ -129,7 +131,7 @@ test("canPerformMotion() works for Lydian C", () => {
 });
 
 test("canPerformMotion() works for 14 sharps", () => {
-  spy.mockReturnValue(false);
+  ALLOW_LYDIAN_LOCRIAN_LOOP_SPY.mockReturnValue(false);
   const musicalKey = new MusicalKey(14, 0);
   expect(
     canPerformMotion(musicalKey, Motion.DecrementMode)
@@ -164,7 +166,7 @@ test("canPerformMotion() works for 14 sharps", () => {
 });
 
 test("canPerformMotion() works for 14 flats", () => {
-  spy.mockReturnValue(false);
+  ALLOW_LYDIAN_LOCRIAN_LOOP_SPY.mockReturnValue(false);
   const musicalKey = new MusicalKey(-14, 2);
   expect(
     canPerformMotion(musicalKey, Motion.DecrementMode)
@@ -335,6 +337,7 @@ test("getWillIncrementMode() works", () => {
 });
 
 test("getNoteFinishHour() works", () => {
+  PREFER_FULL_ANIMATION_SPY.mockReturnValue(true);
   expect(
     getNoteFinishHour(
       new Note(NaturalNote.D, 0, Solfege.Do, 0),
