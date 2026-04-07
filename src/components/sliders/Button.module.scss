@@ -30,13 +30,18 @@
   stroke: rgb(255, 165, 0);
   fill: rgba(255, 255, 255, 0);
 
-  &.waiting {
-    cursor: default;
-  }
-
   &.disabled {
     cursor: default;
     stroke: rgb(166, 139, 89);
     fill: rgba(156, 136, 99, 0.5);
+  }
+
+  &.active {
+    cursor: default;
+    fill: rgba(255, 165, 0, 0.15);
+  }
+
+  &.waiting {
+    cursor: default;
   }
 }

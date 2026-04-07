@@ -28,8 +28,7 @@ export function Button({
   setState,
   dataTestid
 }: ButtonProps): JSX.Element {
-  const isDisabled = ! canPerformMotion(musicalKey, onClickMotion);
-  const isWaiting = motion !== Motion.Still;
+  const buttonState = getButtonState(musicalKey, motion, onClickMotion);
   const isWide = (
     onClickMotion === Motion.DecrementBoth ||
     onClickMotion === Motion.IncrementBoth
@@ -40,7 +39,7 @@ export function Button({
 
   function handleClick(
   ): void {
-    if (isDisabled || isWaiting) return;
+    if (buttonState !== null) return;
     if (USE_ANIMATION) {
       setState((state: State) => ({ ...state, motion: onClickMotion }));
     } else {
@@ -52,13 +51,13 @@ export function Button({
 
   return (
     <g
-      className={groupClassName(onClickMotion)}
+      className={getGroupClassName(onClickMotion)}
     >
       <Icon
         motion={onClickMotion}
       />
       <rect
-        className={rectangleClassName(onClickMotion, isDisabled, isWaiting)}
+        className={getRectangleClassName(onClickMotion, buttonState)}
         onClick={handleClick}
         data-testid={dataTestid}
         x={- width / 2}
@@ -72,20 +71,35 @@ export function Button({
   );
 }
 
-function groupClassName(
+function getButtonState(
+  musicalKey: MusicalKey,
+  motion: Motion,
+  onClickMotion: Motion
+): string | null {
+  if (! canPerformMotion(musicalKey, onClickMotion)) {
+    return "disabled";
+  }
+  if (motion === onClickMotion) {
+    return "active";
+  }
+  if (motion !== Motion.Still) {
+    return "waiting";
+  }
+  return null;
+}
+
+function getGroupClassName(
   onClickMotion: Motion
 ): string {
   const classNames = ["button", onClickMotion];
   return buildClassString(cssModule, classNames);
 }
 
-function rectangleClassName(
+function getRectangleClassName(
   onClickMotion: Motion,
-  isDisabled: boolean,
-  isWaiting: boolean
+  buttonState: string | null
 ): string {
   const classNames = ["button-rectangle", onClickMotion];
-  if (isDisabled) classNames.push("disabled");
-  if (isWaiting) classNames.push("waiting");
+  if (buttonState !== null) classNames.push(buttonState);
   return buildClassString(cssModule, classNames);
 }
