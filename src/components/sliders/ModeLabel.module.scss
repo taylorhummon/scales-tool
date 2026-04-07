@@ -31,9 +31,9 @@
     animation: fading-in animation.$duration linear 1 forwards reverse;
   }
 
-  @for $p from -3 through 3 {
-    &.position-#{$p} {
-      offset-path: position.position-still-path($p);
+  @for $position from -3 through 3 {
+    &.position-#{$position} {
+      offset-path: position.position-still-path($position);
     }
   }
 }

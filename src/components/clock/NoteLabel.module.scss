@@ -17,423 +17,103 @@
   offset-rotate: 0deg;
   font-family: "PT Mono", monospace;
 
-  &.note-D♭♭ {
-    offset-path: path.still-path(label.point-for("D", -2));
-  }
-
-  &.note-D♭ {
-    offset-path: path.still-path(label.point-for("D", -1));
-  }
-
-  &.note-D {
-    offset-path: path.still-path(label.point-for("D", 0));
-  }
-
-  &.note-D♯ {
-    offset-path: path.still-path(label.point-for("D", 1));
-  }
-
-  &.note-D♯♯ {
-    offset-path: path.still-path(label.point-for("D", 2));
-  }
-
-  &.note-E♭♭ {
-    offset-path: path.still-path(label.point-for("E", -2));
-  }
-
-  &.note-E♭ {
-    offset-path: path.still-path(label.point-for("E", -1));
-  }
-
-  &.note-E {
-    offset-path: path.still-path(label.point-for("E", 0));
-  }
-
-  &.note-E♯ {
-    offset-path: path.still-path(label.point-for("E", 1));
-  }
-
-  &.note-E♯♯ {
-    offset-path: path.still-path(label.point-for("E", 2));
-  }
-
-  &.note-F♭♭ {
-    offset-path: path.still-path(label.point-for("F", -2));
-  }
-
-  &.note-F♭ {
-    offset-path: path.still-path(label.point-for("F", -1));
-  }
-
-  &.note-F {
-    offset-path: path.still-path(label.point-for("F", 0));
-  }
-
-  &.note-F♯ {
-    offset-path: path.still-path(label.point-for("F", 1));
-  }
-
-  &.note-F♯♯ {
-    offset-path: path.still-path(label.point-for("F", 2));
-  }
-
-  &.note-G♭♭ {
-    offset-path: path.still-path(label.point-for("G", -2));
-  }
-
-  &.note-G♭ {
-    offset-path: path.still-path(label.point-for("G", -1));
-  }
-
-  &.note-G {
-    offset-path: path.still-path(label.point-for("G", 0));
-  }
-
-  &.note-G♯ {
-    offset-path: path.still-path(label.point-for("G", 1));
-  }
-
-  &.note-G♯♯ {
-    offset-path: path.still-path(label.point-for("G", 2));
-  }
-
-  &.note-A♭♭ {
-    offset-path: path.still-path(label.point-for("A", -2));
-  }
-
-  &.note-A♭ {
-    offset-path: path.still-path(label.point-for("A", -1));
-  }
-
-  &.note-A {
-    offset-path: path.still-path(label.point-for("A", 0));
-  }
-
-  &.note-A♯ {
-    offset-path: path.still-path(label.point-for("A", 1));
-  }
-
-  &.note-A♯♯ {
-    offset-path: path.still-path(label.point-for("A", 2));
-  }
-
-  &.note-B♭♭ {
-    offset-path: path.still-path(label.point-for("B", -2));
-  }
-
-  &.note-B♭ {
-    offset-path: path.still-path(label.point-for("B", -1));
-  }
-
-  &.note-B {
-    offset-path: path.still-path(label.point-for("B", 0));
-  }
-
-  &.note-B♯ {
-    offset-path: path.still-path(label.point-for("B", 1));
-  }
-
-  &.note-B♯♯ {
-    offset-path: path.still-path(label.point-for("B", 2));
-  }
-
-  &.note-C♭♭ {
-    offset-path: path.still-path(label.point-for("C", -2));
-  }
-
-  &.note-C♭ {
-    offset-path: path.still-path(label.point-for("C", -1));
-  }
-
-  &.note-C {
-    offset-path: path.still-path(label.point-for("C", 0));
-  }
-
-  &.note-C♯ {
-    offset-path: path.still-path(label.point-for("C", 1));
-  }
-
-  &.note-C♯♯ {
-    offset-path: path.still-path(label.point-for("C", 2));
-  }
-
-  &.move-from-D♭♭-to-D♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("D", -2), label.point-for("D", -1));
-  }
-
-  &.move-from-D♭-to-D {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("D", -1), label.point-for("D", 0));
-  }
-
-  &.move-from-D-to-D♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("D", 0), label.point-for("D", 1));
-  }
-
-  &.move-from-D♯-to-D♯♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("D", 1), label.point-for("D", 2));
-  }
-
-  &.move-from-E♭♭-to-E♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("E", -2), label.point-for("E", -1));
-  }
-
-  &.move-from-E♭-to-E {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("E", -1), label.point-for("E", 0));
-  }
-
-  &.move-from-E-to-E♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("E", 0), label.point-for("E", 1));
-  }
-
-  &.move-from-E♯-to-E♯♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("E", 1), label.point-for("E", 2));
-  }
-
-  &.move-from-F♭♭-to-F♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("F", -2), label.point-for("F", -1));
-  }
-
-  &.move-from-F♭-to-F {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("F", -1), label.point-for("F", 0));
-  }
-
-  &.move-from-F-to-F♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("F", 0), label.point-for("F", 1));
-  }
-
-  &.move-from-F♯-to-F♯♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("F", 1), label.point-for("F", 2));
-  }
-
-  &.move-from-G♭♭-to-G♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("G", -2), label.point-for("G", -1));
-  }
-
-  &.move-from-G♭-to-G {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("G", -1), label.point-for("G", 0));
-  }
-
-  &.move-from-G-to-G♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("G", 0), label.point-for("G", 1));
-  }
-
-  &.move-from-G♯-to-G♯♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("G", 1), label.point-for("G", 2));
-  }
-
-  &.move-from-A♭♭-to-A♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("A", -2), label.point-for("A", -1));
-  }
-
-  &.move-from-A♭-to-A {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("A", -1), label.point-for("A", 0));
-  }
-
-  &.move-from-A-to-A♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("A", 0), label.point-for("A", 1));
-  }
-
-  &.move-from-A♯-to-A♯♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("A", 1), label.point-for("A", 2));
-  }
-
-  &.move-from-B♭♭-to-B♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("B", -2), label.point-for("B", -1));
-  }
-
-  &.move-from-B♭-to-B {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("B", -1), label.point-for("B", 0));
-  }
-
-  &.move-from-B-to-B♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("B", 0), label.point-for("B", 1));
-  }
-
-  &.move-from-B♯-to-B♯♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("B", 1), label.point-for("B", 2));
-  }
-
-  &.move-from-C♭♭-to-C♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("C", -2), label.point-for("C", -1));
-  }
-
-  &.move-from-C♭-to-C {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("C", -1), label.point-for("C", 0));
-  }
-
-  &.move-from-C-to-C♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("C", 0), label.point-for("C", 1));
-  }
-
-  &.move-from-C♯-to-C♯♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("C", 1), label.point-for("C", 2));
-  }
-
-  &.move-from-D♯♯-to-D♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("D", 2), label.point-for("D", 1));
-  }
-
-  &.move-from-D♯-to-D {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("D", 1), label.point-for("D", 0));
-  }
-
-  &.move-from-D-to-D♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("D", 0), label.point-for("D", -1));
-  }
-
-  &.move-from-D♭-to-D♭♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("D", -1), label.point-for("D", -2));
-  }
-
-  &.move-from-E♯♯-to-E♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("E", 2), label.point-for("E", 1));
-  }
-
-  &.move-from-E♯-to-E {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("E", 1), label.point-for("E", 0));
-  }
-
-  &.move-from-E-to-E♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("E", 0), label.point-for("E", -1));
-  }
-
-  &.move-from-E♭-to-E♭♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("E", -1), label.point-for("E", -2));
-  }
-
-  &.move-from-F♯♯-to-F♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("F", 2), label.point-for("F", 1));
-  }
-
-  &.move-from-F♯-to-F {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("F", 1), label.point-for("F", 0));
-  }
-
-  &.move-from-F-to-F♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("F", 0), label.point-for("F", -1));
-  }
-
-  &.move-from-F♭-to-F♭♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("F", -1), label.point-for("F", -2));
-  }
-
-  &.move-from-G♯♯-to-G♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("G", 2), label.point-for("G", 1));
-  }
-
-  &.move-from-G♯-to-G {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("G", 1), label.point-for("G", 0));
-  }
-
-  &.move-from-G-to-G♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("G", 0), label.point-for("G", -1));
-  }
-
-  &.move-from-G♭-to-G♭♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("G", -1), label.point-for("G", -2));
-  }
-
-  &.move-from-A♯♯-to-A♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("A", 2), label.point-for("A", 1));
-  }
-
-  &.move-from-A♯-to-A {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("A", 1), label.point-for("A", 0));
-  }
-
-  &.move-from-A-to-A♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("A", 0), label.point-for("A", -1));
-  }
-
-  &.move-from-A♭-to-A♭♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("A", -1), label.point-for("A", -2));
-  }
-
-  &.move-from-B♯♯-to-B♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("B", 2), label.point-for("B", 1));
-  }
-
-  &.move-from-B♯-to-B {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("B", 1), label.point-for("B", 0));
-  }
-
-  &.move-from-B-to-B♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("B", 0), label.point-for("B", -1));
-  }
-
-  &.move-from-B♭-to-B♭♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("B", -1), label.point-for("B", -2));
-  }
-
-  &.move-from-C♯♯-to-C♯ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("C", 2), label.point-for("C", 1));
-  }
-
-  &.move-from-C♯-to-C {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("C", 1), label.point-for("C", 0));
-  }
-
-  &.move-from-C-to-C♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("C", 0), label.point-for("C", -1));
-  }
-
-  &.move-from-C♭-to-C♭♭ {
-    animation: move-note-label animation.$duration ease-in-out 1 forwards;
-    offset-path: path.linear-path(label.point-for("C", -1), label.point-for("C", -2));
+  $natural-notes: "A", "B", "C", "D", "E", "F", "G";
+
+  @each $natural-note in $natural-notes {
+    &.note-#{$natural-note}♭♭ {
+      offset-path: path.still-path(
+        label.point-for($natural-note, -2)
+      );
+    }
+
+    &.note-#{$natural-note}♭ {
+      offset-path: path.still-path(
+        label.point-for($natural-note, -1)
+      );
+    }
+
+    &.note-#{$natural-note} {
+      offset-path: path.still-path(
+        label.point-for($natural-note, 0)
+      );
+    }
+
+    &.note-#{$natural-note}♯ {
+      offset-path: path.still-path(
+        label.point-for($natural-note, 1)
+      );
+    }
+
+    &.note-#{$natural-note}♯♯ {
+      offset-path: path.still-path(
+        label.point-for($natural-note, 2)
+      );
+    }
+  }
+
+  @each $natural-note in $natural-notes {
+    &.move-from-#{$natural-note}♭♭-to-#{$natural-note}♭ {
+      animation: move-note-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(
+        label.point-for($natural-note, -2),
+        label.point-for($natural-note, -1)
+      );
+    }
+
+    &.move-from-#{$natural-note}♭-to-#{$natural-note} {
+      animation: move-note-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(
+        label.point-for($natural-note, -1),
+        label.point-for($natural-note, 0)
+      );
+    }
+
+    &.move-from-#{$natural-note}-to-#{$natural-note}♯ {
+      animation: move-note-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(
+        label.point-for($natural-note, 0),
+        label.point-for($natural-note, 1)
+      );
+    }
+
+    &.move-from-#{$natural-note}♯-to-#{$natural-note}♯♯ {
+      animation: move-note-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(
+        label.point-for($natural-note, 1),
+        label.point-for($natural-note, 2)
+      );
+    }
+
+    &.move-from-#{$natural-note}♯♯-to-#{$natural-note}♯ {
+      animation: move-note-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(
+        label.point-for($natural-note, 2),
+        label.point-for($natural-note, 1)
+      );
+    }
+
+    &.move-from-#{$natural-note}♯-to-#{$natural-note} {
+      animation: move-note-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(
+        label.point-for($natural-note, 1),
+        label.point-for($natural-note, 0)
+      );
+    }
+
+    &.move-from-#{$natural-note}-to-#{$natural-note}♭ {
+      animation: move-note-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(
+        label.point-for($natural-note, 0),
+        label.point-for($natural-note, -1)
+      );
+    }
+
+    &.move-from-#{$natural-note}♭-to-#{$natural-note}♭♭ {
+      animation: move-note-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(
+        label.point-for($natural-note, -1),
+        label.point-for($natural-note, -2)
+      );
+    }
   }
 }

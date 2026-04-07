@@ -9,9 +9,9 @@
   offset-rotate: 0deg;
   font-family: "PT Mono", monospace;
 
-  @for $p from -4 through 4 {
-    &.position-#{$p} {
-      offset-path: position.position-still-path($p);
+  @for $position from -4 through 4 {
+    &.position-#{$position} {
+      offset-path: position.position-still-path($position);
     }
   }
 }
