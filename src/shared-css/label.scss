@@ -1,5 +1,5 @@
-@use "sass:map";
-@use "sass:math";
+@use "sass:map" as map;
+@use "sass:math" as math;
 @use "@/shared-css/unit-circle" as unit-circle;
 @use "@/shared-css/path" as path;
 
@@ -10,10 +10,7 @@ $y-font-offset: 5;
 
 @function point-for($natural-note, $sharps-count) {
   $hour-of-natural-note: map.get($hour-by-natural-note, $natural-note);
-  // Unlike JavaScript, this modulo returns an integer between 0 and 11, even when
-  //   ($hour-of-natural + $sharps-count)
-  // is negative.
-  $hour: ($hour-of-natural-note + $sharps-count) % 12;
+  $hour: unit-circle.hour($hour-of-natural-note + $sharps-count);
   $character-count: math.abs($sharps-count) + 1;
   $x: $radius * unit-circle.x-at($hour) + $character-count * $x-font-offset;
   $y: $radius * unit-circle.y-at($hour) + $y-font-offset;

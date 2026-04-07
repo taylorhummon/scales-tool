@@ -2,12 +2,18 @@
 @use "sass:map" as map;
 
 
-@function x-at($hour) {
-  @return map.get($x, $hour % 12);
+@function hour($number) {
+  // Unlike JavaScript, the SASS modulo operator returns an integer between 0 and 11, even when
+  // $number is negative.
+  @return $number % 12;
 }
 
-@function y-at($hour) {
-  @return map.get($y, $hour % 12);
+@function x-at($number) {
+  @return map.get($x, hour(number));
+}
+
+@function y-at($number) {
+  @return map.get($y, hour(number));
 }
 
 
