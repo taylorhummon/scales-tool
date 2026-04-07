@@ -6,8 +6,8 @@ import { MusicalKey } from "@/classes/MusicalKey";
 import {
   canPerformMotion,
   getNextMusicalKey,
-  willDecrementDegree,
-  willIncrementDegree,
+  getWillDecrementDegree,
+  getWillIncrementDegree,
   getWillDecrementMode,
   getWillIncrementMode,
   getNoteFinishHour,
@@ -181,37 +181,37 @@ test("getNextMusicalKey() works", () => {
   );
 });
 
-test("willDecrementDegree() works", () => {
+test("getWillDecrementDegree() works", () => {
   expect(
-    willDecrementDegree(Motion.DecrementDegree)
+    getWillDecrementDegree(Motion.DecrementDegree)
   ).toBe(
     true
   );
   expect(
-    willDecrementDegree(Motion.DecrementBoth)
+    getWillDecrementDegree(Motion.DecrementBoth)
   ).toBe(
     true
   );
   expect(
-    willDecrementDegree(Motion.DecrementMode)
+    getWillDecrementDegree(Motion.DecrementMode)
   ).toBe(
     false
   );
 });
 
-test("willIncrementDegree() works", () => {
+test("getWillIncrementDegree() works", () => {
   expect(
-    willIncrementDegree(Motion.IncrementDegree)
+    getWillIncrementDegree(Motion.IncrementDegree)
   ).toBe(
     true
   );
   expect(
-    willIncrementDegree(Motion.IncrementBoth)
+    getWillIncrementDegree(Motion.IncrementBoth)
   ).toBe(
     true
   );
   expect(
-    willIncrementDegree(Motion.IncrementMode)
+    getWillIncrementDegree(Motion.IncrementMode)
   ).toBe(
     false
   );

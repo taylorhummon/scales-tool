@@ -44,13 +44,13 @@ export function getNextMusicalKey(
   return musicalKey;
 }
 
-export function willDecrementDegree(
+export function getWillDecrementDegree(
   motion: Motion
 ): boolean {
   return motion === Motion.DecrementDegree || motion === Motion.DecrementBoth;
 }
 
-export function willIncrementDegree(
+export function getWillIncrementDegree(
   motion: Motion
 ): boolean {
   return motion === Motion.IncrementDegree || motion === Motion.IncrementBoth;
@@ -72,9 +72,9 @@ export function getNoteFinishHour(
   note: Note,
   motion: Motion
 ): number {
-  if (willDecrementDegree(motion) && note.position === MIN_MODE) {
+  if (getWillDecrementDegree(motion) && note.position === MIN_MODE) {
     return remainderFor(note.hour - 1, 12);
-  } else if (willIncrementDegree(motion) && note.position === MAX_MODE) {
+  } else if (getWillIncrementDegree(motion) && note.position === MAX_MODE) {
     return remainderFor(note.hour + 1, 12);
   } else {
     return note.hour;
