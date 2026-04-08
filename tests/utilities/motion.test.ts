@@ -1,6 +1,6 @@
 import { test, expect } from "vitest";
 
-import { Motion, NaturalNote, Solfege } from "@/enumerations";
+import { AnimationType, Motion, NaturalNote, Solfege } from "@/enumerations";
 import { Note } from "@/classes/Note";
 import { MusicalKey } from "@/classes/MusicalKey";
 import {
@@ -258,6 +258,7 @@ test("getNoteFinishHour() works", () => {
   expect(
     getNoteFinishHour(
       noteD,
+      AnimationType.Simple,
       Motion.DecrementDegree
     )
   ).toBe(
@@ -266,6 +267,7 @@ test("getNoteFinishHour() works", () => {
   expect(
     getNoteFinishHour(
       noteD,
+      AnimationType.Simple,
       Motion.IncrementDegree
     )
   ).toBe(
@@ -274,6 +276,7 @@ test("getNoteFinishHour() works", () => {
   expect(
     getNoteFinishHour(
       noteD,
+      AnimationType.Simple,
       Motion.DecrementMode
     )
   ).toBe(
@@ -282,6 +285,7 @@ test("getNoteFinishHour() works", () => {
   expect(
     getNoteFinishHour(
       noteD,
+      AnimationType.Simple,
       Motion.IncrementMode
     )
   ).toBe(
@@ -290,6 +294,7 @@ test("getNoteFinishHour() works", () => {
   expect(
     getNoteFinishHour(
       noteD,
+      AnimationType.Simple,
       Motion.DecrementBoth
     )
   ).toBe(
@@ -298,16 +303,72 @@ test("getNoteFinishHour() works", () => {
   expect(
     getNoteFinishHour(
       noteD,
+      AnimationType.Simple,
       Motion.IncrementBoth
     )
   ).toBe(
     0
+  );
+  expect(
+    getNoteFinishHour(
+      noteD,
+      AnimationType.Ballet,
+      Motion.DecrementDegree
+    )
+  ).toBe(
+    5
+  );
+  expect(
+    getNoteFinishHour(
+      noteD,
+      AnimationType.Ballet,
+      Motion.IncrementDegree
+    )
+  ).toBe(
+    7
+  );
+  expect(
+    getNoteFinishHour(
+      noteD,
+      AnimationType.Ballet,
+      Motion.DecrementMode
+    )
+  ).toBe(
+    0
+  );
+  expect(
+    getNoteFinishHour(
+      noteD,
+      AnimationType.Ballet,
+      Motion.IncrementMode
+    )
+  ).toBe(
+    0
+  );
+  expect(
+    getNoteFinishHour(
+      noteD,
+      AnimationType.Ballet,
+      Motion.DecrementBoth
+    )
+  ).toBe(
+    5
+  );
+  expect(
+    getNoteFinishHour(
+      noteD,
+      AnimationType.Ballet,
+      Motion.IncrementBoth
+    )
+  ).toBe(
+    7
   );
 
   const noteF = new Note(NaturalNote.F, 0, Solfege.Mi, 3);
   expect(
     getNoteFinishHour(
       noteF,
+      AnimationType.Simple,
       Motion.DecrementDegree
     )
   ).toBe(
@@ -316,6 +377,7 @@ test("getNoteFinishHour() works", () => {
   expect(
     getNoteFinishHour(
       noteF,
+      AnimationType.Simple,
       Motion.IncrementDegree
     )
   ).toBe(
@@ -324,6 +386,7 @@ test("getNoteFinishHour() works", () => {
   expect(
     getNoteFinishHour(
       noteF,
+      AnimationType.Simple,
       Motion.DecrementMode
     )
   ).toBe(
@@ -332,6 +395,7 @@ test("getNoteFinishHour() works", () => {
   expect(
     getNoteFinishHour(
       noteF,
+      AnimationType.Simple,
       Motion.IncrementMode
     )
   ).toBe(
@@ -340,6 +404,7 @@ test("getNoteFinishHour() works", () => {
   expect(
     getNoteFinishHour(
       noteF,
+      AnimationType.Simple,
       Motion.DecrementBoth
     )
   ).toBe(
@@ -348,10 +413,65 @@ test("getNoteFinishHour() works", () => {
   expect(
     getNoteFinishHour(
       noteF,
+      AnimationType.Simple,
       Motion.IncrementBoth
     )
   ).toBe(
     4
+  );
+  expect(
+    getNoteFinishHour(
+      noteF,
+      AnimationType.Ballet,
+      Motion.DecrementDegree
+    )
+  ).toBe(
+    8
+  );
+  expect(
+    getNoteFinishHour(
+      noteF,
+      AnimationType.Ballet,
+      Motion.IncrementDegree
+    )
+  ).toBe(
+    10
+  );
+  expect(
+    getNoteFinishHour(
+      noteF,
+      AnimationType.Ballet,
+      Motion.DecrementMode
+    )
+  ).toBe(
+    3
+  );
+  expect(
+    getNoteFinishHour(
+      noteF,
+      AnimationType.Ballet,
+      Motion.IncrementMode
+    )
+  ).toBe(
+    3
+  );
+  expect(
+    getNoteFinishHour(
+      noteF,
+      AnimationType.Ballet,
+      Motion.DecrementBoth
+    )
+  ).toBe(
+    8
+  );
+  expect(
+    getNoteFinishHour(
+      noteF,
+      AnimationType.Ballet,
+      Motion.IncrementBoth
+    )
+  ).toBe(
+    10
   );
 });
 
