@@ -12,7 +12,7 @@
   cursor: pointer;
 
   &.wide {
-    width: 100px;
+    width: 102px;
   }
 
   &.disabled {
@@ -33,31 +33,31 @@
 
   &.DecrementMode {
     top: 344px;
-    left: 328px;
+    left: 327px;
   }
 
   &.IncrementMode {
     top: 52px;
-    left: 328px;
+    left: 327px;
   }
 
   &.DecrementDegree {
     top: 344px;
-    left: 382px;
+    left: 383px;
   }
 
   &.IncrementDegree {
     top: 52px;
-    left: 382px;
+    left: 383px;
   }
 
   &.DecrementBoth {
-    top: 392px;
-    left: 328px;
+    top: 393px;
+    left: 327px;
   }
 
   &.IncrementBoth {
-    top: 4px;
-    left: 328px;
+    top: 3px;
+    left: 327px;
   }
 }

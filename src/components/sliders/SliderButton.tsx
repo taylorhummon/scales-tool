@@ -11,6 +11,14 @@ import { advanceToNextMusicalKey } from "@/utilities/state";
 import cssModule from "@/components/sliders/SliderButton.module.scss";
 
 
+enum ButtonState {
+  Ready = "ready",
+  Active = "active",
+  Waiting = "waiting",
+  Disabled = "disabled"
+}
+
+
 interface SliderButtonProps {
   musicalKey: MusicalKey;
   animationType: AnimationType;
@@ -32,7 +40,7 @@ export function SliderButton({
 
   function handleClick(
   ): void {
-    if (buttonState !== "ready") return;
+    if (buttonState !== ButtonState.Ready) return;
     if (animationType === AnimationType.None) {
       advanceToNextMusicalKey(musicalKey, onClickMotion, setState);
     } else {
@@ -44,7 +52,7 @@ export function SliderButton({
     <button
       className={getClassName(onClickMotion, buttonState)}
       onClick={handleClick}
-      disabled={buttonState !== "ready"}
+      disabled={buttonState !== ButtonState.Ready}
       data-testid={dataTestid}
     >
       <Icon
@@ -58,23 +66,23 @@ function getButtonState(
   musicalKey: MusicalKey,
   motion: Motion,
   onClickMotion: Motion
-): string {
+): ButtonState {
   if (motion === onClickMotion) {
-    return "active";
+    return ButtonState.Active;
   }
   const nextMusicalKey = getNextMusicalKey(musicalKey, motion);
   if (! canPerformMotion(nextMusicalKey, onClickMotion)) {
-    return "disabled";
+    return ButtonState.Disabled;
   }
   if (motion !== Motion.Still) {
-    return "waiting";
+    return ButtonState.Waiting;
   }
-  return "ready";
+  return ButtonState.Ready;
 }
 
 function getClassName(
   onClickMotion: Motion,
-  buttonState: string
+  buttonState: ButtonState
 ): string {
   const classNames = ["button", onClickMotion, buttonState];
   if (getIsWide(onClickMotion)) classNames.push("wide");
