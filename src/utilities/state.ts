@@ -43,7 +43,17 @@ export function handleBrowserHistoryPop(
   };
 }
 
-export function advanceStateUsingMusicalKey(
+export function advanceToNextMusicalKey(
+  musicalKey: MusicalKey,
+  motion: Motion,
+  setState: Dispatch<SetStateAction<State>>
+): void {
+  const nextMusicalKey = getNextMusicalKey(musicalKey, motion);
+  addToBrowserHistory(nextMusicalKey);
+  setState((state: State) => advanceStateUsingMusicalKey(state, nextMusicalKey));
+}
+
+function advanceStateUsingMusicalKey(
   state: State,
   nextMusicalKey: MusicalKey
 ): State {
@@ -68,14 +78,4 @@ export function historicalStateFromMusicalKey(
     degree: musicalKey.degree,
     mode: musicalKey.mode
   };
-}
-
-export function advanceToNextMusicalKey(
-  musicalKey: MusicalKey,
-  motion: Motion,
-  setState: Dispatch<SetStateAction<State>>
-): void {
-  const nextMusicalKey = getNextMusicalKey(musicalKey, motion);
-  addToBrowserHistory(nextMusicalKey);
-  setState((state: State) => advanceStateUsingMusicalKey(state, nextMusicalKey));
 }

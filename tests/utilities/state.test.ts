@@ -6,7 +6,6 @@ import { addToBrowserHistory } from "@/utilities/routing";
 import {
   getInitialState,
   handleBrowserHistoryPop,
-  advanceStateUsingMusicalKey,
   musicalKeyFromHistoricalState,
   historicalStateFromMusicalKey,
 } from "@/utilities/state";
@@ -47,20 +46,6 @@ test("handleBrowserHistoryPop() works", () => {
     handleBrowserHistoryPop(state, { degree: 1, mode: 2 })
   ).toStrictEqual(
     { degree: 1, mode: 2, animationType: AnimationType.Ballet, motion: Motion.Still }
-  );
-});
-
-test("advanceStateUsingMusicalKey() works", () => {
-  const state = {
-    degree: 0,
-    mode: 0,
-    animationType: AnimationType.Ballet,
-    motion: Motion.IncrementMode,
-  }
-  expect(
-    advanceStateUsingMusicalKey(state, new MusicalKey(-1, -2))
-  ).toStrictEqual(
-    { degree: -1, mode: -2, animationType: AnimationType.Ballet, motion: Motion.Still }
   );
 });
 
