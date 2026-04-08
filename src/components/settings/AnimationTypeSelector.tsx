@@ -21,9 +21,14 @@ export function AnimationTypeSelector({
     <div
       className={buildClassString(cssModule, ["animation-type-selector"])}
     >
-      Animations:&nbsp;
+      <span
+        className={buildClassString(cssModule, ["label"])}
+      >
+        Animations:
+      </span>
       <select
         className={buildClassString(cssModule, ["menu"])}
+        name="animation-type"
         value={animationType}
         onChange={(event) => {
           setState((state: State) => {

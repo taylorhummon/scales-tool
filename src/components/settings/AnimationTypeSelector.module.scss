@@ -1,10 +1,15 @@
 .animation-type-selector {
+  margin: 10px 0 10px 25px;
   font-size: 16px;
+}
+
+.label {
+  margin-right: 10px;
 }
 
 .menu {
   outline: none;
   min-width: 100px;
-  padding: 3px 5px;
+  padding: 2px 5px;
   font-size: 16px;
 }

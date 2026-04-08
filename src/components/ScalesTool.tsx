@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 
 import { MusicalKey } from "@/classes/MusicalKey";
 import { Canvas } from "@/components/Canvas";
-import { AnimationTypeSelector } from "@/components/settings/AnimationTypeSelector";
+import { SettingsAccordion } from "@/components/settings/SettingsAccordion";
 import { buildClassString } from "@/utilities/css";
 import type { State } from "@/utilities/state";
 import { getInitialState, handleBrowserHistoryPop, advanceToNextMusicalKey } from "@/utilities/state";
@@ -67,12 +67,10 @@ export default function ScalesTool(
         motion={motion}
         setState={setState}
       />
-      { false &&
-        <AnimationTypeSelector
-          animationType={animationType}
-          setState={setState}
-        />
-      }
+      <SettingsAccordion
+        animationType={animationType}
+        setState={setState}
+      />
     </div>
   );
 }
