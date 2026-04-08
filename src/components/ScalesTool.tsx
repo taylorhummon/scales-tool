@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { MusicalKey } from "@/classes/MusicalKey";
 import { Canvas } from "@/components/Canvas";
 import { SettingsAccordion } from "@/components/settings/SettingsAccordion";
+import { SliderButtons } from "@/components/sliders/SliderButtons";
 import { buildClassString } from "@/utilities/css";
 import type { State } from "@/utilities/state";
 import { getInitialState, handleBrowserHistoryPop, advanceToNextMusicalKey } from "@/utilities/state";
@@ -62,6 +63,11 @@ export default function ScalesTool(
       ref={domNodeRef}
     >
       <Canvas
+        musicalKey={musicalKey}
+        animationType={animationType}
+        motion={motion}
+      />
+      <SliderButtons
         musicalKey={musicalKey}
         animationType={animationType}
         motion={motion}

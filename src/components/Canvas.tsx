@@ -1,11 +1,8 @@
-import type { Dispatch, SetStateAction } from "react";
-
 import type { AnimationType, Motion } from "@/enumerations";
 import type { MusicalKey } from "@/classes/MusicalKey";
 import { Clock } from "@/components/clock/Clock";
 import { Sliders } from "@/components/sliders/Sliders";
 import { buildClassString } from "@/utilities/css";
-import type { State } from "@/utilities/state";
 
 import cssModule from "@/components/Canvas.module.scss";
 
@@ -14,15 +11,13 @@ interface CanvasProps {
   musicalKey: MusicalKey;
   animationType: AnimationType;
   motion: Motion;
-  setState: Dispatch<SetStateAction<State>>;
 }
 
 
 export function Canvas({
   musicalKey,
   animationType,
-  motion,
-  setState
+  motion
 }: CanvasProps): JSX.Element {
   return (
     <svg
@@ -37,9 +32,7 @@ export function Canvas({
       />
       <Sliders
         musicalKey={musicalKey}
-        animationType={animationType}
         motion={motion}
-        setState={setState}
       />
     </svg>
   );

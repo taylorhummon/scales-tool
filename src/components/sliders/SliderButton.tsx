@@ -8,10 +8,10 @@ import { canPerformMotion, getNextMusicalKey } from "@/utilities/motion";
 import type { State } from "@/utilities/state";
 import { advanceToNextMusicalKey } from "@/utilities/state";
 
-import cssModule from "@/components/sliders/Button.module.scss";
+import cssModule from "@/components/sliders/SliderButton.module.scss";
 
 
-interface ButtonProps {
+interface SliderButtonProps {
   musicalKey: MusicalKey;
   animationType: AnimationType;
   motion: Motion;
@@ -20,26 +20,19 @@ interface ButtonProps {
   dataTestid: string;
 }
 
-export function Button({
+export function SliderButton({
   musicalKey,
   animationType,
   motion,
   onClickMotion,
   setState,
   dataTestid
-}: ButtonProps): JSX.Element {
+}: SliderButtonProps): JSX.Element {
   const buttonState = getButtonState(musicalKey, motion, onClickMotion);
-  const isWide = (
-    onClickMotion === Motion.DecrementBoth ||
-    onClickMotion === Motion.IncrementBoth
-  );
-  const width = isWide ? 100 : 46;
-  const height = 40;
-  const borderRadius = 8;
 
   function handleClick(
   ): void {
-    if (buttonState !== null) return;
+    if (buttonState !== "ready") return;
     if (animationType === AnimationType.None) {
       advanceToNextMusicalKey(musicalKey, onClickMotion, setState);
     } else {
@@ -48,24 +41,16 @@ export function Button({
   }
 
   return (
-    <g
-      className={getGroupClassName(onClickMotion)}
+    <button
+      className={getClassName(onClickMotion, buttonState)}
+      onClick={handleClick}
+      disabled={buttonState !== "ready"}
+      data-testid={dataTestid}
     >
       <Icon
         motion={onClickMotion}
       />
-      <rect
-        className={getRectangleClassName(onClickMotion, buttonState)}
-        onClick={handleClick}
-        data-testid={dataTestid}
-        x={- width / 2}
-        y={- height / 2}
-        width={width}
-        height={height}
-        rx={borderRadius}
-        ry={borderRadius}
-      />
-    </g>
+    </button>
   );
 }
 
@@ -73,7 +58,7 @@ function getButtonState(
   musicalKey: MusicalKey,
   motion: Motion,
   onClickMotion: Motion
-): string | null {
+): string {
   if (motion === onClickMotion) {
     return "active";
   }
@@ -84,21 +69,23 @@ function getButtonState(
   if (motion !== Motion.Still) {
     return "waiting";
   }
-  return null;
+  return "ready";
 }
 
-function getGroupClassName(
-  onClickMotion: Motion
-): string {
-  const classNames = ["button", onClickMotion];
-  return buildClassString(cssModule, classNames);
-}
-
-function getRectangleClassName(
+function getClassName(
   onClickMotion: Motion,
-  buttonState: string | null
+  buttonState: string
 ): string {
-  const classNames = ["button-rectangle", onClickMotion];
-  if (buttonState !== null) classNames.push(buttonState);
+  const classNames = ["button", onClickMotion, buttonState];
+  if (getIsWide(onClickMotion)) classNames.push("wide");
   return buildClassString(cssModule, classNames);
+}
+
+function getIsWide(
+  onClickMotion: Motion
+): boolean {
+  return (
+    onClickMotion === Motion.DecrementBoth ||
+    onClickMotion === Motion.IncrementBoth
+  );
 }
