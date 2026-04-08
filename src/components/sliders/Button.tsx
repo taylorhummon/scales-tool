@@ -4,7 +4,7 @@ import { AnimationType, Motion } from "@/enumerations";
 import type { MusicalKey } from "@/classes/MusicalKey";
 import { Icon } from "@/components/sliders/Icon";
 import { buildClassString } from "@/utilities/css";
-import { canPerformMotion } from "@/utilities/motion";
+import { canPerformMotion, getNextMusicalKey } from "@/utilities/motion";
 import type { State } from "@/utilities/state";
 import { advanceToNextMusicalKey } from "@/utilities/state";
 
@@ -74,11 +74,12 @@ function getButtonState(
   motion: Motion,
   onClickMotion: Motion
 ): string | null {
-  if (! canPerformMotion(musicalKey, onClickMotion)) {
-    return "disabled";
-  }
   if (motion === onClickMotion) {
     return "active";
+  }
+  const nextMusicalKey = getNextMusicalKey(musicalKey, motion);
+  if (! canPerformMotion(nextMusicalKey, onClickMotion)) {
+    return "disabled";
   }
   if (motion !== Motion.Still) {
     return "waiting";
