@@ -1,4 +1,4 @@
-import type { Motion } from "@/enumerations";
+import type { AnimationType, Motion } from "@/enumerations";
 import { buildLabelAnimation } from "@/classes/LabelAnimation";
 import type { MusicalKey } from "@/classes/MusicalKey";
 import { ClockFace } from "@/components/clock/ClockFace";
@@ -13,11 +13,13 @@ import cssModule from "@/components/clock/Clock.module.scss";
 
 interface ClockProps {
   musicalKey: MusicalKey;
+  animationType: AnimationType;
   motion: Motion;
 }
 
 export function Clock({
   musicalKey,
+  animationType,
   motion
 }: ClockProps): JSX.Element {
   const labelAnimation = buildLabelAnimation(musicalKey, motion);
@@ -34,6 +36,7 @@ export function Clock({
         <NoteDot
           key={note.hour}
           note={note}
+          animationType={animationType}
           motion={motion}
         />
       ))}

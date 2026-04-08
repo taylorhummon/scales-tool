@@ -1,5 +1,5 @@
 import { MIN_DEGREE, MAX_DEGREE } from "@/config";
-import { Motion } from "@/enumerations";
+import { AnimationType, Motion } from "@/enumerations";
 import { MusicalKey } from "@/classes/MusicalKey";
 import type { Note } from "@/classes/Note";
 import { remainderFor } from "@/utilities/math";
@@ -70,15 +70,23 @@ export function getWillIncrementMode(
 
 export function getNoteFinishHour(
   note: Note,
+  animationType: AnimationType,
   motion: Motion
 ): number {
-  if (getWillDecrementDegree(motion) && note.position === MIN_MODE) {
-    return remainderFor(note.hour - 1, 12);
-  } else if (getWillIncrementDegree(motion) && note.position === MAX_MODE) {
-    return remainderFor(note.hour + 1, 12);
-  } else {
-    return note.hour;
+  if (animationType === AnimationType.Simple) {
+    if (getWillDecrementDegree(motion) && note.position === MIN_MODE) {
+      return remainderFor(note.hour - 1, 12);
+    } else if (getWillIncrementDegree(motion) && note.position === MAX_MODE) {
+      return remainderFor(note.hour + 1, 12);
+    }
+  } else if (animationType === AnimationType.Ballet) {
+    if (getWillDecrementDegree(motion)) {
+      return remainderFor(note.hour - 7, 12);
+    } else if (getWillIncrementDegree(motion)) {
+      return remainderFor(note.hour + 7, 12);
+    }
   }
+  return note.hour;
 }
 
 export function getRootDotFinishHour(

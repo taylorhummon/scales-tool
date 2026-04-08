@@ -1,20 +1,19 @@
 import type { Dispatch, SetStateAction } from "react";
 
-import { USE_ANIMATION } from "@/config";
-import { Motion } from "@/enumerations";
+import { AnimationType, Motion } from "@/enumerations";
 import type { MusicalKey } from "@/classes/MusicalKey";
 import { Icon } from "@/components/sliders/Icon";
 import { buildClassString } from "@/utilities/css";
-import { canPerformMotion, getNextMusicalKey } from "@/utilities/motion";
-import { addToBrowserHistory } from "@/utilities/routing";
+import { canPerformMotion } from "@/utilities/motion";
 import type { State } from "@/utilities/state";
-import { advanceStateUsingMusicalKey } from "@/utilities/state";
+import { advanceToNextMusicalKey } from "@/utilities/state";
 
 import cssModule from "@/components/sliders/Button.module.scss";
 
 
 interface ButtonProps {
   musicalKey: MusicalKey;
+  animationType: AnimationType;
   motion: Motion;
   onClickMotion: Motion;
   setState: Dispatch<SetStateAction<State>>;
@@ -23,6 +22,7 @@ interface ButtonProps {
 
 export function Button({
   musicalKey,
+  animationType,
   motion,
   onClickMotion,
   setState,
@@ -40,12 +40,10 @@ export function Button({
   function handleClick(
   ): void {
     if (buttonState !== null) return;
-    if (USE_ANIMATION) {
-      setState((state: State) => ({ ...state, motion: onClickMotion }));
+    if (animationType === AnimationType.None) {
+      advanceToNextMusicalKey(musicalKey, onClickMotion, setState);
     } else {
-      const nextMusicalKey = getNextMusicalKey(musicalKey, onClickMotion);
-      addToBrowserHistory(nextMusicalKey);
-      setState((state: State) => advanceStateUsingMusicalKey(state, nextMusicalKey));
+      setState((state: State) => ({ ...state, motion: onClickMotion }));
     }
   }
 

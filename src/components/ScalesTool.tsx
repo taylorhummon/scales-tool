@@ -2,15 +2,10 @@ import { useState, useRef, useEffect } from "react";
 
 import { MusicalKey } from "@/classes/MusicalKey";
 import { Canvas } from "@/components/Canvas";
+import { AnimationTypeSelector } from "@/components/AnimationTypeSelector";
 import { buildClassString } from "@/utilities/css";
-import { getNextMusicalKey } from "@/utilities/motion";
-import { addToBrowserHistory } from "@/utilities/routing";
 import type { State } from "@/utilities/state";
-import {
-  getInitialState,
-  handleBrowserHistoryPop,
-  advanceStateUsingMusicalKey,
-} from "@/utilities/state";
+import { getInitialState, handleBrowserHistoryPop, advanceToNextMusicalKey } from "@/utilities/state";
 
 import cssModule from "@/components/ScalesTool.module.scss";
 
@@ -21,7 +16,7 @@ export default function ScalesTool(
   const animationsCountRef = useRef<number>(0);
   const [state, setState] = useState(getInitialState());
   const musicalKey = new MusicalKey(state.degree, state.mode);
-  const motion = state.motion;
+  const { animationType, motion } = state;
 
   // Handle the browser's "Back" and "Forward" buttons
   useEffect(() => {
@@ -50,10 +45,9 @@ export default function ScalesTool(
   useEffect(() => {
     function animationEndHandler(): void {
       animationsCountRef.current -= 1;
-      if (animationsCountRef.current >= 1) return;
-      const nextMusicalKey = getNextMusicalKey(musicalKey, motion);
-      addToBrowserHistory(nextMusicalKey);
-      setState((state: State) => advanceStateUsingMusicalKey(state, nextMusicalKey));
+      if (animationsCountRef.current == 0) {
+        advanceToNextMusicalKey(musicalKey, motion, setState);
+      }
     }
     const domNode = domNodeRef.current;
     if (domNode) domNode.addEventListener("animationend", animationEndHandler, false);
@@ -69,9 +63,16 @@ export default function ScalesTool(
     >
       <Canvas
         musicalKey={musicalKey}
+        animationType={animationType}
         motion={motion}
         setState={setState}
       />
+      {false &&
+        <AnimationTypeSelector
+          animationType={animationType}
+          setState={setState}
+        />
+      }
     </div>
   );
 }

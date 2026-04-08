@@ -1,6 +1,9 @@
+import type { Dispatch, SetStateAction } from "react";
+
 import { AnimationType, Motion } from "@/enumerations";
 import { MusicalKey, getDefaultMusicalKey } from "@/classes/MusicalKey";
-import { musicalKeyFromCurrentURL } from "@/utilities/routing";
+import { getNextMusicalKey } from "@/utilities/motion";
+import { musicalKeyFromCurrentURL, addToBrowserHistory } from "@/utilities/routing";
 
 
 export interface State {
@@ -65,4 +68,14 @@ export function historicalStateFromMusicalKey(
     degree: musicalKey.degree,
     mode: musicalKey.mode
   };
+}
+
+export function advanceToNextMusicalKey(
+  musicalKey: MusicalKey,
+  motion: Motion,
+  setState: Dispatch<SetStateAction<State>>
+): void {
+  const nextMusicalKey = getNextMusicalKey(musicalKey, motion);
+  addToBrowserHistory(nextMusicalKey);
+  setState((state: State) => advanceStateUsingMusicalKey(state, nextMusicalKey));
 }

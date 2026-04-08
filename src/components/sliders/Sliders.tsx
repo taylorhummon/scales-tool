@@ -1,5 +1,6 @@
 import type { Dispatch, SetStateAction } from "react";
 
+import type { AnimationType } from "@/enumerations";
 import { Motion } from "@/enumerations";
 import type { MusicalKey } from "@/classes/MusicalKey";
 import { Button } from "@/components/sliders/Button";
@@ -14,12 +15,14 @@ import cssModule from "@/components/sliders/Sliders.module.scss";
 
 interface SlidersProps {
   musicalKey: MusicalKey;
+  animationType: AnimationType;
   motion: Motion;
   setState: Dispatch<SetStateAction<State>>;
 }
 
 export function Sliders({
   musicalKey,
+  animationType,
   motion,
   setState
 }: SlidersProps): JSX.Element {
@@ -41,6 +44,7 @@ export function Sliders({
       />
       <Button
         musicalKey={musicalKey}
+        animationType={animationType}
         motion={motion}
         onClickMotion={Motion.DecrementDegree}
         setState={setState}
@@ -48,6 +52,7 @@ export function Sliders({
       />
       <Button
         musicalKey={musicalKey}
+        animationType={animationType}
         motion={motion}
         onClickMotion={Motion.IncrementDegree}
         setState={setState}
@@ -55,6 +60,7 @@ export function Sliders({
       />
       <Button
         musicalKey={musicalKey}
+        animationType={animationType}
         motion={motion}
         onClickMotion={Motion.DecrementMode}
         setState={setState}
@@ -62,6 +68,7 @@ export function Sliders({
       />
       <Button
         musicalKey={musicalKey}
+        animationType={animationType}
         motion={motion}
         onClickMotion={Motion.IncrementMode}
         setState={setState}
@@ -69,6 +76,7 @@ export function Sliders({
       />
       <Button
         musicalKey={musicalKey}
+        animationType={animationType}
         motion={motion}
         onClickMotion={Motion.DecrementBoth}
         setState={setState}
@@ -76,6 +84,7 @@ export function Sliders({
       />
       <Button
         musicalKey={musicalKey}
+        animationType={animationType}
         motion={motion}
         onClickMotion={Motion.IncrementBoth}
         setState={setState}
