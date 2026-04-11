@@ -4,18 +4,18 @@ import  { Note } from "@/classes/Note";
 import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/motion";
 
 
-export function buildLabelAnimation(
+export function buildNoteLabelAnimator(
   musicalKey: MusicalKey,
   motion: Motion
-): LabelAnimation | null {
+): NoteLabelAnimator | null {
   if (getWillIncrementDegree(motion) || getWillDecrementDegree(motion)) {
-    return new LabelAnimation(musicalKey, motion);
+    return new NoteLabelAnimator(musicalKey, motion);
   }
   return null;
 }
 
 
-export class LabelAnimation {
+export class NoteLabelAnimator {
   startNote: Note;
   finishNote: Note;
   isIncrement: boolean;
@@ -28,16 +28,16 @@ export class LabelAnimation {
   ) {
     const isIncrement = getIsIncrement(motion);
     this.startNote = getStartNote(musicalKey, isIncrement);
-    this.finishNote = getFinishNote(isIncrement, this.startNote);
+    this.finishNote = getFinishNote(this.startNote, isIncrement);
     this.isIncrement = isIncrement;
     this.isAddingCharacter = getIsAddingCharacter(musicalKey, isIncrement);
     this.noteWithLongerName = getNoteWithLongerName(this.isAddingCharacter, this.startNote, this.finishNote);
   }
 
-  isNoteAnimated(
+  willAnimate(
     note: Note
   ): boolean {
-    return this.startNote.hour === note.hour;
+    return note.hour === this.startNote.hour;
   }
 }
 
@@ -55,8 +55,8 @@ function getStartNote(
 }
 
 function getFinishNote(
-  isIncrement: boolean,
-  startNote: Note
+  startNote: Note,
+  isIncrement: boolean
 ): Note {
   if (isIncrement) {
     return new Note(startNote.naturalNote, startNote.sharpsCount + 1, startNote.position - 7);

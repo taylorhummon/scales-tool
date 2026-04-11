@@ -9,8 +9,9 @@ import { musicalKeyFromCurrentURL, addToBrowserHistory } from "@/utilities/routi
 export interface State {
   degree: number;
   root: number;
-  animationType: AnimationType;
   motion: Motion;
+  animationType: AnimationType;
+  isUsingSolfege: boolean;
 }
 
 // The state that's stored in the browser's history
@@ -25,8 +26,9 @@ export function getInitialState(
   return {
     degree: musicalKey.degree,
     root: musicalKey.root,
+    motion: Motion.Still,
     animationType: AnimationType.Simple,
-    motion: Motion.Still
+    isUsingSolfege: false
   };
 }
 

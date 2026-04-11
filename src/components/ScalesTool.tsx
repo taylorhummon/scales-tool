@@ -68,12 +68,14 @@ export default function ScalesTool(
     >
       <Canvas
         musicalKey={musicalKey}
-        animationType={animationType}
         motion={motion}
+        animationType={animationType}
+        isUsingSolfege={state.isUsingSolfege}
         setState={setState}
       />
       <SettingsAccordion
         animationType={animationType}
+        isUsingSolfege={state.isUsingSolfege}
         setState={setState}
       />
     </div>

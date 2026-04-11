@@ -1,10 +1,10 @@
 import type { AnimationType, Motion } from "@/enumerations";
-import { buildLabelAnimation } from "@/classes/LabelAnimation";
 import type { MusicalKey } from "@/classes/MusicalKey";
+import type { Note } from "@/classes/Note";
 import { ClockFace } from "@/components/clock/ClockFace";
 import { KeyDescription } from "@/components/clock/KeyDescription";
+import { Labels } from "@/components/clock/Labels";
 import { NoteDot } from "@/components/clock/NoteDot";
-import { NoteLabel } from "@/components/clock/NoteLabel";
 import { RootDot } from "@/components/clock/RootDot";
 import { buildClassString } from "@/utilities/css";
 
@@ -15,14 +15,15 @@ interface ClockProps {
   musicalKey: MusicalKey;
   animationType: AnimationType;
   motion: Motion;
+  isUsingSolfege: boolean;
 }
 
 export function Clock({
   musicalKey,
   animationType,
-  motion
+  motion,
+  isUsingSolfege
 }: ClockProps): JSX.Element {
-  const labelAnimation = buildLabelAnimation(musicalKey, motion);
   return (
     <g
       className={buildClassString(cssModule, ["clock"])}
@@ -32,7 +33,7 @@ export function Clock({
         motion={motion}
       />
       <ClockFace />
-      {musicalKey.scale.map((note) => (
+      {musicalKey.scale.map((note: Note) => (
         <NoteDot
           key={note.hour}
           musicalKey={musicalKey}
@@ -41,13 +42,11 @@ export function Clock({
           note={note}
         />
       ))}
-      {musicalKey.scale.map((note) => (
-        <NoteLabel
-          key={note.hour}
-          note={note}
-          labelAnimation={labelAnimation}
-        />
-      ))}
+      <Labels
+        musicalKey={musicalKey}
+        motion={motion}
+        isUsingSolfege={isUsingSolfege}
+      />
       <KeyDescription
         musicalKey={musicalKey}
       />

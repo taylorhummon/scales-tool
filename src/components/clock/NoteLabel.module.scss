@@ -1,5 +1,5 @@
 @use "@/shared-css/animation" as animation;
-@use "@/shared-css/label" as label;
+@use "@/shared-css/note-label" as note-label;
 @use "@/shared-css/path" as path;
 
 
@@ -22,31 +22,31 @@
   @each $natural-note in $natural-notes {
     &.note-#{$natural-note}♭♭ {
       offset-path: path.still-path(
-        label.point-for($natural-note, -2)
+        note-label.point-for($natural-note, -2)
       );
     }
 
     &.note-#{$natural-note}♭ {
       offset-path: path.still-path(
-        label.point-for($natural-note, -1)
+        note-label.point-for($natural-note, -1)
       );
     }
 
     &.note-#{$natural-note} {
       offset-path: path.still-path(
-        label.point-for($natural-note, 0)
+        note-label.point-for($natural-note, 0)
       );
     }
 
     &.note-#{$natural-note}♯ {
       offset-path: path.still-path(
-        label.point-for($natural-note, 1)
+        note-label.point-for($natural-note, 1)
       );
     }
 
     &.note-#{$natural-note}♯♯ {
       offset-path: path.still-path(
-        label.point-for($natural-note, 2)
+        note-label.point-for($natural-note, 2)
       );
     }
   }
@@ -55,64 +55,64 @@
     &.move-from-#{$natural-note}♭♭-to-#{$natural-note}♭ {
       animation: move-note-label animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(
-        label.point-for($natural-note, -2),
-        label.point-for($natural-note, -1)
+        note-label.point-for($natural-note, -2),
+        note-label.point-for($natural-note, -1)
       );
     }
 
     &.move-from-#{$natural-note}♭-to-#{$natural-note} {
       animation: move-note-label animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(
-        label.point-for($natural-note, -1),
-        label.point-for($natural-note, 0)
+        note-label.point-for($natural-note, -1),
+        note-label.point-for($natural-note, 0)
       );
     }
 
     &.move-from-#{$natural-note}-to-#{$natural-note}♯ {
       animation: move-note-label animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(
-        label.point-for($natural-note, 0),
-        label.point-for($natural-note, 1)
+        note-label.point-for($natural-note, 0),
+        note-label.point-for($natural-note, 1)
       );
     }
 
     &.move-from-#{$natural-note}♯-to-#{$natural-note}♯♯ {
       animation: move-note-label animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(
-        label.point-for($natural-note, 1),
-        label.point-for($natural-note, 2)
+        note-label.point-for($natural-note, 1),
+        note-label.point-for($natural-note, 2)
       );
     }
 
     &.move-from-#{$natural-note}♯♯-to-#{$natural-note}♯ {
       animation: move-note-label animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(
-        label.point-for($natural-note, 2),
-        label.point-for($natural-note, 1)
+        note-label.point-for($natural-note, 2),
+        note-label.point-for($natural-note, 1)
       );
     }
 
     &.move-from-#{$natural-note}♯-to-#{$natural-note} {
       animation: move-note-label animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(
-        label.point-for($natural-note, 1),
-        label.point-for($natural-note, 0)
+        note-label.point-for($natural-note, 1),
+        note-label.point-for($natural-note, 0)
       );
     }
 
     &.move-from-#{$natural-note}-to-#{$natural-note}♭ {
       animation: move-note-label animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(
-        label.point-for($natural-note, 0),
-        label.point-for($natural-note, -1)
+        note-label.point-for($natural-note, 0),
+        note-label.point-for($natural-note, -1)
       );
     }
 
     &.move-from-#{$natural-note}♭-to-#{$natural-note}♭♭ {
       animation: move-note-label animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(
-        label.point-for($natural-note, -1),
-        label.point-for($natural-note, -2)
+        note-label.point-for($natural-note, -1),
+        note-label.point-for($natural-note, -2)
       );
     }
   }

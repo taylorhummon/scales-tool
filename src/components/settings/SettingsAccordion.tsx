@@ -10,13 +10,15 @@ import cssModule from "@/components/settings/SettingsAccordion.module.scss";
 
 
 interface SettingsAccordionProps {
-  animationType: AnimationType,
+  animationType: AnimationType;
+  isUsingSolfege: boolean;
   setState: Dispatch<SetStateAction<State>>;
 }
 
 
 export function SettingsAccordion({
   animationType,
+  isUsingSolfege,
   setState
 }: SettingsAccordionProps): JSX.Element {
   return (

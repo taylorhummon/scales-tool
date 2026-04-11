@@ -1,5 +1,5 @@
 import type { Note } from "@/classes/Note";
-import type { LabelAnimation } from "@/classes/LabelAnimation";
+import type { NoteLabelAnimator } from "@/classes/NoteLabelAnimator";
 import { buildClassString } from "@/utilities/css";
 
 import cssModule from "@/components/clock/NoteLabelText.module.scss";
@@ -7,21 +7,21 @@ import cssModule from "@/components/clock/NoteLabelText.module.scss";
 
 interface NoteLabelTextProps {
   note: Note;
-  labelAnimation: LabelAnimation | null;
+  noteLabelAnimator: NoteLabelAnimator | null;
 }
 
 export function NoteLabelText({
   note,
-  labelAnimation
+  noteLabelAnimator
 }: NoteLabelTextProps): JSX.Element {
-  if (labelAnimation === null || ! labelAnimation.isNoteAnimated(note)) {
+  if (noteLabelAnimator === null || ! noteLabelAnimator.willAnimate(note)) {
     return (
       <text>
         {note.name}
       </text>
     );
   }
-  const noteToDisplay = labelAnimation.noteWithLongerName;
+  const noteToDisplay = noteLabelAnimator.noteWithLongerName;
   if (noteToDisplay.sharpsCount > 0) {
     const opaqueSharpsCount = noteToDisplay.sharpsCount - 1;
     return (
@@ -29,7 +29,7 @@ export function NoteLabelText({
         {note.naturalNote}
         {"♯".repeat(opaqueSharpsCount)}
         <tspan
-          className={getClassName(labelAnimation)}
+          className={getClassName(noteLabelAnimator)}
         >
           ♯
         </tspan>
@@ -42,7 +42,7 @@ export function NoteLabelText({
       <text>
         {note.naturalNote}
         {"♭".repeat(opaqueFlatsCount)}
-        <tspan className={getClassName(labelAnimation)}>
+        <tspan className={getClassName(noteLabelAnimator)}>
           ♭
         </tspan>
       </text>
@@ -56,10 +56,10 @@ export function NoteLabelText({
 }
 
 function getClassName(
-  labelAnimation: LabelAnimation
+  noteLabelAnimator: NoteLabelAnimator
 ): string {
   const classNames = [];
-  if (labelAnimation.isAddingCharacter) {
+  if (noteLabelAnimator.isAddingCharacter) {
     classNames.push("appear");
   } else {
     classNames.push("disappear");

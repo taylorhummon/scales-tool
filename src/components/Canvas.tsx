@@ -12,16 +12,18 @@ import cssModule from "@/components/Canvas.module.scss";
 
 interface CanvasProps {
   musicalKey: MusicalKey;
-  animationType: AnimationType;
   motion: Motion;
+  animationType: AnimationType;
+  isUsingSolfege: boolean;
   setState: Dispatch<SetStateAction<State>>;
 }
 
 
 export function Canvas({
   musicalKey,
-  animationType,
   motion,
+  animationType,
+  isUsingSolfege,
   setState
 }: CanvasProps): JSX.Element {
   return (
@@ -34,6 +36,7 @@ export function Canvas({
         musicalKey={musicalKey}
         animationType={animationType}
         motion={motion}
+        isUsingSolfege={isUsingSolfege}
       />
       <Sliders
         musicalKey={musicalKey}

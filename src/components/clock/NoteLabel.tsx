@@ -1,5 +1,5 @@
 import type { Note } from "@/classes/Note";
-import type { LabelAnimation } from "@/classes/LabelAnimation";
+import type { NoteLabelAnimator } from "@/classes/NoteLabelAnimator";
 import { NoteLabelText } from "@/components/clock/NoteLabelText";
 import { buildClassString } from "@/utilities/css";
 
@@ -7,34 +7,34 @@ import cssModule from "@/components/clock/NoteLabel.module.scss";
 
 
 interface NoteLabelProps {
+  noteLabelAnimator: NoteLabelAnimator | null;
   note: Note;
-  labelAnimation: LabelAnimation | null;
 }
 
 export function NoteLabel({
-  note,
-  labelAnimation
+  noteLabelAnimator,
+  note
 }: NoteLabelProps): JSX.Element {
   return (
     <g
-      className={getClassName(note, labelAnimation)}
+      className={getClassName(noteLabelAnimator, note)}
       data-testid={`note-label-${note.solfege}`}
     >
       <NoteLabelText
         note={note}
-        labelAnimation={labelAnimation}
+        noteLabelAnimator={noteLabelAnimator}
       />
     </g>
   );
 }
 
 function getClassName(
-  note: Note,
-  labelAnimation: LabelAnimation | null
+  noteLabelAnimator: NoteLabelAnimator | null,
+  note: Note
 ): string {
   const classNames = ["note-label", note.solfege];
-  if (labelAnimation !== null && labelAnimation.isNoteAnimated(note)) {
-    classNames.push(`move-from-${labelAnimation.startNote.name}-to-${labelAnimation.finishNote.name}`);
+  if (noteLabelAnimator !== null && noteLabelAnimator.willAnimate(note)) {
+    classNames.push(`move-from-${noteLabelAnimator.startNote.name}-to-${noteLabelAnimator.finishNote.name}`);
   } else {
     classNames.push(`note-${note.name}`);
   }
