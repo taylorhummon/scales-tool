@@ -37,6 +37,13 @@ export function SliderButton({
   dataTestid
 }: SliderButtonProps): JSX.Element {
   const buttonState = getButtonState(musicalKey, motion, onClickMotion);
+  const isWide = (
+    onClickMotion === Motion.DecrementBoth ||
+    onClickMotion === Motion.IncrementBoth
+  );
+  const width = isWide ? 100 : 46;
+  const height = 40;
+  const borderRadius = 8;
 
   function handleClick(
   ): void {
@@ -49,17 +56,41 @@ export function SliderButton({
   }
 
   return (
-    <button
-      className={getClassName(onClickMotion, buttonState)}
-      onClick={handleClick}
-      disabled={buttonState !== ButtonState.Ready}
-      data-testid={dataTestid}
+    <g
+      className={groupClassName(onClickMotion)}
     >
       <Icon
         motion={onClickMotion}
       />
-    </button>
+      <rect
+        className={rectangleClassName(onClickMotion, buttonState)}
+        onClick={handleClick}
+        data-testid={dataTestid}
+        x={- width / 2}
+        y={- height / 2}
+        width={width}
+        height={height}
+        rx={borderRadius}
+        ry={borderRadius}
+      />
+    </g>
   );
+}
+
+function groupClassName(
+  onClickMotion: Motion
+): string {
+  const classNames = ["button", onClickMotion];
+  return buildClassString(cssModule, classNames);
+}
+
+function rectangleClassName(
+  onClickMotion: Motion,
+  buttonState: ButtonState
+): string {
+  const classNames = ["button-rectangle", onClickMotion];
+  classNames.push(buttonState);
+  return buildClassString(cssModule, classNames);
 }
 
 function getButtonState(
@@ -78,22 +109,4 @@ function getButtonState(
     return ButtonState.Waiting;
   }
   return ButtonState.Ready;
-}
-
-function getClassName(
-  onClickMotion: Motion,
-  buttonState: ButtonState
-): string {
-  const classNames = ["button", onClickMotion, buttonState];
-  if (getIsWide(onClickMotion)) classNames.push("wide");
-  return buildClassString(cssModule, classNames);
-}
-
-function getIsWide(
-  onClickMotion: Motion
-): boolean {
-  return (
-    onClickMotion === Motion.DecrementBoth ||
-    onClickMotion === Motion.IncrementBoth
-  );
 }

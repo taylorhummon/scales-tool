@@ -24,29 +24,6 @@
   }
 
   @for $hour-a from 0 through 11 {
-    $hour-b: unit-circle.hour($hour-a + 1);
-
-    &.move-from-#{$hour-a}-to-#{$hour-b} {
-      animation: move-root-dot animation.$duration ease-in-out 1 forwards;
-      offset-path: clock.cw-arc-path($hour-a);
-    }
-
-    &.move-from-#{$hour-b}-to-#{$hour-a} {
-      animation: move-root-dot animation.$duration ease-in-out 1 forwards;
-      offset-path: clock.ccw-arc-path($hour-b);
-    }
-  }
-
-  @for $hour-a from 0 through 11 {
-    $hour-b: unit-circle.hour($hour-a + 6);
-
-    &.move-from-#{$hour-a}-to-#{$hour-b} {
-      animation: move-root-dot animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(clock.hour-point($hour-a), clock.hour-point($hour-b));
-    }
-  }
-
-  @for $hour-a from 0 through 11 {
     $hour-b: unit-circle.hour($hour-a + 7);
 
     &.move-from-#{$hour-a}-to-#{$hour-b} {

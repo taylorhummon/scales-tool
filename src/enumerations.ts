@@ -6,12 +6,12 @@ export enum AnimationType {
 
 export enum Motion {
   Still = "Still",
-  DecrementMode = "DecrementMode",
-  IncrementMode = "IncrementMode",
-  DecrementDegree = "DecrementDegree",
   IncrementDegree = "IncrementDegree",
-  DecrementBoth = "DecrementBoth",
-  IncrementBoth = "IncrementBoth"
+  DecrementDegree = "DecrementDegree",
+  DecrementRoot = "DecrementRoot",
+  IncrementRoot = "IncrementRoot",
+  IncrementBoth = "IncrementBoth",
+  DecrementBoth = "DecrementBoth"
 }
 
 export enum NaturalNote {

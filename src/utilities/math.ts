@@ -56,9 +56,17 @@ export function remainderFor(
   }
 }
 
-function ensureZeroIsPositive(
+export function ensureZeroIsPositive(
   n: number
 ): number {
   // Note: -0 === 0, and that's OK
   return n === 0 ? 0 : n;
+}
+
+export function isBetweenInclusive(
+  n: number,
+  lower: number,
+  upper: number
+): boolean {
+  return n >= lower && n <= upper;
 }

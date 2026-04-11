@@ -8,7 +8,7 @@ import { musicalKeyFromCurrentURL, addToBrowserHistory } from "@/utilities/routi
 
 export interface State {
   degree: number;
-  mode: number;
+  root: number;
   animationType: AnimationType;
   motion: Motion;
 }
@@ -16,7 +16,7 @@ export interface State {
 // The state that's stored in the browser's history
 export interface HistoricalState {
   degree: number;
-  mode: number;
+  root: number;
 }
 
 export function getInitialState(
@@ -24,7 +24,7 @@ export function getInitialState(
   const musicalKey = musicalKeyFromCurrentURL();
   return {
     degree: musicalKey.degree,
-    mode: musicalKey.mode,
+    root: musicalKey.root,
     animationType: AnimationType.Simple,
     motion: Motion.Still
   };
@@ -38,7 +38,7 @@ export function handleBrowserHistoryPop(
   return {
     ...state,
     degree: musicalKey.degree,
-    mode: musicalKey.mode,
+    root: musicalKey.root,
     motion: Motion.Still
   };
 }
@@ -60,7 +60,7 @@ function advanceStateUsingMusicalKey(
   return {
     ...state,
     degree: nextMusicalKey.degree,
-    mode: nextMusicalKey.mode,
+    root: nextMusicalKey.root,
     motion: Motion.Still
   };
 }
@@ -68,7 +68,7 @@ function advanceStateUsingMusicalKey(
 export function musicalKeyFromHistoricalState(
   historicalState: HistoricalState
 ): MusicalKey {
-  return new MusicalKey(historicalState.degree, historicalState.mode);
+  return new MusicalKey(historicalState.degree, historicalState.root);
 }
 
 export function historicalStateFromMusicalKey(
@@ -76,6 +76,6 @@ export function historicalStateFromMusicalKey(
 ): HistoricalState {
   return {
     degree: musicalKey.degree,
-    mode: musicalKey.mode
+    root: musicalKey.root
   };
 }

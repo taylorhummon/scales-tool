@@ -1,5 +1,6 @@
 import type { Motion } from "@/enumerations";
 import { AnimationType } from "@/enumerations";
+import type { MusicalKey } from "@/classes/MusicalKey";
 import type { Note } from "@/classes/Note";
 import { buildClassString } from "@/utilities/css";
 import { getNoteFinishHour } from "@/utilities/motion";
@@ -8,19 +9,21 @@ import cssModule from "@/components/clock/NoteDot.module.scss";
 
 
 interface NoteDotProps {
-  note: Note;
+  musicalKey: MusicalKey;
   animationType: AnimationType;
   motion: Motion;
+  note: Note;
 }
 
 export function NoteDot({
-  note,
+  musicalKey,
   animationType,
-  motion
+  motion,
+  note
 }: NoteDotProps): JSX.Element {
   return (
     <circle
-      className={getClassName(note, animationType, motion)}
+      className={getClassName(musicalKey, animationType, motion, note)}
       data-testid={`note-dot-${note.solfege}`}
       cx="0"
       cy="0"
@@ -30,13 +33,14 @@ export function NoteDot({
 }
 
 function getClassName(
-  note: Note,
+  musicalKey: MusicalKey,
   animationType: AnimationType,
-  motion: Motion
+  motion: Motion,
+  note: Note
 ): string {
   const classNames = ["note-dot"];
   const startHour = note.hour;
-  const finishHour = getNoteFinishHour(note, animationType, motion);
+  const finishHour = getNoteFinishHour(musicalKey, animationType, motion, note);
   if (finishHour === startHour) {
     classNames.push(`hour-${note.hour}`);
   } else {

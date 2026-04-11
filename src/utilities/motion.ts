@@ -1,21 +1,39 @@
-import { MIN_DEGREE, MAX_DEGREE } from "@/config";
+import { MAX_DEGREE, MIN_DEGREE } from "@/config";
 import { AnimationType, Motion } from "@/enumerations";
 import { MusicalKey } from "@/classes/MusicalKey";
 import type { Note } from "@/classes/Note";
 import { remainderFor } from "@/utilities/math";
-import { MIN_MODE, MAX_MODE } from "@/utilities/mode";
+import { MAX_MODE, MIN_MODE } from "@/utilities/mode";
 
 
 export function canPerformMotion(
   musicalKey: MusicalKey,
   motion: Motion
 ): boolean {
-  if (motion === Motion.DecrementDegree) return canDecrementDegree(musicalKey);
-  if (motion === Motion.IncrementDegree) return canIncrementDegree(musicalKey);
-  if (motion === Motion.DecrementMode) return true;
-  if (motion === Motion.IncrementMode) return true;
-  if (motion === Motion.DecrementBoth) return canDecrementDegree(musicalKey);
-  if (motion === Motion.IncrementBoth) return canIncrementDegree(musicalKey);
+  if (motion === Motion.IncrementDegree) {
+    return (
+      musicalKey.degree < MAX_DEGREE &&
+      musicalKey.mode > MIN_MODE
+    );
+  }
+  if (motion === Motion.DecrementDegree) {
+    return (
+      musicalKey.degree > MIN_DEGREE &&
+      musicalKey.mode < MAX_MODE
+    );
+  }
+  if (motion === Motion.IncrementRoot) {
+    return musicalKey.mode < MAX_MODE;
+  }
+  if (motion === Motion.DecrementRoot) {
+    return musicalKey.mode > MIN_MODE;
+  }
+  if (motion === Motion.IncrementBoth) {
+    return musicalKey.degree < MAX_DEGREE;
+  }
+  if (motion === Motion.DecrementBoth) {
+    return musicalKey.degree > MIN_DEGREE;
+  }
   return false;
 }
 
@@ -23,31 +41,25 @@ export function getNextMusicalKey(
   musicalKey: MusicalKey,
   motion: Motion
 ): MusicalKey {
-  if (motion === Motion.DecrementDegree) {
-    return new MusicalKey(musicalKey.degree - 1, musicalKey.mode);
-  }
   if (motion === Motion.IncrementDegree) {
-    return new MusicalKey(musicalKey.degree + 1, musicalKey.mode);
+    return new MusicalKey(musicalKey.degree + 1, musicalKey.root);
   }
-  if (motion === Motion.DecrementMode) {
-    return new MusicalKey(musicalKey.degree, decrementMode(musicalKey.mode));
+  if (motion === Motion.DecrementDegree) {
+    return new MusicalKey(musicalKey.degree - 1, musicalKey.root);
   }
-  if (motion === Motion.IncrementMode) {
-    return new MusicalKey(musicalKey.degree, incrementMode(musicalKey.mode));
+  if (motion === Motion.IncrementRoot) {
+    return new MusicalKey(musicalKey.degree, musicalKey.root + 1);
   }
-  if (motion === Motion.DecrementBoth) {
-    return new MusicalKey(musicalKey.degree - 1, decrementMode(musicalKey.mode));
+  if (motion === Motion.DecrementRoot) {
+    return new MusicalKey(musicalKey.degree, musicalKey.root - 1);
   }
   if (motion === Motion.IncrementBoth) {
-    return new MusicalKey(musicalKey.degree + 1, incrementMode(musicalKey.mode));
+    return new MusicalKey(musicalKey.degree + 1, musicalKey.root + 1);
+  }
+  if (motion === Motion.DecrementBoth) {
+    return new MusicalKey(musicalKey.degree - 1, musicalKey.root - 1);
   }
   return musicalKey;
-}
-
-export function getWillDecrementDegree(
-  motion: Motion
-): boolean {
-  return motion === Motion.DecrementDegree || motion === Motion.DecrementBoth;
 }
 
 export function getWillIncrementDegree(
@@ -56,34 +68,41 @@ export function getWillIncrementDegree(
   return motion === Motion.IncrementDegree || motion === Motion.IncrementBoth;
 }
 
-export function getWillDecrementMode(
+export function getWillDecrementDegree(
   motion: Motion
 ): boolean {
-  return motion === Motion.DecrementMode || motion === Motion.DecrementBoth;
+  return motion === Motion.DecrementDegree || motion === Motion.DecrementBoth;
 }
 
-export function getWillIncrementMode(
+export function getWillIncrementRoot(
   motion: Motion
 ): boolean {
-  return motion === Motion.IncrementMode || motion === Motion.IncrementBoth;
+  return motion === Motion.IncrementRoot || motion === Motion.IncrementBoth;
+}
+
+export function getWillDecrementRoot(
+  motion: Motion
+): boolean {
+  return motion === Motion.DecrementRoot || motion === Motion.DecrementBoth;
 }
 
 export function getNoteFinishHour(
-  note: Note,
+  musicalKey: MusicalKey,
   animationType: AnimationType,
-  motion: Motion
+  motion: Motion,
+  note: Note
 ): number {
   if (animationType === AnimationType.Simple) {
-    if (getWillDecrementDegree(motion) && note.position === MIN_MODE) {
-      return remainderFor(note.hour - 1, 12);
-    } else if (getWillIncrementDegree(motion) && note.position === MAX_MODE) {
+    if (getWillIncrementDegree(motion) && note.position === musicalKey.noteInLastPosition.position) {
       return remainderFor(note.hour + 1, 12);
+    } else if (getWillDecrementDegree(motion) && note.position === musicalKey.noteInFirstPosition.position) {
+      return remainderFor(note.hour - 1, 12);
     }
   } else if (animationType === AnimationType.Ballet) {
-    if (getWillDecrementDegree(motion)) {
-      return remainderFor(note.hour - 7, 12);
-    } else if (getWillIncrementDegree(motion)) {
+    if (getWillIncrementDegree(motion)) {
       return remainderFor(note.hour + 7, 12);
+    } else if (getWillDecrementDegree(motion)) {
+      return remainderFor(note.hour - 7, 12);
     }
   }
   return note.hour;
@@ -93,55 +112,11 @@ export function getRootDotFinishHour(
   rootNote: Note,
   motion: Motion
 ): number {
-  if (rootNote.position === MIN_MODE) {
-    if (motion === Motion.DecrementBoth) {
-      return remainderFor(rootNote.hour - 1, 12);
-    }
-    if (motion === Motion.DecrementMode) {
-      return remainderFor(rootNote.hour - 6, 12);
-    }
-  }
-  if (rootNote.position === MAX_MODE) {
-    if (motion === Motion.IncrementBoth) {
-      return remainderFor(rootNote.hour + 1, 12);
-    }
-    if (motion === Motion.IncrementMode) {
-      return remainderFor(rootNote.hour + 6, 12);
-    }
-  }
-  if (motion === Motion.IncrementMode || motion === Motion.DecrementDegree) {
-    return remainderFor(rootNote.hour - 7, 12);
-  }
-  if (motion === Motion.DecrementMode || motion === Motion.IncrementDegree) {
+  if (motion === Motion.IncrementRoot || motion === Motion.IncrementBoth) {
     return remainderFor(rootNote.hour + 7, 12);
   }
+  if (motion === Motion.DecrementRoot || motion === Motion.DecrementBoth) {
+    return remainderFor(rootNote.hour - 7, 12);
+  }
   return rootNote.hour;
-}
-
-// *** Private functions below this line ***
-
-function canDecrementDegree(
-  musicalKey: MusicalKey
-): boolean {
-  return musicalKey.degree > MIN_DEGREE && musicalKey.degree <= MAX_DEGREE;
-}
-
-function canIncrementDegree(
-  musicalKey: MusicalKey
-): boolean {
-  return musicalKey.degree < MAX_DEGREE && musicalKey.degree >= MIN_DEGREE;
-}
-
-function decrementMode(
-  mode: number
-): number {
-  if (mode === MIN_MODE) return MAX_MODE;
-  return mode - 1;
-}
-
-function incrementMode(
-  mode: number
-): number {
-  if (mode === MAX_MODE) return MIN_MODE;
-  return mode + 1;
 }

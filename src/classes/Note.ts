@@ -1,4 +1,4 @@
-import type { Solfege } from "@/enumerations";
+import { Solfege } from "@/enumerations";
 import { NaturalNote } from "@/enumerations";
 import { remainderFor } from "@/utilities/math";
 
@@ -6,23 +6,22 @@ import { remainderFor } from "@/utilities/math";
 export class Note {
   naturalNote: NaturalNote;
   sharpsCount: number;
-  solfege: Solfege;
   position: number;   // where on slider
   hour: number;       // where on clock
   name: string;
+  solfege: Solfege;
 
   constructor(
     naturalNote: NaturalNote,
     sharpsCount: number,  // positive means sharps; 0 means natural; negative means flats.
-    solfege: Solfege,
     position: number
   ) {
     this.naturalNote = naturalNote;
     this.sharpsCount = sharpsCount;
-    this.solfege = solfege;
     this.position = position;
     this.hour = getHour(naturalNote, sharpsCount);
     this.name = getName(naturalNote, sharpsCount);
+    this.solfege = getSolfege(position);
   }
 }
 
@@ -58,3 +57,19 @@ function getName(
     return naturalNote;
   }
 }
+
+function getSolfege(
+  position: number
+): Solfege {
+  return SOLFEGES[remainderFor(position, 7)];
+}
+
+const SOLFEGES = [
+  Solfege.Do,
+  Solfege.Fa,
+  Solfege.Ti,
+  Solfege.Mi,
+  Solfege.La,
+  Solfege.Re,
+  Solfege.Sol
+];

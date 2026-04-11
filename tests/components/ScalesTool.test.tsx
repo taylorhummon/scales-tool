@@ -143,7 +143,7 @@ test("<ScalesTool /> shows C-Major as default correctly", () => {
 });
 
 test("<ScalesTool /> shows C-Minor correctly", () => {
-  window.history.pushState(null, "", "key/-3A");
+  window.history.pushState(null, "", "key/A-3");
   render(
     <ScalesTool />
   );
@@ -262,7 +262,7 @@ test("<ScalesTool /> shows C-Minor correctly", () => {
 });
 
 test("<ScalesTool /> shows Dorian E correctly", () => {
-  window.history.pushState(null, "", "key/2D");
+  window.history.pushState(null, "", "key/D2");
   render(
     <ScalesTool />
   );

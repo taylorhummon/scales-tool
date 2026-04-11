@@ -34,14 +34,6 @@ export function SliderButtons({
         musicalKey={musicalKey}
         animationType={animationType}
         motion={motion}
-        onClickMotion={Motion.IncrementMode}
-        setState={setState}
-        dataTestid="increment-mode"
-      />
-      <SliderButton
-        musicalKey={musicalKey}
-        animationType={animationType}
-        motion={motion}
         onClickMotion={Motion.IncrementDegree}
         setState={setState}
         dataTestid="increment-degree"
@@ -50,9 +42,9 @@ export function SliderButtons({
         musicalKey={musicalKey}
         animationType={animationType}
         motion={motion}
-        onClickMotion={Motion.DecrementMode}
+        onClickMotion={Motion.IncrementRoot}
         setState={setState}
-        dataTestid="decrement-mode"
+        dataTestid="increment-root"
       />
       <SliderButton
         musicalKey={musicalKey}
@@ -61,6 +53,14 @@ export function SliderButtons({
         onClickMotion={Motion.DecrementDegree}
         setState={setState}
         dataTestid="decrement-degree"
+      />
+      <SliderButton
+        musicalKey={musicalKey}
+        animationType={animationType}
+        motion={motion}
+        onClickMotion={Motion.DecrementRoot}
+        setState={setState}
+        dataTestid="decrement-root"
       />
       <SliderButton
         musicalKey={musicalKey}

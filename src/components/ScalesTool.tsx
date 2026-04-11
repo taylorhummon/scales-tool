@@ -1,9 +1,8 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 
 import { MusicalKey } from "@/classes/MusicalKey";
 import { Canvas } from "@/components/Canvas";
 import { SettingsAccordion } from "@/components/settings/SettingsAccordion";
-import { SliderButtons } from "@/components/sliders/SliderButtons";
 import { buildClassString } from "@/utilities/css";
 import type { State } from "@/utilities/state";
 import { getInitialState, handleBrowserHistoryPop, advanceToNextMusicalKey } from "@/utilities/state";
@@ -16,7 +15,12 @@ export default function ScalesTool(
   const domNodeRef = useRef<HTMLDivElement>(null);
   const animationsCountRef = useRef<number>(0);
   const [state, setState] = useState(getInitialState());
-  const musicalKey = new MusicalKey(state.degree, state.mode);
+  const musicalKey = useMemo(
+    () => {
+      return new MusicalKey(state.degree, state.root);
+    },
+    [state.degree, state.root]
+  );
   const { animationType, motion } = state;
 
   // Handle the browser's "Back" and "Forward" buttons
@@ -63,11 +67,6 @@ export default function ScalesTool(
       ref={domNodeRef}
     >
       <Canvas
-        musicalKey={musicalKey}
-        animationType={animationType}
-        motion={motion}
-      />
-      <SliderButtons
         musicalKey={musicalKey}
         animationType={animationType}
         motion={motion}

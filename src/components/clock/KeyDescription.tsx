@@ -41,14 +41,14 @@ function TextContent({
 }: TextContentProps): JSX.Element {
   const noteFontClassName = buildClassString(cssModule, ["note-font"]);
   const rootNoteName = musicalKey.rootNote.name;
-  if (musicalKey.mode === 2) {
+  if (musicalKey.mode === -2) {
     return (
       <>
         <tspan className={noteFontClassName}>{rootNoteName}</tspan>-Major.
       </>
     );
   }
-  if (musicalKey.mode === -1) {
+  if (musicalKey.mode === 1) {
     return (
       <>
         <tspan className={noteFontClassName}>{rootNoteName}</tspan>-Minor.

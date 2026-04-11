@@ -1,5 +1,5 @@
-// Default to Major with no sharps or flats, a.k.a. C-Major.
-export const DEFAULT_MODE: number = 2;
+// Default to a root note of C with no sharps or flats, a.k.a. C-Major.
+export const DEFAULT_ROOT: number = -2;
 export const DEFAULT_DEGREE: number = 0;
 
 // Allow up to two sharps or two flats on each note in the scale.

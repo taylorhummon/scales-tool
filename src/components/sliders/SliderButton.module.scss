@@ -1,63 +1,48 @@
 .button {
-  position: absolute;
-  box-sizing: content-box;
-  width: 46px;
-  height: 40px;
-  padding: 0;
-  border-width: 2px;
-  border-radius: 8px;
-  border-style: solid;
-  border-color: rgb(255, 165, 0);
-  background-color: rgba(255, 255, 255, 0);
+  &.IncrementDegree {
+    offset-path: path("M -27 -135");
+  }
+
+  &.DecrementDegree {
+    offset-path: path("M -27 135");
+  }
+
+  &.IncrementRoot {
+    offset-path: path("M 27 -135");
+  }
+
+  &.DecrementRoot {
+    offset-path: path("M 27 135");
+  }
+
+  &.IncrementBoth {
+    offset-path: path("M 0 -183");
+  }
+
+  &.DecrementBoth {
+    offset-path: path("M 0 183");
+  }
+}
+
+.button-rectangle {
+  stroke-width: 2;
+  stroke: rgb(255, 165, 0);
+  fill: rgba(255, 255, 255, 0);
   cursor: pointer;
 
-  &.wide {
-    width: 102px;
-  }
-
-  &.disabled {
-    border-color: rgb(166, 139, 89);
-    background-color: rgba(156, 136, 99, 0.5);
-    cursor: default;
-  }
-
   &.active {
-    background-color: rgba(255, 165, 0, 0.15);
+    fill: rgba(255, 165, 0, 0.15);
     cursor: default;
   }
 
   &.waiting {
-    background-color: rgba(255, 255, 255, 0);
+    fill: rgba(255, 255, 255, 0);
     cursor: default;
   }
 
-  &.DecrementMode {
-    top: 344px;
-    left: 327px;
-  }
-
-  &.IncrementMode {
-    top: 52px;
-    left: 327px;
-  }
-
-  &.DecrementDegree {
-    top: 344px;
-    left: 383px;
-  }
-
-  &.IncrementDegree {
-    top: 52px;
-    left: 383px;
-  }
-
-  &.DecrementBoth {
-    top: 393px;
-    left: 327px;
-  }
-
-  &.IncrementBoth {
-    top: 3px;
-    left: 327px;
+  &.disabled {
+    stroke: rgb(166, 139, 89);
+    fill: rgba(156, 136, 99, 0.5);
+    cursor: default;
   }
 }

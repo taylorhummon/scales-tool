@@ -1,14 +1,14 @@
 import type { Motion } from "@/enumerations";
 import type { MusicalKey } from "@/classes/MusicalKey";
 import  { Note } from "@/classes/Note";
-import { getWillDecrementDegree, getWillIncrementDegree } from "@/utilities/motion";
+import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/motion";
 
 
 export function buildLabelAnimation(
   musicalKey: MusicalKey,
   motion: Motion
 ): LabelAnimation | null {
-  if (getWillDecrementDegree(motion) || getWillIncrementDegree(motion)) {
+  if (getWillIncrementDegree(motion) || getWillDecrementDegree(motion)) {
     return new LabelAnimation(musicalKey, motion);
   }
   return null;
@@ -47,8 +47,11 @@ function getStartNote(
   musicalKey: MusicalKey,
   isIncrement: boolean
 ): Note {
-  const position = isIncrement ? 3 : -3;
-  return musicalKey.noteAt(position);
+  if (isIncrement) {
+    return musicalKey.noteInLastPosition;
+  } else {
+    return musicalKey.noteInFirstPosition;
+  }
 }
 
 function getFinishNote(
@@ -56,17 +59,17 @@ function getFinishNote(
   startNote: Note
 ): Note {
   if (isIncrement) {
-    return new Note(startNote.naturalNote, startNote.sharpsCount + 1, startNote.solfege, -3);
+    return new Note(startNote.naturalNote, startNote.sharpsCount + 1, startNote.position - 7);
   } else {
-    return new Note(startNote.naturalNote, startNote.sharpsCount - 1, startNote.solfege, 3);
+    return new Note(startNote.naturalNote, startNote.sharpsCount - 1, startNote.position + 7);
   }
 }
 
 function getIsIncrement(
   motion: Motion
 ): boolean {
-  if (getWillDecrementDegree(motion)) return false;
   if (getWillIncrementDegree(motion)) return true;
+  if (getWillDecrementDegree(motion)) return false;
   throw Error("LabelAnimation requires incrementing or decrementing key degree");
 }
 

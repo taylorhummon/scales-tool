@@ -1,51 +1,58 @@
-import { MAX_DEGREE, MIN_DEGREE, DEFAULT_MODE, DEFAULT_DEGREE } from "@/config";
-import { NaturalNote, Solfege, ModeName } from "@/enumerations";
+import {
+  MAX_DEGREE,
+  MIN_DEGREE,
+  DEFAULT_DEGREE,
+  DEFAULT_ROOT,
+} from "@/config";
+import { NaturalNote, ModeName } from "@/enumerations";
 import { Note } from "@/classes/Note";
-import { quotientAndRemainderFor, remainderFor } from "@/utilities/math";
+import { buildInclusiveRange } from "@/utilities/array";
+import { quotientAndRemainderFor, ensureZeroIsPositive } from "@/utilities/math";
 
 
-/*
-Degree:
-  * The position of the left slider: how far D is above/below center.
-  * How many sharps/flats are in the scale.
-Mode:
-  * The position of the right slider: how far Do is above/below center.
-  *  3 ~ F ~ Lydian
-  *  2 ~ C ~ Ionian (a.k.a. Major)
-  *  1 ~ G ~ Mixolydian
-  *  0 ~ D ~ Dorian
-  * -1 ~ A ~ Aeolian (a.k.a Minor)
-  * -2 ~ E ~ Phrygian
-  * -3 ~ B ~ Locrian
- */
+// The following equality always holds:
+//    degree = root - mode
 
 
 export class MusicalKey {
   degree: number;
+  root: number;
   mode: number;
   #rootNote: Note | null = null;
   #extendedScale: Array<Note> | null = null;
 
   constructor(
     degree: number,
-    mode: number
+    root: number
   ) {
-    if (mode < -3 || mode > 3) throw Error(`Invalid mode: ${mode}`);
     this.degree = degree;
+    this.root = root;
+    const mode = root - degree;
+    if (mode < -3 || mode > 3) throw Error(`Invalid mode: ${mode}`);
     this.mode = mode;
-  }
-
-  get modeName(): string {
-    return MODE_NAMES_IN_FCGDAEB_ORDER[3 - this.mode];
-  }
-
-  get modeNote(): NaturalNote {
-    return NATURAL_NOTES_IN_FCGDAEB_ORDER[3 - this.mode];
   }
 
   get rootNote(): Note {
     if (this.#rootNote === null) this.#rootNote = this.#getRootNote();
     return this.#rootNote;
+  }
+
+  get modeName(): string {
+    return MODE_NAMES_IN_FCGDAEB_ORDER[this.mode + 3];
+  }
+
+  get modeNote(): NaturalNote {
+    return NATURAL_NOTES_IN_FCGDAEB_ORDER[this.mode + 3];
+  }
+
+  get noteInFirstPosition(
+  ): Note {
+    return this.scale[0];
+  }
+
+  get noteInLastPosition(
+  ): Note {
+    return this.scale[6];
   }
 
   get scale(): Array<Note> {
@@ -54,55 +61,54 @@ export class MusicalKey {
   }
 
   get extendedScale(): Array<Note> {
-    if (this.#extendedScale === null) this.#extendedScale = this.#getScale(true);
+    if (this.#extendedScale === null) this.#extendedScale = this.#getExtendedScale();
     return this.#extendedScale;
   }
 
   get shorthand(): string {
-    return `${this.degree}${this.modeNote}`;
+    return `${this.modeNote}${this.degree}`;
   }
 
   noteAt(
     position: number
   ): Note {
-    return getNote(this.degree, this.mode, position);
+    return getNote(this.root, position);
   }
 
   #getRootNote(
   ): Note {
-    return this.noteAt(this.mode);
+    return this.noteAt(0);
   }
 
-  #getScale(
-    isExtended: boolean = false
+  #getExtendedScale(
   ): Array<Note> {
-    const positions = isExtended ? EXTENDED_POSITIONS : POSITIONS;
-    return positions.map((position) => this.noteAt(position));
+    const middlePosition = this.mode;
+    const extended_positions = buildInclusiveRange(middlePosition - 4, middlePosition + 4);
+    return extended_positions.map((position) => this.noteAt(position));
   }
 }
 
 export function musicalKeyFromShorthand(
   keyShorthand: string
 ): MusicalKey | null {
-  const result = /^(-?[0-9]+)([A-Ga-g])$/.exec(keyShorthand);
+  const result = /^([A-Ga-g])(-?[0-9]+)$/.exec(keyShorthand);
   if (result === null) return null;
-  const degree = parseInt(result[1], 10);
+  const degree = parseInt(result[2], 10);
   if (degree > MAX_DEGREE || degree < MIN_DEGREE) return null;
-  const modeNote = result[2].toUpperCase();
+  const modeNote = result[1].toUpperCase();
   if (! (modeNote in NaturalNote)) return null;
   const mode = getMode(modeNote as NaturalNote);
-  return new MusicalKey(degree, mode);
+  const root = mode + degree;
+  return new MusicalKey(degree, root);
 }
 
 export function getDefaultMusicalKey(
 ): MusicalKey {
-  return new MusicalKey(DEFAULT_DEGREE, DEFAULT_MODE);
+  return new MusicalKey(DEFAULT_DEGREE, DEFAULT_ROOT);
 }
 
 // *** Private constants and functions below this line ***
 
-const POSITIONS = [3, 2, 1, 0, -1, -2, -3];
-const EXTENDED_POSITIONS = [4, 3, 2, 1, 0, -1, -2, -3, -4];  // positions 4 and -4 are useful when animating
 const MODE_NAMES_IN_FCGDAEB_ORDER = [
   ModeName.Lydian,
   ModeName.Major,
@@ -122,43 +128,25 @@ const NATURAL_NOTES_IN_FCGDAEB_ORDER = [
   NaturalNote.B
 ];
 const NATURAL_NOTES_IN_BEADGCF_ORDER = [...NATURAL_NOTES_IN_FCGDAEB_ORDER].reverse();
-const SOLFEGES = [
-  Solfege.Do,
-  Solfege.Fa,
-  Solfege.Ti,
-  Solfege.Mi,
-  Solfege.La,
-  Solfege.Re,
-  Solfege.Sol,
-];
 
 function getNote(
-  degree: number,
-  mode: number,
+  root: number,
   position: number
 ): Note {
-  const solfege = getSolfege(mode, position);
-  const bigStepCountFromD = degree - position;
+  const bigStepCountFromD = root - position;
   if (bigStepCountFromD > 0) {
     const { quotient, remainder } = quotientAndRemainderFor(3 + bigStepCountFromD, 7);
     const sharpsCount = quotient;
     const naturalNote = NATURAL_NOTES_IN_FCGDAEB_ORDER[remainder];
-    return new Note(naturalNote, sharpsCount, solfege, position);
+    return new Note(naturalNote, sharpsCount, position);
   }
   if (bigStepCountFromD < 0) {
     const { quotient, remainder } = quotientAndRemainderFor(3 - bigStepCountFromD, 7);
-    const sharpsCount = - quotient;
+    const sharpsCount = ensureZeroIsPositive(- quotient);
     const naturalNote = NATURAL_NOTES_IN_BEADGCF_ORDER[remainder];
-    return new Note(naturalNote, sharpsCount, solfege, position);
+    return new Note(naturalNote, sharpsCount, position);
   }
-  return new Note(NaturalNote.D, 0, solfege, position);
-}
-
-function getSolfege(
-  mode: number,
-  position: number
-): Solfege {
-  return SOLFEGES[remainderFor(position - mode, 7)];
+  return new Note(NaturalNote.D, 0, position);
 }
 
 function getMode(
@@ -166,5 +154,5 @@ function getMode(
 ): number {
   const index = NATURAL_NOTES_IN_FCGDAEB_ORDER.indexOf(modeNote);
   if (index === null) throw(`Invalid mode note: ${modeNote}`);
-  return 3 - index;
+  return index - 3;
 }

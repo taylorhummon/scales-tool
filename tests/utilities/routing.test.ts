@@ -26,18 +26,18 @@ test("addToBrowserHistory() works", () => {
   expect(
     document.location.pathname
   ).toBe(
-    "/key/0D"
+    "/key/D0"
   );
   expect(
     window.history.length
   ).toBe(
     2
   );
-  addToBrowserHistory(new MusicalKey(2, -1));
+  addToBrowserHistory(new MusicalKey(2, 3));
   expect(
     document.location.pathname
   ).toBe(
-    "/key/2A"
+    "/key/A2"
   );
   expect(
     window.history.length
@@ -48,48 +48,48 @@ test("addToBrowserHistory() works", () => {
 
 test("musicalKeyFromCurrentURL() works", () => {
   expect(
+    musicalKeyFromCurrentURL().root
+  ).toBe(
+    -2
+  );
+  expect(
     musicalKeyFromCurrentURL().degree
   ).toBe(
     0
-  );
-  expect(
-    musicalKeyFromCurrentURL().mode
-  ).toBe(
-    2
   );
   addToBrowserHistory(new MusicalKey(0, 0));
   expect(
-    musicalKeyFromCurrentURL().degree
+    musicalKeyFromCurrentURL().root
   ).toBe(
     0
   );
   expect(
-    musicalKeyFromCurrentURL().mode
+    musicalKeyFromCurrentURL().degree
   ).toBe(
     0
   );
-  addToBrowserHistory(new MusicalKey(2, -1));
+  addToBrowserHistory(new MusicalKey(2, 3));
+  expect(
+    musicalKeyFromCurrentURL().root
+  ).toBe(
+    3
+  );
   expect(
     musicalKeyFromCurrentURL().degree
   ).toBe(
     2
-  );
-  expect(
-    musicalKeyFromCurrentURL().mode
-  ).toBe(
-    -1
   );
   // User enters a garbage path in the URL
   window.history.pushState(null, "", "garbage/path/here");
   expect(
+    musicalKeyFromCurrentURL().root
+  ).toBe(
+    -2
+  );
+  expect(
     musicalKeyFromCurrentURL().degree
   ).toBe(
     0
-  );
-  expect(
-    musicalKeyFromCurrentURL().mode
-  ).toBe(
-    2
   );
   expect(
     document.location.pathname

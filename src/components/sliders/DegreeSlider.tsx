@@ -1,10 +1,15 @@
+import { MAX_DEGREE, MIN_DEGREE } from "@/config";
 import type { Motion } from "@/enumerations";
 import type { MusicalKey } from "@/classes/MusicalKey";
-import { NoteOnSlider } from "@/components/sliders/NoteOnSlider";
+import { Degree } from "@/components/sliders/Degree";
 import { buildClassString } from "@/utilities/css";
-import { getWillDecrementDegree, getWillIncrementDegree } from "@/utilities/motion";
+import { isBetweenInclusive } from "@/utilities/math";
+import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/motion";
 
 import cssModule from "@/components/sliders/DegreeSlider.module.scss";
+
+
+const EXTENDED_POSITIONS = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
 
 
 interface DegreeSliderProps {
@@ -16,6 +21,10 @@ export function DegreeSlider({
   musicalKey,
   motion
 }: DegreeSliderProps): JSX.Element {
+  const selectedDegree = musicalKey.degree;
+  const positions = EXTENDED_POSITIONS.filter(
+    (position) => isBetweenInclusive(selectedDegree - position, MIN_DEGREE, MAX_DEGREE)
+  );
   return (
     <g
       className={buildClassString(cssModule, ["degree-slider"])}
@@ -25,10 +34,10 @@ export function DegreeSlider({
           id="degree-slider-clip-path"
         >
           <rect
-            x="-25"
-            y="-118"
-            width="50"
-            height="236"
+            x="-40"
+            y="-105"
+            width="80"
+            height="210"
           />
         </clipPath>
       </defs>
@@ -38,10 +47,12 @@ export function DegreeSlider({
         <g
           className={getClassName(motion)}
         >
-          {musicalKey.extendedScale.map((note) => (
-            <NoteOnSlider
-              key={note.position}
-              note={note}
+          {positions.map((position) => (
+            <Degree
+              key={position}
+              degree={selectedDegree - position}
+              position={position}
+              motion={motion}
             />
           ))}
         </g>
@@ -54,10 +65,10 @@ function getClassName(
   motion: Motion
 ): string {
   const classNames = ["degree-slider-inner"];
-  if (getWillDecrementDegree(motion)) {
-    classNames.push("move-down");
-  } else if (getWillIncrementDegree(motion)) {
+  if (getWillIncrementDegree(motion)) {
     classNames.push("move-up");
+  } else if (getWillDecrementDegree(motion)) {
+    classNames.push("move-down");
   }
   return buildClassString(cssModule, classNames);
 }

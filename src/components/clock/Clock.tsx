@@ -35,9 +35,10 @@ export function Clock({
       {musicalKey.scale.map((note) => (
         <NoteDot
           key={note.hour}
-          note={note}
+          musicalKey={musicalKey}
           animationType={animationType}
           motion={motion}
+          note={note}
         />
       ))}
       {musicalKey.scale.map((note) => (

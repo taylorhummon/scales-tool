@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/index.scss">
   </head>
   <body>
     <header class="header-relative" role="banner">
@@ -25,32 +25,20 @@
           Scales Tool
         </h1>
         <div class="instructions">
-          Explore musical scales visually!
+          <ul>
+            <li>
+              Press the large arrow buttons to switch keys without changing the mode.
+            </li>
+            <li>
+              Press the sharp and flat buttons to select the key degree.
+            </li>
+            <li>
+              Press the blue dot buttons to select the root note.
+            </li>
+          </ul>
         </div>
         <div id="scales-tool-mount-point"></div>
         <script type="module" src="src/index.tsx"></script>
-        <h2>Want to learn more about scales?</h2>
-        <p>
-          Are you interested in digging into the patterns behind musical scales?
-          Tap below to read
-          <a
-            href="/taylors_guide_to_scales.pdf"
-            target="GuideToScalesWindow"
-          >Taylor's Guide to Scales</a>!
-        </p>
-        <a
-          class="cover-link"
-          href="/taylors_guide_to_scales.pdf"
-          target="GuideToScalesWindow"
-        >
-          <img
-            class="cover-image"
-            title="Taylor's Guide to Scales"
-            alt="Taylor's Guide to Scales"
-            width="225px"
-            src="/taylors_guide_to_scales_cover.svg"
-          />
-        </a>
       </main>
     </div>
   </body>

@@ -2,7 +2,9 @@ import { test, expect } from "vitest";
 
 import {
   quotientAndRemainderFor,
-  remainderFor
+  remainderFor,
+  ensureZeroIsPositive,
+  isBetweenInclusive,
 } from "@/utilities/math";
 
 
@@ -79,4 +81,60 @@ test("remainderFor() throws when the denominator is zero or negative", () => {
   expect(() => {
     remainderFor(14, -3);
   }).toThrow();
+});
+
+test("ensureZeroIsPositive() works", () => {
+  expect(
+    ensureZeroIsPositive(0)
+  ).toBe(
+    0
+  );
+  expect(
+    ensureZeroIsPositive(-0)
+  ).toBe(
+    0
+  );
+  expect(
+    ensureZeroIsPositive(3)
+  ).toBe(
+    3
+  );
+  expect(
+    ensureZeroIsPositive(-7)
+  ).toBe(
+    -7
+  );
+});
+
+test("isBetweenInclusive() works", () => {
+  expect(
+    isBetweenInclusive(5, 3, 10)
+  ).toBe(
+    true
+  );
+  expect(
+    isBetweenInclusive(5, 5, 10)
+  ).toBe(
+    true
+  );
+  expect(
+    isBetweenInclusive(5, 1, 5)
+  ).toBe(
+    true
+  );
+  expect(
+    isBetweenInclusive(6, 7, 10)
+  ).toBe(
+    false
+  );
+  expect(
+    isBetweenInclusive(11, 7, 10)
+  ).toBe(
+    false
+  );
+  expect(
+    isBetweenInclusive(-4, 1, 10)
+  ).toBe(
+    false
+  );
 });
