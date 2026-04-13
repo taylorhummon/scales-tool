@@ -1,7 +1,8 @@
 import { test, expect, afterEach } from "vitest";
 
-import { AnimationType, Motion } from "@/enumerations";
 import { MusicalKey } from "@/classes/MusicalKey";
+import { AnimationType } from "@/utilities/animation";
+import { Motion } from "@/utilities/motion";
 import { addToBrowserHistory } from "@/utilities/routing";
 import {
   getInitialState,

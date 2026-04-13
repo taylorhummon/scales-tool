@@ -1,9 +1,9 @@
-import type { Motion } from "@/enumerations";
-import { AnimationType } from "@/enumerations";
 import type { MusicalKey } from "@/classes/MusicalKey";
 import type { Note } from "@/classes/Note";
 import { useDerivedContext } from "@/contexts/derived";
+import { AnimationType } from "@/utilities/animation";
 import { buildClassString } from "@/utilities/css";
+import type { Motion } from "@/utilities/motion";
 import { getNoteFinishHour } from "@/utilities/motion";
 
 import cssModule from "@/components/clock/NoteDot.module.scss";

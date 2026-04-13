@@ -1,7 +1,7 @@
-import { Motion } from "@/enumerations";
 import type { MusicalKey } from "@/classes/MusicalKey";
 import { remainderFor } from "@/utilities/math";
 import {
+  Motion,
   getWillIncrementDegree,
   getWillDecrementDegree,
   getWillIncrementRoot,

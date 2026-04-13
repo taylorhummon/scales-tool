@@ -1,6 +1,6 @@
-import type { Motion } from "@/enumerations";
 import type { MusicalKey } from "@/classes/MusicalKey";
 import  { Note } from "@/classes/Note";
+import type { Motion } from "@/utilities/motion";
 import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/motion";
 
 

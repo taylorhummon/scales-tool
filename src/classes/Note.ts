@@ -1,6 +1,6 @@
-import { Solfege } from "@/enumerations";
-import { NaturalNote } from "@/enumerations";
 import { remainderFor } from "@/utilities/math";
+import { NaturalNote } from "@/utilities/natural-note";
+import { Solfege } from "@/utilities/solfege";
 
 
 export class Note {

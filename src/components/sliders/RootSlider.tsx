@@ -1,8 +1,8 @@
-import type { Motion } from "@/enumerations";
 import { Root } from "@/components/sliders/Root";
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
 import { isBetweenInclusive } from "@/utilities/math";
+import type { Motion } from "@/utilities/motion";
 import { getWillIncrementRoot, getWillDecrementRoot } from "@/utilities/motion";
 
 

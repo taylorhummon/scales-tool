@@ -4,10 +4,11 @@ import {
   DEFAULT_DEGREE,
   DEFAULT_ROOT,
 } from "@/config";
-import { NaturalNote, ModeName } from "@/enumerations";
 import { Note } from "@/classes/Note";
 import { buildInclusiveRange } from "@/utilities/array";
 import { quotientAndRemainderFor, ensureZeroIsPositive } from "@/utilities/math";
+import { NaturalNote } from "@/utilities/natural-note";
+import { ModeName } from "@/utilities/mode";
 
 
 // The following equality always holds:

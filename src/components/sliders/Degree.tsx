@@ -1,6 +1,6 @@
-import type { Motion } from "@/enumerations";
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
+import type { Motion } from "@/utilities/motion";
 import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/motion";
 
 import cssModule from "@/components/sliders/Degree.module.scss";

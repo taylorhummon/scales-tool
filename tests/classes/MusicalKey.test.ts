@@ -1,10 +1,11 @@
 import { test, expect } from "vitest";
 
-import { NaturalNote, Solfege } from "@/enumerations";
 import {
   MusicalKey,
   musicalKeyFromShorthand
 } from "@/classes/MusicalKey";
+import { NaturalNote } from "@/utilities/natural-note";
+import { Solfege } from "@/utilities/solfege";
 
 
 test("MusicalKey works for Dorian D", () => {

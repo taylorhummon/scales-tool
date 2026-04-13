@@ -1,5 +1,6 @@
-import { AnimationType, Motion } from "@/enumerations";
 import { MusicalKey } from "@/classes/MusicalKey";
+import { AnimationType } from "@/utilities/animation";
+import { Motion } from "@/utilities/motion";
 import { musicalKeyFromCurrentURL } from "@/utilities/routing";
 
 

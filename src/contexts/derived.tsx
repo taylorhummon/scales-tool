@@ -6,25 +6,14 @@ import {
   useMemo,
 } from 'react';
 
-import { AnimationType, Motion } from "@/enumerations";
 import { MusicalKey } from "@/classes/MusicalKey";
 import { DispatchContext } from "@/contexts/dispatch";
+import { ActionType, Action } from "@/utilities/action";
+import type { AnimationType } from "@/utilities/animation";
+import { Motion } from "@/utilities/motion";
 import type { State } from "@/utilities/state";
 import { getInitialState } from "@/utilities/state";
 
-
-export enum ActionType {
-  ActivateMotion = "activate-motion",
-  ChangeKey = "change-key",
-  SelectAnimationType = "select-animation-type",
-  SelectIsUsingSolfege = "select-is-using-solfege"
-}
-
-type Action =
-  | { type: ActionType.ActivateMotion, motion: Motion }
-  | { type: ActionType.ChangeKey, nextMusicalKey: MusicalKey }
-  | { type: ActionType.SelectAnimationType, animationType: AnimationType }
-  | { type: ActionType.SelectIsUsingSolfege, isUsingSolfege: boolean }
 
 export interface Derived {
   musicalKey: MusicalKey;

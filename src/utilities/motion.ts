@@ -1,10 +1,20 @@
 import { MAX_DEGREE, MIN_DEGREE } from "@/config";
-import { AnimationType, Motion } from "@/enumerations";
 import { MusicalKey } from "@/classes/MusicalKey";
 import type { Note } from "@/classes/Note";
+import { AnimationType } from "@/utilities/animation";
 import { remainderFor } from "@/utilities/math";
 import { MAX_MODE, MIN_MODE } from "@/utilities/mode";
 
+
+export enum Motion {
+  Still = "Still",
+  IncrementDegree = "IncrementDegree",
+  DecrementDegree = "DecrementDegree",
+  DecrementRoot = "DecrementRoot",
+  IncrementRoot = "IncrementRoot",
+  IncrementBoth = "IncrementBoth",
+  DecrementBoth = "DecrementBoth"
+}
 
 export function canPerformMotion(
   musicalKey: MusicalKey,

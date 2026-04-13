@@ -1,5 +1,5 @@
 import { ROOT_DOT_STROKE_COLOR, ROOT_DOT_FILL_COLOR } from "@/config";
-import { Motion } from "@/enumerations";
+import { Motion } from "@/utilities/motion";
 
 
 const ICON_MOTION_COLOR = "rgb(110, 110, 110)";

@@ -1,8 +1,8 @@
 import { test, expect } from "vitest";
 
-import { Motion } from "@/enumerations"
 import { NoteLabelAnimator } from "@/classes/NoteLabelAnimator";
 import { MusicalKey } from "@/classes/MusicalKey";
+import { Motion } from "@/utilities/motion";
 
 
 test("LabelAnimation works for key degree = 0", () => {

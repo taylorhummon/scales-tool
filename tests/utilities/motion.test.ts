@@ -1,9 +1,10 @@
 import { test, expect } from "vitest";
 
-import { AnimationType, Motion, NaturalNote } from "@/enumerations";
 import { Note } from "@/classes/Note";
 import { MusicalKey } from "@/classes/MusicalKey";
+import { AnimationType } from "@/utilities/animation";
 import {
+  Motion,
   canPerformMotion,
   getNextMusicalKey,
   getWillIncrementRoot,
@@ -13,6 +14,7 @@ import {
   getNoteFinishHour,
   getRootDotFinishHour,
 } from "@/utilities/motion";
+import { NaturalNote } from "@/utilities/natural-note";
 
 
 test("canPerformMotion() works for Dorian D", () => {

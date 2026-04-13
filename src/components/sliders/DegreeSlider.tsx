@@ -1,9 +1,9 @@
 import { MAX_DEGREE, MIN_DEGREE } from "@/config";
-import type { Motion } from "@/enumerations";
 import { Degree } from "@/components/sliders/Degree";
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
 import { isBetweenInclusive } from "@/utilities/math";
+import type { Motion } from "@/utilities/motion";
 import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/motion";
 
 import cssModule from "@/components/sliders/DegreeSlider.module.scss";

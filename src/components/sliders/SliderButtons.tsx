@@ -1,5 +1,5 @@
-import { Motion } from "@/enumerations";
 import { SliderButton } from "@/components/sliders/SliderButton";
+import { Motion } from "@/utilities/motion";
 
 
 export function SliderButtons(

@@ -1,10 +1,11 @@
-import { AnimationType, Motion } from "@/enumerations";
 import type { MusicalKey } from "@/classes/MusicalKey";
 import { Icon } from "@/components/sliders/Icon";
-import { ActionType, useDerivedContext } from "@/contexts/derived";
+import { useDerivedContext } from "@/contexts/derived";
 import { useDispatchContext } from "@/contexts/dispatch";
+import { ActionType } from "@/utilities/action";
+import { AnimationType } from "@/utilities/animation";
 import { buildClassString } from "@/utilities/css";
-import { canPerformMotion, getNextMusicalKey } from "@/utilities/motion";
+import { Motion, canPerformMotion, getNextMusicalKey } from "@/utilities/motion";
 import { addToBrowserHistory } from "@/utilities/routing";
 
 import cssModule from "@/components/sliders/SliderButton.module.scss";
