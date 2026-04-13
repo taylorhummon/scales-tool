@@ -8,7 +8,7 @@ import { historicalStateFromMusicalKey } from "@/utilities/state";
 export function addToBrowserHistory(
   musicalKey: MusicalKey
 ): void {
-  const path = `/scales?degree=${musicalKey.degree}&mode=${musicalKey.mode}`;
+  const path = `/?degree=${musicalKey.degree}&mode=${musicalKey.mode}`;
   const historicalState = historicalStateFromMusicalKey(musicalKey);
   window.history.pushState(historicalState, "", path);
 }
@@ -24,7 +24,7 @@ export function musicalKeyFromCurrentURL(
   const musicalKey = musicalKeyFromPath(path, search);
   if (musicalKey === null) {
     console.log(`Did not understand URL: ${path}${search}`);
-    window.history.replaceState(null, "", "/scales");
+    window.history.replaceState(null, "", "/");
     return getDefaultMusicalKey();
   }
   return musicalKey;
@@ -33,7 +33,7 @@ export function musicalKeyFromCurrentURL(
 function isPathOK(
   path: string
 ): boolean {
-  return path === "/scales/" || path === "/scales";
+  return path === "/" || path === "";
 }
 
 function isSearchEmpty(

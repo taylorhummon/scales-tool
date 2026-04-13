@@ -26,7 +26,7 @@ test("addToBrowserHistory() works", () => {
   expect(
     document.location.pathname
   ).toBe(
-    "/scales"
+    "/"
   );
   expect(
     document.location.search
@@ -42,7 +42,7 @@ test("addToBrowserHistory() works", () => {
   expect(
     document.location.pathname
   ).toBe(
-    "/scales"
+    "/"
   );
   expect(
     document.location.search
@@ -107,6 +107,6 @@ test("musicalKeyFromCurrentURL() works", () => {
   expect(
     document.location.pathname
   ).toBe(
-    "/scales"
+    "/"
   );
 });
