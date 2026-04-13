@@ -1,4 +1,4 @@
-import { DerivedProvider } from '@/contexts/DerivedContext';
+import { DerivedProvider } from '@/contexts/derived';
 import { ScalesToolInner } from "@/components/ScalesToolInner";
 
 

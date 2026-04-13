@@ -1,7 +1,7 @@
 import { ROOT_DOT_STROKE_COLOR, ROOT_DOT_FILL_COLOR } from "@/config";
 import { Motion } from "@/enumerations";
 import type { MusicalKey } from "@/classes/MusicalKey";
-import { useDerivedContext } from "@/contexts/DerivedContext";
+import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
 import { getRootDotFinishHour } from "@/utilities/motion";
 

@@ -4,7 +4,7 @@ import { KeyDescription } from "@/components/clock/KeyDescription";
 import { Labels } from "@/components/clock/Labels";
 import { NoteDot } from "@/components/clock/NoteDot";
 import { RootDot } from "@/components/clock/RootDot";
-import { useDerivedContext } from "@/contexts/DerivedContext";
+import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
 
 import cssModule from "@/components/clock/Clock.module.scss";

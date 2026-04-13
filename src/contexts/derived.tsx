@@ -8,7 +8,7 @@ import {
 
 import { AnimationType, Motion } from "@/enumerations";
 import { MusicalKey } from "@/classes/MusicalKey";
-import { DispatchContext } from "@/contexts/DispatchContext";
+import { DispatchContext } from "@/contexts/dispatch";
 import type { State } from "@/utilities/state";
 import { getInitialState } from "@/utilities/state";
 

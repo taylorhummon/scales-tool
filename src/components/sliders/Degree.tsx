@@ -1,5 +1,5 @@
 import type { Motion } from "@/enumerations";
-import { useDerivedContext } from "@/contexts/DerivedContext";
+import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
 import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/motion";
 

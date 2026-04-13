@@ -1,7 +1,7 @@
 import { AnimationType } from "@/enumerations";
 import { buildClassString } from "@/utilities/css";
-import { ActionType, useDerivedContext } from "@/contexts/DerivedContext";
-import { useDispatchContext } from "@/contexts/DispatchContext";
+import { ActionType, useDerivedContext } from "@/contexts/derived";
+import { useDispatchContext } from "@/contexts/dispatch";
 
 import cssModule from "@/components/settings/AnimationTypeSelector.module.scss";
 

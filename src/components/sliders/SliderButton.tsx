@@ -1,8 +1,8 @@
 import { AnimationType, Motion } from "@/enumerations";
 import type { MusicalKey } from "@/classes/MusicalKey";
 import { Icon } from "@/components/sliders/Icon";
-import { ActionType, useDerivedContext } from "@/contexts/DerivedContext";
-import { useDispatchContext } from "@/contexts/DispatchContext";
+import { ActionType, useDerivedContext } from "@/contexts/derived";
+import { useDispatchContext } from "@/contexts/dispatch";
 import { buildClassString } from "@/utilities/css";
 import { canPerformMotion, getNextMusicalKey } from "@/utilities/motion";
 import { addToBrowserHistory } from "@/utilities/routing";

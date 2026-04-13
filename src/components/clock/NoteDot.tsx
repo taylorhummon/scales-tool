@@ -2,7 +2,7 @@ import type { Motion } from "@/enumerations";
 import { AnimationType } from "@/enumerations";
 import type { MusicalKey } from "@/classes/MusicalKey";
 import type { Note } from "@/classes/Note";
-import { useDerivedContext } from "@/contexts/DerivedContext";
+import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
 import { getNoteFinishHour } from "@/utilities/motion";
 

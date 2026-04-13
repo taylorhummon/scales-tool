@@ -29,7 +29,7 @@ export const UNIT_CIRCLE_YS = [
 
 
 /*
-Note: These functions only make sense where the floating point representation of integers
+Note: These remainder functions only make sense where the floating point representation of integers
 are dense enough to have consecutive integers. That is, up until
 Number.MAX_SAFE_INTEGER = 9,007,199,254,740,991.
 */

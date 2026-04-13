@@ -3,7 +3,7 @@ import { buildSolfegeLabelAnimator } from "@/classes/SolfegeLabelAnimator";
 import type { Note } from "@/classes/Note";
 import { NoteLabel } from "@/components/clock/NoteLabel";
 import { SolfegeLabel } from "@/components/clock/SolfegeLabel";
-import { useDerivedContext } from "@/contexts/DerivedContext";
+import { useDerivedContext } from "@/contexts/derived";
 
 
 export function Labels(

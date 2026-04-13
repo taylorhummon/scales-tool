@@ -62,30 +62,6 @@ export function getNextMusicalKey(
   return musicalKey;
 }
 
-export function getWillIncrementDegree(
-  motion: Motion
-): boolean {
-  return motion === Motion.IncrementDegree || motion === Motion.IncrementBoth;
-}
-
-export function getWillDecrementDegree(
-  motion: Motion
-): boolean {
-  return motion === Motion.DecrementDegree || motion === Motion.DecrementBoth;
-}
-
-export function getWillIncrementRoot(
-  motion: Motion
-): boolean {
-  return motion === Motion.IncrementRoot || motion === Motion.IncrementBoth;
-}
-
-export function getWillDecrementRoot(
-  motion: Motion
-): boolean {
-  return motion === Motion.DecrementRoot || motion === Motion.DecrementBoth;
-}
-
 export function getNoteFinishHour(
   musicalKey: MusicalKey,
   animationType: AnimationType,
@@ -112,11 +88,35 @@ export function getRootDotFinishHour(
   rootNote: Note,
   motion: Motion
 ): number {
-  if (motion === Motion.IncrementRoot || motion === Motion.IncrementBoth) {
+  if (getWillIncrementRoot(motion)) {
     return remainderFor(rootNote.hour + 7, 12);
   }
-  if (motion === Motion.DecrementRoot || motion === Motion.DecrementBoth) {
+  if (getWillDecrementRoot(motion)) {
     return remainderFor(rootNote.hour - 7, 12);
   }
   return rootNote.hour;
+}
+
+export function getWillIncrementDegree(
+  motion: Motion
+): boolean {
+  return motion === Motion.IncrementDegree || motion === Motion.IncrementBoth;
+}
+
+export function getWillDecrementDegree(
+  motion: Motion
+): boolean {
+  return motion === Motion.DecrementDegree || motion === Motion.DecrementBoth;
+}
+
+export function getWillIncrementRoot(
+  motion: Motion
+): boolean {
+  return motion === Motion.IncrementRoot || motion === Motion.IncrementBoth;
+}
+
+export function getWillDecrementRoot(
+  motion: Motion
+): boolean {
+  return motion === Motion.DecrementRoot || motion === Motion.DecrementBoth;
 }

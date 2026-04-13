@@ -1,6 +1,6 @@
 import { Motion } from "@/enumerations";
 import type { Note } from "@/classes/Note";
-import { useDerivedContext } from "@/contexts/DerivedContext";
+import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
 
 import cssModule from "@/components/sliders/Root.module.scss";
