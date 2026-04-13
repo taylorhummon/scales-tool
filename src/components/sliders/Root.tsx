@@ -1,5 +1,6 @@
 import { Motion } from "@/enumerations";
 import type { Note } from "@/classes/Note";
+import { useDerivedContext } from "@/contexts/DerivedContext";
 import { buildClassString } from "@/utilities/css";
 
 import cssModule from "@/components/sliders/Root.module.scss";
@@ -7,17 +8,16 @@ import cssModule from "@/components/sliders/Root.module.scss";
 
 interface RootProps {
   note: Note;
-  motion: Motion;
   firstPosition: number;
   lastPosition: number;
 }
 
 export function Root({
   note,
-  motion,
   firstPosition,
   lastPosition
 }: RootProps): JSX.Element {
+  const { motion } = useDerivedContext();
   return (
     <g
       className={getClassName(note, motion, firstPosition, lastPosition)}

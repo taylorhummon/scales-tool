@@ -1,12 +1,11 @@
-import type { Dispatch, SetStateAction } from "react";
-
 import { AnimationType, Motion } from "@/enumerations";
 import type { MusicalKey } from "@/classes/MusicalKey";
 import { Icon } from "@/components/sliders/Icon";
+import { ActionType, useDerivedContext } from "@/contexts/DerivedContext";
+import { useDispatchContext } from "@/contexts/DispatchContext";
 import { buildClassString } from "@/utilities/css";
 import { canPerformMotion, getNextMusicalKey } from "@/utilities/motion";
-import type { State } from "@/utilities/state";
-import { advanceToNextMusicalKey } from "@/utilities/state";
+import { addToBrowserHistory } from "@/utilities/routing";
 
 import cssModule from "@/components/sliders/SliderButton.module.scss";
 
@@ -18,24 +17,17 @@ enum ButtonState {
   Disabled = "disabled"
 }
 
-
 interface SliderButtonProps {
-  musicalKey: MusicalKey;
-  animationType: AnimationType;
-  motion: Motion;
   onClickMotion: Motion;
-  setState: Dispatch<SetStateAction<State>>;
   dataTestid: string;
 }
 
 export function SliderButton({
-  musicalKey,
-  animationType,
-  motion,
   onClickMotion,
-  setState,
   dataTestid
 }: SliderButtonProps): JSX.Element {
+  const { musicalKey, motion, animationType } = useDerivedContext();
+  const dispatch = useDispatchContext();
   const buttonState = getButtonState(musicalKey, motion, onClickMotion);
   const isWide = (
     onClickMotion === Motion.DecrementBoth ||
@@ -49,9 +41,11 @@ export function SliderButton({
   ): void {
     if (buttonState !== ButtonState.Ready) return;
     if (animationType === AnimationType.None) {
-      advanceToNextMusicalKey(musicalKey, onClickMotion, setState);
+      const nextMusicalKey = getNextMusicalKey(musicalKey, motion);
+      addToBrowserHistory(nextMusicalKey);
+      dispatch({ type: ActionType.ChangeKey, nextMusicalKey });
     } else {
-      setState((state: State) => ({ ...state, motion: onClickMotion }));
+      dispatch({ type: ActionType.ActivateMotion, motion: onClickMotion });
     }
   }
 

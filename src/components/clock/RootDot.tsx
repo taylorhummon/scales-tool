@@ -1,24 +1,19 @@
 import { ROOT_DOT_STROKE_COLOR, ROOT_DOT_FILL_COLOR } from "@/config";
 import { Motion } from "@/enumerations";
-import type { Note } from "@/classes/Note";
+import type { MusicalKey } from "@/classes/MusicalKey";
+import { useDerivedContext } from "@/contexts/DerivedContext";
 import { buildClassString } from "@/utilities/css";
 import { getRootDotFinishHour } from "@/utilities/motion";
 
 import cssModule from "@/components/clock/RootDot.module.scss";
 
 
-interface RootDotProps {
-  rootNote: Note;
-  motion: Motion;
-}
-
-export function RootDot({
-  rootNote,
-  motion
-}: RootDotProps): JSX.Element {
+export function RootDot(
+): JSX.Element {
+  const { musicalKey, motion } = useDerivedContext();
   return (
     <circle
-      className={getClassName(rootNote, motion)}
+      className={getClassName(musicalKey, motion)}
       data-testid={"clock-root-dot"}
       cx="0"
       cy="0"
@@ -31,9 +26,10 @@ export function RootDot({
 }
 
 function getClassName(
-  rootNote: Note,
+  musicalKey: MusicalKey,
   motion: Motion
 ): string {
+  const rootNote = musicalKey.rootNote;
   const classNames = ["root-dot"];
   const startHour = rootNote.hour;
   const finishHour = getRootDotFinishHour(rootNote, motion);

@@ -1,4 +1,5 @@
 import type { Motion } from "@/enumerations";
+import { useDerivedContext } from "@/contexts/DerivedContext";
 import { buildClassString } from "@/utilities/css";
 import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/motion";
 
@@ -8,14 +9,13 @@ import cssModule from "@/components/sliders/Degree.module.scss";
 interface DegreeProps {
   degree: number;
   position: number;
-  motion: Motion;
 }
 
 export function Degree({
   degree,
-  position,
-  motion
+  position
 }: DegreeProps): JSX.Element {
+  const { motion } = useDerivedContext();
   return (
     <g
       className={getClassName(position, motion)}

@@ -1,6 +1,6 @@
 import type { Motion } from "@/enumerations";
-import type { MusicalKey } from "@/classes/MusicalKey";
 import { Root } from "@/components/sliders/Root";
+import { useDerivedContext } from "@/contexts/DerivedContext";
 import { buildClassString } from "@/utilities/css";
 import { isBetweenInclusive } from "@/utilities/math";
 import { getWillIncrementRoot, getWillDecrementRoot } from "@/utilities/motion";
@@ -9,15 +9,9 @@ import { getWillIncrementRoot, getWillDecrementRoot } from "@/utilities/motion";
 import cssModule from "@/components/sliders/RootSlider.module.scss";
 
 
-interface RootSliderProps {
-  musicalKey: MusicalKey;
-  motion: Motion;
-}
-
-export function RootSlider({
-  musicalKey,
-  motion
-}: RootSliderProps): JSX.Element {
+export function RootSlider(
+): JSX.Element {
+  const { musicalKey, motion } = useDerivedContext();
   const firstPosition = musicalKey.noteInFirstPosition.position;
   const lastPosition = musicalKey.noteInLastPosition.position;
   const notes = musicalKey.extendedScale.filter(
@@ -49,7 +43,6 @@ export function RootSlider({
             <Root
               key={note.position}
               note={note}
-              motion={motion}
               firstPosition={firstPosition}
               lastPosition={lastPosition}
             />

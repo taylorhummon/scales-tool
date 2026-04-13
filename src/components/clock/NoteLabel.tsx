@@ -21,8 +21,8 @@ export function NoteLabel({
       data-testid={`note-label-${note.solfege}`}
     >
       <NoteLabelText
-        note={note}
         noteLabelAnimator={noteLabelAnimator}
+        note={note}
       />
     </g>
   );

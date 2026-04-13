@@ -82,8 +82,7 @@ export class MusicalKey {
 
   #getExtendedScale(
   ): Array<Note> {
-    const middlePosition = this.mode;
-    const extended_positions = buildInclusiveRange(middlePosition - 4, middlePosition + 4);
+    const extended_positions = buildInclusiveRange(this.mode - 4, this.mode + 4);
     return extended_positions.map((position) => this.noteAt(position));
   }
 }

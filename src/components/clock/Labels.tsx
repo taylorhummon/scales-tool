@@ -1,23 +1,14 @@
-import type { Motion } from "@/enumerations";
 import { buildNoteLabelAnimator } from "@/classes/NoteLabelAnimator";
 import { buildSolfegeLabelAnimator } from "@/classes/SolfegeLabelAnimator";
-import type { MusicalKey } from "@/classes/MusicalKey";
 import type { Note } from "@/classes/Note";
 import { NoteLabel } from "@/components/clock/NoteLabel";
 import { SolfegeLabel } from "@/components/clock/SolfegeLabel";
+import { useDerivedContext } from "@/contexts/DerivedContext";
 
 
-interface LabelsProps {
-  musicalKey: MusicalKey;
-  motion: Motion;
-  isUsingSolfege: boolean;
-}
-
-export function Labels({
-  musicalKey,
-  motion,
-  isUsingSolfege
-}: LabelsProps): JSX.Element {
+export function Labels(
+): JSX.Element {
+  const { musicalKey, motion, isUsingSolfege } = useDerivedContext();
   if (isUsingSolfege) {
     const solfegeLabelAnimator = buildSolfegeLabelAnimator(musicalKey, motion);
     return (

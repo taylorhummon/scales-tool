@@ -2,6 +2,7 @@ import type { Motion } from "@/enumerations";
 import { AnimationType } from "@/enumerations";
 import type { MusicalKey } from "@/classes/MusicalKey";
 import type { Note } from "@/classes/Note";
+import { useDerivedContext } from "@/contexts/DerivedContext";
 import { buildClassString } from "@/utilities/css";
 import { getNoteFinishHour } from "@/utilities/motion";
 
@@ -9,18 +10,14 @@ import cssModule from "@/components/clock/NoteDot.module.scss";
 
 
 interface NoteDotProps {
-  musicalKey: MusicalKey;
-  animationType: AnimationType;
-  motion: Motion;
   note: Note;
 }
 
 export function NoteDot({
-  musicalKey,
-  animationType,
-  motion,
   note
 }: NoteDotProps): JSX.Element {
+  const { musicalKey, animationType, motion } = useDerivedContext();
+
   return (
     <circle
       className={getClassName(musicalKey, animationType, motion, note)}

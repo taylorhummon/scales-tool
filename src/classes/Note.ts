@@ -6,8 +6,8 @@ import { remainderFor } from "@/utilities/math";
 export class Note {
   naturalNote: NaturalNote;
   sharpsCount: number;
-  position: number;   // where on slider
-  hour: number;       // where on clock
+  position: number;   // where on the slider
+  hour: number;       // where on the clock
   name: string;
   solfege: Solfege;
 

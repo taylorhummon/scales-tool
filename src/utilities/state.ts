@@ -1,9 +1,6 @@
-import type { Dispatch, SetStateAction } from "react";
-
 import { AnimationType, Motion } from "@/enumerations";
-import { MusicalKey, getDefaultMusicalKey } from "@/classes/MusicalKey";
-import { getNextMusicalKey } from "@/utilities/motion";
-import { musicalKeyFromCurrentURL, addToBrowserHistory } from "@/utilities/routing";
+import { MusicalKey } from "@/classes/MusicalKey";
+import { musicalKeyFromCurrentURL } from "@/utilities/routing";
 
 
 export interface State {
@@ -30,47 +27,6 @@ export function getInitialState(
     animationType: AnimationType.Simple,
     isUsingSolfege: false
   };
-}
-
-export function handleBrowserHistoryPop(
-  state: State,
-  historicalState: HistoricalState | undefined
-): State {
-  const musicalKey = historicalState ? musicalKeyFromHistoricalState(historicalState) : getDefaultMusicalKey();
-  return {
-    ...state,
-    degree: musicalKey.degree,
-    root: musicalKey.root,
-    motion: Motion.Still
-  };
-}
-
-export function advanceToNextMusicalKey(
-  musicalKey: MusicalKey,
-  motion: Motion,
-  setState: Dispatch<SetStateAction<State>>
-): void {
-  const nextMusicalKey = getNextMusicalKey(musicalKey, motion);
-  addToBrowserHistory(nextMusicalKey);
-  setState((state: State) => advanceStateUsingMusicalKey(state, nextMusicalKey));
-}
-
-function advanceStateUsingMusicalKey(
-  state: State,
-  nextMusicalKey: MusicalKey
-): State {
-  return {
-    ...state,
-    degree: nextMusicalKey.degree,
-    root: nextMusicalKey.root,
-    motion: Motion.Still
-  };
-}
-
-export function musicalKeyFromHistoricalState(
-  historicalState: HistoricalState
-): MusicalKey {
-  return new MusicalKey(historicalState.degree, historicalState.root);
 }
 
 export function historicalStateFromMusicalKey(

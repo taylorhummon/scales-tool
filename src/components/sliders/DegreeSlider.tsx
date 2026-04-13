@@ -1,7 +1,7 @@
 import { MAX_DEGREE, MIN_DEGREE } from "@/config";
 import type { Motion } from "@/enumerations";
-import type { MusicalKey } from "@/classes/MusicalKey";
 import { Degree } from "@/components/sliders/Degree";
+import { useDerivedContext } from "@/contexts/DerivedContext";
 import { buildClassString } from "@/utilities/css";
 import { isBetweenInclusive } from "@/utilities/math";
 import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/motion";
@@ -12,15 +12,9 @@ import cssModule from "@/components/sliders/DegreeSlider.module.scss";
 const EXTENDED_POSITIONS = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
 
 
-interface DegreeSliderProps {
-  musicalKey: MusicalKey;
-  motion: Motion;
-}
-
-export function DegreeSlider({
-  musicalKey,
-  motion
-}: DegreeSliderProps): JSX.Element {
+export function DegreeSlider(
+): JSX.Element {
+  const { musicalKey, motion } = useDerivedContext();
   const selectedDegree = musicalKey.degree;
   const positions = EXTENDED_POSITIONS.filter(
     (position) => isBetweenInclusive(selectedDegree - position, MIN_DEGREE, MAX_DEGREE)
@@ -52,7 +46,6 @@ export function DegreeSlider({
               key={position}
               degree={selectedDegree - position}
               position={position}
-              motion={motion}
             />
           ))}
         </g>

@@ -1,25 +1,20 @@
-import type { MusicalKey } from "@/classes/MusicalKey";
+import { useDerivedContext } from "@/contexts/DerivedContext";
 import { buildClassString } from "@/utilities/css";
 
 import cssModule from "@/components/clock/KeyDescription.module.scss";
 
 
-interface KeyDescriptionProps {
-  musicalKey: MusicalKey;
-}
+export function KeyDescription(
+): JSX.Element {
+  const { musicalKey } = useDerivedContext();
 
-export function KeyDescription({
-  musicalKey
-}: KeyDescriptionProps): JSX.Element {
   return (
     <>
       <text
         className={buildClassString(cssModule, ["key-description"])}
         textAnchor="middle"
       >
-        <TextContent
-          musicalKey={musicalKey}
-        />
+        <TextContent />
         {"\n"}
       </text>
       <text
@@ -32,13 +27,9 @@ export function KeyDescription({
   );
 }
 
-interface TextContentProps {
-  musicalKey: MusicalKey;
-}
-
-function TextContent({
-  musicalKey
-}: TextContentProps): JSX.Element {
+function TextContent(
+): JSX.Element {
+  const { musicalKey } = useDerivedContext();
   const noteFontClassName = buildClassString(cssModule, ["note-font"]);
   const rootNoteName = musicalKey.rootNote.name;
   if (musicalKey.mode === -2) {

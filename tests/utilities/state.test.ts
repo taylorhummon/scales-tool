@@ -5,8 +5,6 @@ import { MusicalKey } from "@/classes/MusicalKey";
 import { addToBrowserHistory } from "@/utilities/routing";
 import {
   getInitialState,
-  handleBrowserHistoryPop,
-  musicalKeyFromHistoricalState,
   historicalStateFromMusicalKey,
 } from "@/utilities/state";
 import { cleanHistory } from "../testHelpers";
@@ -49,42 +47,6 @@ test("getInitialState() works", () => {
       motion: Motion.Still,
       isUsingSolfege: false
     }
-  );
-});
-
-
-test("handleBrowserHistoryPop() works", () => {
-  const state = {
-    degree: 0,
-    root: 0,
-    motion: Motion.IncrementRoot,
-    animationType: AnimationType.Ballet,
-    isUsingSolfege: false
-  }
-  expect(
-    handleBrowserHistoryPop(state, { degree: 1, root: 2 })
-  ).toStrictEqual(
-    {
-      degree: 1,
-      root: 2,
-      motion: Motion.Still,
-      animationType: AnimationType.Ballet,
-      isUsingSolfege: false
-    }
-  );
-});
-
-test("musicalKeyFromHistoricalState() works", () => {
-  const musicalKey = musicalKeyFromHistoricalState({ degree: 2, root: 3 });
-  expect(
-    musicalKey.degree
-  ).toBe(
-    2
-  );
-  expect(
-    musicalKey.root
-  ).toBe(
-    3
   );
 });
 

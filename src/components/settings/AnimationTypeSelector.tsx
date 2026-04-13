@@ -1,22 +1,15 @@
-import type { Dispatch, SetStateAction } from "react";
-
 import { AnimationType } from "@/enumerations";
 import { buildClassString } from "@/utilities/css";
-import type { State } from "@/utilities/state";
+import { ActionType, useDerivedContext } from "@/contexts/DerivedContext";
+import { useDispatchContext } from "@/contexts/DispatchContext";
 
 import cssModule from "@/components/settings/AnimationTypeSelector.module.scss";
 
 
-interface AnimationTypeSelectorProps {
-  animationType: AnimationType,
-  setState: Dispatch<SetStateAction<State>>;
-}
+export function AnimationTypeSelector(): JSX.Element {
+  const { animationType } = useDerivedContext();
+  const dispatch = useDispatchContext();
 
-
-export function AnimationTypeSelector({
-  animationType,
-  setState
-}: AnimationTypeSelectorProps): JSX.Element {
   return (
     <div
       className={buildClassString(cssModule, ["animation-type-selector"])}
@@ -30,14 +23,10 @@ export function AnimationTypeSelector({
         className={buildClassString(cssModule, ["menu"])}
         name="animation-type"
         value={animationType}
-        onChange={(event) => {
-          setState((state: State) => {
-            return {
-              ...state,
-              animationType: event.target.value as AnimationType
-            };
-          });
-        }}
+        onChange={(event) => dispatch({
+          type: ActionType.SelectAnimationType,
+          animationType: event.target.value
+        })}
       >
         {Object.values(AnimationType).map((animationType) => (
           <option
