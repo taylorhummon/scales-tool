@@ -1,8 +1,9 @@
-import { ROOT_DOT_STROKE_COLOR, ROOT_DOT_FILL_COLOR } from "@/config";
+import {
+  ROOT_DOT_STROKE_COLOR,
+  ROOT_DOT_FILL_COLOR,
+  ICON_MOTION_COLOR,
+} from "@/utilities/color";
 import { Motion } from "@/utilities/motion";
-
-
-const ICON_MOTION_COLOR = "rgb(110, 110, 110)";
 
 
 interface IconProps {

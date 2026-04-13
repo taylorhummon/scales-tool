@@ -1,3 +1,6 @@
+import { SELECTION_BOX_STROKE_COLOR, SELECTION_BOX_FILL_COLOR } from "@/utilities/color";
+
+
 export function SelectionBox(
 ): JSX.Element {
   return (
@@ -8,12 +11,11 @@ export function SelectionBox(
         y="-15"
         width="100"
         height="30"
-        fill="rgba(255, 187, 0, 0.1)"
-
+        fill={SELECTION_BOX_FILL_COLOR}
       />
       <g
         strokeWidth="1.5"
-        stroke="rgb(180, 120, 80)"
+        stroke={SELECTION_BOX_STROKE_COLOR}
         fill="none"
       >
         <polyline
