@@ -1,7 +1,7 @@
 # Scales Tool
 
-The Scales Tool is a companion to <emph>Taylor's Guide to Scales</emph>. You check out both the 
-Scales Tool and the guide at [https://scales.taylorhummon.com/](https://scales.taylorhummon.com/).
+The Scales Tool allows you to visually explore patterns among musical scales. You can try it
+out at [https://taylorhummon.com/](https://taylorhummon.com/).
 
 ## Installation
 
