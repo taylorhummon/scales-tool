@@ -36,18 +36,14 @@ export function DerivedProvider({
   children
 }: DerivedProviderProps): JSX.Element {
   const [state, dispatch] = useReducer(reducer, getInitialState());
+  const { degree, root, motion, animationType, isUsingSolfege } = state;
   const musicalKey = useMemo(
     () => {
-      return new MusicalKey(state.degree, state.root);
+      return new MusicalKey(degree, root);
     },
-    [state.degree, state.root]
+    [degree, root]
   );
-  const derived = {
-    musicalKey,
-    motion: state.motion,
-    animationType: state.animationType,
-    isUsingSolfege: state.isUsingSolfege
-  };
+  const derived = { musicalKey, motion, animationType, isUsingSolfege };
 
   return (
     <DerivedContext.Provider value={derived}>
@@ -71,12 +67,8 @@ function buildDerived(
   state: State,
   musicalKey: MusicalKey
 ): Derived {
-  return {
-    musicalKey,
-    motion: state.motion,
-    animationType: state.animationType,
-    isUsingSolfege: state.isUsingSolfege
-  }
+  const { motion, animationType, isUsingSolfege } = state;
+  return { musicalKey, motion, animationType, isUsingSolfege };
 }
 
 function reducer(
