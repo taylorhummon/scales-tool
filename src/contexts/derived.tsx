@@ -22,7 +22,8 @@ export interface Derived {
   isUsingSolfege: boolean;
 }
 
-export const DerivedContext: Context<Derived> = createContext(getInitialDerived());
+const initialState = getInitialState();
+export const DerivedContext: Context<Derived> = createContext(getInitialDerived(initialState));
 
 export function useDerivedContext() {
   return useContext(DerivedContext);
@@ -35,7 +36,7 @@ interface DerivedProviderProps {
 export function DerivedProvider({
   children
 }: DerivedProviderProps): JSX.Element {
-  const [state, dispatch] = useReducer(reducer, getInitialState());
+  const [state, dispatch] = useReducer(reducer, initialState);
   const { degree, root, motion, animationType, isUsingSolfege } = state;
   const musicalKey = useMemo(
     () => {
@@ -57,8 +58,8 @@ export function DerivedProvider({
 // *** Private functions below this line ***
 
 function getInitialDerived(
+  initialState: State
 ): Derived {
-  const initialState = getInitialState();
   const initialMusicalKey = new MusicalKey(initialState.degree, initialState.root);
   return buildDerived(initialState, initialMusicalKey);
 }

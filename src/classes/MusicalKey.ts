@@ -1,9 +1,4 @@
-import {
-  MAX_DEGREE,
-  MIN_DEGREE,
-  DEFAULT_DEGREE,
-  DEFAULT_ROOT,
-} from "@/config";
+import { DEFAULT_DEGREE, DEFAULT_ROOT } from "@/config";
 import { Note } from "@/classes/Note";
 import { buildInclusiveRange } from "@/utilities/array";
 import { quotientAndRemainderFor, ensureZeroIsPositive } from "@/utilities/math";
@@ -66,10 +61,6 @@ export class MusicalKey {
     return this.#extendedScale;
   }
 
-  get shorthand(): string {
-    return `${this.modeNote}${this.degree}`;
-  }
-
   noteAt(
     position: number
   ): Note {
@@ -86,20 +77,6 @@ export class MusicalKey {
     const extended_positions = buildInclusiveRange(this.mode - 4, this.mode + 4);
     return extended_positions.map((position) => this.noteAt(position));
   }
-}
-
-export function musicalKeyFromShorthand(
-  keyShorthand: string
-): MusicalKey | null {
-  const result = /^([A-Ga-g])(-?[0-9]+)$/.exec(keyShorthand);
-  if (result === null) return null;
-  const degree = parseInt(result[2], 10);
-  if (degree > MAX_DEGREE || degree < MIN_DEGREE) return null;
-  const modeNote = result[1].toUpperCase();
-  if (! (modeNote in NaturalNote)) return null;
-  const mode = getMode(modeNote as NaturalNote);
-  const root = mode + degree;
-  return new MusicalKey(degree, root);
 }
 
 export function getDefaultMusicalKey(
@@ -147,12 +124,4 @@ function getNote(
     return new Note(naturalNote, sharpsCount, position);
   }
   return new Note(NaturalNote.D, 0, position);
-}
-
-function getMode(
-  modeNote: NaturalNote
-): number {
-  const index = NATURAL_NOTES_IN_FCGDAEB_ORDER.indexOf(modeNote);
-  if (index === null) throw(`Invalid mode note: ${modeNote}`);
-  return index - 3;
 }

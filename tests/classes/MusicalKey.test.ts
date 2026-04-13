@@ -1,8 +1,7 @@
 import { test, expect } from "vitest";
 
 import {
-  MusicalKey,
-  musicalKeyFromShorthand
+  MusicalKey
 } from "@/classes/MusicalKey";
 import { NaturalNote } from "@/utilities/natural-note";
 import { Solfege } from "@/utilities/solfege";
@@ -64,11 +63,6 @@ test("MusicalKey works for Dorian D", () => {
     musicalKey.extendedScale.map((note) => note.position)
   ).toStrictEqual(
     [-4, -3, -2, -1, 0, 1, 2, 3, 4]
-  );
-  expect(
-    musicalKey.shorthand
-  ).toBe(
-    "D0"
   );
   expect(
     musicalKey.noteAt(3).name
@@ -150,11 +144,6 @@ test("MusicalKey works for A-Major", () => {
     [-6, -5, -4, -3, -2, -1, 0, 1, 2]
   );
   expect(
-    musicalKey.shorthand
-  ).toBe(
-    "C3"
-  );
-  expect(
     musicalKey.noteAt(1).name
   ).toBe(
     "D"
@@ -229,11 +218,6 @@ test("MusicalKey works for G-Minor", () => {
     [-3, -2, -1, 0, 1, 2, 3, 4, 5]
   );
   expect(
-    musicalKey.shorthand
-  ).toBe(
-    "A-2"
-  );
-  expect(
     musicalKey.noteAt(4).name
   ).toBe(
     "E♭"
@@ -247,47 +231,5 @@ test("MusicalKey works for G-Minor", () => {
     musicalKey.noteAt(-2).name
   ).toBe(
     "A"
-  );
-});
-
-test("musicalKeyFromShorthand() works for D-Minor", () => {
-  const musicalKey = musicalKeyFromShorthand("A-1");
-  expect(
-    musicalKey?.degree
-  ).toBe(
-    -1
-  );
-  expect(
-    musicalKey?.modeNote
-  ).toBe(
-    NaturalNote.A
-  );
-});
-
-test("musicalKeyFromShorthand() works for Phrygian F♯", () => {
-  const musicalKey = musicalKeyFromShorthand("e2");
-  expect(
-    musicalKey?.degree
-  ).toBe(
-    2
-  );
-  expect(
-    musicalKey?.modeNote
-  ).toBe(
-    NaturalNote.E
-  );
-});
-
-test("musicalKeyFromShorthand() works for Lydian A", () => {
-  const musicalKey = musicalKeyFromShorthand("F4");
-  expect(
-    musicalKey?.degree
-  ).toBe(
-    4
-  );
-  expect(
-    musicalKey?.modeNote
-  ).toBe(
-    NaturalNote.F
   );
 });
