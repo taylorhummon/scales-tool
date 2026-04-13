@@ -1,9 +1,11 @@
 import { MAX_DEGREE, MIN_DEGREE } from "@/config";
 import { MusicalKey } from "@/classes/MusicalKey";
 import type { Note } from "@/classes/Note";
+import { ActionType } from "@/utilities/action";
 import { AnimationType } from "@/utilities/animation";
 import { remainderFor } from "@/utilities/math";
 import { MAX_MODE, MIN_MODE } from "@/utilities/mode";
+import { addToBrowserHistory } from "@/utilities/routing";
 
 
 export enum Motion {
@@ -45,6 +47,16 @@ export function canPerformMotion(
     return musicalKey.degree > MIN_DEGREE;
   }
   return false;
+}
+
+export function changeKey(
+  dispatch: (value: any) => void,
+  musicalKey: MusicalKey,
+  motion: Motion
+) {
+  const nextMusicalKey = getNextMusicalKey(musicalKey, motion);
+  addToBrowserHistory(nextMusicalKey);
+  dispatch({ type: ActionType.ChangeKey, nextMusicalKey });
 }
 
 export function getNextMusicalKey(

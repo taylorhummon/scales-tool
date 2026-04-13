@@ -7,8 +7,7 @@ import { useDerivedContext } from "@/contexts/derived";
 import { ActionType } from "@/utilities/action";
 import { useDispatchContext } from "@/contexts/dispatch";
 import { buildClassString } from "@/utilities/css";
-import { getNextMusicalKey } from "@/utilities/motion";
-import { addToBrowserHistory } from "@/utilities/routing";
+import { changeKey } from "@/utilities/motion";
 import type { HistoricalState } from "@/utilities/state";
 
 import cssModule from "@/components/ScalesToolInner.module.scss";
@@ -50,9 +49,7 @@ export function ScalesToolInner(
     function animationEndHandler(): void {
       animationsCountRef.current -= 1;
       if (animationsCountRef.current >= 1) return;
-      const nextMusicalKey = getNextMusicalKey(musicalKey, motion);
-      addToBrowserHistory(nextMusicalKey);
-      dispatch({ type: ActionType.ChangeKey, nextMusicalKey });
+      changeKey(dispatch, musicalKey, motion);
     }
     const domNode = domNodeRef.current;
     if (domNode) domNode.addEventListener("animationend", animationEndHandler, false);

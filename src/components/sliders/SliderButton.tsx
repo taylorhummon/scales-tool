@@ -5,8 +5,12 @@ import { useDispatchContext } from "@/contexts/dispatch";
 import { ActionType } from "@/utilities/action";
 import { AnimationType } from "@/utilities/animation";
 import { buildClassString } from "@/utilities/css";
-import { Motion, canPerformMotion, getNextMusicalKey } from "@/utilities/motion";
-import { addToBrowserHistory } from "@/utilities/routing";
+import {
+  Motion,
+  canPerformMotion,
+  changeKey,
+  getNextMusicalKey,
+} from "@/utilities/motion";
 
 import cssModule from "@/components/sliders/SliderButton.module.scss";
 
@@ -42,9 +46,7 @@ export function SliderButton({
   ): void {
     if (buttonState !== ButtonState.Ready) return;
     if (animationType === AnimationType.None) {
-      const nextMusicalKey = getNextMusicalKey(musicalKey, motion);
-      addToBrowserHistory(nextMusicalKey);
-      dispatch({ type: ActionType.ChangeKey, nextMusicalKey });
+      changeKey(dispatch, musicalKey, motion);
     } else {
       dispatch({ type: ActionType.ActivateMotion, motion: onClickMotion });
     }
