@@ -5,12 +5,8 @@ import { useDispatchContext } from "@/contexts/dispatch";
 import { ActionType } from "@/utilities/action";
 import { AnimationType } from "@/utilities/animation";
 import { buildClassString } from "@/utilities/css";
-import {
-  Motion,
-  canPerformMotion,
-  changeKey,
-  getNextMusicalKey,
-} from "@/utilities/motion";
+import { Motion, canPerformMotion } from "@/utilities/motion";
+import { addToBrowserHistory } from "@/utilities/routing";
 
 import cssModule from "@/components/sliders/SliderButton.module.scss";
 
@@ -31,9 +27,9 @@ export function SliderButton({
   onClickMotion,
   dataTestid
 }: SliderButtonProps): JSX.Element {
-  const { musicalKey, motion, animationType } = useDerivedContext();
+  const { nextMusicalKey, motion, animationType } = useDerivedContext();
   const dispatch = useDispatchContext();
-  const buttonState = getButtonState(musicalKey, motion, onClickMotion);
+  const buttonState = getButtonState(nextMusicalKey, motion, onClickMotion);
   const isWide = (
     onClickMotion === Motion.DecrementBoth ||
     onClickMotion === Motion.IncrementBoth
@@ -46,7 +42,8 @@ export function SliderButton({
   ): void {
     if (buttonState !== ButtonState.Ready) return;
     if (animationType === AnimationType.None) {
-      changeKey(dispatch, musicalKey, motion);
+      addToBrowserHistory(nextMusicalKey);
+      dispatch({ type: ActionType.ChangeKey, nextMusicalKey });
     } else {
       dispatch({ type: ActionType.ActivateMotion, motion: onClickMotion });
     }
@@ -91,14 +88,13 @@ function rectangleClassName(
 }
 
 function getButtonState(
-  musicalKey: MusicalKey,
+  nextMusicalKey: MusicalKey,
   motion: Motion,
   onClickMotion: Motion
 ): ButtonState {
   if (motion === onClickMotion) {
     return ButtonState.Active;
   }
-  const nextMusicalKey = getNextMusicalKey(musicalKey, motion);
   if (! canPerformMotion(nextMusicalKey, onClickMotion)) {
     return ButtonState.Disabled;
   }

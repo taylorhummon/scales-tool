@@ -10,13 +10,14 @@ import { MusicalKey } from "@/classes/MusicalKey";
 import { DispatchContext } from "@/contexts/dispatch";
 import { ActionType, Action } from "@/utilities/action";
 import type { AnimationType } from "@/utilities/animation";
-import { Motion } from "@/utilities/motion";
+import { Motion, getNextMusicalKey } from "@/utilities/motion";
 import type { State } from "@/utilities/state";
 import { getInitialState } from "@/utilities/state";
 
 
 export interface Derived {
   musicalKey: MusicalKey;
+  nextMusicalKey: MusicalKey;
   motion: Motion;
   animationType: AnimationType;
   isUsingSolfege: boolean;
@@ -44,7 +45,13 @@ export function DerivedProvider({
     },
     [degree, root]
   );
-  const derived = { musicalKey, motion, animationType, isUsingSolfege };
+  const nextMusicalKey = useMemo(
+    () => {
+      return getNextMusicalKey(musicalKey, motion);
+    },
+    [musicalKey, motion]
+  );
+  const derived = { musicalKey, nextMusicalKey, motion, animationType, isUsingSolfege };
 
   return (
     <DerivedContext.Provider value={derived}>
@@ -69,7 +76,8 @@ function buildDerived(
   musicalKey: MusicalKey
 ): Derived {
   const { motion, animationType, isUsingSolfege } = state;
-  return { musicalKey, motion, animationType, isUsingSolfege };
+  const nextMusicalKey = getNextMusicalKey(musicalKey, motion);
+  return { musicalKey, nextMusicalKey, motion, animationType, isUsingSolfege };
 }
 
 function reducer(

@@ -7,7 +7,7 @@ import { useDerivedContext } from "@/contexts/derived";
 import { ActionType } from "@/utilities/action";
 import { useDispatchContext } from "@/contexts/dispatch";
 import { buildClassString } from "@/utilities/css";
-import { changeKey } from "@/utilities/motion";
+import { addToBrowserHistory } from "@/utilities/routing";
 import type { HistoricalState } from "@/utilities/state";
 
 import cssModule from "@/components/ScalesToolInner.module.scss";
@@ -15,7 +15,7 @@ import cssModule from "@/components/ScalesToolInner.module.scss";
 
 export function ScalesToolInner(
 ): JSX.Element {
-  const { musicalKey, motion } = useDerivedContext();
+  const { musicalKey, nextMusicalKey, motion } = useDerivedContext();
   const dispatch = useDispatchContext();
   const domNodeRef = useRef<HTMLDivElement>(null);
   const animationsCountRef = useRef<number>(0);
@@ -49,7 +49,8 @@ export function ScalesToolInner(
     function animationEndHandler(): void {
       animationsCountRef.current -= 1;
       if (animationsCountRef.current >= 1) return;
-      changeKey(dispatch, musicalKey, motion);
+      addToBrowserHistory(nextMusicalKey);
+      dispatch({ type: ActionType.ChangeKey, nextMusicalKey });
     }
     const domNode = domNodeRef.current;
     if (domNode) domNode.addEventListener("animationend", animationEndHandler, false);
