@@ -38,7 +38,7 @@ function getClassName(
   return buildClassString(cssModule, classNames);
 }
 
-function getFadingClassName (
+function getFadingClassName(
   position: number,
   motion: Motion
 ): string {
@@ -50,8 +50,8 @@ function getFadingClassName (
     }
   }
   if (
-    (position === -1 && getWillIncrementDegree(motion)) ||
-    (position === 1 && getWillDecrementDegree(motion))
+    (position === 1 && getWillIncrementDegree(motion)) ||
+    (position === -1 && getWillDecrementDegree(motion))
   ) {
     return "fade-from-unselected-to-selected";
   }

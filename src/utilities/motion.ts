@@ -79,9 +79,9 @@ export function getNoteFinishHour(
   note: Note
 ): number {
   if (animationType === AnimationType.Simple) {
-    if (getWillIncrementDegree(motion) && note.position === musicalKey.noteInLastPosition.position) {
+    if (getWillIncrementDegree(motion) && note.position === musicalKey.noteInTopPosition.position) {
       return remainderFor(note.hour + 1, 12);
-    } else if (getWillDecrementDegree(motion) && note.position === musicalKey.noteInFirstPosition.position) {
+    } else if (getWillDecrementDegree(motion) && note.position === musicalKey.noteInBottomPosition.position) {
       return remainderFor(note.hour - 1, 12);
     }
   } else if (animationType === AnimationType.Ballet) {

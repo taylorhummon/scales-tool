@@ -9,7 +9,7 @@ import {
   NATURAL_NOTES_IN_BEADGCF_ORDER,
   HOUR_BY_NATURAL_NOTE_NAME,
 } from "@/utilities/natural-note";
-import { Solfege } from "@/utilities/solfege";
+import { Solfege, solfegeFromPosition } from "@/utilities/solfege";
 
 
 export class Note {
@@ -30,7 +30,7 @@ export class Note {
     this.position = position;
     this.hour = getHour(naturalNote, sharpsCount);
     this.name = getName(naturalNote, sharpsCount);
-    this.solfege = getSolfege(position);
+    this.solfege = solfegeFromPosition(position);
   }
 }
 
@@ -38,7 +38,7 @@ export function buildNote(
   root: number,
   position: number
 ): Note {
-  const bigStepCountFromD = root - position;
+  const bigStepCountFromD = root + position;
   if (bigStepCountFromD > 0) {
     const { quotient, remainder } = quotientAndRemainderFor(3 + bigStepCountFromD, 7);
     const sharpsCount = quotient;
@@ -76,19 +76,3 @@ function getName(
     return naturalNote;
   }
 }
-
-function getSolfege(
-  position: number
-): Solfege {
-  return SOLFEGES[remainderFor(position, 7)];
-}
-
-const SOLFEGES = [
-  Solfege.Do,
-  Solfege.Fa,
-  Solfege.Ti,
-  Solfege.Mi,
-  Solfege.La,
-  Solfege.Re,
-  Solfege.Sol
-];

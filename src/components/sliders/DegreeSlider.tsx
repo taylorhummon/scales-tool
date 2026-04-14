@@ -44,7 +44,7 @@ export function DegreeSlider(
           {positions.map((position) => (
             <Degree
               key={position}
-              degree={selectedDegree - position}
+              degree={selectedDegree + position}
               position={position}
             />
           ))}

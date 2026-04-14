@@ -414,7 +414,7 @@ test("getNoteFinishHour() works", () => {
   );
 
 
-  const noteF = new Note(NaturalNote.F, 0, 3);
+  const noteF = new Note(NaturalNote.F, 0, -3);
   expect(
     getNoteFinishHour(
       musicalKey,

@@ -19,13 +19,13 @@
   offset-path: path("M 0 5");
   offset-rotate: 0deg;
 
-  &.move-down {
-    animation: move-root-slider animation.$duration ease-in-out 1 forwards;
-    offset-path: path("M 0 5 L 0 35");
-  }
-
   &.move-up {
     animation: move-root-slider animation.$duration ease-in-out 1 forwards;
     offset-path: path("M 0 5 L 0 -25");
+  }
+
+  &.move-down {
+    animation: move-root-slider animation.$duration ease-in-out 1 forwards;
+    offset-path: path("M 0 5 L 0 35");
   }
 }

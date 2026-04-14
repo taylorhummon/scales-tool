@@ -1,3 +1,5 @@
+import { remainderFor } from "@/utilities/math";
+
 export enum Solfege {
   Do = "do",
   Re = "re",
@@ -7,3 +9,19 @@ export enum Solfege {
   La = "la",
   Ti = "ti"
 }
+
+export function solfegeFromPosition(
+  position: number
+): Solfege {
+  return SOLFEGES[remainderFor(position, 7)];
+}
+
+const SOLFEGES = [
+  Solfege.Do,
+  Solfege.Sol,
+  Solfege.Re,
+  Solfege.La,
+  Solfege.Mi,
+  Solfege.Ti,
+  Solfege.Fa
+];

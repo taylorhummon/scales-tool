@@ -1,12 +1,8 @@
 import { DEFAULT_DEGREE, DEFAULT_ROOT } from "@/config";
 import { Note, buildNote } from "@/classes/Note";
 import { buildInclusiveRange } from "@/utilities/array";
-import { MODE_NAMES_IN_FCGDAEB_ORDER } from "@/utilities/mode";
-import { NaturalNote, NATURAL_NOTES_IN_FCGDAEB_ORDER } from "@/utilities/natural-note";
-
-
-// The following equality always holds:
-//    degree = root - mode
+import { modeNameFromMode, modeNoteFromMode } from "@/utilities/mode";
+import type { NaturalNote } from "@/utilities/natural-note";
 
 
 export class MusicalKey {
@@ -33,19 +29,19 @@ export class MusicalKey {
   }
 
   get modeName(): string {
-    return MODE_NAMES_IN_FCGDAEB_ORDER[this.mode + 3];
+    return modeNameFromMode(this.mode);
   }
 
   get modeNote(): NaturalNote {
-    return NATURAL_NOTES_IN_FCGDAEB_ORDER[this.mode + 3];
+    return modeNoteFromMode(this.mode);
   }
 
-  get noteInFirstPosition(
+  get noteInTopPosition(
   ): Note {
     return this.scale[0];
   }
 
-  get noteInLastPosition(
+  get noteInBottomPosition(
   ): Note {
     return this.scale[6];
   }
@@ -73,8 +69,9 @@ export class MusicalKey {
 
   #getExtendedScale(
   ): Array<Note> {
-    const extended_positions = buildInclusiveRange(this.mode - 4, this.mode + 4);
-    return extended_positions.map((position) => this.noteAt(position));
+    const centerPosition = - this.mode;
+    const extendedPositions = buildInclusiveRange(centerPosition - 4, centerPosition + 4);
+    return extendedPositions.map((position) => this.noteAt(position));
   }
 }
 

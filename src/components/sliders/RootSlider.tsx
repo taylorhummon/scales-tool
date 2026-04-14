@@ -12,8 +12,8 @@ import cssModule from "@/components/sliders/RootSlider.module.scss";
 export function RootSlider(
 ): JSX.Element {
   const { musicalKey, motion } = useDerivedContext();
-  const firstPosition = musicalKey.noteInFirstPosition.position;
-  const lastPosition = musicalKey.noteInLastPosition.position;
+  const topPosition = musicalKey.noteInTopPosition.position;
+  const bottomPosition = musicalKey.noteInBottomPosition.position;
   const notes = musicalKey.extendedScale.filter(
     (note) => isBetweenInclusive(note.position, -4, 4)
   );
@@ -43,8 +43,8 @@ export function RootSlider(
             <Root
               key={note.position}
               note={note}
-              firstPosition={firstPosition}
-              lastPosition={lastPosition}
+              topPosition={topPosition}
+              bottomPosition={bottomPosition}
             />
           ))}
         </g>

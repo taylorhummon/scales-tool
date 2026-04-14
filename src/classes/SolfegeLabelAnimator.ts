@@ -26,43 +26,43 @@ export function buildSolfegeLabelAnimator(
 
 export class SolfegeLabelAnimator {
   #motion: Motion;
-  #firstPositionHour: number;
-  #lastPositionHour: number;
+  #topPositionHour: number;
+  #bottomPositionHour: number;
 
   constructor(
     musicalKey: MusicalKey,
     motion: Motion
   ) {
     this.#motion = motion;
-    this.#firstPositionHour = musicalKey.noteInFirstPosition.hour;
-    this.#lastPositionHour = musicalKey.noteInLastPosition.hour;
+    this.#topPositionHour = musicalKey.noteInTopPosition.hour;
+    this.#bottomPositionHour = musicalKey.noteInBottomPosition.hour;
   }
 
   finishHour(
     startHour: number
   ): number | null {
     if (getWillIncrementRoot(this.#motion)) {
-      if (this.#motion === Motion.IncrementRoot && startHour === this.#firstPositionHour) {
-        return this.#lastPositionHour;
+      if (this.#motion === Motion.IncrementRoot && startHour === this.#bottomPositionHour) {
+        return this.#topPositionHour;
       } else {
         return remainderFor(startHour + 7, 12);
       }
     }
     if (getWillDecrementRoot(this.#motion)) {
-      if (this.#motion === Motion.DecrementRoot && startHour === this.#lastPositionHour) {
-        return this.#firstPositionHour;
+      if (this.#motion === Motion.DecrementRoot && startHour === this.#topPositionHour) {
+        return this.#bottomPositionHour;
       } else {
         return remainderFor(startHour - 7, 12);
       }
     }
     if (this.#motion === Motion.IncrementDegree) {
-      if (startHour === this.#lastPositionHour) {
-        return remainderFor(this.#lastPositionHour + 1, 12);
+      if (startHour === this.#topPositionHour) {
+        return remainderFor(this.#topPositionHour + 1, 12);
       }
     }
     if (this.#motion === Motion.DecrementDegree) {
-      if (startHour === this.#firstPositionHour) {
-        return remainderFor(this.#firstPositionHour - 1, 12);
+      if (startHour === this.#bottomPositionHour) {
+        return remainderFor(this.#bottomPositionHour - 1, 12);
       }
     }
     return null;

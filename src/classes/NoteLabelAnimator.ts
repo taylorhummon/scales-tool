@@ -48,9 +48,9 @@ function getStartNote(
   isIncrement: boolean
 ): Note {
   if (isIncrement) {
-    return musicalKey.noteInLastPosition;
+    return musicalKey.noteInTopPosition;
   } else {
-    return musicalKey.noteInFirstPosition;
+    return musicalKey.noteInBottomPosition;
   }
 }
 
@@ -59,9 +59,9 @@ function getFinishNote(
   isIncrement: boolean
 ): Note {
   if (isIncrement) {
-    return new Note(startNote.naturalNote, startNote.sharpsCount + 1, startNote.position - 7);
+    return new Note(startNote.naturalNote, startNote.sharpsCount + 1, startNote.position + 7);
   } else {
-    return new Note(startNote.naturalNote, startNote.sharpsCount - 1, startNote.position + 7);
+    return new Note(startNote.naturalNote, startNote.sharpsCount - 1, startNote.position - 7);
   }
 }
 

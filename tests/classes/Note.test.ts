@@ -51,12 +51,12 @@ test("Note.solfege works", () => {
     Solfege.Do
   );
   expect(
-    (new Note(NaturalNote.F, 1, 2)).solfege
+    (new Note(NaturalNote.F, 1, -2)).solfege
   ).toBe(
     Solfege.Ti
   );
   expect(
-    (new Note(NaturalNote.E, -2, -1)).solfege
+    (new Note(NaturalNote.E, -2, 1)).solfege
   ).toBe(
     Solfege.Sol
   );
@@ -69,12 +69,12 @@ test("buildNote() works", () => {
     "D"
   );
   expect(
-    buildNote(0, 2).name
+    buildNote(0, -2).name
   ).toBe(
     "C"
   );
   expect(
-    buildNote(0, -1).name
+    buildNote(0, 1).name
   ).toBe(
     "A"
   );
@@ -89,7 +89,7 @@ test("buildNote() works", () => {
     "C♯"
   );
   expect(
-    buildNote(7, 3).name
+    buildNote(7, -3).name
   ).toBe(
     "F♯"
   );
