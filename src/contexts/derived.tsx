@@ -6,13 +6,8 @@ import {
   useMemo,
 } from 'react';
 
-import {
-  DEFAULT_DEGREE,
-  DEFAULT_ROOT,
-  DEFAULT_ANIMATION_TYPE,
-  DEFAULT_IS_USING_SOLFEGE
-} from "@/config";
-import { MusicalKey } from "@/classes/MusicalKey";
+import { DEFAULT_ANIMATION_TYPE, DEFAULT_IS_USING_SOLFEGE } from "@/config";
+import { MusicalKey, DEFAULT_MUSICAL_KEY } from "@/classes/MusicalKey";
 import { DispatchContext } from "@/contexts/dispatch";
 import { ActionType, Action } from "@/utilities/action";
 import { AnimationType } from "@/utilities/animation";
@@ -35,8 +30,8 @@ export interface Derived {
 // The DEFAULT_DERIVED will only be used outside of the DerivedContext provider.
 // We don't expect this to ever happen.
 const DEFAULT_DERIVED: Derived = {
-  musicalKey: new MusicalKey(DEFAULT_DEGREE, DEFAULT_ROOT),
-  nextMusicalKey: new MusicalKey(DEFAULT_DEGREE, DEFAULT_ROOT),
+  musicalKey: DEFAULT_MUSICAL_KEY,
+  nextMusicalKey: DEFAULT_MUSICAL_KEY,
   motion: Motion.Still,
   animationType: DEFAULT_ANIMATION_TYPE,
   isUsingSolfege: DEFAULT_IS_USING_SOLFEGE

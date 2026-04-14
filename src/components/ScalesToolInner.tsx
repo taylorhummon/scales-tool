@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 
-import { MusicalKey, getDefaultMusicalKey } from "@/classes/MusicalKey";
+import { MusicalKey, DEFAULT_MUSICAL_KEY } from "@/classes/MusicalKey";
 import { Canvas } from "@/components/Canvas";
 import { SettingsAccordion } from "@/components/settings/SettingsAccordion";
 import { useDerivedContext } from "@/contexts/derived";
@@ -82,6 +82,6 @@ function musicalKeyFromHistoricalState(
   if (typeof degree === "number" && typeof root === "number") {
     return new MusicalKey(degree, root);
   } else {
-    return getDefaultMusicalKey();
+    return DEFAULT_MUSICAL_KEY;
   }
 }

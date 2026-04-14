@@ -1,6 +1,6 @@
 import { MAX_DEGREE, MIN_DEGREE } from "@/config";
 import { MusicalKey } from "@/classes/MusicalKey";
-import { getDefaultMusicalKey } from "@/classes/MusicalKey";
+import { DEFAULT_MUSICAL_KEY } from "@/classes/MusicalKey";
 import { MAX_MODE, MIN_MODE } from "@/utilities/mode";
 import { historicalStateFromMusicalKey } from "@/utilities/state";
 
@@ -19,13 +19,13 @@ export function musicalKeyFromCurrentURL(
   const path = document.location.pathname;
   const search = document.location.search;
   if (isPathOK(path) && isSearchEmpty(search)) {
-    return getDefaultMusicalKey();
+    return DEFAULT_MUSICAL_KEY;
   }
   const musicalKey = musicalKeyFromPath(path, search);
   if (musicalKey === null) {
     console.log(`Did not understand URL: ${path}${search}`);
     window.history.replaceState(null, "", "/");
-    return getDefaultMusicalKey();
+    return DEFAULT_MUSICAL_KEY;
   }
   return musicalKey;
 }

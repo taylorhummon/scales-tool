@@ -78,7 +78,4 @@ export class MusicalKey {
   }
 }
 
-export function getDefaultMusicalKey(
-): MusicalKey {
-  return new MusicalKey(DEFAULT_DEGREE, DEFAULT_ROOT);
-}
+export const DEFAULT_MUSICAL_KEY = new MusicalKey(DEFAULT_DEGREE, DEFAULT_ROOT);
