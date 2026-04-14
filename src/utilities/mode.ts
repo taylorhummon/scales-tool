@@ -10,3 +10,13 @@ export enum ModeName {
   Lydian = "Lydian",
   Mixolydian = "Mixolydian"
 }
+
+export const MODE_NAMES_IN_FCGDAEB_ORDER = [
+  ModeName.Lydian,
+  ModeName.Major,
+  ModeName.Mixolydian,
+  ModeName.Dorian,
+  ModeName.Minor,
+  ModeName.Phrygian,
+  ModeName.Locrian
+];

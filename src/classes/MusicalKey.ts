@@ -1,9 +1,8 @@
 import { DEFAULT_DEGREE, DEFAULT_ROOT } from "@/config";
-import { Note } from "@/classes/Note";
+import { Note, buildNote } from "@/classes/Note";
 import { buildInclusiveRange } from "@/utilities/array";
-import { quotientAndRemainderFor, ensureZeroIsPositive } from "@/utilities/math";
-import { NaturalNote } from "@/utilities/natural-note";
-import { ModeName } from "@/utilities/mode";
+import { MODE_NAMES_IN_FCGDAEB_ORDER } from "@/utilities/mode";
+import { NaturalNote, NATURAL_NOTES_IN_FCGDAEB_ORDER } from "@/utilities/natural-note";
 
 
 // The following equality always holds:
@@ -64,7 +63,7 @@ export class MusicalKey {
   noteAt(
     position: number
   ): Note {
-    return getNote(this.root, position);
+    return buildNote(this.root, position);
   }
 
   #getRootNote(
@@ -82,46 +81,4 @@ export class MusicalKey {
 export function getDefaultMusicalKey(
 ): MusicalKey {
   return new MusicalKey(DEFAULT_DEGREE, DEFAULT_ROOT);
-}
-
-// *** Private constants and functions below this line ***
-
-const MODE_NAMES_IN_FCGDAEB_ORDER = [
-  ModeName.Lydian,
-  ModeName.Major,
-  ModeName.Mixolydian,
-  ModeName.Dorian,
-  ModeName.Minor,
-  ModeName.Phrygian,
-  ModeName.Locrian
-];
-const NATURAL_NOTES_IN_FCGDAEB_ORDER = [
-  NaturalNote.F,
-  NaturalNote.C,
-  NaturalNote.G,
-  NaturalNote.D,
-  NaturalNote.A,
-  NaturalNote.E,
-  NaturalNote.B
-];
-const NATURAL_NOTES_IN_BEADGCF_ORDER = [...NATURAL_NOTES_IN_FCGDAEB_ORDER].reverse();
-
-function getNote(
-  root: number,
-  position: number
-): Note {
-  const bigStepCountFromD = root - position;
-  if (bigStepCountFromD > 0) {
-    const { quotient, remainder } = quotientAndRemainderFor(3 + bigStepCountFromD, 7);
-    const sharpsCount = quotient;
-    const naturalNote = NATURAL_NOTES_IN_FCGDAEB_ORDER[remainder];
-    return new Note(naturalNote, sharpsCount, position);
-  }
-  if (bigStepCountFromD < 0) {
-    const { quotient, remainder } = quotientAndRemainderFor(3 - bigStepCountFromD, 7);
-    const sharpsCount = ensureZeroIsPositive(- quotient);
-    const naturalNote = NATURAL_NOTES_IN_BEADGCF_ORDER[remainder];
-    return new Note(naturalNote, sharpsCount, position);
-  }
-  return new Note(NaturalNote.D, 0, position);
 }

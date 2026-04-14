@@ -1,5 +1,14 @@
-import { remainderFor } from "@/utilities/math";
-import { NaturalNote } from "@/utilities/natural-note";
+import {
+  remainderFor,
+  quotientAndRemainderFor,
+  ensureZeroIsPositive,
+} from "@/utilities/math";
+import {
+  NaturalNote,
+  NATURAL_NOTES_IN_FCGDAEB_ORDER,
+  NATURAL_NOTES_IN_BEADGCF_ORDER,
+  HOUR_BY_NATURAL_NOTE_NAME,
+} from "@/utilities/natural-note";
 import { Solfege } from "@/utilities/solfege";
 
 
@@ -25,6 +34,26 @@ export class Note {
   }
 }
 
+export function buildNote(
+  root: number,
+  position: number
+): Note {
+  const bigStepCountFromD = root - position;
+  if (bigStepCountFromD > 0) {
+    const { quotient, remainder } = quotientAndRemainderFor(3 + bigStepCountFromD, 7);
+    const sharpsCount = quotient;
+    const naturalNote = NATURAL_NOTES_IN_FCGDAEB_ORDER[remainder];
+    return new Note(naturalNote, sharpsCount, position);
+  }
+  if (bigStepCountFromD < 0) {
+    const { quotient, remainder } = quotientAndRemainderFor(3 - bigStepCountFromD, 7);
+    const sharpsCount = ensureZeroIsPositive(- quotient);
+    const naturalNote = NATURAL_NOTES_IN_BEADGCF_ORDER[remainder];
+    return new Note(naturalNote, sharpsCount, position);
+  }
+  return new Note(NaturalNote.D, 0, position);
+}
+
 // *** Private constants and functions below this line ***
 
 function getHour(
@@ -34,16 +63,6 @@ function getHour(
   const hour = HOUR_BY_NATURAL_NOTE_NAME.get(naturalNote) as number;
   return remainderFor(hour + sharpsCount, 12);
 }
-
-const HOUR_BY_NATURAL_NOTE_NAME = new Map<NaturalNote, number>([
-  [NaturalNote.A, -5],
-  [NaturalNote.B, -3],
-  [NaturalNote.C, -2],
-  [NaturalNote.D, 0],
-  [NaturalNote.E, 2],
-  [NaturalNote.F, 3],
-  [NaturalNote.G, 5],
-]);
 
 function getName(
   naturalNote: NaturalNote,
