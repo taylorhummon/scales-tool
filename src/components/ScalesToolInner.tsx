@@ -23,13 +23,12 @@ export function ScalesToolInner(
   // Handle the browser's "Back" and "Forward" buttons
   useEffect(() => {
     function handlePopstate(event: PopStateEvent) {
-      const nextMusicalKey = musicalKeyFromHistoricalState(event.state);
-      dispatch({ type: ActionType.ChangeKey, nextMusicalKey });
+      dispatch({
+        type: ActionType.ChangeKey,
+        nextMusicalKey: musicalKeyFromHistoricalState(event.state)
+      });
     }
-    window.addEventListener("popstate", handlePopstate);
-    return () => {
-      window.removeEventListener("popstate", handlePopstate);
-    };
+    return registerEventListener(window, "popstate", handlePopstate);
   });
 
   // Count how many animations are runnning
@@ -37,11 +36,7 @@ export function ScalesToolInner(
     function animationStartHandler(): void {
       animationsCountRef.current += 1;
     }
-    const domNode = domNodeRef.current;
-    if (domNode) domNode.addEventListener("animationstart", animationStartHandler, false);
-    return () => {
-      if (domNode) domNode.removeEventListener("animationstart", animationStartHandler);
-    };
+    return registerEventListener(domNodeRef.current, "animationstart", animationStartHandler);
   });
 
   // What to do when an animation ends
@@ -52,11 +47,7 @@ export function ScalesToolInner(
       addToBrowserHistory(nextMusicalKey);
       dispatch({ type: ActionType.ChangeKey, nextMusicalKey });
     }
-    const domNode = domNodeRef.current;
-    if (domNode) domNode.addEventListener("animationend", animationEndHandler, false);
-    return () => {
-      if (domNode) domNode.removeEventListener("animationend", animationEndHandler);
-    };
+    return registerEventListener(domNodeRef.current, "animationend", animationEndHandler);
   }, [musicalKey, motion]);
 
   return (
@@ -72,11 +63,25 @@ export function ScalesToolInner(
 
 // *** Private functions below this line ***
 
+function registerEventListener(
+  element: Window | HTMLElement | null,
+  eventType: string,
+  listener: (event: any) => void
+): () => void {
+  if (element) element.addEventListener(eventType, listener);
+  return () => {
+    if (element) element.removeEventListener(eventType, listener);
+  };
+}
+
 function musicalKeyFromHistoricalState(
   historicalState: HistoricalState | undefined
 ): MusicalKey {
-  if (historicalState === undefined) {
+  const degree = historicalState?.degree;
+  const root = historicalState?.root;
+  if (typeof degree === "number" && typeof root === "number") {
+    return new MusicalKey(degree, root);
+  } else {
     return getDefaultMusicalKey();
   }
-  return new MusicalKey(historicalState.degree, historicalState.root);
 }

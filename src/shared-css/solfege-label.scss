@@ -3,7 +3,6 @@
 
 $radius: 80;
 
-
 @function hour-point($hour) {
   $x: $radius * unit-circle.x-at($hour);
   $y: $radius * unit-circle.y-at($hour);

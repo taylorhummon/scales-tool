@@ -15,6 +15,9 @@ import type { State } from "@/utilities/state";
 import { getInitialState } from "@/utilities/state";
 
 
+// We derive some information from the state and then make it easily available to all
+// subcomponents by putting it into a context.
+
 export interface Derived {
   musicalKey: MusicalKey;
   nextMusicalKey: MusicalKey;
