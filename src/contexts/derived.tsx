@@ -6,10 +6,16 @@ import {
   useMemo,
 } from 'react';
 
+import {
+  DEFAULT_DEGREE,
+  DEFAULT_ROOT,
+  DEFAULT_ANIMATION_TYPE,
+  DEFAULT_IS_USING_SOLFEGE
+} from "@/config";
 import { MusicalKey } from "@/classes/MusicalKey";
 import { DispatchContext } from "@/contexts/dispatch";
 import { ActionType, Action } from "@/utilities/action";
-import type { AnimationType } from "@/utilities/animation";
+import { AnimationType } from "@/utilities/animation";
 import { Motion, getNextMusicalKey } from "@/utilities/motion";
 import type { State } from "@/utilities/state";
 import { getInitialState } from "@/utilities/state";
@@ -26,8 +32,17 @@ export interface Derived {
   isUsingSolfege: boolean;
 }
 
-const initialState = getInitialState();
-export const DerivedContext: Context<Derived> = createContext(getInitialDerived(initialState));
+// The DEFAULT_DERIVED will only be used outside of the DerivedContext provider.
+// We don't expect this to ever happen.
+const DEFAULT_DERIVED: Derived = {
+  musicalKey: new MusicalKey(DEFAULT_DEGREE, DEFAULT_ROOT),
+  nextMusicalKey: new MusicalKey(DEFAULT_DEGREE, DEFAULT_ROOT),
+  motion: Motion.Still,
+  animationType: DEFAULT_ANIMATION_TYPE,
+  isUsingSolfege: DEFAULT_IS_USING_SOLFEGE
+};
+
+export const DerivedContext: Context<Derived> = createContext(DEFAULT_DERIVED);
 
 export function useDerivedContext() {
   return useContext(DerivedContext);
@@ -40,7 +55,7 @@ interface DerivedProviderProps {
 export function DerivedProvider({
   children
 }: DerivedProviderProps): JSX.Element {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, getInitialState());
   const { degree, root, motion, animationType, isUsingSolfege } = state;
   const musicalKey = useMemo(
     () => {
@@ -63,24 +78,6 @@ export function DerivedProvider({
       </DispatchContext.Provider>
     </DerivedContext.Provider>
   );
-}
-
-// *** Private functions below this line ***
-
-function getInitialDerived(
-  initialState: State
-): Derived {
-  const initialMusicalKey = new MusicalKey(initialState.degree, initialState.root);
-  return buildDerived(initialState, initialMusicalKey);
-}
-
-function buildDerived(
-  state: State,
-  musicalKey: MusicalKey
-): Derived {
-  const { motion, animationType, isUsingSolfege } = state;
-  const nextMusicalKey = getNextMusicalKey(musicalKey, motion);
-  return { musicalKey, nextMusicalKey, motion, animationType, isUsingSolfege };
 }
 
 function reducer(

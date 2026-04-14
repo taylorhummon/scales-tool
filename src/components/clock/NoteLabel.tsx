@@ -32,7 +32,7 @@ function getClassName(
   noteLabelAnimator: NoteLabelAnimator | null,
   note: Note
 ): string {
-  const classNames = ["note-label", note.solfege];
+  const classNames = ["note-label"];
   if (noteLabelAnimator !== null && noteLabelAnimator.willAnimate(note)) {
     classNames.push(`move-from-${noteLabelAnimator.startNote.name}-to-${noteLabelAnimator.finishNote.name}`);
   } else {

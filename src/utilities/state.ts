@@ -1,3 +1,4 @@
+import { DEFAULT_ANIMATION_TYPE, DEFAULT_IS_USING_SOLFEGE } from "@/config";
 import { MusicalKey } from "@/classes/MusicalKey";
 import { AnimationType } from "@/utilities/animation";
 import { Motion } from "@/utilities/motion";
@@ -25,8 +26,8 @@ export function getInitialState(
     degree: musicalKey.degree,
     root: musicalKey.root,
     motion: Motion.Still,
-    animationType: AnimationType.Simple,
-    isUsingSolfege: false
+    animationType: DEFAULT_ANIMATION_TYPE,
+    isUsingSolfege: DEFAULT_IS_USING_SOLFEGE
   };
 }
 

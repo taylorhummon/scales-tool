@@ -34,7 +34,7 @@ function getClassName(
   solfegeLabelAnimator: SolfegeLabelAnimator | null,
   note: Note
 ): string {
-  const classNames = ["solfege-label", note.solfege];
+  const classNames = ["solfege-label"];
   const startHour = note.hour;
   const finishHour = solfegeLabelAnimator?.finishHour(note.hour);
   if (typeof finishHour === "number") {

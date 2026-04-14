@@ -1,26 +1,26 @@
 import { test, expect, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 
+import { MusicalKey } from "@/classes/MusicalKey";
 import ScalesTool from "@/components/ScalesTool";
+import { addToBrowserHistory } from "@/utilities/routing";
 import { Solfege } from "@/utilities/solfege";
 import { cleanHistory } from "../testHelpers";
 
 
 afterEach(cleanHistory);
 
-
-function getNoteLabel(solfege: Solfege) {
-  return screen.getByTestId(`note-label-${solfege}`);
+function getRootDot() {
+  return screen.getByTestId("clock-root-dot");
 }
 
 function getNoteDot(solfege: Solfege) {
   return screen.getByTestId(`note-dot-${solfege}`);
 }
 
-function getRootDot() {
-  return screen.getByTestId("clock-root-dot");
+function getNoteLabel(solfege: Solfege) {
+  return screen.getByTestId(`note-label-${solfege}`);
 }
-
 
 test("<ScalesTool /> renders without crashing", () => {
   render(<ScalesTool />);
@@ -30,15 +30,272 @@ test("<ScalesTool /> shows C-Major as default correctly", () => {
   render(<ScalesTool />);
 
   expect(
+    getRootDot().getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-10")
+  );
+
+  expect(
+    getNoteDot(Solfege.Do).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-10")
+  );
+  expect(
     getNoteLabel(Solfege.Do).textContent
   ).toBe(
     "C"
   );
+
   expect(
-    getNoteLabel(Solfege.Do).getAttribute("class")
+    getNoteDot(Solfege.Re).getAttribute("class")
   ).toEqual(
-    expect.stringContaining("note-C")
+    expect.stringContaining("hour-0")
   );
+  expect(
+    getNoteLabel(Solfege.Re).textContent
+  ).toBe(
+    "D"
+  );
+
+  expect(
+    getNoteDot(Solfege.Mi).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-2")
+  );
+  expect(
+    getNoteLabel(Solfege.Mi).textContent
+  ).toBe(
+    "E"
+  );
+
+  expect(
+    getNoteDot(Solfege.Fa).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-3")
+  );
+  expect(
+    getNoteLabel(Solfege.Fa).textContent
+  ).toBe(
+    "F"
+  );
+
+  expect(
+    getNoteDot(Solfege.Sol).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-5")
+  );
+  expect(
+    getNoteLabel(Solfege.Sol).textContent
+  ).toBe(
+    "G"
+  );
+
+  expect(
+    getNoteDot(Solfege.La).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-7")
+  );
+  expect(
+    getNoteLabel(Solfege.La).textContent
+  ).toBe(
+    "A"
+  );
+
+  expect(
+    getNoteDot(Solfege.Ti).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-9")
+  );
+  expect(
+    getNoteLabel(Solfege.Ti).textContent
+  ).toBe(
+    "B"
+  );
+});
+
+test("<ScalesTool /> shows Dorian D correctly", () => {
+  addToBrowserHistory(new MusicalKey(0, 0));
+
+  render(<ScalesTool />);
+
+  expect(
+    getRootDot().getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-0")
+  );
+
+  expect(
+    getNoteDot(Solfege.Do).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-0")
+  );
+  expect(
+    getNoteLabel(Solfege.Do).textContent
+  ).toBe(
+    "D"
+  );
+
+  expect(
+    getNoteDot(Solfege.Re).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-2")
+  );
+  expect(
+    getNoteLabel(Solfege.Re).textContent
+  ).toBe(
+    "E"
+  );
+
+  expect(
+    getNoteDot(Solfege.Mi).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-3")
+  );
+  expect(
+    getNoteLabel(Solfege.Mi).textContent
+  ).toBe(
+    "F"
+  );
+
+  expect(
+    getNoteDot(Solfege.Fa).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-5")
+  );
+  expect(
+    getNoteLabel(Solfege.Fa).textContent
+  ).toBe(
+    "G"
+  );
+
+  expect(
+    getNoteDot(Solfege.Sol).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-7")
+  );
+  expect(
+    getNoteLabel(Solfege.Sol).textContent
+  ).toBe(
+    "A"
+  );
+
+  expect(
+    getNoteDot(Solfege.La).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-9")
+  );
+  expect(
+    getNoteLabel(Solfege.La).textContent
+  ).toBe(
+    "B"
+  );
+
+  expect(
+    getNoteDot(Solfege.Ti).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-10")
+  );
+  expect(
+    getNoteLabel(Solfege.Ti).textContent
+  ).toBe(
+    "C"
+  );
+});
+
+test("<ScalesTool /> shows D-Major correctly", () => {
+  addToBrowserHistory(new MusicalKey(2, 0));
+
+  render(<ScalesTool />);
+
+  expect(
+    getRootDot().getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-0")
+  );
+
+  expect(
+    getNoteDot(Solfege.Do).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-0")
+  );
+  expect(
+    getNoteLabel(Solfege.Do).textContent
+  ).toBe(
+    "D"
+  );
+
+  expect(
+    getNoteDot(Solfege.Re).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-2")
+  );
+  expect(
+    getNoteLabel(Solfege.Re).textContent
+  ).toBe(
+    "E"
+  );
+
+  expect(
+    getNoteDot(Solfege.Mi).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-4")
+  );
+  expect(
+    getNoteLabel(Solfege.Mi).textContent
+  ).toBe(
+    "F♯"
+  );
+
+  expect(
+    getNoteDot(Solfege.Fa).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-5")
+  );
+  expect(
+    getNoteLabel(Solfege.Fa).textContent
+  ).toBe(
+    "G"
+  );
+
+  expect(
+    getNoteDot(Solfege.Sol).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-7")
+  );
+  expect(
+    getNoteLabel(Solfege.Sol).textContent
+  ).toBe(
+    "A"
+  );
+
+  expect(
+    getNoteDot(Solfege.La).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-9")
+  );
+  expect(
+    getNoteLabel(Solfege.La).textContent
+  ).toBe(
+    "B"
+  );
+
+  expect(
+    getNoteDot(Solfege.Ti).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-11")
+  );
+  expect(
+    getNoteLabel(Solfege.Ti).textContent
+  ).toBe(
+    "C♯"
+  );
+});
+
+test("<ScalesTool /> shows C-Minor correctly", () => {
+  addToBrowserHistory(new MusicalKey(-3, -2));
+
+  render(<ScalesTool />);
+
   expect(
     getRootDot().getAttribute("class")
   ).toEqual(
@@ -46,98 +303,79 @@ test("<ScalesTool /> shows C-Major as default correctly", () => {
   );
 
   expect(
-    getNoteLabel(Solfege.Re).textContent
-  ).toBe(
-    "D"
+    getNoteDot(Solfege.Do).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-10")
   );
   expect(
-    getNoteLabel(Solfege.Re).getAttribute("class")
-  ).toEqual(
-    expect.stringContaining("note-D")
+    getNoteLabel(Solfege.Do).textContent
+  ).toBe(
+    "C"
   );
+
   expect(
     getNoteDot(Solfege.Re).getAttribute("class")
   ).toEqual(
     expect.stringContaining("hour-0")
   );
-
   expect(
-    getNoteLabel(Solfege.Mi).textContent
+    getNoteLabel(Solfege.Re).textContent
   ).toBe(
-    "E"
+    "D"
   );
-  expect(
-    getNoteLabel(Solfege.Mi).getAttribute("class")
-  ).toEqual(
-    expect.stringContaining("note-E")
-  );
+
   expect(
     getNoteDot(Solfege.Mi).getAttribute("class")
   ).toEqual(
-    expect.stringContaining("hour-2")
+    expect.stringContaining("hour-1")
+  );
+  expect(
+    getNoteLabel(Solfege.Mi).textContent
+  ).toBe(
+    "E♭"
   );
 
-  expect(
-    getNoteLabel(Solfege.Fa).textContent
-  ).toBe(
-    "F"
-  );
-  expect(
-    getNoteLabel(Solfege.Fa).getAttribute("class")
-  ).toEqual(
-    expect.stringContaining("note-F")
-  );
   expect(
     getNoteDot(Solfege.Fa).getAttribute("class")
   ).toEqual(
     expect.stringContaining("hour-3")
   );
-
   expect(
-    getNoteLabel(Solfege.Sol).textContent
+    getNoteLabel(Solfege.Fa).textContent
   ).toBe(
-    "G"
+    "F"
   );
-  expect(
-    getNoteLabel(Solfege.Sol).getAttribute("class")
-  ).toEqual(
-    expect.stringContaining("note-G")
-  );
+
   expect(
     getNoteDot(Solfege.Sol).getAttribute("class")
   ).toEqual(
     expect.stringContaining("hour-5")
   );
-
   expect(
-    getNoteLabel(Solfege.La).textContent
+    getNoteLabel(Solfege.Sol).textContent
   ).toBe(
-    "A"
+    "G"
   );
-  expect(
-    getNoteLabel(Solfege.La).getAttribute("class")
-  ).toEqual(
-    expect.stringContaining("note-A")
-  );
+
   expect(
     getNoteDot(Solfege.La).getAttribute("class")
   ).toEqual(
-    expect.stringContaining("hour-7")
+    expect.stringContaining("hour-6")
+  );
+  expect(
+    getNoteLabel(Solfege.La).textContent
+  ).toBe(
+    "A♭"
   );
 
   expect(
-    getNoteLabel(Solfege.Ti).textContent
-  ).toBe(
-    "B"
-  );
-  expect(
-    getNoteLabel(Solfege.Ti).getAttribute("class")
-  ).toEqual(
-    expect.stringContaining("note-B")
-  );
-  expect(
     getNoteDot(Solfege.Ti).getAttribute("class")
   ).toEqual(
-    expect.stringContaining("hour-9")
+    expect.stringContaining("hour-8")
+  );
+  expect(
+    getNoteLabel(Solfege.Ti).textContent
+  ).toBe(
+    "B♭"
   );
 });
