@@ -1,6 +1,9 @@
 import { test, expect } from "vitest";
 
-import { Note } from "@/classes/Note";
+import {
+  Note,
+  buildNote
+} from "@/classes/Note";
 import { NaturalNote } from "@/utilities/natural-note";
 import { Solfege } from "@/utilities/solfege";
 
@@ -56,5 +59,38 @@ test("Note.solfege works", () => {
     (new Note(NaturalNote.E, -2, -1)).solfege
   ).toBe(
     Solfege.Sol
+  );
+});
+
+test("buildNote() works", () => {
+  expect(
+    buildNote(0, 0).name
+  ).toBe(
+    "D"
+  );
+  expect(
+    buildNote(0, 2).name
+  ).toBe(
+    "C"
+  );
+  expect(
+    buildNote(0, -1).name
+  ).toBe(
+    "A"
+  );
+  expect(
+    buildNote(-4, 0).name
+  ).toBe(
+    "B♭"
+  );
+  expect(
+    buildNote(5, 0).name
+  ).toBe(
+    "C♯"
+  );
+  expect(
+    buildNote(7, 3).name
+  ).toBe(
+    "F♯"
   );
 });

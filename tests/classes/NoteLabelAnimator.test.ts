@@ -5,7 +5,7 @@ import { MusicalKey } from "@/classes/MusicalKey";
 import { Motion } from "@/utilities/motion";
 
 
-test("LabelAnimation works for key degree = 0", () => {
+test("NoteLabelAnimator works for key degree = 0", () => {
   const musicalKey = new MusicalKey(0, 1);
 
   expect(
@@ -61,7 +61,7 @@ test("LabelAnimation works for key degree = 0", () => {
   );
 });
 
-test("LabelAnimation works for key degree = 1", () => {
+test("NoteLabelAnimator works for key degree = 1", () => {
   const musicalKey = new MusicalKey(1, 1);
 
   expect(
@@ -117,7 +117,7 @@ test("LabelAnimation works for key degree = 1", () => {
   );
 });
 
-test("LabelAnimation works for key degree = -3", () => {
+test("NoteLabelAnimator works for key degree = -3", () => {
   const musicalKey = new MusicalKey(-3, 0);
 
   expect(
