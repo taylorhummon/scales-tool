@@ -31,7 +31,7 @@ test("addToBrowserHistory() works", () => {
   expect(
     document.location.search
   ).toBe(
-    "?degree=0&mode=0"
+    "?degree=0&root=0"
   );
   expect(
     window.history.length
@@ -47,7 +47,7 @@ test("addToBrowserHistory() works", () => {
   expect(
     document.location.search
   ).toBe(
-    "?degree=2&mode=1"
+    "?degree=2&root=3"
   );
   expect(
     window.history.length

@@ -8,7 +8,7 @@ import { historicalStateFromMusicalKey } from "@/utilities/state";
 export function addToBrowserHistory(
   musicalKey: MusicalKey
 ): void {
-  const path = `/?degree=${musicalKey.degree}&mode=${musicalKey.mode}`;
+  const path = `/?degree=${musicalKey.degree}&root=${musicalKey.root}`;
   const historicalState = historicalStateFromMusicalKey(musicalKey);
   window.history.pushState(historicalState, "", path);
 }
@@ -50,9 +50,8 @@ function musicalKeyFromPath(
   const searchParams = new URLSearchParams(search);
   const degree = degreeFromSearchParams(searchParams);
   if (degree === null) return null;
-  const mode = modeFromSearchParams(searchParams);
-  if (mode === null) return null;
-  const root = mode + degree;
+  const root = rootFromSearchParams(searchParams, degree);
+  if (root === null) return null;
   return new MusicalKey(degree, root);
 }
 
@@ -67,13 +66,15 @@ function degreeFromSearchParams(
   return degree;
 }
 
-function modeFromSearchParams(
-  searchParams: URLSearchParams
+function rootFromSearchParams(
+  searchParams: URLSearchParams,
+  degree: number
 ): number | null {
-  const modeParam = searchParams.get("mode");
-  if (modeParam === null) return null;
-  const mode = parseInt(modeParam, 10);
-  if (isNaN(mode)) return null;
+  const rootParam = searchParams.get("root");
+  if (rootParam === null) return null;
+  const root = parseInt(rootParam, 10);
+  if (isNaN(root)) return null;
+  const mode = root - degree;
   if (mode > MAX_MODE || mode < MIN_MODE) return null;
-  return mode;
+  return root;
 }
