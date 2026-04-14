@@ -16,7 +16,7 @@ export function modeNameFromMode(
   if (mode === -3) return ModeName.Lydian;
   if (mode === -2) return ModeName.Major;
   if (mode === -1) return ModeName.Mixolydian;
-  if (mode === -0) return ModeName.Dorian;
+  if (mode === 0) return ModeName.Dorian;
   if (mode === 1) return ModeName.Minor;
   if (mode === 2) return ModeName.Phrygian;
   if (mode === 3) return ModeName.Locrian;
@@ -29,7 +29,7 @@ export function modeNoteFromMode(
   if (mode === -3) return NaturalNote.F;
   if (mode === -2) return NaturalNote.C;
   if (mode === -1) return NaturalNote.G;
-  if (mode === -0) return NaturalNote.D;
+  if (mode === 0) return NaturalNote.D;
   if (mode === 1) return NaturalNote.A;
   if (mode === 2) return NaturalNote.E;
   if (mode === 3) return NaturalNote.B;
