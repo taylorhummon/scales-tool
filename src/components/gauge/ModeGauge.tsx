@@ -14,6 +14,11 @@ export function ModeGauge(
     <g
       className={buildClassString(cssModule, ["mode-gauge"])}
     >
+      <text
+        className={buildClassString(cssModule, ["label"])}
+      >
+        Mode
+      </text>
       <Triangle />
       {MODES.map((mode) => (
         <Mode
