@@ -38,9 +38,9 @@ follows.
 **hour**: A number from 0 to 11 that represents where a note is located on the clock face.
 We prefer to use 0 instead of 12 to match conventions with modular arithemtic.
 
-**position**: A number that represents where a note is located on a slider. Negative three is at 
+**position**: A number that represents where a note is located on a selector. Negative three is at 
 the top, zero is at the center, and three is at the bottom. A note may have a position outside of 
-the range [-3, 3], but it won't be displayed on the slider.
+the range [-3, 3], but it won't be displayed on the selector.
 
 
 ## An important relationship

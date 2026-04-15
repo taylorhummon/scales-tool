@@ -15,7 +15,7 @@ import { Solfege, solfegeFromPosition } from "@/utilities/solfege";
 export class Note {
   naturalNote: NaturalNote;
   sharpsCount: number;
-  position: number;   // where on the slider
+  position: number;   // where on the selector
   hour: number;       // where on the clock
   name: string;
   solfege: Solfege;

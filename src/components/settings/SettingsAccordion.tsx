@@ -1,4 +1,4 @@
-import { AnimationTypeSelector } from "@/components/settings/AnimationTypeSelector";
+import { AnimationTypeChooser } from "@/components/settings/AnimationTypeChooser";
 import { buildClassString } from "@/utilities/css";
 
 import cssModule from "@/components/settings/SettingsAccordion.module.scss";
@@ -15,7 +15,7 @@ export function SettingsAccordion(
       >
         Settings
       </summary>
-      <AnimationTypeSelector />
+      <AnimationTypeChooser />
     </details>
   );
 }

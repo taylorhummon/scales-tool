@@ -1,5 +1,5 @@
 import { Clock } from "@/components/clock/Clock";
-import { Sliders } from "@/components/sliders/Sliders";
+import { Selectors } from "@/components/selectors/Selectors";
 import { buildClassString } from "@/utilities/css";
 
 import cssModule from "@/components/Canvas.module.scss";
@@ -13,8 +13,8 @@ export function Canvas(
       viewBox="0 -210 500 420"
       xmlns="http://www.w3.org/2000/svg"
     >
+      <Selectors />
       <Clock />
-      <Sliders />
     </svg>
   );
 }

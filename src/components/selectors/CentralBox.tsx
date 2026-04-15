@@ -1,7 +1,7 @@
 import { SELECTION_BOX_STROKE_COLOR, SELECTION_BOX_FILL_COLOR } from "@/utilities/color";
 
 
-export function SelectionBox(
+export function CentralBox(
 ): JSX.Element {
   return (
     <>

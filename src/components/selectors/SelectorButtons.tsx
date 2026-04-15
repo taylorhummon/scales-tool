@@ -1,32 +1,32 @@
-import { SliderButton } from "@/components/sliders/SliderButton";
+import { SelectorButton } from "@/components/selectors/SelectorButton";
 import { Motion } from "@/utilities/motion";
 
 
-export function SliderButtons(
+export function SelectorButtons(
 ): JSX.Element {
   return (
     <>
-      <SliderButton
+      <SelectorButton
         onClickMotion={Motion.IncrementBoth}
         dataTestid="increment-both"
       />
-      <SliderButton
+      <SelectorButton
         onClickMotion={Motion.IncrementDegree}
         dataTestid="increment-degree"
       />
-      <SliderButton
+      <SelectorButton
         onClickMotion={Motion.IncrementRoot}
         dataTestid="increment-root"
       />
-      <SliderButton
+      <SelectorButton
         onClickMotion={Motion.DecrementDegree}
         dataTestid="decrement-degree"
       />
-      <SliderButton
+      <SelectorButton
         onClickMotion={Motion.DecrementRoot}
         dataTestid="decrement-root"
       />
-      <SliderButton
+      <SelectorButton
         onClickMotion={Motion.DecrementBoth}
         dataTestid="decrement-both"
       />

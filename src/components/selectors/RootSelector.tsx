@@ -1,4 +1,4 @@
-import { Root } from "@/components/sliders/Root";
+import { Root } from "@/components/selectors/Root";
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
 import { isBetweenInclusive } from "@/utilities/math";
@@ -6,10 +6,10 @@ import type { Motion } from "@/utilities/motion";
 import { getWillIncrementRoot, getWillDecrementRoot } from "@/utilities/motion";
 
 
-import cssModule from "@/components/sliders/RootSlider.module.scss";
+import cssModule from "@/components/selectors/RootSelector.module.scss";
 
 
-export function RootSlider(
+export function RootSelector(
 ): JSX.Element {
   const { musicalKey, motion } = useDerivedContext();
   const topPosition = musicalKey.noteInTopPosition.position;
@@ -19,11 +19,11 @@ export function RootSlider(
   );
   return (
     <g
-      className={buildClassString(cssModule, ["root-slider"])}
+      className={buildClassString(cssModule, ["root-selector"])}
     >
       <defs>
         <clipPath
-          id="root-slider-clip-path"
+          id="root-selector-clip-path"
         >
           <rect
             x="-25"
@@ -34,7 +34,7 @@ export function RootSlider(
         </clipPath>
       </defs>
       <g
-        clipPath="url(#root-slider-clip-path)"
+        clipPath="url(#root-selector-clip-path)"
       >
         <g
           className={getClassName(motion)}
@@ -56,7 +56,7 @@ export function RootSlider(
 function getClassName(
   motion: Motion
 ): string {
-  const classNames = ["root-slider-inner"];
+  const classNames = ["root-selector-inner"];
   if (getWillIncrementRoot(motion)) {
     classNames.push("move-up");
   } else if (getWillDecrementRoot(motion)) {

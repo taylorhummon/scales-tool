@@ -1,7 +1,7 @@
 @use "@/shared-css/animation" as animation;
 
 
-@keyframes move-root-slider {
+@keyframes move-degree-selector {
   0% {
     offset-distance: 0%;
   }
@@ -11,21 +11,21 @@
 }
 
 
-.root-slider {
-  offset-path: path("M 26 0");
+.degree-selector {
+  offset-path: path("M -26 0");
 }
 
-.root-slider-inner {
+.degree-selector-inner {
   offset-path: path("M 0 5");
   offset-rotate: 0deg;
 
   &.move-up {
-    animation: move-root-slider animation.$duration ease-in-out 1 forwards;
+    animation: move-degree-selector animation.$duration ease-in-out 1 forwards;
     offset-path: path("M 0 5 L 0 -25");
   }
 
   &.move-down {
-    animation: move-root-slider animation.$duration ease-in-out 1 forwards;
+    animation: move-degree-selector animation.$duration ease-in-out 1 forwards;
     offset-path: path("M 0 5 L 0 35");
   }
 }

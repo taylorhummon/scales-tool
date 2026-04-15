@@ -4,16 +4,16 @@ import { buildClassString } from "@/utilities/css";
 import { ActionType } from "@/utilities/action";
 import { AnimationType } from "@/utilities/animation";
 
-import cssModule from "@/components/settings/AnimationTypeSelector.module.scss";
+import cssModule from "@/components/settings/AnimationTypeChooser.module.scss";
 
 
-export function AnimationTypeSelector(): JSX.Element {
+export function AnimationTypeChooser(): JSX.Element {
   const { animationType } = useDerivedContext();
   const dispatch = useDispatchContext();
 
   return (
     <div
-      className={buildClassString(cssModule, ["animation-type-selector"])}
+      className={buildClassString(cssModule, ["animation-type-chooser"])}
     >
       <span
         className={buildClassString(cssModule, ["label"])}

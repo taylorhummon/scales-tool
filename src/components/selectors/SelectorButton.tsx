@@ -1,5 +1,5 @@
 import type { MusicalKey } from "@/classes/MusicalKey";
-import { Icon } from "@/components/sliders/Icon";
+import { Icon } from "@/components/selectors/Icon";
 import { useDerivedContext } from "@/contexts/derived";
 import { useDispatchContext } from "@/contexts/dispatch";
 import { ActionType } from "@/utilities/action";
@@ -8,7 +8,7 @@ import { buildClassString } from "@/utilities/css";
 import { Motion, canPerformMotion } from "@/utilities/motion";
 import { addToBrowserHistory } from "@/utilities/routing";
 
-import cssModule from "@/components/sliders/SliderButton.module.scss";
+import cssModule from "@/components/selectors/SelectorButton.module.scss";
 
 
 enum ButtonState {
@@ -18,15 +18,15 @@ enum ButtonState {
   Disabled = "disabled"
 }
 
-interface SliderButtonProps {
+interface SelectorButtonProps {
   onClickMotion: Motion;
   dataTestid: string;
 }
 
-export function SliderButton({
+export function SelectorButton({
   onClickMotion,
   dataTestid
-}: SliderButtonProps): JSX.Element {
+}: SelectorButtonProps): JSX.Element {
   const { nextMusicalKey, motion, animationType } = useDerivedContext();
   const dispatch = useDispatchContext();
   const buttonState = getButtonState(nextMusicalKey, motion, onClickMotion);
