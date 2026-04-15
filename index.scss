@@ -118,18 +118,18 @@ a.site-title {
 
 .instructions {
   margin-bottom: 25px;
+}
 
-  ul {
-    margin: 0;
-    padding: 0;
-    margin-left: 0;
+ul.button-meanings {
+  margin: 4px 0 0 0;
+  padding: 0 0 0 20px;
 
-    > li {
-      margin: 0;
-      padding: 0;
-      list-style-type: none;
-    }
-  }
+
+  // > li {
+  //   margin: 0;
+  //   padding: 0;
+  //   list-style-type: none;
+  // }
 }
 
 #scales-tool-mount-point {
