@@ -5,7 +5,7 @@ import { useDispatchContext } from "@/contexts/dispatch";
 import { ActionType } from "@/utilities/action";
 import { AnimationType } from "@/utilities/animation";
 import { buildClassString } from "@/utilities/css";
-import { Motion, canPerformMotion } from "@/utilities/motion";
+import { Motion, canPerformMotion, getNextMusicalKey } from "@/utilities/motion";
 import { addToBrowserHistory } from "@/utilities/routing";
 
 import cssModule from "@/components/selector/SelectorButton.module.scss";
@@ -27,7 +27,7 @@ export function SelectorButton({
   onClickMotion,
   dataTestid
 }: SelectorButtonProps): JSX.Element {
-  const { nextMusicalKey, motion, animationType } = useDerivedContext();
+  const { musicalKey, nextMusicalKey, motion, animationType } = useDerivedContext();
   const dispatch = useDispatchContext();
   const buttonState = getButtonState(nextMusicalKey, motion, onClickMotion);
   const isWide = (
@@ -42,8 +42,9 @@ export function SelectorButton({
   ): void {
     if (buttonState !== ButtonState.Ready) return;
     if (animationType === AnimationType.None) {
-      addToBrowserHistory(nextMusicalKey);
-      dispatch({ type: ActionType.ChangeKey, nextMusicalKey });
+      const onClickMusicalKey = getNextMusicalKey(musicalKey, onClickMotion);
+      addToBrowserHistory(onClickMusicalKey);
+      dispatch({ type: ActionType.ChangeKey, nextMusicalKey: onClickMusicalKey });
     } else {
       dispatch({ type: ActionType.ActivateMotion, motion: onClickMotion });
     }
