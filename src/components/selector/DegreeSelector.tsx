@@ -17,7 +17,7 @@ export function DegreeSelector(
   const { musicalKey, motion } = useDerivedContext();
   const selectedDegree = musicalKey.degree;
   const positions = EXTENDED_POSITIONS.filter(
-    (position) => isBetweenInclusive(selectedDegree - position, MIN_DEGREE, MAX_DEGREE)
+    (position) => isBetweenInclusive(selectedDegree + position, MIN_DEGREE, MAX_DEGREE)
   );
   return (
     <g

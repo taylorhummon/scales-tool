@@ -23,7 +23,7 @@ export function Degree({
       <text
         className={buildClassString(cssModule, ["text"])}
       >
-        {degree}
+        {getFancyDegree(degree)}
       </text>
     </g>
   );
@@ -56,4 +56,17 @@ function getFadingClassName(
     return "fade-from-unselected-to-selected";
   }
   return "unselected";
+}
+
+function getFancyDegree(
+  degree: number
+): JSX.Element {
+  const count = Math.abs(degree);
+  if (degree > 0) {
+    return <>{count}♯</>;
+  }
+  if (degree < 0) {
+    return <>{count}♭</>;
+  }
+  return <>0&nbsp;</>;
 }
