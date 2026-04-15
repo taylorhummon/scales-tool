@@ -1,4 +1,4 @@
-import { SelectorButton } from "@/components/selectors/SelectorButton";
+import { SelectorButton } from "@/components/selector/SelectorButton";
 import { Motion } from "@/utilities/motion";
 
 

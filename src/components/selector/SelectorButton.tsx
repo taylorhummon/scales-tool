@@ -1,5 +1,5 @@
 import type { MusicalKey } from "@/classes/MusicalKey";
-import { Icon } from "@/components/selectors/Icon";
+import { Icon } from "@/components/selector/Icon";
 import { useDerivedContext } from "@/contexts/derived";
 import { useDispatchContext } from "@/contexts/dispatch";
 import { ActionType } from "@/utilities/action";
@@ -8,7 +8,7 @@ import { buildClassString } from "@/utilities/css";
 import { Motion, canPerformMotion } from "@/utilities/motion";
 import { addToBrowserHistory } from "@/utilities/routing";
 
-import cssModule from "@/components/selectors/SelectorButton.module.scss";
+import cssModule from "@/components/selector/SelectorButton.module.scss";
 
 
 enum ButtonState {

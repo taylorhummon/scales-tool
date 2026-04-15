@@ -47,6 +47,12 @@ $selected: 1;
 .root {
   offset-rotate: 0deg;
 
+  @for $position from -4 through 4 {
+    &.position-#{$position} {
+      offset-path: position.position-still-path($position);
+    }
+  }
+
   &.gone {
     display: none;
     opacity: $gone;
@@ -82,12 +88,6 @@ $selected: 1;
 
   &.fade-from-selected-to-gone {
     animation: fade-from-gone-to-selected animation.$duration linear 1 forwards reverse;
-  }
-
-  @for $position from -4 through 4 {
-    &.position-#{$position} {
-      offset-path: position.position-still-path($position);
-    }
   }
 }
 

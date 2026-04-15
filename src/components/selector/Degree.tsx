@@ -3,7 +3,7 @@ import { buildClassString } from "@/utilities/css";
 import type { Motion } from "@/utilities/motion";
 import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/motion";
 
-import cssModule from "@/components/selectors/Degree.module.scss";
+import cssModule from "@/components/selector/Degree.module.scss";
 
 
 interface DegreeProps {

@@ -1,4 +1,4 @@
-import { Root } from "@/components/selectors/Root";
+import { Root } from "@/components/selector/Root";
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
 import { isBetweenInclusive } from "@/utilities/math";
@@ -6,7 +6,7 @@ import type { Motion } from "@/utilities/motion";
 import { getWillIncrementRoot, getWillDecrementRoot } from "@/utilities/motion";
 
 
-import cssModule from "@/components/selectors/RootSelector.module.scss";
+import cssModule from "@/components/selector/RootSelector.module.scss";
 
 
 export function RootSelector(

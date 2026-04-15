@@ -16,11 +16,10 @@
 
 .note-dot {
   offset-rotate: 0deg;
-  fill: black;
 
   @for $hour from 0 through 11 {
     &.hour-#{$hour} {
-      offset-path: path.still-path(clock.hour-point($hour));
+      offset-path: path.still-path(clock.point($hour));
     }
   }
 
@@ -43,12 +42,12 @@
 
     &.move-from-#{$hour-a}-to-#{$hour-b} {
       animation: move-note-dot animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(clock.hour-point($hour-a), clock.hour-point($hour-b));
+      offset-path: path.linear-path(clock.point($hour-a), clock.point($hour-b));
     }
 
     &.move-from-#{$hour-b}-to-#{$hour-a} {
       animation: move-note-dot animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(clock.hour-point($hour-b), clock.hour-point($hour-a));
+      offset-path: path.linear-path(clock.point($hour-b), clock.point($hour-a));
     }
   }
 }

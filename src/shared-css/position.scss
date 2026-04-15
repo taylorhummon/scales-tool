@@ -4,3 +4,8 @@ $position-spacing: 30;
   $y: $position-spacing * $position;
   @return path("M 0 #{$y}");
 }
+
+@function point($position) {
+  $y: $position-spacing * $position;
+  @return "0 #{$y}";
+}

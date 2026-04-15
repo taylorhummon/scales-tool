@@ -25,6 +25,7 @@ export function NoteDot({
       cx="0"
       cy="0"
       r="8"
+      fill="black"
     />
   );
 }

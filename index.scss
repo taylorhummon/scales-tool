@@ -110,7 +110,6 @@ a.site-title {
 
 .instructions {
   margin-bottom: 25px;
-  font-style: italic;
 
   ul {
     margin: 0;
@@ -126,10 +125,10 @@ a.site-title {
 }
 
 #scales-tool-mount-point {
-  width: 500px;
-  min-width: 320px;
+  width: 600px;
+  min-width: 400px;
   max-width: 100%;
-  aspect-ratio: auto 500 / 420;
+  aspect-ratio: auto 600 / 420;
   margin: 10px 0 50px 0;
 }
 

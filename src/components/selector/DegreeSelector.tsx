@@ -1,12 +1,12 @@
 import { MAX_DEGREE, MIN_DEGREE } from "@/config";
-import { Degree } from "@/components/selectors/Degree";
+import { Degree } from "@/components/selector/Degree";
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
 import { isBetweenInclusive } from "@/utilities/math";
 import type { Motion } from "@/utilities/motion";
 import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/motion";
 
-import cssModule from "@/components/selectors/DegreeSelector.module.scss";
+import cssModule from "@/components/selector/DegreeSelector.module.scss";
 
 
 const EXTENDED_POSITIONS = [-4, -3, -2, -1, 0, 1, 2, 3, 4];

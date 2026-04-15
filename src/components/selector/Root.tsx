@@ -3,7 +3,7 @@ import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
 import { Motion } from "@/utilities/motion";
 
-import cssModule from "@/components/selectors/Root.module.scss";
+import cssModule from "@/components/selector/Root.module.scss";
 
 
 interface RootProps {

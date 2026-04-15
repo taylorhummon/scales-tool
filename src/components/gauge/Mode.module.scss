@@ -18,9 +18,12 @@ $selected: 1;
   }
 }
 
-
-.degree {
-  offset-rotate: 0deg;
+.mode {
+  @for $position from -3 through 3 {
+    &.position-#{$position} {
+      offset-path: position.position-still-path($position);
+    }
+  }
 
   &.unselected {
     opacity: $unselected;
@@ -37,15 +40,4 @@ $selected: 1;
   &.fade-from-selected-to-unselected {
     animation: fade-from-unselected-to-selected animation.$duration linear 1 forwards reverse;
   }
-
-  @for $position from -4 through 4 {
-    &.position-#{$position} {
-      offset-path: position.position-still-path($position);
-    }
-  }
-}
-
-.text {
-  text-anchor: middle;
-  font-family: "PT Mono", monospace;
 }
