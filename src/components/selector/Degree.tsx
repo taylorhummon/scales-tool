@@ -68,5 +68,5 @@ function getFancyDegree(
   if (degree < 0) {
     return <>{count}♭</>;
   }
-  return <>0&nbsp;</>;
+  return <>0</>;
 }
