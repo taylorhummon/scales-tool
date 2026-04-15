@@ -19,7 +19,7 @@ export function Tick({
       y1={OUTER_RADIUS * UNIT_CIRCLE_YS[hour]}
       x2={INNER_RADIUS * UNIT_CIRCLE_XS[hour]}
       y2={INNER_RADIUS * UNIT_CIRCLE_YS[hour]}
-      strokeWidth="3"
+      strokeWidth="1.5"
       stroke={CLOCK_STROKE_COLOR}
     />
   );

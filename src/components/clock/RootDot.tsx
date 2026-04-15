@@ -18,7 +18,7 @@ export function RootDot(
       cx="0"
       cy="0"
       r="14"
-      strokeWidth="1.3"
+      strokeWidth="1.6"
       stroke={ROOT_DOT_STROKE_COLOR}
       fill={ROOT_DOT_FILL_COLOR}
     />
