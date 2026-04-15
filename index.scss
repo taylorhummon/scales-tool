@@ -58,6 +58,16 @@ p {
   padding: 0;
 }
 
+ul {
+  margin: 0 0 15px 0;
+  padding: 0 0 0 20px;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+}
+
 a {
   color: rgb(42, 122, 226);
   text-decoration: none;
@@ -116,20 +126,8 @@ a.site-title {
   padding: 0 20px;
 }
 
-.instructions {
+ul.instructions {
   margin-bottom: 25px;
-}
-
-ul.button-meanings {
-  margin: 4px 0 0 0;
-  padding: 0 0 0 20px;
-
-
-  // > li {
-  //   margin: 0;
-  //   padding: 0;
-  //   list-style-type: none;
-  // }
 }
 
 #scales-tool-mount-point {
