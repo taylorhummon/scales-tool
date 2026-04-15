@@ -7,7 +7,6 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background: linear-gradient(to right, rgb(139, 40, 70), rgb(207, 133, 114));
   color: rgb(17, 17, 17);
   font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-weight: 400;
@@ -79,6 +78,7 @@ img {
 .header-relative {
   position: relative;
   height: 60px;
+  background: linear-gradient(to right, rgb(139, 40, 70), rgb(207, 133, 114));
 }
 
 .header-absolute {
@@ -103,7 +103,6 @@ a.site-title {
 
 .page {
   display: flow-root;
-  margin-bottom: 80px;
   background: rgb(255, 255, 255);
 }
 
@@ -133,5 +132,10 @@ a.site-title {
   max-width: 100%;
   min-width: 0;
   width: 600px;
-  margin: 10px 0 50px 0;
+  margin-top: 10px;
+}
+
+.footer {
+  height: 80px;
+  background: linear-gradient(to right, rgb(139, 40, 70), rgb(207, 133, 114));
 }
