@@ -12,7 +12,7 @@ $selected: 1;
     opacity: $gone;
   }
   40% {
-    opacity: $gone;
+    opacity: $unselected;
   }
   100% {
     opacity: $selected;
@@ -24,7 +24,7 @@ $selected: 1;
     opacity: $gone;
   }
   40% {
-    opacity: $gone;
+    opacity: $unselected;
   }
   100% {
     opacity: $unselected;
