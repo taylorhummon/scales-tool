@@ -1,9 +1,8 @@
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
-import type { Motion } from "@/utilities/motion";
-import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/motion";
+import { getFadingClassName } from "@/utilities/selector";
 
-import cssModule from "@/components/selector/Degree.module.scss";
+import cssModule from "@/components/selector/Selector.module.scss";
 
 
 interface DegreeProps {
@@ -15,10 +14,11 @@ export function Degree({
   degree,
   position
 }: DegreeProps): JSX.Element {
-  const { motion } = useDerivedContext();
+  const { musicalKey, nextMusicalKey } = useDerivedContext();
+  const nextPosition = position - nextMusicalKey.degree + musicalKey.degree;
   return (
     <g
-      className={getClassName(position, motion)}
+      className={getClassName(position, nextPosition)}
     >
       <text
         className={buildClassString(cssModule, ["text"])}
@@ -31,31 +31,15 @@ export function Degree({
 
 function getClassName(
   position: number,
-  motion: Motion
+  nextPosition: number
 ): string {
-  const classNames = ["degree", `position-${position}`];
-  classNames.push(getFadingClassName(position, motion));
+  const classNames = [
+    "degree",
+    "selector-value",
+    `position-${position}`,
+    getFadingClassName(position, nextPosition),
+  ];
   return buildClassString(cssModule, classNames);
-}
-
-function getFadingClassName(
-  position: number,
-  motion: Motion
-): string {
-  if (position === 0) {
-    if (getWillIncrementDegree(motion) || getWillDecrementDegree(motion)) {
-      return "fade-from-selected-to-unselected";
-    } else {
-      return "selected";
-    }
-  }
-  if (
-    (position === 1 && getWillIncrementDegree(motion)) ||
-    (position === -1 && getWillDecrementDegree(motion))
-  ) {
-    return "fade-from-unselected-to-selected";
-  }
-  return "unselected";
 }
 
 function getFancyDegree(

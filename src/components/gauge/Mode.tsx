@@ -1,8 +1,7 @@
-import type { MusicalKey } from "@/classes/MusicalKey";
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
 import { modeNameFromMode } from "@/utilities/mode";
-import { Motion } from "@/utilities/motion";
+import { FadingClassName } from "@/utilities/selector";
 
 import cssModule from "@/components/gauge/Mode.module.scss";
 
@@ -14,11 +13,13 @@ interface ModeProps {
 export function Mode({
   mode
 }: ModeProps): JSX.Element {
-  const { musicalKey, motion } = useDerivedContext();
+  const { musicalKey, nextMusicalKey } = useDerivedContext();
+  const currentMode = musicalKey.mode;
+  const nextMode = nextMusicalKey.mode;
   return (
     <text
       key={mode}
-      className={getClassName(mode, musicalKey, motion)}
+      className={getClassName(mode, currentMode, nextMode)}
     >
       {modeNameFromMode(mode)}
     </text>
@@ -27,44 +28,39 @@ export function Mode({
 
 function getClassName(
   mode: number,
-  musicalKey: MusicalKey,
-  motion: Motion
+  currentMode: number,
+  nextMode: number
 ): string {
-  const classNames = ["mode", `position-${mode}`];
-  classNames.push(getFadingClassName(mode, musicalKey, motion));
+  const classNames = [
+    "mode",
+    "gauge-value",
+    `position-${mode}`,
+    getFadingClassName(mode, currentMode, nextMode),
+  ];
   return buildClassString(cssModule, classNames);
 }
 
 function getFadingClassName(
   mode: number,
-  musicalKey: MusicalKey,
-  motion: Motion
-): string {
+  currentMode: number,
+  nextMode: number
+): FadingClassName {
   if (
-    motion === Motion.IncrementDegree ||
-    motion === Motion.DecrementRoot
+    mode === currentMode &&
+    mode === nextMode
   ) {
-    if (mode === musicalKey.mode) {
-      return "fade-from-selected-to-unselected";
-    }
-    if (mode === musicalKey.mode - 1) {
-      return "fade-from-unselected-to-selected";
-    }
+    return FadingClassName.Selected;
   }
   if (
-    motion === Motion.DecrementDegree ||
-    motion === Motion.IncrementRoot
+    nextMode === currentMode + 1 ||
+    nextMode === currentMode - 1
   ) {
-    if (mode === musicalKey.mode) {
-      return "fade-from-selected-to-unselected";
+    if (mode === currentMode) {
+      return FadingClassName.FadeFromSelectedToUnselected;
     }
-    if (mode === musicalKey.mode + 1) {
-      return "fade-from-unselected-to-selected";
+    if (mode === nextMode) {
+      return FadingClassName.FadeFromUnselectedToSelected;
     }
   }
-  if (mode === musicalKey.mode) {
-    return "selected";
-  } else {
-    return "unselected";
-  }
+  return FadingClassName.Unselected;
 }

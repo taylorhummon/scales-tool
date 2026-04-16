@@ -10,18 +10,10 @@ export enum Solfege {
   Ti = "ti"
 }
 
+const SOLFEGES = Object.values(Solfege);
+
 export function solfegeFromPosition(
   position: number
 ): Solfege {
-  return SOLFEGES[remainderFor(position, 7)];
+  return SOLFEGES[remainderFor(4 * position, 7)];
 }
-
-const SOLFEGES = [
-  Solfege.Do,
-  Solfege.Sol,
-  Solfege.Re,
-  Solfege.La,
-  Solfege.Mi,
-  Solfege.Ti,
-  Solfege.Fa
-];

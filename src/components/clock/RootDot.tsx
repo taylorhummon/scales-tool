@@ -2,18 +2,16 @@ import type { MusicalKey } from "@/classes/MusicalKey";
 import { useDerivedContext } from "@/contexts/derived";
 import { ROOT_DOT_STROKE_COLOR, ROOT_DOT_FILL_COLOR } from "@/utilities/color";
 import { buildClassString } from "@/utilities/css";
-import type { Motion } from "@/utilities/motion";
-import { getRootDotFinishHour } from "@/utilities/motion";
 
 import cssModule from "@/components/clock/RootDot.module.scss";
 
 
 export function RootDot(
 ): JSX.Element {
-  const { musicalKey, motion } = useDerivedContext();
+  const { musicalKey, nextMusicalKey } = useDerivedContext();
   return (
     <circle
-      className={getClassName(musicalKey, motion)}
+      className={getClassName(musicalKey, nextMusicalKey)}
       data-testid={"clock-root-dot"}
       cx="0"
       cy="0"
@@ -27,14 +25,13 @@ export function RootDot(
 
 function getClassName(
   musicalKey: MusicalKey,
-  motion: Motion
+  nextMusicalKey: MusicalKey
 ): string {
-  const rootNote = musicalKey.rootNote;
   const classNames = ["root-dot"];
-  const startHour = rootNote.hour;
-  const finishHour = getRootDotFinishHour(rootNote, motion);
+  const startHour = musicalKey.rootNote.hour;
+  const finishHour = nextMusicalKey.rootNote.hour;
   if (finishHour === startHour) {
-    classNames.push(`hour-${rootNote.hour}`);
+    classNames.push(`hour-${startHour}`);
   } else {
     classNames.push(`move-from-${startHour}-to-${finishHour}`);
   }

@@ -19,7 +19,7 @@ $selected: 1;
 }
 
 
-.degree {
+.selector-value {
   offset-rotate: 0deg;
 
   @for $position from -4 through 4 {

@@ -1,22 +1,18 @@
 import { Root } from "@/components/selector/Root";
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
-import { isBetweenInclusive } from "@/utilities/math";
 import type { Motion } from "@/utilities/motion";
 import { getWillIncrementRoot, getWillDecrementRoot } from "@/utilities/motion";
-
 
 import cssModule from "@/components/selector/RootSelector.module.scss";
 
 
+const EXTENDED_POSITIONS = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
+
 export function RootSelector(
 ): JSX.Element {
   const { musicalKey, motion } = useDerivedContext();
-  const topPosition = musicalKey.noteInTopPosition.position;
-  const bottomPosition = musicalKey.noteInBottomPosition.position;
-  const notes = musicalKey.extendedScale.filter(
-    (note) => isBetweenInclusive(note.position, -4, 4)
-  );
+  const notes = EXTENDED_POSITIONS.map((position) => musicalKey.noteAt(position));
   return (
     <g
       className={buildClassString(cssModule, ["root-selector"])}
@@ -43,8 +39,6 @@ export function RootSelector(
             <Root
               key={note.position}
               note={note}
-              topPosition={topPosition}
-              bottomPosition={bottomPosition}
             />
           ))}
         </g>

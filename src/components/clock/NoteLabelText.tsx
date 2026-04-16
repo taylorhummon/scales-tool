@@ -23,7 +23,7 @@ export function NoteLabelText({
   }
   const noteToDisplay = noteLabelAnimator.noteWithLongerName;
   if (noteToDisplay.sharpsCount > 0) {
-    const opaqueSharpsCount = noteToDisplay.sharpsCount - 1;
+    const opaqueSharpsCount = Math.abs(noteToDisplay.sharpsCount) - 1;
     return (
       <text>
         {note.naturalNote}
@@ -37,7 +37,7 @@ export function NoteLabelText({
     );
   }
   if (noteToDisplay.sharpsCount < 0) {
-    const opaqueFlatsCount = (- noteToDisplay.sharpsCount) - 1;
+    const opaqueFlatsCount = Math.abs(noteToDisplay.sharpsCount) - 1;
     return (
       <text>
         {note.naturalNote}
