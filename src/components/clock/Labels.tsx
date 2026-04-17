@@ -4,6 +4,7 @@ import type { Note } from "@/classes/Note";
 import { NoteLabel } from "@/components/clock/NoteLabel";
 import { SolfegeLabel } from "@/components/clock/SolfegeLabel";
 import { useDerivedContext } from "@/contexts/derived";
+import { arrayFromMap } from "@/utilities/map";
 
 
 export function Labels(
@@ -13,7 +14,7 @@ export function Labels(
     const solfegeLabelAnimator = buildSolfegeLabelAnimator(musicalKey, motion);
     return (
       <>
-        {musicalKey.scale.map((note: Note) => (
+        {arrayFromMap(musicalKey.scale, (note: Note) => (
           <SolfegeLabel
             key={note.hour}
             solfegeLabelAnimator={solfegeLabelAnimator}
@@ -26,7 +27,7 @@ export function Labels(
     const noteLabelAnimator = buildNoteLabelAnimator(musicalKey, motion);
     return (
       <>
-        {musicalKey.scale.map((note: Note) => (
+        {arrayFromMap(musicalKey.scale, (note: Note) => (
           <NoteLabel
             key={note.hour}
             noteLabelAnimator={noteLabelAnimator}

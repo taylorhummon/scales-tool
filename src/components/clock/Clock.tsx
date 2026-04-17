@@ -6,6 +6,7 @@ import { NoteDot } from "@/components/clock/NoteDot";
 import { RootDot } from "@/components/clock/RootDot";
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
+import { arrayFromMap } from "@/utilities/map";
 
 import cssModule from "@/components/clock/Clock.module.scss";
 
@@ -20,7 +21,7 @@ export function Clock(
     >
       <RootDot />
       <ClockFace />
-      {musicalKey.scale.map((note: Note) => (
+      {arrayFromMap(musicalKey.scale, (note: Note) => (
         <NoteDot
           key={note.hour}
           note={note}

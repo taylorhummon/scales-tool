@@ -4,7 +4,7 @@ import {
   MusicalKey
 } from "@/classes/MusicalKey";
 import { NaturalNote } from "@/utilities/natural-note";
-import { SolfegeLetter } from "@/utilities/solfege";
+import { SOLFEGE_LETTERS } from "@/utilities/solfege";
 
 
 test("MusicalKey works for Dorian D", () => {
@@ -39,20 +39,16 @@ test("MusicalKey works for Dorian D", () => {
   ).toBe(
     0
   );
+  const notes = SOLFEGE_LETTERS.map((solfegeLetter) => musicalKey.scale.get(solfegeLetter));
   expect(
-    musicalKey.scale.map((note) => note.name)
+    notes.map((note) => note?.name)
   ).toStrictEqual(
-    ["F", "C", "G", "D", "A", "E", "B"]
+    ["D", "E", "F", "G", "A", "B", "C"]
   );
   expect(
-    musicalKey.scale.map((note) => note.solfegeLetter)
+    notes.map((note) => note?.position)
   ).toStrictEqual(
-    [SolfegeLetter.Mi, SolfegeLetter.Ti, SolfegeLetter.Fa, SolfegeLetter.Do, SolfegeLetter.Sol, SolfegeLetter.Re, SolfegeLetter.La]
-  );
-  expect(
-    musicalKey.scale.map((note) => note.position)
-  ).toStrictEqual(
-    [-3, -2, -1, 0, 1, 2, 3]
+    [0, 2, -3, -1, 1, 3, -2]
   );
   expect(
     musicalKey.noteAt(-3).name
@@ -103,20 +99,16 @@ test("MusicalKey works for A-Major", () => {
   ).toBe(
     2
   );
+  const notes = SOLFEGE_LETTERS.map((solfegeLetter) => musicalKey.scale.get(solfegeLetter));
   expect(
-    musicalKey.scale.map((note) => note.name)
+    notes.map((note) => note?.name)
   ).toStrictEqual(
-    ["D", "A", "E", "B", "F♯", "C♯", "G♯"]
+    ["A", "B", "C♯", "D", "E", "F♯", "G♯"]
   );
   expect(
-    musicalKey.scale.map((note) => note.solfegeLetter)
+    notes.map((note) => note?.position)
   ).toStrictEqual(
-    [SolfegeLetter.Fa, SolfegeLetter.Do, SolfegeLetter.Sol, SolfegeLetter.Re, SolfegeLetter.La, SolfegeLetter.Mi, SolfegeLetter.Ti]
-  );
-  expect(
-    musicalKey.scale.map((note) => note.position)
-  ).toStrictEqual(
-    [-1, 0, 1, 2, 3, 4, 5]
+    [0, 2, 4, -1, 1, 3, 5]
   );
   expect(
     musicalKey.noteAt(-1).name
@@ -167,20 +159,16 @@ test("MusicalKey works for G-Minor", () => {
   ).toBe(
     -1
   );
+   const notes = SOLFEGE_LETTERS.map((solfegeLetter) => musicalKey.scale.get(solfegeLetter));
   expect(
-    musicalKey.scale.map((note) => note.name)
+    notes.map((note) => note?.name)
   ).toStrictEqual(
-    ["E♭", "B♭", "F", "C", "G", "D", "A"]
+    ["G", "A", "B♭", "C", "D", "E♭", "F"]
   );
   expect(
-    musicalKey.scale.map((note) => note.solfegeLetter)
+    notes.map((note) => note?.position)
   ).toStrictEqual(
-    [SolfegeLetter.La, SolfegeLetter.Mi, SolfegeLetter.Ti, SolfegeLetter.Fa, SolfegeLetter.Do, SolfegeLetter.Sol, SolfegeLetter.Re]
-  );
-  expect(
-    musicalKey.scale.map((note) => note.position)
-  ).toStrictEqual(
-    [-4, -3, -2, -1, 0, 1, 2]
+    [0, 2, -3, -1, 1, -4, -2]
   );
   expect(
     musicalKey.noteAt(-4).name

@@ -4,6 +4,8 @@ import { buildInclusiveRange } from "@/utilities/array";
 import { ensureZeroIsPositive } from "@/utilities/math";
 import { modeNameFromMode, modeNoteFromMode } from "@/utilities/mode";
 import type { NaturalNote } from "@/utilities/natural-note";
+import type { SolfegeLetter } from "@/utilities/solfege";
+import { SOLFEGE_LETTERS } from "@/utilities/solfege";
 
 
 export class MusicalKey {
@@ -11,7 +13,7 @@ export class MusicalKey {
   root: number;
   mode: number;
   #rootNote: Note | null = null;
-  #scale: Array<Note> | null = null;
+  #scale: Map<SolfegeLetter, Note> | null = null;
 
   constructor(
     degree: number,
@@ -37,7 +39,7 @@ export class MusicalKey {
     return modeNoteFromMode(this.mode);
   }
 
-  get scale(): Array<Note> {
+  get scale(): Map<SolfegeLetter, Note>  {
     if (this.#scale === null) this.#scale = this.#getScale();
     return this.#scale;
   }
@@ -69,11 +71,27 @@ export class MusicalKey {
   }
 
   #getScale(
-  ): Array<Note> {
-    return buildInclusiveRange(this.topPosition, this.bottomPosition).map(
-      (position) => this.noteAt(position)
-    );
+  ): Map<SolfegeLetter, Note> {
+    const positions = buildInclusiveRange(this.topPosition, this.bottomPosition);
+    const notes = positions.map((position) => this.noteAt(position));
+    return scaleFromNotes(notes);
   }
 }
 
 export const DEFAULT_MUSICAL_KEY = new MusicalKey(DEFAULT_DEGREE, DEFAULT_ROOT);
+
+// *** Private functions below this line ***
+
+function scaleFromNotes(
+  notes: Array<Note>
+): Map<SolfegeLetter, Note> {
+  const scale: Map<SolfegeLetter, Note> = new Map();
+  for (const solfegeLetter of SOLFEGE_LETTERS) {
+    const note = notes.find((note) => note.solfegeLetter === solfegeLetter);
+    if (note === undefined) {
+      throw Error(`Did not find a note with solfege letter ${solfegeLetter}`);
+    }
+    scale.set(solfegeLetter, note);
+  }
+  return scale;
+}
