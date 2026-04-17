@@ -1,5 +1,5 @@
 import { UNIT_CIRCLE_XS, UNIT_CIRCLE_YS } from "@/utilities/unitCircle";
-import { CLOCK_STROKE_COLOR } from "@/utilities/color";
+import { CLOCK_STROKE } from "@/utilities/color";
 
 
 const OUTER_RADIUS = 120;
@@ -20,7 +20,7 @@ export function Tick({
       x2={INNER_RADIUS * UNIT_CIRCLE_XS[hour]}
       y2={INNER_RADIUS * UNIT_CIRCLE_YS[hour]}
       strokeWidth="1.5"
-      stroke={CLOCK_STROKE_COLOR}
+      stroke={CLOCK_STROKE}
     />
   );
 }

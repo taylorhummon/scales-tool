@@ -1,5 +1,6 @@
 import { MAX_DEGREE, MIN_DEGREE } from "@/config";
 import { Root } from "@/components/selector/Root";
+import { RootSegment } from "@/components/selector/RootSegment";
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
 import { isBetweenInclusive } from "@/utilities/math";
@@ -22,9 +23,22 @@ export function RootSelector(
     <g
       className={buildClassString(cssModule, ["root-selector"])}
     >
+      <defs>
+        <clipPath
+          id="root-selector-clip-path"
+        >
+          <rect
+            x="-25"
+            y="-103"
+            width="50"
+            height="206"
+          />
+        </clipPath>
+      </defs>
       <g
         clipPath="url(#root-selector-clip-path)"
       >
+        <RootSegment />
         <g
           className={getClassName(motion)}
         >

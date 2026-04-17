@@ -1,4 +1,4 @@
-import { SELECTION_BOX_STROKE_COLOR, SELECTION_BOX_FILL_COLOR } from "@/utilities/color";
+import { SELECTION_BOX_STROKE, SELECTION_BOX_FILL } from "@/utilities/color";
 
 
 export function CentralBox(
@@ -11,11 +11,11 @@ export function CentralBox(
         y="-15"
         width="100"
         height="30"
-        fill={SELECTION_BOX_FILL_COLOR}
+        fill={SELECTION_BOX_FILL}
       />
       <g
         strokeWidth="1.5"
-        stroke={SELECTION_BOX_STROKE_COLOR}
+        stroke={SELECTION_BOX_STROKE}
         fill="none"
       >
         <polyline

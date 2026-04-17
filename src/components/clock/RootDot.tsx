@@ -1,6 +1,6 @@
 import type { MusicalKey } from "@/classes/MusicalKey";
 import { useDerivedContext } from "@/contexts/derived";
-import { ROOT_DOT_STROKE_COLOR, ROOT_DOT_FILL_COLOR } from "@/utilities/color";
+import { ROOT_DOT_STROKE, ROOT_DOT_FILL } from "@/utilities/color";
 import { buildClassString } from "@/utilities/css";
 
 import cssModule from "@/components/clock/RootDot.module.scss";
@@ -17,8 +17,8 @@ export function RootDot(
       cy="0"
       r="14"
       strokeWidth="1.6"
-      stroke={ROOT_DOT_STROKE_COLOR}
-      fill={ROOT_DOT_FILL_COLOR}
+      stroke={ROOT_DOT_STROKE}
+      fill={ROOT_DOT_FILL}
     />
   );
 }

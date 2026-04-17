@@ -1,7 +1,7 @@
 import {
-  ROOT_DOT_STROKE_COLOR,
-  ROOT_DOT_FILL_COLOR,
-  ICON_MOTION_COLOR,
+  ROOT_DOT_STROKE,
+  ROOT_DOT_FILL,
+  ICON_MOTION_STROKE,
 } from "@/utilities/color";
 import { Motion } from "@/utilities/motion";
 
@@ -73,8 +73,8 @@ export function Icon({
           cy="-4"
           r="7"
           strokeWidth="1.2"
-          stroke={ROOT_DOT_STROKE_COLOR}
-          fill={ROOT_DOT_FILL_COLOR}
+          stroke={ROOT_DOT_STROKE}
+          fill={ROOT_DOT_FILL}
         />
         <line
           x1="-3"
@@ -82,7 +82,7 @@ export function Icon({
           x2="-12"
           y2="11"
           strokeWidth="1"
-          stroke={ICON_MOTION_COLOR}
+          stroke={ICON_MOTION_STROKE}
         />
         <line
           x1="-5"
@@ -90,7 +90,7 @@ export function Icon({
           x2="-14"
           y2="8"
           strokeWidth="1"
-          stroke={ICON_MOTION_COLOR}
+          stroke={ICON_MOTION_STROKE}
         />
         <line
           x1="1"
@@ -98,7 +98,7 @@ export function Icon({
           x2="-8"
           y2="12"
           strokeWidth="1"
-          stroke={ICON_MOTION_COLOR}
+          stroke={ICON_MOTION_STROKE}
         />
       </>
     );
@@ -111,8 +111,8 @@ export function Icon({
           cy="4"
           r="7"
           strokeWidth="1.2"
-          stroke={ROOT_DOT_STROKE_COLOR}
-          fill={ROOT_DOT_FILL_COLOR}
+          stroke={ROOT_DOT_STROKE}
+          fill={ROOT_DOT_FILL}
         />
         <line
           x1="3"
@@ -120,7 +120,7 @@ export function Icon({
           x2="12"
           y2="-11"
           strokeWidth="1"
-          stroke={ICON_MOTION_COLOR}
+          stroke={ICON_MOTION_STROKE}
         />
         <line
           x1="5"
@@ -128,7 +128,7 @@ export function Icon({
           x2="14"
           y2="-8"
           strokeWidth="1"
-          stroke={ICON_MOTION_COLOR}
+          stroke={ICON_MOTION_STROKE}
         />
         <line
           x1="-1"
@@ -136,7 +136,7 @@ export function Icon({
           x2="8"
           y2="-12"
           strokeWidth="1"
-          stroke={ICON_MOTION_COLOR}
+          stroke={ICON_MOTION_STROKE}
         />
       </>
     );
