@@ -21,18 +21,6 @@ export function DegreeSelector(
     <g
       className={buildClassString(cssModule, ["degree-selector"])}
     >
-      <defs>
-        <clipPath
-          id="degree-selector-clip-path"
-        >
-          <rect
-            x="-40"
-            y="-105"
-            width="80"
-            height="210"
-          />
-        </clipPath>
-      </defs>
       <g
         clipPath="url(#degree-selector-clip-path)"
       >

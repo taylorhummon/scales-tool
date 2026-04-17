@@ -1,0 +1,41 @@
+@use "@/shared-css/animation" as animation;
+@use "@/shared-css/path" as path;
+@use "@/shared-css/position" as position;
+
+
+@keyframes move-root-segment {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+.root-segment {
+  offset-path: path("M 26 0");
+}
+
+.root-segment-inner {
+  offset-rotate: 0deg;
+
+  @for $position from -4 through 4 {
+    &.position-#{$position} {
+      offset-path: position.position-still-path($position);
+    }
+  }
+
+  @for $position-a from -4 through 3 {
+    $position-b: $position-a + 1;
+
+    &.move-from-#{$position-a}-to-#{$position-b} {
+      animation: move-root-segment animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(position.point($position-a), position.point($position-b));
+    }
+
+    &.move-from-#{$position-b}-to-#{$position-a} {
+      animation: move-root-segment animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(position.point($position-b), position.point($position-a));
+    }
+  }
+}

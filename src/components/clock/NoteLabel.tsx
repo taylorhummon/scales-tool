@@ -33,10 +33,10 @@ function getClassName(
   note: Note
 ): string {
   const classNames = ["note-label"];
-  if (noteLabelAnimator !== null && noteLabelAnimator.willAnimate(note)) {
-    classNames.push(`move-from-${noteLabelAnimator.startNote.name}-to-${noteLabelAnimator.finishNote.name}`);
-  } else {
+  if (noteLabelAnimator === null || ! noteLabelAnimator.willAnimate(note)) {
     classNames.push(`note-${note.name}`);
+  } else {
+    classNames.push(`move-from-${noteLabelAnimator.startNote.name}-to-${noteLabelAnimator.finishNote.name}`);
   }
   return buildClassString(cssModule, classNames);
 }

@@ -37,10 +37,10 @@ function getClassName(
   const classNames = ["solfege-label"];
   const startHour = note.hour;
   const finishHour = solfegeLabelAnimator?.finishHour(note.hour);
-  if (typeof finishHour === "number") {
-    classNames.push(`move-from-${startHour}-to-${finishHour}`);
-  } else {
+  if (typeof finishHour !== "number") {
     classNames.push(`hour-${note.hour}`);
+  } else {
+    classNames.push(`move-from-${startHour}-to-${finishHour}`);
   }
   return buildClassString(cssModule, classNames);
 }
