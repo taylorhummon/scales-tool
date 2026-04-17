@@ -10,7 +10,7 @@ export class MusicalKey {
   root: number;
   mode: number;
   #rootNote: Note | null = null;
-  #extendedScale: Array<Note> | null = null;
+  #scale: Array<Note> | null = null;
 
   constructor(
     degree: number,
@@ -36,6 +36,9 @@ export class MusicalKey {
     return modeNoteFromMode(this.mode);
   }
 
+  // NOTE: The bottom position will be a larger number than the top position due to
+  // the y-axis being pointed downwards.
+
   get noteInTopPosition(
   ): Note {
     return this.scale[0];
@@ -47,13 +50,8 @@ export class MusicalKey {
   }
 
   get scale(): Array<Note> {
-    // drop first and last notes from extended scale
-    return this.extendedScale.slice(1, -1);
-  }
-
-  get extendedScale(): Array<Note> {
-    if (this.#extendedScale === null) this.#extendedScale = this.#getExtendedScale();
-    return this.#extendedScale;
+    if (this.#scale === null) this.#scale = this.#getScale();
+    return this.#scale;
   }
 
   noteAt(
@@ -67,11 +65,11 @@ export class MusicalKey {
     return this.noteAt(0);
   }
 
-  #getExtendedScale(
+  #getScale(
   ): Array<Note> {
     const centerPosition = - this.mode;
-    const extendedPositions = buildInclusiveRange(centerPosition - 4, centerPosition + 4);
-    return extendedPositions.map((position) => this.noteAt(position));
+    const positions = buildInclusiveRange(centerPosition - 3, centerPosition + 3);
+    return positions.map((position) => this.noteAt(position));
   }
 }
 
