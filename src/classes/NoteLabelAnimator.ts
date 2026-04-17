@@ -48,9 +48,9 @@ function getStartNote(
   isIncrement: boolean
 ): Note {
   if (isIncrement) {
-    return musicalKey.noteInTopPosition;
+    return musicalKey.noteAt(musicalKey.topPosition);
   } else {
-    return musicalKey.noteInBottomPosition;
+    return musicalKey.noteAt(musicalKey.bottomPosition);
   }
 }
 

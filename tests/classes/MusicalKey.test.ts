@@ -25,14 +25,19 @@ test("MusicalKey works for Dorian D", () => {
     NaturalNote.D
   );
   expect(
-    musicalKey.noteInTopPosition.name
+    musicalKey.topPosition
   ).toBe(
-    "F"
+    -3
   );
   expect(
-    musicalKey.noteInBottomPosition.name
+    musicalKey.bottomPosition
   ).toBe(
-    "B"
+    3
+  );
+  expect(
+    musicalKey.middlePosition
+  ).toBe(
+    0
   );
   expect(
     musicalKey.scale.map((note) => note.name)
@@ -84,14 +89,19 @@ test("MusicalKey works for A-Major", () => {
     "A"
   );
   expect(
-    musicalKey.noteInTopPosition.name
+    musicalKey.topPosition
   ).toBe(
-    "D"
+    -1
   );
   expect(
-    musicalKey.noteInBottomPosition.name
+    musicalKey.bottomPosition
   ).toBe(
-    "G♯"
+    5
+  );
+  expect(
+    musicalKey.middlePosition
+  ).toBe(
+    2
   );
   expect(
     musicalKey.scale.map((note) => note.name)
@@ -143,14 +153,19 @@ test("MusicalKey works for G-Minor", () => {
     NaturalNote.G
   );
   expect(
-    musicalKey.noteInTopPosition.name
+    musicalKey.topPosition
   ).toBe(
-    "E♭"
+    -4
   );
   expect(
-    musicalKey.noteInBottomPosition.name
+    musicalKey.bottomPosition
   ).toBe(
-    "A"
+    2
+  );
+  expect(
+    musicalKey.middlePosition
+  ).toBe(
+    -1
   );
   expect(
     musicalKey.scale.map((note) => note.name)

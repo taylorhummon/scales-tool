@@ -55,12 +55,10 @@ function getNoteFinishHour(
   const currentDegree = musicalKey.degree;
   const nextDegree = nextMusicalKey.degree;
   if (animationType === AnimationType.Simple) {
-    const topPosition = musicalKey.noteInTopPosition.position;
-    if (nextDegree === currentDegree + 1 && note.position === topPosition) {
+    if (nextDegree === currentDegree + 1 && note.position === musicalKey.topPosition) {
       return remainderFor(note.hour + 1, 12);
     }
-    const bottomPosition = musicalKey.noteInBottomPosition.position;
-    if (nextDegree === currentDegree - 1 && note.position === bottomPosition) {
+    if (nextDegree === currentDegree - 1 && note.position === musicalKey.bottomPosition) {
       return remainderFor(note.hour - 1, 12);
     }
   } else if (animationType === AnimationType.Ballet) {

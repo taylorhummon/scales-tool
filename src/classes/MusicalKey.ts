@@ -1,6 +1,7 @@
 import { DEFAULT_DEGREE, DEFAULT_ROOT } from "@/config";
 import { Note, buildNote } from "@/classes/Note";
 import { buildInclusiveRange } from "@/utilities/array";
+import { ensureZeroIsPositive } from "@/utilities/math";
 import { modeNameFromMode, modeNoteFromMode } from "@/utilities/mode";
 import type { NaturalNote } from "@/utilities/natural-note";
 
@@ -36,19 +37,6 @@ export class MusicalKey {
     return modeNoteFromMode(this.mode);
   }
 
-  // NOTE: The bottom position will be a larger number than the top position due to
-  // the y-axis being pointed downwards.
-
-  get noteInTopPosition(
-  ): Note {
-    return this.scale[0];
-  }
-
-  get noteInBottomPosition(
-  ): Note {
-    return this.scale[6];
-  }
-
   get scale(): Array<Note> {
     if (this.#scale === null) this.#scale = this.#getScale();
     return this.#scale;
@@ -60,6 +48,24 @@ export class MusicalKey {
     return buildNote(this.root, position);
   }
 
+  // NOTE: The bottom position will be a larger number than the top position due to
+  // the y-axis being pointed downwards.
+
+  get topPosition(
+  ): number {
+    return this.middlePosition - 3;
+  }
+
+  get bottomPosition(
+  ): number {
+    return this.middlePosition + 3;
+  }
+
+  get middlePosition(
+  ): number {
+    return ensureZeroIsPositive(- this.mode);
+  }
+
   #getRootNote(
   ): Note {
     return this.noteAt(0);
@@ -67,9 +73,9 @@ export class MusicalKey {
 
   #getScale(
   ): Array<Note> {
-    const centerPosition = - this.mode;
-    const positions = buildInclusiveRange(centerPosition - 3, centerPosition + 3);
-    return positions.map((position) => this.noteAt(position));
+    return buildInclusiveRange(this.topPosition, this.bottomPosition).map(
+      (position) => this.noteAt(position)
+    );
   }
 }
 

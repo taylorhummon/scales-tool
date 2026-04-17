@@ -34,8 +34,8 @@ export class SolfegeLabelAnimator {
     motion: Motion
   ) {
     this.#motion = motion;
-    this.#topPositionHour = musicalKey.noteInTopPosition.hour;
-    this.#bottomPositionHour = musicalKey.noteInBottomPosition.hour;
+    this.#topPositionHour = musicalKey.noteAt(musicalKey.topPosition).hour;
+    this.#bottomPositionHour = musicalKey.noteAt(musicalKey.bottomPosition).hour;
   }
 
   finishHour(
