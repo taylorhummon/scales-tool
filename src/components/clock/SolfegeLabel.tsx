@@ -17,14 +17,14 @@ export function SolfegeLabel({
   return (
     <g
       className={getClassName(solfegeLabelAnimator, note)}
-      data-testid={`solfege-label-${note.solfege}`}
+      data-testid={`solfege-label-${note.solfegeLetter}`}
     >
       <text
         className={buildClassString(cssModule, ["text"])}
         textAnchor="middle"
         dominantBaseline="middle"
       >
-        {note.solfege}
+        {note.solfegeLetter}
       </text>
     </g>
   );

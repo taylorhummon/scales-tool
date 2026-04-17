@@ -1,6 +1,6 @@
 import { remainderFor } from "@/utilities/math";
 
-export enum Solfege {
+export enum SolfegeLetter {
   Do = "do",
   Re = "re",
   Mi = "mi",
@@ -10,10 +10,10 @@ export enum Solfege {
   Ti = "ti"
 }
 
-const SOLFEGES = Object.values(Solfege);
+export const SOLFEGE_LETTERS = Object.values(SolfegeLetter);
 
-export function solfegeFromPosition(
+export function solfegeLetterFromPosition(
   position: number
-): Solfege {
-  return SOLFEGES[remainderFor(4 * position, 7)];
+): SolfegeLetter {
+  return SOLFEGE_LETTERS[remainderFor(4 * position, 7)];
 }

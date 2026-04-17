@@ -18,7 +18,7 @@ export function NoteLabel({
   return (
     <g
       className={getClassName(noteLabelAnimator, note)}
-      data-testid={`note-label-${note.solfege}`}
+      data-testid={`note-label-${note.solfegeLetter}`}
     >
       <NoteLabelText
         noteLabelAnimator={noteLabelAnimator}

@@ -20,7 +20,7 @@ export function NoteDot({
   return (
     <circle
       className={getClassName(animationType, musicalKey, nextMusicalKey, note)}
-      data-testid={`note-dot-${note.solfege}`}
+      data-testid={`note-dot-${note.solfegeLetter}`}
       cx="0"
       cy="0"
       r="8"

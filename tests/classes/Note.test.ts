@@ -5,7 +5,7 @@ import {
   buildNote
 } from "@/classes/Note";
 import { NaturalNote } from "@/utilities/natural-note";
-import { Solfege } from "@/utilities/solfege";
+import { SolfegeLetter } from "@/utilities/solfege";
 
 
 test("Note.hour works", () => {
@@ -44,21 +44,21 @@ test("Note.name works", () => {
   );
 });
 
-test("Note.solfege works", () => {
+test("Note.solfegeLetter works", () => {
   expect(
-    (new Note(NaturalNote.D, 0, 0)).solfege
+    (new Note(NaturalNote.D, 0, 0)).solfegeLetter
   ).toBe(
-    Solfege.Do
+    SolfegeLetter.Do
   );
   expect(
-    (new Note(NaturalNote.F, 1, -2)).solfege
+    (new Note(NaturalNote.F, 1, -2)).solfegeLetter
   ).toBe(
-    Solfege.Ti
+    SolfegeLetter.Ti
   );
   expect(
-    (new Note(NaturalNote.E, -2, 1)).solfege
+    (new Note(NaturalNote.E, -2, 1)).solfegeLetter
   ).toBe(
-    Solfege.Sol
+    SolfegeLetter.Sol
   );
 });
 

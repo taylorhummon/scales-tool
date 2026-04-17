@@ -4,7 +4,7 @@ import {
   MusicalKey
 } from "@/classes/MusicalKey";
 import { NaturalNote } from "@/utilities/natural-note";
-import { Solfege } from "@/utilities/solfege";
+import { SolfegeLetter } from "@/utilities/solfege";
 
 
 test("MusicalKey works for Dorian D", () => {
@@ -45,9 +45,9 @@ test("MusicalKey works for Dorian D", () => {
     ["F", "C", "G", "D", "A", "E", "B"]
   );
   expect(
-    musicalKey.scale.map((note) => note.solfege)
+    musicalKey.scale.map((note) => note.solfegeLetter)
   ).toStrictEqual(
-    [Solfege.Mi, Solfege.Ti, Solfege.Fa, Solfege.Do, Solfege.Sol, Solfege.Re, Solfege.La]
+    [SolfegeLetter.Mi, SolfegeLetter.Ti, SolfegeLetter.Fa, SolfegeLetter.Do, SolfegeLetter.Sol, SolfegeLetter.Re, SolfegeLetter.La]
   );
   expect(
     musicalKey.scale.map((note) => note.position)
@@ -109,9 +109,9 @@ test("MusicalKey works for A-Major", () => {
     ["D", "A", "E", "B", "F♯", "C♯", "G♯"]
   );
   expect(
-    musicalKey.scale.map((note) => note.solfege)
+    musicalKey.scale.map((note) => note.solfegeLetter)
   ).toStrictEqual(
-    [Solfege.Fa, Solfege.Do, Solfege.Sol, Solfege.Re, Solfege.La, Solfege.Mi, Solfege.Ti]
+    [SolfegeLetter.Fa, SolfegeLetter.Do, SolfegeLetter.Sol, SolfegeLetter.Re, SolfegeLetter.La, SolfegeLetter.Mi, SolfegeLetter.Ti]
   );
   expect(
     musicalKey.scale.map((note) => note.position)
@@ -173,9 +173,9 @@ test("MusicalKey works for G-Minor", () => {
     ["E♭", "B♭", "F", "C", "G", "D", "A"]
   );
   expect(
-    musicalKey.scale.map((note) => note.solfege)
+    musicalKey.scale.map((note) => note.solfegeLetter)
   ).toStrictEqual(
-    [Solfege.La, Solfege.Mi, Solfege.Ti, Solfege.Fa, Solfege.Do, Solfege.Sol, Solfege.Re]
+    [SolfegeLetter.La, SolfegeLetter.Mi, SolfegeLetter.Ti, SolfegeLetter.Fa, SolfegeLetter.Do, SolfegeLetter.Sol, SolfegeLetter.Re]
   );
   expect(
     musicalKey.scale.map((note) => note.position)

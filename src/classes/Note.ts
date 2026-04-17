@@ -9,7 +9,7 @@ import {
   NATURAL_NOTES_IN_BEADGCF_ORDER,
   HOUR_BY_NATURAL_NOTE_NAME,
 } from "@/utilities/natural-note";
-import { Solfege, solfegeFromPosition } from "@/utilities/solfege";
+import { SolfegeLetter, solfegeLetterFromPosition } from "@/utilities/solfege";
 
 
 export class Note {
@@ -18,7 +18,7 @@ export class Note {
   position: number;   // where on the selector
   hour: number;       // where on the clock
   name: string;
-  solfege: Solfege;
+  solfegeLetter: SolfegeLetter;
 
   constructor(
     naturalNote: NaturalNote,
@@ -30,7 +30,7 @@ export class Note {
     this.position = position;
     this.hour = getHour(naturalNote, sharpsCount);
     this.name = getName(naturalNote, sharpsCount);
-    this.solfege = solfegeFromPosition(position);
+    this.solfegeLetter = solfegeLetterFromPosition(position);
   }
 }
 
