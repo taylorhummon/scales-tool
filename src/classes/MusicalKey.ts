@@ -51,18 +51,15 @@ export class MusicalKey {
   // NOTE: The bottom position will be a larger number than the top position due to
   // the y-axis being pointed downwards.
 
-  get topPosition(
-  ): number {
+  get topPosition(): number {
     return this.middlePosition - 3;
   }
 
-  get bottomPosition(
-  ): number {
+  get bottomPosition(): number {
     return this.middlePosition + 3;
   }
 
-  get middlePosition(
-  ): number {
+  get middlePosition(): number {
     return ensureZeroIsPositive(- this.mode);
   }
 
