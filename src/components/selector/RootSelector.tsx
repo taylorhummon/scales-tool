@@ -3,7 +3,7 @@ import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
 import type { Motion } from "@/utilities/motion";
 import { getWillIncrementRoot, getWillDecrementRoot } from "@/utilities/motion";
-import { EXTENDED_POSITIONS } from "@/utilities/selector";
+import { EXTENDED_POSITIONS } from "@/utilities/fading";
 
 import cssModule from "@/components/selector/RootSelector.module.scss";
 

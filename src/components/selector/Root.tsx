@@ -1,7 +1,7 @@
 import type { Note } from "@/classes/Note";
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
-import { getFadingClassName } from "@/utilities/selector";
+import { getFadingClassName } from "@/utilities/fading";
 
 import cssModule from "@/components/selector/Selector.module.scss";
 

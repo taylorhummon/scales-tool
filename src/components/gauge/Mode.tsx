@@ -1,7 +1,7 @@
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
+import { FadingClassName } from "@/utilities/fading";
 import { modeNameFromMode } from "@/utilities/mode";
-import { FadingClassName } from "@/utilities/selector";
 
 import cssModule from "@/components/gauge/Mode.module.scss";
 

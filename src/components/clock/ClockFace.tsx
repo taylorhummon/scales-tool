@@ -5,7 +5,6 @@ import { CLOCK_STROKE_COLOR } from "@/utilities/color";
 
 const RADIUS = 120;
 
-
 export function ClockFace(
 ): JSX.Element {
   return (

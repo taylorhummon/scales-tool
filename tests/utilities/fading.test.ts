@@ -1,9 +1,9 @@
 import { test, expect } from "vitest";
 
-import { FadingClassName, getFadingClassName } from "@/utilities/selector";
+import { FadingClassName, getFadingClassName } from "@/utilities/fading";
 
 
-test("getFadingClassName()", () => {
+test("getFadingClassName() works", () => {
   expect(
     getFadingClassName(0, 0)
   ).toBe(

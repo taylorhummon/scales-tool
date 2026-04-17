@@ -5,7 +5,7 @@ import { buildClassString } from "@/utilities/css";
 import { isBetweenInclusive } from "@/utilities/math";
 import type { Motion } from "@/utilities/motion";
 import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/motion";
-import { EXTENDED_POSITIONS } from "@/utilities/selector";
+import { EXTENDED_POSITIONS } from "@/utilities/fading";
 
 import cssModule from "@/components/selector/DegreeSelector.module.scss";
 
