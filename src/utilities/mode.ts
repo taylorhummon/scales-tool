@@ -1,5 +1,9 @@
 import { NaturalNote } from "@/utilities/naturalNote";
 
+
+export const MAX_MODE = 3;
+export const MIN_MODE = -3;
+
 export enum ModeName {
   Minor = "Minor",    // Aeolian
   Locrian = "Locrian",
@@ -35,6 +39,3 @@ export function modeNoteFromMode(
   if (mode === 3) return NaturalNote.B;
   throw Error(`Invalid mode: ${mode}`);
 }
-
-export const MAX_MODE = 3;
-export const MIN_MODE = -3;

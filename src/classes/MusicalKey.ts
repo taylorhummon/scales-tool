@@ -2,7 +2,7 @@ import { DEFAULT_DEGREE, DEFAULT_ROOT } from "@/config";
 import { Note, buildNote } from "@/classes/Note";
 import { buildInclusiveRange } from "@/utilities/array";
 import { ensureZeroIsPositive } from "@/utilities/math";
-import { modeNameFromMode, modeNoteFromMode } from "@/utilities/mode";
+import { MAX_MODE, MIN_MODE, modeNameFromMode, modeNoteFromMode } from "@/utilities/mode";
 import type { NaturalNote } from "@/utilities/naturalNote";
 import type { SolfegeLetter } from "@/utilities/solfege";
 import { SOLFEGE_LETTERS } from "@/utilities/solfege";
@@ -22,7 +22,7 @@ export class MusicalKey {
     this.degree = degree;
     this.root = root;
     const mode = root - degree;
-    if (mode < -3 || mode > 3) throw Error(`Invalid mode: ${mode}`);
+    if (mode > MAX_MODE || mode < MIN_MODE) throw Error(`Invalid mode: ${mode}`);
     this.mode = mode;
   }
 
