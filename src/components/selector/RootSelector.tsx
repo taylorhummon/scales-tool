@@ -1,3 +1,4 @@
+import { MAX_DEGREE, MIN_DEGREE } from "@/config";
 import { Root } from "@/components/selector/Root";
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
@@ -15,7 +16,7 @@ export function RootSelector(
   const notes = EXTENDED_POSITIONS.map(
     (position) => musicalKey.noteAt(position)
   ).filter(
-    (note) => isBetweenInclusive(note.sharpsCount, -2, 2)
+    (note) => isBetweenInclusive(note.value, MIN_DEGREE - 3, MAX_DEGREE + 3)
   );
   return (
     <g

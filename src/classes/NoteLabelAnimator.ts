@@ -1,5 +1,5 @@
 import type { MusicalKey } from "@/classes/MusicalKey";
-import  { Note } from "@/classes/Note";
+import { Note } from "@/classes/Note";
 import type { Motion } from "@/utilities/motion";
 import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/motion";
 
@@ -28,7 +28,7 @@ export class NoteLabelAnimator {
   ) {
     const isIncrement = getIsIncrement(motion);
     this.startNote = getStartNote(musicalKey, isIncrement);
-    this.finishNote = getFinishNote(this.startNote, isIncrement);
+    this.finishNote = getFinishNote(this.startNote, musicalKey, isIncrement);
     this.isIncrement = isIncrement;
     this.isAddingCharacter = getIsAddingCharacter(musicalKey, isIncrement);
     this.noteWithLongerName = getNoteWithLongerName(this.isAddingCharacter, this.startNote, this.finishNote);
@@ -56,12 +56,13 @@ function getStartNote(
 
 function getFinishNote(
   startNote: Note,
+  musicalKey: MusicalKey,
   isIncrement: boolean
 ): Note {
   if (isIncrement) {
-    return new Note(startNote.naturalNote, startNote.sharpsCount + 1, startNote.position + 7);
+    return new Note(musicalKey.root, startNote.position + 7);
   } else {
-    return new Note(startNote.naturalNote, startNote.sharpsCount - 1, startNote.position - 7);
+    return new Note(musicalKey.root, startNote.position - 7);
   }
 }
 

@@ -1,5 +1,5 @@
 import { DEFAULT_DEGREE, DEFAULT_ROOT } from "@/config";
-import { Note, buildNote } from "@/classes/Note";
+import { Note } from "@/classes/Note";
 import { buildInclusiveRange } from "@/utilities/array";
 import { ensureZeroIsPositive } from "@/utilities/math";
 import { MAX_MODE, MIN_MODE, modeNameFromMode, modeNoteFromMode } from "@/utilities/mode";
@@ -47,7 +47,7 @@ export class MusicalKey {
   noteAt(
     position: number
   ): Note {
-    return buildNote(this.root, position);
+    return new Note(this.root, position);
   }
 
   // NOTE: The bottom position will be a larger number than the top position due to

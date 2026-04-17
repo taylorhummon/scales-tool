@@ -1,96 +1,193 @@
 import { test, expect } from "vitest";
 
-import {
-  Note,
-  buildNote
-} from "@/classes/Note";
+import { Note } from "@/classes/Note";
 import { NaturalNote } from "@/utilities/naturalNote";
 import { SolfegeLetter } from "@/utilities/solfege";
 
 
-test("Note.hour works", () => {
+test("Note works", () => {
+  const note1 = new Note(0, 0);
   expect(
-    (new Note(NaturalNote.D, 0, 0)).hour
+    note1.value
   ).toBe(
     0
   );
   expect(
-    (new Note(NaturalNote.F, 1, 0)).hour
+    note1.naturalNote
   ).toBe(
-    4
+    NaturalNote.D
   );
   expect(
-    (new Note(NaturalNote.E, -2, 0)).hour
+    note1.sharpsCount
   ).toBe(
     0
   );
-});
-
-test("Note.name works", () => {
   expect(
-    (new Note(NaturalNote.D, 0, 0)).name
+    note1.name
   ).toBe(
     "D"
   );
   expect(
-    (new Note(NaturalNote.F, 1, 0)).name
-  ).toBe(
-    "F♯"
-  );
-  expect(
-    (new Note(NaturalNote.E, -2, 0)).name
-  ).toBe(
-    "E♭♭"
-  );
-});
-
-test("Note.solfegeLetter works", () => {
-  expect(
-    (new Note(NaturalNote.D, 0, 0)).solfegeLetter
+    note1.solfegeLetter
   ).toBe(
     SolfegeLetter.Do
   );
   expect(
-    (new Note(NaturalNote.F, 1, -2)).solfegeLetter
+    note1.position
   ).toBe(
-    SolfegeLetter.Ti
+    0
   );
   expect(
-    (new Note(NaturalNote.E, -2, 1)).solfegeLetter
+    note1.hour
   ).toBe(
-    SolfegeLetter.Sol
+    0
   );
-});
 
-test("buildNote() works", () => {
+  const note2 = new Note(0, -2);
   expect(
-    buildNote(0, 0).name
+    note2.value
   ).toBe(
-    "D"
+    -2
   );
   expect(
-    buildNote(0, -2).name
+    note2.naturalNote
+  ).toBe(
+    NaturalNote.C
+  );
+  expect(
+    note2.sharpsCount
+  ).toBe(
+    0
+  );
+  expect(
+    note2.name
   ).toBe(
     "C"
   );
   expect(
-    buildNote(0, 1).name
+    note2.solfegeLetter
   ).toBe(
-    "A"
+    SolfegeLetter.Ti
   );
   expect(
-    buildNote(-4, 0).name
+    note2.position
+  ).toBe(
+    -2
+  );
+  expect(
+    note2.hour
+  ).toBe(
+    10
+  );
+
+  const note3 = new Note(-4, 0);
+  expect(
+    note3.value
+  ).toBe(
+    -4
+  );
+  expect(
+    note3.naturalNote
+  ).toBe(
+    NaturalNote.B
+  );
+  expect(
+    note3.sharpsCount
+  ).toBe(
+    -1
+  );
+  expect(
+    note3.name
   ).toBe(
     "B♭"
   );
   expect(
-    buildNote(5, 0).name
+    note3.solfegeLetter
   ).toBe(
-    "C♯"
+    SolfegeLetter.Do
   );
   expect(
-    buildNote(7, -3).name
+    note3.position
+  ).toBe(
+    0
+  );
+  expect(
+    note3.hour
+  ).toBe(
+    8
+  );
+
+  const note4 = new Note(5, 2);
+  expect(
+    note4.value
+  ).toBe(
+    7
+  );
+  expect(
+    note4.naturalNote
+  ).toBe(
+    NaturalNote.D
+  );
+  expect(
+    note4.sharpsCount
+  ).toBe(
+    1
+  );
+  expect(
+    note4.name
+  ).toBe(
+    "D♯"
+  );
+  expect(
+    note4.solfegeLetter
+  ).toBe(
+    SolfegeLetter.Re
+  );
+  expect(
+    note4.position
+  ).toBe(
+    2
+  );
+  expect(
+    note4.hour
+  ).toBe(
+    1
+  );
+
+  const note5 = new Note(7, -3);
+  expect(
+    note5.value
+  ).toBe(
+    4
+  );
+  expect(
+    note5.naturalNote
+  ).toBe(
+    NaturalNote.F
+  );
+  expect(
+    note5.sharpsCount
+  ).toBe(
+    1
+  );
+  expect(
+    note5.name
   ).toBe(
     "F♯"
+  );
+  expect(
+    note5.solfegeLetter
+  ).toBe(
+    SolfegeLetter.Mi
+  );
+  expect(
+    note5.position
+  ).toBe(
+    -3
+  );
+  expect(
+    note5.hour
+  ).toBe(
+    4
   );
 });
