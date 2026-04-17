@@ -1,4 +1,4 @@
-import { NaturalNote } from "@/utilities/natural-note";
+import { NaturalNote } from "@/utilities/naturalNote";
 
 export enum ModeName {
   Minor = "Minor",    // Aeolian

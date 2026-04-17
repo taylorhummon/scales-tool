@@ -3,7 +3,7 @@ import { test, expect } from "vitest";
 import {
   MusicalKey
 } from "@/classes/MusicalKey";
-import { NaturalNote } from "@/utilities/natural-note";
+import { NaturalNote } from "@/utilities/naturalNote";
 import { SOLFEGE_LETTERS } from "@/utilities/solfege";
 
 

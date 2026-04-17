@@ -8,7 +8,7 @@ import {
   NATURAL_NOTES_IN_FCGDAEB_ORDER,
   NATURAL_NOTES_IN_BEADGCF_ORDER,
   HOUR_BY_NATURAL_NOTE_NAME,
-} from "@/utilities/natural-note";
+} from "@/utilities/naturalNote";
 import { SolfegeLetter, solfegeLetterFromPosition } from "@/utilities/solfege";
 
 

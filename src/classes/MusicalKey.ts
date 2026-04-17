@@ -3,7 +3,7 @@ import { Note, buildNote } from "@/classes/Note";
 import { buildInclusiveRange } from "@/utilities/array";
 import { ensureZeroIsPositive } from "@/utilities/math";
 import { modeNameFromMode, modeNoteFromMode } from "@/utilities/mode";
-import type { NaturalNote } from "@/utilities/natural-note";
+import type { NaturalNote } from "@/utilities/naturalNote";
 import type { SolfegeLetter } from "@/utilities/solfege";
 import { SOLFEGE_LETTERS } from "@/utilities/solfege";
 

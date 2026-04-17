@@ -4,7 +4,7 @@ import {
   Note,
   buildNote
 } from "@/classes/Note";
-import { NaturalNote } from "@/utilities/natural-note";
+import { NaturalNote } from "@/utilities/naturalNote";
 import { SolfegeLetter } from "@/utilities/solfege";
 
 

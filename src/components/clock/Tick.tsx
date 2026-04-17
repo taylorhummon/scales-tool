@@ -1,4 +1,4 @@
-import { UNIT_CIRCLE_XS, UNIT_CIRCLE_YS } from "@/utilities/math";
+import { UNIT_CIRCLE_XS, UNIT_CIRCLE_YS } from "@/utilities/unitCircle";
 import { CLOCK_STROKE_COLOR } from "@/utilities/color";
 
 
