@@ -14,9 +14,9 @@ export function Selectors(
       className={buildClassString(cssModule, ["selectors"])}
     >
       <SelectorButtons />
-      <CentralBox />
       <DegreeSelector />
       <RootSelector />
+      <CentralBox />
     </g>
   );
 }
