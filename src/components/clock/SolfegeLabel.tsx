@@ -1,6 +1,7 @@
 import type { Note } from "@/classes/Note";
 import { SolfegeLabelAnimator } from "@/classes/SolfegeLabelAnimator";
 import { buildClassString } from "@/utilities/css";
+import { SolfegeLetter } from "@/utilities/solfege";
 
 import cssModule from "@/components/clock/SolfegeLabel.module.scss";
 
@@ -21,8 +22,6 @@ export function SolfegeLabel({
     >
       <text
         className={buildClassString(cssModule, ["text"])}
-        textAnchor="middle"
-        dominantBaseline="middle"
       >
         {note.solfegeLetter}
       </text>
@@ -41,6 +40,11 @@ function getClassName(
     classNames.push(`hour-${note.hour}`);
   } else {
     classNames.push(`move-from-${startHour}-to-${finishHour}`);
+  }
+  if (note.solfegeLetter === SolfegeLetter.Sol) {
+    classNames.push("wide");
+  } else {
+    classNames.push("regular");
   }
   return buildClassString(cssModule, classNames);
 }

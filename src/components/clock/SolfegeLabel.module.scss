@@ -18,46 +18,69 @@
 .solfege-label {
   offset-rotate: 0deg;
 
-   @for $hour from 0 through 11 {
-    &.hour-#{$hour} {
-      offset-path: path.still-path(solfege-label.point($hour));
+  @for $hour from 0 through 11 {
+    &.hour-#{$hour}.regular {
+      offset-path: path.still-path(solfege-label.point($hour, 2));
+    }
+    &.hour-#{$hour}.wide {
+      offset-path: path.still-path(solfege-label.point($hour, 3));
     }
   }
 
   @for $hour-a from 0 through 11 {
     $hour-b: unit-circle.hour($hour-a + 1);
 
-    &.move-from-#{$hour-a}-to-#{$hour-b} {
+    &.move-from-#{$hour-a}-to-#{$hour-b}.regular {
       animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(solfege-label.point($hour-a), solfege-label.point($hour-b));
+      offset-path: path.linear-path(solfege-label.point($hour-a, 2), solfege-label.point($hour-b, 2));
+    }
+    &.move-from-#{$hour-a}-to-#{$hour-b}.wide {
+      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(solfege-label.point($hour-a, 3), solfege-label.point($hour-b, 3));
     }
 
-    &.move-from-#{$hour-b}-to-#{$hour-a} {
+    &.move-from-#{$hour-b}-to-#{$hour-a}.regular {
       animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(solfege-label.point($hour-b), solfege-label.point($hour-a));
+      offset-path: path.linear-path(solfege-label.point($hour-b, 2), solfege-label.point($hour-a, 2));
+    }
+    &.move-from-#{$hour-b}-to-#{$hour-a}.wide {
+      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(solfege-label.point($hour-b, 3), solfege-label.point($hour-a, 3));
     }
   }
 
   @for $hour-a from 0 through 11 {
     $hour-b: unit-circle.hour($hour-a + 6);
 
-    &.move-from-#{$hour-a}-to-#{$hour-b} {
+    &.move-from-#{$hour-a}-to-#{$hour-b}.regular {
       animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(solfege-label.point($hour-a), solfege-label.point($hour-b));
+      offset-path: path.linear-path(solfege-label.point($hour-a, 2), solfege-label.point($hour-b, 2));
+    }
+    &.move-from-#{$hour-a}-to-#{$hour-b}.wide {
+      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(solfege-label.point($hour-a, 3), solfege-label.point($hour-b, 3));
     }
   }
 
   @for $hour-a from 0 through 11 {
     $hour-b: unit-circle.hour($hour-a + 7);
 
-    &.move-from-#{$hour-a}-to-#{$hour-b} {
+    &.move-from-#{$hour-a}-to-#{$hour-b}.regular {
       animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(solfege-label.point($hour-a), solfege-label.point($hour-b));
+      offset-path: path.linear-path(solfege-label.point($hour-a, 2), solfege-label.point($hour-b, 2));
+    }
+    &.move-from-#{$hour-a}-to-#{$hour-b}.wide {
+      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(solfege-label.point($hour-a, 3), solfege-label.point($hour-b, 3));
     }
 
-    &.move-from-#{$hour-b}-to-#{$hour-a} {
+    &.move-from-#{$hour-b}-to-#{$hour-a}.regular {
       animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(solfege-label.point($hour-b), solfege-label.point($hour-a));
+      offset-path: path.linear-path(solfege-label.point($hour-b, 2), solfege-label.point($hour-a, 2));
+    }
+    &.move-from-#{$hour-b}-to-#{$hour-a}.wide {
+      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(solfege-label.point($hour-b, 3), solfege-label.point($hour-a, 3));
     }
   }
 }

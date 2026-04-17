@@ -1,69 +1,8 @@
-@use "sass:math" as math;
-@use "sass:map" as map;
 @use "@/shared-css/unit-circle" as unit-circle;
-@use "@/shared-css/path" as path;
 
 
-$radius: 120;
-
-@function point($hour) {
+@function point($radius, $hour) {
   $x: $radius * unit-circle.x-at($hour);
   $y: $radius * unit-circle.y-at($hour);
   @return "#{$x} #{$y}";
 }
-
-@function cw-arc-path($hour) {
-  @return map.get($cw-arc-path-by-hour, $hour);
-}
-
-@function ccw-arc-path($hour) {
-  @return map.get($ccw-arc-path-by-hour, $hour);
-}
-
-@function private-cw-arc-path($hour, $diff-x, $diff-y) {
-  $point: point($hour);
-  @return path("M #{$point} a #{$radius} #{$radius}, 0, 0, 1, #{$diff-x} #{$diff-y}");
-}
-
-@function private-ccw-arc-path($hour, $diff-x, $diff-y) {
-  $point: point($hour);
-  @return path("M #{$point} a #{$radius} #{$radius}, 0, 0, 0, #{$diff-x} #{$diff-y}");
-}
-
-
-$diff-1: $radius * (unit-circle.x-at(1) - unit-circle.x-at(0)); // 60
-$diff-2: $radius * (unit-circle.x-at(2) - unit-circle.x-at(1)); // 43.923048454132626
-$diff-3: $radius * (unit-circle.x-at(3) - unit-circle.x-at(2)); // 16.07695154586737
-$diff-4: -1 * $diff-3;
-$diff-5: -1 * $diff-2;
-$diff-6: -1 * $diff-1;
-
-$cw-arc-path-by-hour: (
-  0: private-cw-arc-path(0, $diff-1, $diff-3),
-  1: private-cw-arc-path(1, $diff-2, $diff-2),
-  2: private-cw-arc-path(2, $diff-3, $diff-1),
-  3: private-cw-arc-path(3, $diff-4, $diff-1),
-  4: private-cw-arc-path(4, $diff-5, $diff-2),
-  5: private-cw-arc-path(5, $diff-6, $diff-3),
-  6: private-cw-arc-path(6, $diff-6, $diff-4),
-  7: private-cw-arc-path(7, $diff-5, $diff-5),
-  8: private-cw-arc-path(8, $diff-4, $diff-6),
-  9: private-cw-arc-path(9, $diff-3, $diff-6),
-  10: private-cw-arc-path(10, $diff-2, $diff-5),
-  11: private-cw-arc-path(11, $diff-1, $diff-4)
-);
-
-$ccw-arc-path-by-hour: (
-  0: private-ccw-arc-path(0, $diff-6, $diff-3),
-  11: private-ccw-arc-path(11, $diff-5, $diff-2),
-  10: private-ccw-arc-path(10, $diff-4, $diff-1),
-  9: private-ccw-arc-path(9, $diff-3, $diff-1),
-  8: private-ccw-arc-path(8, $diff-2, $diff-2),
-  7: private-ccw-arc-path(7, $diff-1, $diff-3),
-  6: private-ccw-arc-path(6, $diff-1, $diff-4),
-  5: private-ccw-arc-path(5, $diff-2, $diff-5),
-  4: private-ccw-arc-path(4, $diff-3, $diff-6),
-  3: private-ccw-arc-path(3, $diff-4, $diff-6),
-  2: private-ccw-arc-path(2, $diff-5, $diff-5),
-  1: private-ccw-arc-path(1, $diff-6, $diff-4)
-);

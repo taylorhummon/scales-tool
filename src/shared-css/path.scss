@@ -1,7 +1,27 @@
+@use "@/shared-css/unit-circle" as unit-circle;
+@use "@/shared-css/clock" as clock;
+
+
 @function still-path($point) {
   @return path("M #{$point}");
 }
 
 @function linear-path($start, $finish) {
   @return path("M #{$start} L #{$finish}");
+}
+
+@function cw-arc-path($radius, $hour) {
+  $point: clock.point($radius, $hour);
+  $next-hour: ($hour + 1) % 12;
+  $diff-x: $radius * (unit-circle.x-at($next-hour) - unit-circle.x-at($hour));
+  $diff-y: $radius * (unit-circle.y-at($next-hour) - unit-circle.y-at($hour));
+  @return path("M #{$point} a #{$radius} #{$radius}, 0, 0, 1, #{$diff-x} #{$diff-y}");
+}
+
+@function ccw-arc-path($radius, $hour) {
+  $point: clock.point($radius, $hour);
+  $next-hour: ($hour - 1) % 12;
+  $diff-x: $radius * (unit-circle.x-at($next-hour) - unit-circle.x-at($hour));
+  $diff-y: $radius * (unit-circle.y-at($next-hour) - unit-circle.y-at($hour));
+  @return path("M #{$point} a #{$radius} #{$radius}, 0, 0, 0, #{$diff-x} #{$diff-y}");
 }
