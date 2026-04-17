@@ -16,8 +16,8 @@ follows.
     Phrygian      E       2
     Locrian       B       3
   
-**root note**: The first (and last) note in the scale. A root note corresponds to a number as 
-follows.
+**root note**: The first (and last) note in the scale. Also known as the tonic. A root note 
+corresponds to a number as follows.
 
     note    number
     ----    ------
