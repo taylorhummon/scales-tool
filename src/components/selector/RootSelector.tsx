@@ -3,11 +3,10 @@ import { useDerivedContext } from "@/contexts/derived";
 import { buildClassString } from "@/utilities/css";
 import type { Motion } from "@/utilities/motion";
 import { getWillIncrementRoot, getWillDecrementRoot } from "@/utilities/motion";
+import { EXTENDED_POSITIONS } from "@/utilities/selector";
 
 import cssModule from "@/components/selector/RootSelector.module.scss";
 
-
-const EXTENDED_POSITIONS = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
 
 export function RootSelector(
 ): JSX.Element {

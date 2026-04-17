@@ -1,3 +1,6 @@
+export const POSITIONS = [-3, -2, -1, 0, 1, 2, 3];
+export const EXTENDED_POSITIONS = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
+
 export enum FadingClassName {
   Unselected = "unselected",
   Selected = "selected",
