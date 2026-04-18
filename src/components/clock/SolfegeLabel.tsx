@@ -20,11 +20,15 @@ export function SolfegeLabel({
       className={getClassName(solfegeLabelAnimator, note)}
       data-testid={`solfege-label-${note.solfegeLetter}`}
     >
-      <text
-        className={buildClassString(cssModule, ["text"])}
+      <g
+        className={getInnerClassName(note)}
       >
-        {note.solfegeLetter}
-      </text>
+        <text
+          className={buildClassString(cssModule, ["text"])}
+        >
+          {note.solfegeLetter}
+        </text>
+      </g>
     </g>
   );
 }
@@ -37,10 +41,17 @@ function getClassName(
   const startHour = note.hour;
   const finishHour = solfegeLabelAnimator?.finishHour(note.hour);
   if (typeof finishHour !== "number") {
-    classNames.push(`hour-${note.hour}`);
+    classNames.push(`hour-${startHour}`);
   } else {
     classNames.push(`move-from-${startHour}-to-${finishHour}`);
   }
+  return buildClassString(cssModule, classNames);
+}
+
+function getInnerClassName(
+  note: Note
+): string {
+  const classNames = ["solfege-label-inner"];
   if (note.solfegeLetter === SolfegeLetter.Sol) {
     classNames.push("wide");
   } else {

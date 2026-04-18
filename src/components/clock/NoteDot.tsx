@@ -38,7 +38,7 @@ function getClassName(
   const startHour = note.hour;
   const finishHour = getNoteFinishHour(animationType, musicalKey, nextMusicalKey, note);
   if (finishHour === startHour) {
-    classNames.push(`hour-${note.hour}`);
+    classNames.push(`hour-${startHour}`);
   } else {
     classNames.push(`move-from-${startHour}-to-${finishHour}`);
   }

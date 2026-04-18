@@ -8,7 +8,7 @@ $radius: 80;
 $x-font-offset: -5;
 $y-font-offset: 5;
 
-@function point-for($natural-note, $sharps-count) {
+@function point($natural-note, $sharps-count) {
   $hour-of-natural-note: map.get($hour-by-natural-note, $natural-note);
   $hour: unit-circle.hour($hour-of-natural-note + $sharps-count);
   $character-count: math.abs($sharps-count) + 1;

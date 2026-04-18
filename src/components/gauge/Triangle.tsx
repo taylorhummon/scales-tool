@@ -25,10 +25,12 @@ function getClassName(
   nextMusicalKey: MusicalKey
 ): string {
   const classNames = ["triangle"];
-  if (nextMusicalKey.mode === musicalKey.mode) {
-    classNames.push(`position-${musicalKey.mode}`);
+  const mode = musicalKey.mode;
+  const nextMode = nextMusicalKey.mode;
+  if (nextMode === mode) {
+    classNames.push(`position-${mode}`);
   } else {
-    classNames.push(`move-from-${musicalKey.mode}-to-${nextMusicalKey.mode}`);
+    classNames.push(`move-from-${mode}-to-${nextMode}`);
   }
   return buildClassString(cssModule, classNames);
 }

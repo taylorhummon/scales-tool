@@ -1,7 +1,6 @@
 @use "@/shared-css/animation" as animation;
 @use "@/shared-css/clock" as clock;
 @use "@/shared-css/path" as path;
-@use "@/shared-css/solfege-label" as solfege-label;
 @use "@/shared-css/unit-circle" as unit-circle;
 
 
@@ -15,73 +14,63 @@
 }
 
 
+$radius: 80;
+
+
 .solfege-label {
   offset-rotate: 0deg;
 
   @for $hour from 0 through 11 {
-    &.hour-#{$hour}.regular {
-      offset-path: path.still-path(solfege-label.point($hour, 2));
-    }
-    &.hour-#{$hour}.wide {
-      offset-path: path.still-path(solfege-label.point($hour, 3));
+    &.hour-#{$hour} {
+      offset-path: path.still-path(clock.point($radius, $hour));
     }
   }
 
   @for $hour-a from 0 through 11 {
     $hour-b: unit-circle.hour($hour-a + 1);
 
-    &.move-from-#{$hour-a}-to-#{$hour-b}.regular {
+    &.move-from-#{$hour-a}-to-#{$hour-b} {
       animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(solfege-label.point($hour-a, 2), solfege-label.point($hour-b, 2));
-    }
-    &.move-from-#{$hour-a}-to-#{$hour-b}.wide {
-      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(solfege-label.point($hour-a, 3), solfege-label.point($hour-b, 3));
+      offset-path: path.cw-arc-path($radius, $hour-a);
     }
 
-    &.move-from-#{$hour-b}-to-#{$hour-a}.regular {
+    &.move-from-#{$hour-b}-to-#{$hour-a} {
       animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(solfege-label.point($hour-b, 2), solfege-label.point($hour-a, 2));
-    }
-    &.move-from-#{$hour-b}-to-#{$hour-a}.wide {
-      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(solfege-label.point($hour-b, 3), solfege-label.point($hour-a, 3));
+      offset-path: path.ccw-arc-path($radius, $hour-b);
     }
   }
 
   @for $hour-a from 0 through 11 {
     $hour-b: unit-circle.hour($hour-a + 6);
 
-    &.move-from-#{$hour-a}-to-#{$hour-b}.regular {
+    &.move-from-#{$hour-a}-to-#{$hour-b} {
       animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(solfege-label.point($hour-a, 2), solfege-label.point($hour-b, 2));
-    }
-    &.move-from-#{$hour-a}-to-#{$hour-b}.wide {
-      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(solfege-label.point($hour-a, 3), solfege-label.point($hour-b, 3));
+      offset-path: path.linear-path(clock.point($radius, $hour-a), clock.point($radius, $hour-b));
     }
   }
 
   @for $hour-a from 0 through 11 {
     $hour-b: unit-circle.hour($hour-a + 7);
 
-    &.move-from-#{$hour-a}-to-#{$hour-b}.regular {
+    &.move-from-#{$hour-a}-to-#{$hour-b} {
       animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(solfege-label.point($hour-a, 2), solfege-label.point($hour-b, 2));
-    }
-    &.move-from-#{$hour-a}-to-#{$hour-b}.wide {
-      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(solfege-label.point($hour-a, 3), solfege-label.point($hour-b, 3));
+      offset-path: path.linear-path(clock.point($radius, $hour-a), clock.point($radius, $hour-b));
     }
 
-    &.move-from-#{$hour-b}-to-#{$hour-a}.regular {
+    &.move-from-#{$hour-b}-to-#{$hour-a} {
       animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(solfege-label.point($hour-b, 2), solfege-label.point($hour-a, 2));
+      offset-path: path.linear-path(clock.point($radius, $hour-b), clock.point($radius, $hour-a));
     }
-    &.move-from-#{$hour-b}-to-#{$hour-a}.wide {
-      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
-      offset-path: path.linear-path(solfege-label.point($hour-b, 3), solfege-label.point($hour-a, 3));
-    }
+  }
+}
+
+.solfege-label-inner {
+  &.regular {
+    offset-path: path("M -10 5");
+  }
+
+  &.wide {
+    offset-path: path("M -15 5");
   }
 }
 
