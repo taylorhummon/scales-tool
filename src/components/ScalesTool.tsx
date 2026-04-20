@@ -1,12 +1,18 @@
+import { MantineProvider } from '@mantine/core';
+
 import { DerivedProvider } from '@/contexts/derived';
 import { ScalesToolInner } from "@/components/ScalesToolInner";
+
+import '@mantine/core/styles.css';
 
 
 export default function ScalesTool(
 ): JSX.Element {
   return (
-    <DerivedProvider>
-      <ScalesToolInner />
-    </DerivedProvider>
+    <MantineProvider>
+      <DerivedProvider>
+        <ScalesToolInner />
+      </DerivedProvider>
+    </MantineProvider>
   );
 }

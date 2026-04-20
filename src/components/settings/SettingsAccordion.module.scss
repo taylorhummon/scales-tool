@@ -1,8 +1,8 @@
-.settings-accordion {
+.accordion-root {
+  width: 280px;
   margin-top: 30px;
 }
 
-.settings-summary {
-  cursor: pointer;
-  font-style: italic;
+.accordion-label {
+  font-weight: 600 !important;
 }
