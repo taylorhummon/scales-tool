@@ -1,4 +1,4 @@
-import { CENTRAL_BOX_STROKE, CENTRAL_BOX_FILL, CENTRAL_BOX_OVERLAP } from "@/utilities/color";
+import { CENTRAL_BOX_STROKE, CENTRAL_BOX_FILL } from "@/utilities/color";
 
 
 export function CentralBox(
@@ -12,22 +12,6 @@ export function CentralBox(
         width="110"
         height="30"
         fill={CENTRAL_BOX_FILL}
-      />
-      <rect
-        stroke="none"
-        x="-43"
-        y="-15"
-        width="34"
-        height="30"
-        fill={CENTRAL_BOX_OVERLAP}
-      />
-      <rect
-        stroke="none"
-        x="9"
-        y="-15"
-        width="34"
-        height="30"
-        fill={CENTRAL_BOX_OVERLAP}
       />
       <g
         strokeWidth="1.5"
