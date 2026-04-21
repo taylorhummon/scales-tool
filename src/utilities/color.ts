@@ -2,7 +2,7 @@ export const ROOT_SEGMENT_FILL = "rgb(255, 221, 207)";
 
 export const CENTRAL_BOX_STROKE = "rgb(180, 120, 80)";
 export const CENTRAL_BOX_FILL = "rgb(254, 248, 236)";
-export const CENTRAL_BOX_OVERLAP = "rgb(254, 238, 226)";
+export const CENTRAL_BOX_OVERLAP = "rgb(254, 241, 229)";
 
 export const ICON_MOTION_STROKE = "rgb(110, 110, 110)";
 

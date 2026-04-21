@@ -61,10 +61,10 @@ export function ScalesToolInner(
         className={buildClassString(cssModule, ["instructions"])}
       >
         <li>
-          Sharp and flat buttons move between parallel keys.
+          Blue dot buttons move between relative keys.
         </li>
         <li>
-          Blue dot buttons move between relative keys.
+          Sharp and flat buttons move between parallel keys.
         </li>
         <li>
           Arrow buttons change keys within a mode.
@@ -92,10 +92,10 @@ function registerEventListener(
 function musicalKeyFromHistoricalState(
   historicalState: HistoricalState | undefined
 ): MusicalKey {
-  const degree = historicalState?.degree;
   const root = historicalState?.root;
+  const degree = historicalState?.degree;
   if (typeof degree === "number" && typeof root === "number") {
-    return new MusicalKey(degree, root);
+    return new MusicalKey(root, degree);
   } else {
     return DEFAULT_MUSICAL_KEY;
   }

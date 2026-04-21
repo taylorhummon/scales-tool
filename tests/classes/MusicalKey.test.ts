@@ -34,11 +34,6 @@ test("MusicalKey works for Dorian D", () => {
   ).toBe(
     3
   );
-  expect(
-    musicalKey.middlePosition
-  ).toBe(
-    0
-  );
   const notes = SOLFEGE_LETTERS.map((solfegeLetter) => musicalKey.scale.get(solfegeLetter));
   expect(
     notes.map((note) => note?.name)
@@ -68,7 +63,7 @@ test("MusicalKey works for Dorian D", () => {
 });
 
 test("MusicalKey works for A-Major", () => {
-  const musicalKey = new MusicalKey(3, 1);
+  const musicalKey = new MusicalKey(1, 3);
   expect(
     musicalKey.modeName
   ).toBe(
@@ -93,11 +88,6 @@ test("MusicalKey works for A-Major", () => {
     musicalKey.bottomPosition
   ).toBe(
     5
-  );
-  expect(
-    musicalKey.middlePosition
-  ).toBe(
-    2
   );
   const notes = SOLFEGE_LETTERS.map((solfegeLetter) => musicalKey.scale.get(solfegeLetter));
   expect(
@@ -128,7 +118,7 @@ test("MusicalKey works for A-Major", () => {
 });
 
 test("MusicalKey works for G-Minor", () => {
-  const musicalKey = new MusicalKey(-2, -1);
+  const musicalKey = new MusicalKey(-1, -2);
   expect(
     musicalKey.modeName
   ).toBe(
@@ -153,11 +143,6 @@ test("MusicalKey works for G-Minor", () => {
     musicalKey.bottomPosition
   ).toBe(
     2
-  );
-  expect(
-    musicalKey.middlePosition
-  ).toBe(
-    -1
   );
    const notes = SOLFEGE_LETTERS.map((solfegeLetter) => musicalKey.scale.get(solfegeLetter));
   expect(

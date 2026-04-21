@@ -6,7 +6,7 @@ import { Motion } from "@/utilities/motion";
 
 
 test("SolfegeLabelAnimator works", () => {
-  const musicalKey = new MusicalKey(0, 1);
+  const musicalKey = new MusicalKey(1, 0);
 
   expect(
     (new SolfegeLabelAnimator(musicalKey, Motion.IncrementRoot)).finishHour(0)

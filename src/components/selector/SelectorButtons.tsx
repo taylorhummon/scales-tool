@@ -11,20 +11,20 @@ export function SelectorButtons(
         dataTestid="increment-both"
       />
       <SelectorButton
-        onClickMotion={Motion.IncrementDegree}
-        dataTestid="increment-degree"
-      />
-      <SelectorButton
         onClickMotion={Motion.IncrementRoot}
         dataTestid="increment-root"
       />
       <SelectorButton
-        onClickMotion={Motion.DecrementDegree}
-        dataTestid="decrement-degree"
+        onClickMotion={Motion.IncrementDegree}
+        dataTestid="increment-degree"
       />
       <SelectorButton
         onClickMotion={Motion.DecrementRoot}
         dataTestid="decrement-root"
+      />
+      <SelectorButton
+        onClickMotion={Motion.DecrementDegree}
+        dataTestid="decrement-degree"
       />
       <SelectorButton
         onClickMotion={Motion.DecrementBoth}

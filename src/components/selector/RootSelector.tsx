@@ -22,6 +22,14 @@ export function RootSelector(
     <g
       className={buildClassString(cssModule, ["root-selector"])}
     >
+      <text
+        className={buildClassString(cssModule, ["label"])}
+        x="0"
+        y="-115"
+        textAnchor="middle"
+      >
+        root
+      </text>
       <g
         clipPath="url(#root-selector-clip-path)"
       >

@@ -18,8 +18,8 @@ test("getInitialState() works", () => {
     getInitialState()
   ).toStrictEqual(
     {
-      degree: 0,
       root: -2,
+      degree: 0,
       motion: Motion.Still,
       animationType: AnimationType.Simple,
       isUsingSolfege: false
@@ -30,20 +30,20 @@ test("getInitialState() works", () => {
     getInitialState()
   ).toStrictEqual(
     {
-      degree: 0,
       root: 0,
+      degree: 0,
       animationType: AnimationType.Simple,
       motion: Motion.Still,
       isUsingSolfege: false
     }
   );
-  addToBrowserHistory(new MusicalKey(2, 3));
+  addToBrowserHistory(new MusicalKey(3, 2));
   expect(
     getInitialState()
   ).toStrictEqual(
     {
-      degree: 2,
       root: 3,
+      degree: 2,
       animationType: AnimationType.Simple,
       motion: Motion.Still,
       isUsingSolfege: false
@@ -53,8 +53,11 @@ test("getInitialState() works", () => {
 
 test("historicalStateFromMusicalKey() works", () => {
   expect(
-    historicalStateFromMusicalKey(new MusicalKey(1, -2))
+    historicalStateFromMusicalKey(new MusicalKey(-2, 1))
   ).toStrictEqual(
-    { degree: 1, root: -2 }
+    {
+      root: -2,
+      degree: 1
+    }
   );
 });

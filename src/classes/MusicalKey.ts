@@ -1,7 +1,6 @@
 import { DEFAULT_DEGREE, DEFAULT_ROOT } from "@/config";
 import { Note } from "@/classes/Note";
 import { buildInclusiveRange } from "@/utilities/array";
-import { ensureZeroIsPositive } from "@/utilities/math";
 import { MAX_MODE, MIN_MODE, modeNameFromMode, modeNoteFromMode } from "@/utilities/mode";
 import type { NaturalNote } from "@/utilities/naturalNote";
 import type { SolfegeLetter } from "@/utilities/solfege";
@@ -9,26 +8,20 @@ import { SOLFEGE_LETTERS } from "@/utilities/solfege";
 
 
 export class MusicalKey {
-  degree: number;
-  root: number;
   mode: number;
+  root: number;
+  degree: number;
   #rootNote: Note | null = null;
   #scale: Map<SolfegeLetter, Note> | null = null;
 
   constructor(
-    degree: number,
-    root: number
+    root: number,
+    degree: number
   ) {
-    this.degree = degree;
     this.root = root;
-    const mode = root - degree;
-    if (mode > MAX_MODE || mode < MIN_MODE) throw Error(`Invalid mode: ${mode}`);
-    this.mode = mode;
-  }
-
-  get rootNote(): Note {
-    if (this.#rootNote === null) this.#rootNote = this.#getRootNote();
-    return this.#rootNote;
+    this.degree = degree;
+    this.mode = root - degree;
+    if (this.mode > MAX_MODE || this.mode < MIN_MODE) throw Error(`Invalid mode: ${this.mode}`);
   }
 
   get modeName(): string {
@@ -39,7 +32,12 @@ export class MusicalKey {
     return modeNoteFromMode(this.mode);
   }
 
-  get scale(): Map<SolfegeLetter, Note>  {
+  get rootNote(): Note {
+    if (this.#rootNote === null) this.#rootNote = this.#getRootNote();
+    return this.#rootNote;
+  }
+
+  get scale(): Map<SolfegeLetter, Note> {
     if (this.#scale === null) this.#scale = this.#getScale();
     return this.#scale;
   }
@@ -54,15 +52,11 @@ export class MusicalKey {
   // the y-axis being pointed downwards.
 
   get topPosition(): number {
-    return this.middlePosition - 3;
+    return - this.mode - 3;
   }
 
   get bottomPosition(): number {
-    return this.middlePosition + 3;
-  }
-
-  get middlePosition(): number {
-    return ensureZeroIsPositive(- this.mode);
+    return - this.mode + 3;
   }
 
   #getRootNote(
@@ -78,7 +72,7 @@ export class MusicalKey {
   }
 }
 
-export const DEFAULT_MUSICAL_KEY = new MusicalKey(DEFAULT_DEGREE, DEFAULT_ROOT);
+export const DEFAULT_MUSICAL_KEY = new MusicalKey(DEFAULT_ROOT, DEFAULT_DEGREE);
 
 // *** Private functions below this line ***
 

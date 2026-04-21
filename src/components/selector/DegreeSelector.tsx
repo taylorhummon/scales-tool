@@ -21,6 +21,14 @@ export function DegreeSelector(
     <g
       className={buildClassString(cssModule, ["degree-selector"])}
     >
+      <text
+        className={buildClassString(cssModule, ["label"])}
+        x="0"
+        y="-115"
+        textAnchor="middle"
+      >
+        deg
+      </text>
       <g
         clipPath="url(#degree-selector-clip-path)"
       >

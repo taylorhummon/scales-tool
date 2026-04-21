@@ -2,19 +2,19 @@ import { useDerivedContext } from "@/contexts/derived";
 import { ROOT_SEGMENT_FILL } from "@/utilities/color";
 import { buildClassString } from "@/utilities/css";
 
-import cssModule from "@/components/selector/RootSegment.module.scss";
+import cssModule from "@/components/selector/DegreeSegment.module.scss";
 
 
-export function RootSegment(
+export function DegreeSegment(
 ): JSX.Element | null {
   const { musicalKey, nextMusicalKey } = useDerivedContext();
-  const position = - musicalKey.mode;
-  const nextPosition = - nextMusicalKey.mode;
+  const position = musicalKey.mode;
+  const nextPosition = nextMusicalKey.mode;
   if (position > 4 || position < -4) return null;
   return (
     <g
-      className={buildClassString(cssModule, ["root-segment"])}
-      clipPath="url(#root-selector-clip-path)"
+      className={buildClassString(cssModule, ["degree-segment"])}
+      clipPath="url(#degree-selector-clip-path)"
     >
       <g
         className={getInnerClassName(position, nextPosition)}
@@ -32,7 +32,7 @@ function getInnerClassName(
   position: number,
   nextPosition: number
 ): string {
-  const classNames = ["root-segment-inner"];
+  const classNames = ["degree-segment-inner"];
   if (nextPosition === position) {
     classNames.push(`position-${position}`);
   } else {

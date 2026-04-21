@@ -203,7 +203,7 @@ test("<ScalesTool /> shows Dorian D correctly", () => {
 });
 
 test("<ScalesTool /> shows D-Major correctly", () => {
-  addToBrowserHistory(new MusicalKey(2, 0));
+  addToBrowserHistory(new MusicalKey(0, 2));
 
   render(<ScalesTool />);
 
@@ -292,7 +292,7 @@ test("<ScalesTool /> shows D-Major correctly", () => {
 });
 
 test("<ScalesTool /> shows C-Minor correctly", () => {
-  addToBrowserHistory(new MusicalKey(-3, -2));
+  addToBrowserHistory(new MusicalKey(-2, -3));
 
   render(<ScalesTool />);
 

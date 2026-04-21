@@ -26,43 +26,43 @@ export function buildSolfegeLabelAnimator(
 
 export class SolfegeLabelAnimator {
   #motion: Motion;
-  #topPositionHour: number;
-  #bottomPositionHour: number;
+  #topHour: number;
+  #bottomHour: number;
 
   constructor(
     musicalKey: MusicalKey,
     motion: Motion
   ) {
     this.#motion = motion;
-    this.#topPositionHour = musicalKey.noteAt(musicalKey.topPosition).hour;
-    this.#bottomPositionHour = musicalKey.noteAt(musicalKey.bottomPosition).hour;
+    this.#topHour = musicalKey.noteAt(musicalKey.topPosition).hour;
+    this.#bottomHour = musicalKey.noteAt(musicalKey.bottomPosition).hour;
   }
 
   finishHour(
     startHour: number
   ): number | null {
     if (getWillIncrementRoot(this.#motion)) {
-      if (this.#motion === Motion.IncrementRoot && startHour === this.#bottomPositionHour) {
-        return this.#topPositionHour;
+      if (this.#motion === Motion.IncrementRoot && startHour === this.#bottomHour) {
+        return this.#topHour;
       } else {
         return remainderFor(startHour + 7, 12);
       }
     }
     if (getWillDecrementRoot(this.#motion)) {
-      if (this.#motion === Motion.DecrementRoot && startHour === this.#topPositionHour) {
-        return this.#bottomPositionHour;
+      if (this.#motion === Motion.DecrementRoot && startHour === this.#topHour) {
+        return this.#bottomHour;
       } else {
         return remainderFor(startHour - 7, 12);
       }
     }
     if (this.#motion === Motion.IncrementDegree) {
-      if (startHour === this.#topPositionHour) {
-        return remainderFor(this.#topPositionHour + 1, 12);
+      if (startHour === this.#topHour) {
+        return remainderFor(this.#topHour + 1, 12);
       }
     }
     if (this.#motion === Motion.DecrementDegree) {
-      if (startHour === this.#bottomPositionHour) {
-        return remainderFor(this.#bottomPositionHour - 1, 12);
+      if (startHour === this.#bottomHour) {
+        return remainderFor(this.#bottomHour - 1, 12);
       }
     }
     return null;

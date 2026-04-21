@@ -6,7 +6,7 @@ import { Motion } from "@/utilities/motion";
 
 
 test("NoteLabelAnimator works for key degree = 0", () => {
-  const musicalKey = new MusicalKey(0, 1);
+  const musicalKey = new MusicalKey(1, 0);
 
   expect(
     (new NoteLabelAnimator(musicalKey, Motion.DecrementDegree)).startNote.name
@@ -118,7 +118,7 @@ test("NoteLabelAnimator works for key degree = 1", () => {
 });
 
 test("NoteLabelAnimator works for key degree = -3", () => {
-  const musicalKey = new MusicalKey(-3, 0);
+  const musicalKey = new MusicalKey(0, -3);
 
   expect(
     (new NoteLabelAnimator(musicalKey, Motion.DecrementDegree)).startNote.name
