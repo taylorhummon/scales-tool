@@ -5,10 +5,9 @@ import { Labels } from "@/components/clock/Labels";
 import { NoteDot } from "@/components/clock/NoteDot";
 import { RootDot } from "@/components/clock/RootDot";
 import { useDerivedContext } from "@/contexts/derived";
-import { buildClassString } from "@/utilities/css";
 import { arrayFromMap } from "@/utilities/map";
 
-import cssModule from "@/components/clock/Clock.module.scss";
+import clockCssModule from "@/components/clock/Clock.module.scss";
 
 
 export function Clock(
@@ -17,7 +16,7 @@ export function Clock(
 
   return (
     <g
-      className={buildClassString(cssModule, ["clock"])}
+      className={clockCssModule["clock"]}
     >
       <RootDot />
       <ClockFace />

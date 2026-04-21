@@ -4,11 +4,11 @@ import { useDerivedContext } from "@/contexts/derived";
 import { useDispatchContext } from "@/contexts/dispatch";
 import { ActionType } from "@/utilities/action";
 import { AnimationType } from "@/utilities/animation";
-import { buildClassString } from "@/utilities/css";
+import { buildClassName } from "@/utilities/css";
 import { Motion, canPerformMotion, getNextMusicalKey } from "@/utilities/motion";
 import { addToBrowserHistory } from "@/utilities/routing";
 
-import cssModule from "@/components/selector/SelectorButton.module.scss";
+import selectorButtonCssModule from "@/components/selector/SelectorButton.module.scss";
 
 
 enum ButtonState {
@@ -76,7 +76,7 @@ function groupClassName(
   onClickMotion: Motion
 ): string {
   const classNames = ["button", onClickMotion];
-  return buildClassString(cssModule, classNames);
+  return buildClassName(selectorButtonCssModule, classNames);
 }
 
 function rectangleClassName(
@@ -85,7 +85,7 @@ function rectangleClassName(
 ): string {
   const classNames = ["button-rectangle", onClickMotion];
   classNames.push(buttonState);
-  return buildClassString(cssModule, classNames);
+  return buildClassName(selectorButtonCssModule, classNames);
 }
 
 function getButtonState(

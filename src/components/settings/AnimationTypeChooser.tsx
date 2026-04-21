@@ -5,7 +5,7 @@ import { useDispatchContext } from "@/contexts/dispatch";
 import { ActionType } from "@/utilities/action";
 import { AnimationType } from "@/utilities/animation";
 
-import cssModule from "@/components/settings/AnimationTypeChooser.module.scss";
+import animationTypeChooserCssModule from "@/components/settings/AnimationTypeChooser.module.scss";
 
 
 export function AnimationTypeChooser(
@@ -16,7 +16,7 @@ export function AnimationTypeChooser(
   return (
     <NativeSelect
       classNames={{
-        label: cssModule["chooser-label"],
+        label: animationTypeChooserCssModule["chooser-label"],
       }}
       label="Animation"
       data={Object.values(AnimationType)}

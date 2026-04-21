@@ -1,8 +1,8 @@
 import type { Note } from "@/classes/Note";
 import type { NoteLabelAnimator } from "@/classes/NoteLabelAnimator";
-import { buildClassString } from "@/utilities/css";
+import { buildClassName } from "@/utilities/css";
 
-import cssModule from "@/components/clock/NoteLabelText.module.scss";
+import noteLabelTextCssModule from "@/components/clock/NoteLabelText.module.scss";
 
 
 interface NoteLabelTextProps {
@@ -64,5 +64,5 @@ function getClassName(
   } else {
     classNames.push("disappear");
   }
-  return buildClassString(cssModule, classNames);
+  return buildClassName(noteLabelTextCssModule, classNames);
 }

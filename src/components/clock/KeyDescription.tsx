@@ -1,7 +1,6 @@
 import { useDerivedContext } from "@/contexts/derived";
-import { buildClassString } from "@/utilities/css";
 
-import cssModule from "@/components/clock/KeyDescription.module.scss";
+import keyDescriptionCssModule from "@/components/clock/KeyDescription.module.scss";
 
 
 export function KeyDescription(
@@ -11,14 +10,14 @@ export function KeyDescription(
   return (
     <>
       <text
-        className={buildClassString(cssModule, ["key-description"])}
+        className={keyDescriptionCssModule["key-description"]}
         textAnchor="middle"
       >
         <TextContent />
         {"\n"}
       </text>
       <text
-        className={buildClassString(cssModule, ["degree-explanation"])}
+        className={keyDescriptionCssModule["degree-explanation"]}
         textAnchor="middle"
       >
         {getDegreeExplanation(musicalKey.degree)}
@@ -30,7 +29,7 @@ export function KeyDescription(
 function TextContent(
 ): JSX.Element {
   const { musicalKey } = useDerivedContext();
-  const noteFontClassName = buildClassString(cssModule, ["note-font"]);
+  const noteFontClassName = keyDescriptionCssModule["note-font"];
   const rootNoteName = musicalKey.rootNote.name;
   if (musicalKey.mode === -2) {
     return (

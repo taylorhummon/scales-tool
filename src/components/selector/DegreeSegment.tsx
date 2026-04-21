@@ -1,8 +1,8 @@
 import { useDerivedContext } from "@/contexts/derived";
 import { SEGMENT_FILL } from "@/utilities/color";
-import { buildClassString } from "@/utilities/css";
+import { buildClassName } from "@/utilities/css";
 
-import cssModule from "@/components/selector/DegreeSegment.module.scss";
+import segmentCssModule from "@/components/selector/Segment.module.scss";
 
 
 export function DegreeSegment(
@@ -13,7 +13,7 @@ export function DegreeSegment(
   if (position > 4 || position < -4) return null;
   return (
     <g
-      className={buildClassString(cssModule, ["degree-segment"])}
+      className={segmentCssModule["degree-segment"]}
       clipPath="url(#degree-selector-clip-path)"
     >
       <g
@@ -32,11 +32,11 @@ function getInnerClassName(
   position: number,
   nextPosition: number
 ): string {
-  const classNames = ["degree-segment-inner"];
+  const classNames = ["segment-inner"];
   if (nextPosition === position) {
     classNames.push(`position-${position}`);
   } else {
     classNames.push(`move-from-${position}-to-${nextPosition}`);
   }
-  return buildClassString(cssModule, classNames);
+  return buildClassName(segmentCssModule, classNames);
 }

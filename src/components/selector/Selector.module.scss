@@ -1,51 +1,38 @@
 @use "@/utilities/animation" as animation;
-@use "@/utilities/position" as position;
 
 
-$unselected: 0.4;
-$selected: 1;
+.root-selector {
+  offset-path: path("M -26 0");
+}
 
+.degree-selector {
+  offset-path: path("M 26 0");
+}
 
-@keyframes fade-from-unselected-to-selected {
+.label {
+  font-weight: 500;
+}
+
+@keyframes move-selector-inner {
   0% {
-    opacity: $unselected;
-  }
-  50% {
-    opacity: $unselected;
+    offset-distance: 0%;
   }
   100% {
-    opacity: $selected;
+    offset-distance: 100%;
   }
 }
 
-
-.selector-value {
+.selector-inner {
+  offset-path: path("M 0 5");
   offset-rotate: 0deg;
 
-  @for $position from -4 through 4 {
-    &.position-#{$position} {
-      offset-path: position.position-still-path($position);
-    }
+  &.move-up {
+    animation: move-selector-inner animation.$duration ease-in-out 1 forwards;
+    offset-path: path("M 0 5 L 0 -25");
   }
 
-  &.unselected {
-    opacity: $unselected;
+  &.move-down {
+    animation: move-selector-inner animation.$duration ease-in-out 1 forwards;
+    offset-path: path("M 0 5 L 0 35");
   }
-
-  &.selected {
-    opacity: $selected;
-  }
-
-  &.fade-from-unselected-to-selected {
-    animation: fade-from-unselected-to-selected animation.$duration linear 1 forwards;
-  }
-
-  &.fade-from-selected-to-unselected {
-    animation: fade-from-unselected-to-selected animation.$duration linear 1 forwards reverse;
-  }
-}
-
-.text {
-  text-anchor: middle;
-  font-family: "PT Mono", monospace;
 }

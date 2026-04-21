@@ -3,7 +3,7 @@ import { Accordion, Stack } from "@mantine/core";
 import { AnimationTypeChooser } from "@/components/settings/AnimationTypeChooser";
 import { SolfegeSwitch } from "@/components/settings/SolfegeSwitch";
 
-import cssModule from "@/components/settings/SettingsAccordion.module.scss";
+import settingsAccordionCssModule from "@/components/settings/SettingsAccordion.module.scss";
 
 
 export function SettingsAccordion(
@@ -11,8 +11,8 @@ export function SettingsAccordion(
   return (
     <Accordion
       classNames={{
-        root: cssModule["accordion-root"],
-        label: cssModule["accordion-label"],
+        root: settingsAccordionCssModule["accordion-root"],
+        label: settingsAccordionCssModule["accordion-label"],
       }}
       order={3}
       chevronPosition="left"

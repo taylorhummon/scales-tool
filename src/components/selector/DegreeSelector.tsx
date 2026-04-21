@@ -1,13 +1,13 @@
 import { MAX_DEGREE, MIN_DEGREE } from "@/config";
 import { Degree } from "@/components/selector/Degree";
 import { useDerivedContext } from "@/contexts/derived";
-import { buildClassString } from "@/utilities/css";
+import { buildClassName } from "@/utilities/css";
 import { isBetweenInclusive } from "@/utilities/math";
 import type { Motion } from "@/utilities/motion";
 import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/motion";
 import { EXTENDED_POSITIONS } from "@/utilities/fading";
 
-import cssModule from "@/components/selector/DegreeSelector.module.scss";
+import selectorCssModule from "@/components/selector/Selector.module.scss";
 
 
 export function DegreeSelector(
@@ -19,10 +19,10 @@ export function DegreeSelector(
   );
   return (
     <g
-      className={buildClassString(cssModule, ["degree-selector"])}
+      className={selectorCssModule["degree-selector"]}
     >
       <text
-        className={buildClassString(cssModule, ["label"])}
+        className={selectorCssModule["label"]}
         x="0"
         y="-115"
         textAnchor="middle"
@@ -51,11 +51,11 @@ export function DegreeSelector(
 function getClassName(
   motion: Motion
 ): string {
-  const classNames = ["degree-selector-inner"];
+  const classNames = ["selector-inner"];
   if (getWillIncrementDegree(motion)) {
     classNames.push("move-up");
   } else if (getWillDecrementDegree(motion)) {
     classNames.push("move-down");
   }
-  return buildClassString(cssModule, classNames);
+  return buildClassName(selectorCssModule, classNames);
 }

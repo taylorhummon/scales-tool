@@ -6,11 +6,10 @@ import { SettingsAccordion } from "@/components/settings/SettingsAccordion";
 import { useDerivedContext } from "@/contexts/derived";
 import { ActionType } from "@/utilities/action";
 import { useDispatchContext } from "@/contexts/dispatch";
-import { buildClassString } from "@/utilities/css";
 import { addToBrowserHistory } from "@/utilities/routing";
 import type { HistoricalState } from "@/utilities/state";
 
-import cssModule from "@/components/ScalesToolInner.module.scss";
+import scalesToolInnerCssModule from "@/components/ScalesToolInner.module.scss";
 
 
 export function ScalesToolInner(
@@ -58,7 +57,7 @@ export function ScalesToolInner(
         Explore Musical Scales Visually
       </h1>
       <ul
-        className={buildClassString(cssModule, ["instructions"])}
+        className={scalesToolInnerCssModule["instructions"]}
       >
         <li>
           Arrow buttons change keys within a mode.

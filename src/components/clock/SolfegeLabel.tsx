@@ -1,9 +1,9 @@
 import type { Note } from "@/classes/Note";
 import { SolfegeLabelAnimator } from "@/classes/SolfegeLabelAnimator";
-import { buildClassString } from "@/utilities/css";
+import { buildClassName } from "@/utilities/css";
 import { SolfegeLetter } from "@/utilities/solfege";
 
-import cssModule from "@/components/clock/SolfegeLabel.module.scss";
+import solfegeLabelCssModule from "@/components/clock/SolfegeLabel.module.scss";
 
 
 interface SolfegeLabelProps {
@@ -24,7 +24,7 @@ export function SolfegeLabel({
         className={getInnerClassName(note)}
       >
         <text
-          className={buildClassString(cssModule, ["text"])}
+          className={solfegeLabelCssModule["text"]}
         >
           {note.solfegeLetter}
         </text>
@@ -45,7 +45,7 @@ function getClassName(
   } else {
     classNames.push(`move-from-${startHour}-to-${finishHour}`);
   }
-  return buildClassString(cssModule, classNames);
+  return buildClassName(solfegeLabelCssModule, classNames);
 }
 
 function getInnerClassName(
@@ -57,5 +57,5 @@ function getInnerClassName(
   } else {
     classNames.push("regular");
   }
-  return buildClassString(cssModule, classNames);
+  return buildClassName(solfegeLabelCssModule, classNames);
 }

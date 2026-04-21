@@ -1,9 +1,9 @@
 import type { MusicalKey } from "@/classes/MusicalKey";
 import { useDerivedContext } from "@/contexts/derived";
 import { ROOT_DOT_STROKE, ROOT_DOT_FILL } from "@/utilities/color";
-import { buildClassString } from "@/utilities/css";
+import { buildClassName } from "@/utilities/css";
 
-import cssModule from "@/components/clock/RootDot.module.scss";
+import rootDotCssModule from "@/components/clock/RootDot.module.scss";
 
 
 export function RootDot(
@@ -35,5 +35,5 @@ function getClassName(
   } else {
     classNames.push(`move-from-${startHour}-to-${finishHour}`);
   }
-  return buildClassString(cssModule, classNames);
+  return buildClassName(rootDotCssModule, classNames);
 }

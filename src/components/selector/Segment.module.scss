@@ -3,7 +3,15 @@
 @use "@/utilities/position" as position;
 
 
-@keyframes move-degree-segment {
+.root-segment {
+  offset-path: path("M -26 0");
+}
+
+.degree-segment {
+  offset-path: path("M 26 0");
+}
+
+@keyframes move-segment-inner {
   0% {
     offset-distance: 0%;
   }
@@ -12,11 +20,7 @@
   }
 }
 
-.degree-segment {
-  offset-path: path("M 26 0");
-}
-
-.degree-segment-inner {
+.segment-inner {
   offset-rotate: 0deg;
 
   @for $position from -4 through 4 {
@@ -29,12 +33,12 @@
     $position-b: $position-a + 1;
 
     &.move-from-#{$position-a}-to-#{$position-b} {
-      animation: move-degree-segment animation.$duration ease-in-out 1 forwards;
+      animation: move-segment-inner animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(position.point($position-a), position.point($position-b));
     }
 
     &.move-from-#{$position-b}-to-#{$position-a} {
-      animation: move-degree-segment animation.$duration ease-in-out 1 forwards;
+      animation: move-segment-inner animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(position.point($position-b), position.point($position-a));
     }
   }

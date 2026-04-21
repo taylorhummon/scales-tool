@@ -2,9 +2,9 @@ import type { MusicalKey } from "@/classes/MusicalKey";
 import type { Note } from "@/classes/Note";
 import { useDerivedContext } from "@/contexts/derived";
 import { AnimationType, getNoteFinishHour } from "@/utilities/animation";
-import { buildClassString } from "@/utilities/css";
+import { buildClassName } from "@/utilities/css";
 
-import cssModule from "@/components/clock/NoteDot.module.scss";
+import noteDotCssModule from "@/components/clock/NoteDot.module.scss";
 
 
 interface NoteDotProps {
@@ -42,5 +42,5 @@ function getClassName(
   } else {
     classNames.push(`move-from-${startHour}-to-${finishHour}`);
   }
-  return buildClassString(cssModule, classNames);
+  return buildClassName(noteDotCssModule, classNames);
 }

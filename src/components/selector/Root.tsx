@@ -1,9 +1,9 @@
 import type { Note } from "@/classes/Note";
 import { useDerivedContext } from "@/contexts/derived";
-import { buildClassString } from "@/utilities/css";
+import { buildClassName } from "@/utilities/css";
 import { getFadingClassName } from "@/utilities/fading";
 
-import cssModule from "@/components/selector/Selector.module.scss";
+import selectorValueCssModule from "@/components/selector/SelectorValue.module.scss";
 
 
 interface RootProps {
@@ -21,7 +21,7 @@ export function Root({
       className={getClassName(position, nextPosition)}
     >
       <text
-        className={buildClassString(cssModule, ["text"])}
+        className={selectorValueCssModule["text"]}
       >
         {note.name}
       </text>
@@ -39,5 +39,5 @@ function getClassName(
     `position-${position}`,
     getFadingClassName(position, nextPosition),
   ];
-  return buildClassString(cssModule, classNames);
+  return buildClassName(selectorValueCssModule, classNames);
 }

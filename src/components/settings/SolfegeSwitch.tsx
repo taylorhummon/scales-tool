@@ -4,7 +4,7 @@ import { useDerivedContext } from "@/contexts/derived";
 import { useDispatchContext } from "@/contexts/dispatch";
 import { ActionType } from "@/utilities/action";
 
-import cssModule from "@/components/settings/SolfegeSwitch.module.scss";
+import solfegeSwitchCssModule from "@/components/settings/SolfegeSwitch.module.scss";
 
 
 export function SolfegeSwitch(
@@ -15,7 +15,7 @@ export function SolfegeSwitch(
   return (
     <Switch
       classNames={{
-        label: cssModule["switch-label"],
+        label: solfegeSwitchCssModule["switch-label"],
       }}
       label="Solfège"
       color="#954B55"

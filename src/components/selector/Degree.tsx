@@ -1,8 +1,8 @@
 import { useDerivedContext } from "@/contexts/derived";
-import { buildClassString } from "@/utilities/css";
+import { buildClassName } from "@/utilities/css";
 import { getFadingClassName } from "@/utilities/fading";
 
-import cssModule from "@/components/selector/Selector.module.scss";
+import selectorValueCssModule from "@/components/selector/SelectorValue.module.scss";
 
 
 interface DegreeProps {
@@ -21,7 +21,7 @@ export function Degree({
       className={getClassName(position, nextPosition)}
     >
       <text
-        className={buildClassString(cssModule, ["text"])}
+        className={selectorValueCssModule["text"]}
       >
         {getFancyDegree(degree)}
       </text>
@@ -39,7 +39,7 @@ function getClassName(
     `position-${position}`,
     getFadingClassName(position, nextPosition),
   ];
-  return buildClassString(cssModule, classNames);
+  return buildClassName(selectorValueCssModule, classNames);
 }
 
 function getFancyDegree(

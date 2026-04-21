@@ -2,9 +2,13 @@ type CssModule = {
   [className: string]: string;
 }
 
-export function buildClassString(
+export function buildClassName(
   cssModule: CssModule,
   classNames: Array<string>
 ): string {
-  return classNames.map((className) => cssModule[className]).join(" ");
+  return classNames.map(
+    (className) => cssModule[className]
+  ).filter(
+    (mangledClassName) => mangledClassName !== undefined
+  ).join(" ");
 }
