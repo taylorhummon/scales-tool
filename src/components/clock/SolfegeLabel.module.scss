@@ -1,7 +1,7 @@
-@use "@/shared-css/animation" as animation;
-@use "@/shared-css/clock" as clock;
-@use "@/shared-css/path" as path;
-@use "@/shared-css/unit-circle" as unit-circle;
+@use "@/utilities/animation" as animation;
+@use "@/utilities/clock" as clock;
+@use "@/utilities/path" as path;
+@use "@/utilities/unit-circle" as unit-circle;
 
 
 @keyframes move-solfege-label {

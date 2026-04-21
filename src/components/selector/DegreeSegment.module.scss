@@ -1,6 +1,6 @@
-@use "@/shared-css/animation" as animation;
-@use "@/shared-css/path" as path;
-@use "@/shared-css/position" as position;
+@use "@/utilities/animation" as animation;
+@use "@/utilities/path" as path;
+@use "@/utilities/position" as position;
 
 
 @keyframes move-degree-segment {

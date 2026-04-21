@@ -1,7 +1,7 @@
 @use "sass:map" as map;
 @use "sass:math" as math;
-@use "@/shared-css/unit-circle" as unit-circle;
-@use "@/shared-css/path" as path;
+@use "@/utilities/unit-circle" as unit-circle;
+@use "@/utilities/path" as path;
 
 
 $radius: 80;

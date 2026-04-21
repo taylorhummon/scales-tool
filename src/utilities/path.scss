@@ -1,5 +1,5 @@
-@use "@/shared-css/unit-circle" as unit-circle;
-@use "@/shared-css/clock" as clock;
+@use "@/utilities/unit-circle" as unit-circle;
+@use "@/utilities/clock" as clock;
 
 
 @function still-path($point) {

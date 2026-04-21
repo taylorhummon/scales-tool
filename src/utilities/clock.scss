@@ -1,4 +1,4 @@
-@use "@/shared-css/unit-circle" as unit-circle;
+@use "@/utilities/unit-circle" as unit-circle;
 
 
 @function point($radius, $hour) {
