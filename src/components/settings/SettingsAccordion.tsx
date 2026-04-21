@@ -30,8 +30,8 @@ export function SettingsAccordion(
             align="stretch"
             gap="lg"
           >
-            <AnimationTypeChooser />
             <SolfegeSwitch />
+            <AnimationTypeChooser />
           </Stack>
         </Accordion.Panel>
       </Accordion.Item>
