@@ -1,8 +1,6 @@
-import { MAX_DEGREE, MIN_DEGREE } from "@/config";
 import { Root } from "@/components/selector/Root";
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassName } from "@/utilities/css";
-import { isBetweenInclusive } from "@/utilities/math";
 import type { Motion } from "@/utilities/motion";
 import { getWillIncrementRoot, getWillDecrementRoot } from "@/utilities/motion";
 import { EXTENDED_POSITIONS } from "@/utilities/fading";
@@ -15,8 +13,6 @@ export function RootSelector(
   const { musicalKey, motion } = useDerivedContext();
   const notes = EXTENDED_POSITIONS.map(
     (position) => musicalKey.noteAt(position)
-  ).filter(
-    (note) => isBetweenInclusive(note.value, MIN_DEGREE - 3, MAX_DEGREE + 3)
   );
   return (
     <g

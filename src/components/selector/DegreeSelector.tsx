@@ -1,8 +1,6 @@
-import { MAX_DEGREE, MIN_DEGREE } from "@/config";
 import { Degree } from "@/components/selector/Degree";
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassName } from "@/utilities/css";
-import { isBetweenInclusive } from "@/utilities/math";
 import type { Motion } from "@/utilities/motion";
 import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/motion";
 import { EXTENDED_POSITIONS } from "@/utilities/fading";
@@ -14,9 +12,6 @@ export function DegreeSelector(
 ): JSX.Element {
   const { musicalKey, motion } = useDerivedContext();
   const selectedDegree = musicalKey.degree;
-  const positions = EXTENDED_POSITIONS.filter(
-    (position) => isBetweenInclusive(selectedDegree + position, MIN_DEGREE, MAX_DEGREE)
-  );
   return (
     <g
       className={selectorCssModule["degree-selector"]}
@@ -35,7 +30,7 @@ export function DegreeSelector(
         <g
           className={getClassName(motion)}
         >
-          {positions.map((position) => (
+          {EXTENDED_POSITIONS.map((position) => (
             <Degree
               key={position}
               degree={selectedDegree + position}
