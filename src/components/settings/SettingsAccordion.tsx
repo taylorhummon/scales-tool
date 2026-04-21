@@ -15,6 +15,7 @@ export function SettingsAccordion(
         label: cssModule["accordion-label"],
       }}
       order={3}
+      chevronPosition="left"
       variant="unstyled"
     >
       <Accordion.Item
