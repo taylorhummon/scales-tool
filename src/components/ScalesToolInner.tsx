@@ -6,8 +6,11 @@ import { SettingsAccordion } from "@/components/settings/SettingsAccordion";
 import { useDerivedContext } from "@/contexts/derived";
 import { ActionType } from "@/utilities/action";
 import { useDispatchContext } from "@/contexts/dispatch";
+import { buildClassString } from "@/utilities/css";
 import { addToBrowserHistory } from "@/utilities/routing";
 import type { HistoricalState } from "@/utilities/state";
+
+import cssModule from "@/components/ScalesToolInner.module.scss";
 
 
 export function ScalesToolInner(
@@ -51,6 +54,22 @@ export function ScalesToolInner(
     <div
       ref={domNodeRef}
     >
+      <h1>
+        Explore Musical Scales Visually
+      </h1>
+      <ul
+        className={buildClassString(cssModule, ["instructions"])}
+      >
+        <li>
+          Sharp and flat buttons move between parallel keys.
+        </li>
+        <li>
+          Blue dot buttons move between relative keys.
+        </li>
+        <li>
+          Arrow buttons change keys within a mode.
+        </li>
+      </ul>
       <Canvas />
       <SettingsAccordion />
     </div>

@@ -1,8 +1,8 @@
-export const ROOT_SEGMENT_STROKE = "rgb(120, 53, 71)";
-export const ROOT_SEGMENT_FILL = "rgb(254, 249, 246)";
+export const ROOT_SEGMENT_FILL = "rgb(255, 221, 207)";
 
-export const SELECTION_BOX_STROKE = "rgb(180, 120, 80)";
-export const SELECTION_BOX_FILL = "rgba(255, 187, 0, 0.1)";
+export const CENTRAL_BOX_STROKE = "rgb(180, 120, 80)";
+export const CENTRAL_BOX_FILL = "rgb(254, 248, 236)";
+export const CENTRAL_BOX_OVERLAP = "rgb(254, 238, 226)";
 
 export const ICON_MOTION_STROKE = "rgb(110, 110, 110)";
 

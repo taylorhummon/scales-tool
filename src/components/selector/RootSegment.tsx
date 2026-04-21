@@ -1,5 +1,5 @@
 import { useDerivedContext } from "@/contexts/derived";
-import { ROOT_SEGMENT_STROKE, ROOT_SEGMENT_FILL } from "@/utilities/color";
+import { ROOT_SEGMENT_FILL } from "@/utilities/color";
 import { buildClassString } from "@/utilities/css";
 
 import cssModule from "@/components/selector/RootSegment.module.scss";
@@ -13,35 +13,26 @@ export function RootSegment(
   if (position > 4 || position < -4) return null;
   return (
     <g
-      className={getClassName(position, nextPosition)}
+      className={buildClassString(cssModule, ["root-segment"])}
+      clipPath="url(#root-selector-clip-path)"
     >
-      <path
-        d="M -15,105 Q 0,110 15,105 L 15,-105 Q 0,-110 -15,-105 L -15,105"
-        fill={ROOT_SEGMENT_FILL}
-      />
-      <path
-        d="M -15,-105 Q 0,-110 15,-105"
-        stroke={ROOT_SEGMENT_STROKE}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="M -15,105 Q 0,110 15,105"
-        stroke={ROOT_SEGMENT_STROKE}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        fill="none"
-      />
+      <g
+        className={getInnerClassName(position, nextPosition)}
+      >
+        <path
+          d="M -15,105 Q 0,110 15,105 L 15,-105 Q 0,-110 -15,-105 L -15,105"
+          fill={ROOT_SEGMENT_FILL}
+        />
+      </g>
     </g>
   );
 }
 
-function getClassName(
+function getInnerClassName(
   position: number,
   nextPosition: number
 ): string {
-  const classNames = ["root-segment"];
+  const classNames = ["root-segment-inner"];
   if (nextPosition === position) {
     classNames.push(`position-${position}`);
   } else {

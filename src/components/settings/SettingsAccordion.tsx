@@ -12,10 +12,11 @@ export function SettingsAccordion(
     <Accordion
       classNames={{
         root: cssModule["accordion-root"],
+        item: cssModule["accordion-item"],
         label: cssModule["accordion-label"],
       }}
       order={3}
-      variant="separated"
+      variant="contained"
     >
       <Accordion.Item
         key={"Settings"}

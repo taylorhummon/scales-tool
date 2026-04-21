@@ -18,6 +18,7 @@ export function SolfegeSwitch(
         label: cssModule["switch-label"],
       }}
       label="Solfège"
+      color="#954B55"
       withThumbIndicator={false}
       checked={isUsingSolfege}
       onChange={(event) => dispatch({

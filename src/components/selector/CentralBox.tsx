@@ -1,4 +1,7 @@
-import { SELECTION_BOX_STROKE, SELECTION_BOX_FILL } from "@/utilities/color";
+import { CENTRAL_BOX_STROKE, CENTRAL_BOX_FILL, CENTRAL_BOX_OVERLAP } from "@/utilities/color";
+import { buildClassString } from "@/utilities/css";
+
+import cssModule from "@/components/selector/CentralBox.module.scss";
 
 
 export function CentralBox(
@@ -7,30 +10,54 @@ export function CentralBox(
     <>
       <rect
         stroke="none"
-        x="-50"
+        x="-53"
         y="-15"
-        width="100"
+        width="106"
         height="30"
-        fill={SELECTION_BOX_FILL}
+        fill={CENTRAL_BOX_FILL}
+      />
+      <rect
+        stroke="none"
+        x="11"
+        y="-15"
+        width="30"
+        height="30"
+        fill={CENTRAL_BOX_OVERLAP}
       />
       <g
         strokeWidth="1.5"
-        stroke={SELECTION_BOX_STROKE}
+        stroke={CENTRAL_BOX_STROKE}
         fill="none"
       >
         <polyline
-          points="-50,9 -50,15 -42,15"
+          points="-53,9 -53,15 -45,15"
         />
         <polyline
-          points="-50,-9 -50,-15 -42,-15"
+          points="-53,-9 -53,-15 -45,-15"
         />
         <polyline
-          points="50,9 50,15 42,15"
+          points="53,9 53,15 45,15"
         />
         <polyline
-          points="50,-9 50,-15 42,-15"
+          points="53,-9 53,-15 45,-15"
         />
       </g>
+      <text
+        className={buildClassString(cssModule, ["label"])}
+        x="-26"
+        y="-115"
+        textAnchor="middle"
+      >
+        deg
+      </text>
+      <text
+        className={buildClassString(cssModule, ["label"])}
+        x="26"
+        y="-115"
+        textAnchor="middle"
+      >
+        root
+      </text>
     </>
   );
 }

@@ -13,6 +13,10 @@
 }
 
 .root-segment {
+  offset-path: path("M 26 0");
+}
+
+.root-segment-inner {
   offset-rotate: 0deg;
 
   @for $position from -4 through 4 {
