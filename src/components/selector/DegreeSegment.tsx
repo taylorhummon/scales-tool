@@ -1,5 +1,5 @@
 import { useDerivedContext } from "@/contexts/derived";
-import { ROOT_SEGMENT_FILL } from "@/utilities/color";
+import { SEGMENT_FILL } from "@/utilities/color";
 import { buildClassString } from "@/utilities/css";
 
 import cssModule from "@/components/selector/DegreeSegment.module.scss";
@@ -21,7 +21,7 @@ export function DegreeSegment(
       >
         <path
           d="M -17,105 Q 0,110 17,105 L 17,-105 Q 0,-110 -17,-105 L -17,105"
-          fill={ROOT_SEGMENT_FILL}
+          fill={SEGMENT_FILL}
         />
       </g>
     </g>

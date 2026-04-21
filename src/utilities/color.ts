@@ -1,4 +1,4 @@
-export const ROOT_SEGMENT_FILL = "rgb(255, 221, 207)";
+export const SEGMENT_FILL = "rgb(255, 221, 207)";
 
 export const CENTRAL_BOX_STROKE = "rgb(180, 120, 80)";
 export const CENTRAL_BOX_FILL = "rgb(254, 248, 236)";
