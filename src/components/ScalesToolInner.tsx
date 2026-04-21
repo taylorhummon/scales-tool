@@ -61,13 +61,13 @@ export function ScalesToolInner(
         className={buildClassString(cssModule, ["instructions"])}
       >
         <li>
+          Arrow buttons change keys within a mode.
+        </li>
+        <li>
           Blue dot buttons move between relative keys.
         </li>
         <li>
           Sharp and flat buttons move between parallel keys.
-        </li>
-        <li>
-          Arrow buttons change keys within a mode.
         </li>
       </ul>
       <Canvas />
