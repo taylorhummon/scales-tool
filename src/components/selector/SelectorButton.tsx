@@ -19,24 +19,23 @@ enum ButtonState {
 }
 
 interface SelectorButtonProps {
+  width: number;
+  height: number;
   onClickMotion: Motion;
+  className: string;
   dataTestid: string;
 }
 
 export function SelectorButton({
+  width,
+  height,
   onClickMotion,
+  className,
   dataTestid
 }: SelectorButtonProps): JSX.Element {
   const { musicalKey, nextMusicalKey, motion, animationType } = useDerivedContext();
   const dispatch = useDispatchContext();
   const buttonState = getButtonState(nextMusicalKey, motion, onClickMotion);
-  const isWide = (
-    onClickMotion === Motion.DecrementBoth ||
-    onClickMotion === Motion.IncrementBoth
-  );
-  const width = isWide ? 100 : 46;
-  const height = 40;
-  const borderRadius = 8;
 
   function handleClick(
   ): void {
@@ -52,34 +51,34 @@ export function SelectorButton({
 
   return (
     <g
-      className={groupClassName(onClickMotion)}
+      className={getRootClassName(className)}
     >
       <Icon
         motion={onClickMotion}
       />
       <rect
-        className={rectangleClassName(onClickMotion, buttonState)}
+        className={getRectangleClassName(onClickMotion, buttonState)}
         onClick={handleClick}
         data-testid={dataTestid}
         x={- width / 2}
         y={- height / 2}
         width={width}
         height={height}
-        rx={borderRadius}
-        ry={borderRadius}
+        rx={8}
+        ry={8}
       />
     </g>
   );
 }
 
-function groupClassName(
-  onClickMotion: Motion
+function getRootClassName(
+  className: string
 ): string {
-  const classNames = ["button", onClickMotion];
-  return buildClassName(selectorButtonCssModule, classNames);
+  const classNames = [buildClassName(selectorButtonCssModule, ["button"]), className];
+  return classNames.filter((className) => className !== undefined).join(" ");
 }
 
-function rectangleClassName(
+function getRectangleClassName(
   onClickMotion: Motion,
   buttonState: ButtonState
 ): string {
@@ -93,11 +92,11 @@ function getButtonState(
   motion: Motion,
   onClickMotion: Motion
 ): ButtonState {
-  if (motion === onClickMotion) {
-    return ButtonState.Active;
-  }
   if (! canPerformMotion(nextMusicalKey, onClickMotion)) {
     return ButtonState.Disabled;
+  }
+  if (motion === onClickMotion) {
+    return ButtonState.Active;
   }
   if (motion !== Motion.Still) {
     return ButtonState.Waiting;

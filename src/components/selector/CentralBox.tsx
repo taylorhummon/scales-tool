@@ -1,16 +1,36 @@
 import { CENTRAL_BOX_STROKE, CENTRAL_BOX_FILL } from "@/utilities/color";
 
 
-export function CentralBox(
-): JSX.Element {
+interface CentralBoxProps {
+  width: number;
+  height: number;
+  decorationWidth: number;
+  decorationHeight: number;
+}
+
+export function CentralBox({
+  width,
+  height,
+  decorationWidth,
+  decorationHeight
+}: CentralBoxProps): JSX.Element {
+  const right = width / 2;
+  const left = - right;
+  const bottom = height / 2;
+  const top = - bottom;
+  const topLeftDecoration = `${left},${top + decorationHeight} ${left},${top} ${left + decorationWidth},${top}`;
+  const topRightDecoration = `${right},${top + decorationHeight} ${right},${top} ${right - decorationWidth},${top}`;
+  const bottomLeftDecoration = `${left},${bottom - decorationHeight} ${left},${bottom} ${left + decorationWidth},${bottom}`;
+  const bottomRightDecoration = `${right},${bottom - decorationHeight} ${right},${bottom} ${right - decorationWidth},${bottom}`;
+
   return (
     <>
       <rect
         stroke="none"
-        x="-55"
-        y="-15"
-        width="110"
-        height="30"
+        x={left}
+        y={top}
+        width={width}
+        height={height}
         fill={CENTRAL_BOX_FILL}
       />
       <g
@@ -19,16 +39,16 @@ export function CentralBox(
         fill="none"
       >
         <polyline
-          points="-55,9 -55,15 -47,15"
+          points={bottomLeftDecoration}
         />
         <polyline
-          points="-55,-9 -55,-15 -47,-15"
+          points={topLeftDecoration}
         />
         <polyline
-          points="55,9 55,15 47,15"
+          points={bottomRightDecoration}
         />
         <polyline
-          points="55,-9 55,-15 47,-15"
+          points={topRightDecoration}
         />
       </g>
     </>

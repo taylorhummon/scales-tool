@@ -1,25 +1,25 @@
-import { MAX_DEGREE, MIN_DEGREE } from "@/config";
-import { Degree } from "@/components/selector/Degree";
+import { Mode } from "@/components/selector/Mode";
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassName } from "@/utilities/css";
 import { isBetweenInclusive } from "@/utilities/math";
+import { MAX_MODE, MIN_MODE } from "@/utilities/mode";
 import type { Motion } from "@/utilities/motion";
-import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/motion";
+import { getWillIncrementMode, getWillDecrementMode } from "@/utilities/motion";
 import { EXTENDED_POSITIONS } from "@/utilities/fading";
 
 import selectorCssModule from "@/components/selector/Selector.module.scss";
 
 
-export function DegreeSelector(
+export function ModeSelector(
 ): JSX.Element {
   const { musicalKey, motion } = useDerivedContext();
-  const selectedDegree = musicalKey.degree;
+  const selectedMode = musicalKey.mode;
   const positions = EXTENDED_POSITIONS.filter(
-    (position) => isBetweenInclusive(selectedDegree + position, MIN_DEGREE, MAX_DEGREE)
+    (position) => isBetweenInclusive(selectedMode + position, MIN_MODE, MAX_MODE)
   );
   return (
     <g
-      className={selectorCssModule["degree-selector"]}
+      className={selectorCssModule["mode-selector"]}
     >
       <text
         className={selectorCssModule["label"]}
@@ -27,7 +27,7 @@ export function DegreeSelector(
         y="-115"
         textAnchor="middle"
       >
-        deg
+        mode
       </text>
       <g
         clipPath="url(#selectors-clip-path)"
@@ -36,9 +36,9 @@ export function DegreeSelector(
           className={getClassName(motion)}
         >
           {positions.map((position) => (
-            <Degree
+            <Mode
               key={position}
-              degree={selectedDegree + position}
+              mode={selectedMode + position}
               position={position}
             />
           ))}
@@ -52,9 +52,9 @@ function getClassName(
   motion: Motion
 ): string {
   const classNames = ["selector-inner"];
-  if (getWillIncrementDegree(motion)) {
+  if (getWillIncrementMode(motion)) {
     classNames.push("move-up");
-  } else if (getWillDecrementDegree(motion)) {
+  } else if (getWillDecrementMode(motion)) {
     classNames.push("move-down");
   }
   return buildClassName(selectorCssModule, classNames);

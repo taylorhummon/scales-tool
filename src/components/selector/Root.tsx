@@ -22,6 +22,7 @@ export function Root({
     >
       <text
         className={selectorValueCssModule["text"]}
+        textAnchor="middle"
       >
         {note.name}
       </text>

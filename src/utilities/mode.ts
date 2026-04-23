@@ -1,8 +1,11 @@
 import { NaturalNote } from "@/utilities/naturalNote";
+import { buildInclusiveRange } from "@/utilities/array";
 
 
 export const MAX_MODE = 3;
 export const MIN_MODE = -3;
+
+export const MODES = buildInclusiveRange(MIN_MODE, MAX_MODE);
 
 export enum ModeName {
   Minor = "Minor",    // Aeolian
@@ -24,6 +27,19 @@ export function modeNameFromMode(
   if (mode === 1) return ModeName.Minor;
   if (mode === 2) return ModeName.Phrygian;
   if (mode === 3) return ModeName.Locrian;
+  throw Error(`Invalid mode: ${mode}`);
+}
+
+export function shortModeNameFromMode(
+  mode: number
+): string {
+  if (mode === -3) return "Lyd";
+  if (mode === -2) return "Maj";
+  if (mode === -1) return "Mix";
+  if (mode === 0) return "Dor";
+  if (mode === 1) return "Min";
+  if (mode === 2) return "Phr";
+  if (mode === 3) return "Loc";
   throw Error(`Invalid mode: ${mode}`);
 }
 

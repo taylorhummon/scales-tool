@@ -1,21 +1,22 @@
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassName } from "@/utilities/css";
 import { getFadingClassName } from "@/utilities/fading";
+import { shortModeNameFromMode } from "@/utilities/mode";
 
 import selectorValueCssModule from "@/components/selector/SelectorValue.module.scss";
 
 
-interface DegreeProps {
-  degree: number;
+interface ModeProps {
+  mode: number;
   position: number;
 }
 
-export function Degree({
-  degree,
+export function Mode({
+  mode,
   position
-}: DegreeProps): JSX.Element {
+}: ModeProps): JSX.Element {
   const { musicalKey, nextMusicalKey } = useDerivedContext();
-  const nextPosition = position - nextMusicalKey.degree + musicalKey.degree;
+  const nextPosition = position - nextMusicalKey.mode + musicalKey.mode;
   return (
     <g
       className={getClassName(position, nextPosition)}
@@ -24,7 +25,7 @@ export function Degree({
         className={selectorValueCssModule["text"]}
         textAnchor="middle"
       >
-        {getFancyDegree(degree)}
+        {shortModeNameFromMode(mode)}
       </text>
     </g>
   );
@@ -35,23 +36,10 @@ function getClassName(
   nextPosition: number
 ): string {
   const classNames = [
-    "degree",
+    "mode",
     "selector-value",
     `position-${position}`,
     getFadingClassName(position, nextPosition),
   ];
   return buildClassName(selectorValueCssModule, classNames);
-}
-
-function getFancyDegree(
-  degree: number
-): JSX.Element {
-  const count = Math.abs(degree);
-  if (degree > 0) {
-    return <>{count}♯</>;
-  }
-  if (degree < 0) {
-    return <>{count}♭</>;
-  }
-  return <>0</>;
 }

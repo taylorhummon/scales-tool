@@ -1,7 +1,6 @@
 import { CentralBox } from "@/components/selector/CentralBox";
-import { DegreeSegment } from "@/components/selector/DegreeSegment";
+import { ModeSelector } from "@/components/selector/ModeSelector";
 import { DegreeSelector } from "@/components/selector/DegreeSelector";
-import { RootSegment } from "@/components/selector/RootSegment";
 import { RootSelector } from "@/components/selector/RootSelector";
 import { SelectorButtons } from "@/components/selector/SelectorButtons";
 
@@ -16,30 +15,24 @@ export function Selectors(
     >
       <defs>
         <clipPath
-          id="root-selector-clip-path"
+          id="selectors-clip-path"
         >
           <rect
-            x="-25"
+            x="-30"
             y="-103"
-            width="50"
-            height="206"
-          />
-        </clipPath>
-        <clipPath
-          id="degree-selector-clip-path"
-        >
-          <rect
-            x="-40"
-            y="-103"
-            width="80"
+            width="60"
             height="206"
           />
         </clipPath>
       </defs>
       <SelectorButtons />
-      <RootSegment />
-      <DegreeSegment />
-      <CentralBox />
+      <CentralBox
+        width={156}
+        height={30}
+        decorationWidth={8}
+        decorationHeight={6}
+      />
+      <ModeSelector />
       <RootSelector />
       <DegreeSelector />
     </g>

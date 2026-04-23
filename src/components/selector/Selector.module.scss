@@ -1,12 +1,16 @@
 @use "@/utilities/animation" as animation;
 
 
+.mode-selector {
+  offset-path: path("M -50 0");
+}
+
 .root-selector {
-  offset-path: path("M -26 0");
+  offset-path: path("M 0 0");
 }
 
 .degree-selector {
-  offset-path: path("M 26 0");
+  offset-path: path("M 50 0");
 }
 
 .label {

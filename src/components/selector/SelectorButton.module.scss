@@ -1,29 +1,3 @@
-.button {
-  &.IncrementRoot {
-    offset-path: path("M -27 -160");
-  }
-
-  &.DecrementRoot {
-    offset-path: path("M -27 135");
-  }
-
-  &.IncrementDegree {
-    offset-path: path("M 27 -160");
-  }
-
-  &.DecrementDegree {
-    offset-path: path("M 27 135");
-  }
-
-  &.IncrementBoth {
-    offset-path: path("M 0 -208");
-  }
-
-  &.DecrementBoth {
-    offset-path: path("M 0 183");
-  }
-}
-
 .button-rectangle {
   stroke-width: 2;
   stroke: rgb(255, 165, 0);
