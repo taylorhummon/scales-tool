@@ -1,28 +1,17 @@
 import { CENTRAL_BOX_STROKE, CENTRAL_BOX_FILL } from "@/utilities/color";
 
 
-interface CentralBoxProps {
-  width: number;
-  height: number;
-  decorationWidth: number;
-  decorationHeight: number;
-}
+const width = 156;
+const height = 30;
+const decorationWidth = 8;
+const decorationHeight = 6;
+const right = width / 2;
+const left = - right;
+const bottom = height / 2;
+const top = - bottom;
 
-export function CentralBox({
-  width,
-  height,
-  decorationWidth,
-  decorationHeight
-}: CentralBoxProps): JSX.Element {
-  const right = width / 2;
-  const left = - right;
-  const bottom = height / 2;
-  const top = - bottom;
-  const topLeftDecoration = `${left},${top + decorationHeight} ${left},${top} ${left + decorationWidth},${top}`;
-  const topRightDecoration = `${right},${top + decorationHeight} ${right},${top} ${right - decorationWidth},${top}`;
-  const bottomLeftDecoration = `${left},${bottom - decorationHeight} ${left},${bottom} ${left + decorationWidth},${bottom}`;
-  const bottomRightDecoration = `${right},${bottom - decorationHeight} ${right},${bottom} ${right - decorationWidth},${bottom}`;
-
+export function CentralBox(
+): JSX.Element {
   return (
     <>
       <rect
@@ -39,16 +28,16 @@ export function CentralBox({
         fill="none"
       >
         <polyline
-          points={bottomLeftDecoration}
+          points={`${left},${bottom - decorationHeight} ${left},${bottom} ${left + decorationWidth},${bottom}`}
         />
         <polyline
-          points={topLeftDecoration}
+          points={`${left},${top + decorationHeight} ${left},${top} ${left + decorationWidth},${top}`}
         />
         <polyline
-          points={bottomRightDecoration}
+          points={`${right},${bottom - decorationHeight} ${right},${bottom} ${right - decorationWidth},${bottom}`}
         />
         <polyline
-          points={topRightDecoration}
+          points={`${right},${top + decorationHeight} ${right},${top} ${right - decorationWidth},${top}`}
         />
       </g>
     </>

@@ -4,6 +4,8 @@ import { Selectors } from "@/components/selector/Selectors";
 import canvasCssModule from "@/components/Canvas.module.scss";
 
 
+// NOTE: Keep the viewbox width in sync with the #scales-tool-mount-point width in CSS.
+
 export function Canvas(
 ): JSX.Element {
   return (

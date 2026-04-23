@@ -24,9 +24,6 @@ export function RootSelector(
     >
       <text
         className={selectorCssModule["label"]}
-        x="0"
-        y="-115"
-        textAnchor="middle"
       >
         root
       </text>

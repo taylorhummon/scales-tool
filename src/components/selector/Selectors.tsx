@@ -26,12 +26,7 @@ export function Selectors(
         </clipPath>
       </defs>
       <SelectorButtons />
-      <CentralBox
-        width={156}
-        height={30}
-        decorationWidth={8}
-        decorationHeight={6}
-      />
+      <CentralBox />
       <ModeSelector />
       <RootSelector />
       <DegreeSelector />

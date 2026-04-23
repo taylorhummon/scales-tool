@@ -1,31 +1,39 @@
-.upper-top-left {
-  offset-path: path("M -26 -204");
+.upper-buttons {
+  offset-path: path("M 0 -181");
+
+  .top-left {
+    offset-path: path("M -26 -23");
+  }
+
+  .top-right {
+    offset-path: path("M 52 -23");
+  }
+
+  .bottom-left {
+    offset-path: path("M -52 23");
+  }
+
+  .bottom-right {
+    offset-path: path("M 26 23");
+  }
 }
 
-.upper-top-right {
-  offset-path: path("M 52 -204");
-}
+.lower-buttons {
+  offset-path: path("M 0 158");
 
-.upper-bottom-left {
-  offset-path: path("M -52 -158");
-}
+  .top-left {
+    offset-path: path("M -52 -23");
+  }
 
-.upper-bottom-right {
-  offset-path: path("M 26 -158");
-}
+  .top-right {
+    offset-path: path("M 26 -23");
+  }
 
-.lower-top-left {
-  offset-path: path("M -52 135");
-}
+  .bottom-left {
+    offset-path: path("M -26 23");
+  }
 
-.lower-top-right {
-  offset-path: path("M 26 135");
-}
-
-.lower-bottom-left {
-  offset-path: path("M -26 181");
-}
-
-.lower-bottom-right {
-  offset-path: path("M 52 181");
+  .bottom-right {
+    offset-path: path("M 52 23");
+  }
 }

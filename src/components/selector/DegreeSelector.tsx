@@ -23,9 +23,6 @@ export function DegreeSelector(
     >
       <text
         className={selectorCssModule["label"]}
-        x="0"
-        y="-115"
-        textAnchor="middle"
       >
         deg
       </text>

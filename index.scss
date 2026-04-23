@@ -126,6 +126,8 @@ a.site-title {
   padding: 0 20px;
 }
 
+// NOTE: Keep the #scales-tool-mount-point width in sync with the Canvas svg viewbox.
+
 #scales-tool-mount-point {
   max-width: 100%;
   min-width: 0;
