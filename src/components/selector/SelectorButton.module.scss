@@ -20,3 +20,11 @@
     cursor: default;
   }
 }
+
+.nudge-icon-left {
+  offset-path: path("M -23 0");
+}
+
+.nudge-icon-right {
+  offset-path: path("M 23 0");
+}

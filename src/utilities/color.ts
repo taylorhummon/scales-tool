@@ -1,5 +1,5 @@
 export const CENTRAL_BOX_STROKE = "rgb(177, 1, 82)";
-export const CENTRAL_BOX_FILL = "rgb(254, 244, 141)";
+export const CENTRAL_BOX_FILL = "rgb(255, 219, 183)";
 
 export const ICON_MOTION_STROKE = "rgb(110, 110, 110)";
 

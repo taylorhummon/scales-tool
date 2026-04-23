@@ -1,4 +1,4 @@
-import { SelectorButton } from "@/components/selector/SelectorButton";
+import { SelectorButton, ButtonPiece } from "@/components/selector/SelectorButton";
 import { Motion } from "@/utilities/motion";
 
 import selectorButtonsCssModule from "@/components/selector/SelectorButtons.module.scss";
@@ -9,60 +9,52 @@ export function SelectorButtons(
   return (
     <>
       <SelectorButton
-        width={46}
-        height={40}
+        buttonPiece={ButtonPiece.RightHalf}
         onClickMotion={Motion.DecrementDegreeAndIncrementMode}
-        className={selectorButtonsCssModule["top-top-left"]}
-        dataTestid="top-top-left"
+        className={selectorButtonsCssModule["upper-top-left"]}
+        dataTestid="upper-top-left"
       />
       <SelectorButton
-        width={98}
-        height={40}
+        buttonPiece={ButtonPiece.Full}
         onClickMotion={Motion.IncrementRootAndIncrementDegree}
-        className={selectorButtonsCssModule["top-top-right"]}
-        dataTestid="top-top-right"
+        className={selectorButtonsCssModule["upper-top-right"]}
+        dataTestid="upper-top-right"
       />
       <SelectorButton
-        width={98}
-        height={40}
+        buttonPiece={ButtonPiece.Full}
         onClickMotion={Motion.IncrementModeAndIncrementRoot}
-        className={selectorButtonsCssModule["top-bottom-left"]}
-        dataTestid="top-bottom-left"
+        className={selectorButtonsCssModule["upper-bottom-left"]}
+        dataTestid="upper-bottom-left"
       />
       <SelectorButton
-        width={46}
-        height={40}
+        buttonPiece={ButtonPiece.LeftHalf}
         onClickMotion={Motion.IncrementDegreeAndDecrementMode}
-        className={selectorButtonsCssModule["top-bottom-right"]}
-        dataTestid="top-bottom-right"
+        className={selectorButtonsCssModule["upper-bottom-right"]}
+        dataTestid="upper-bottom-right"
       />
       <SelectorButton
-        width={98}
-        height={40}
+        buttonPiece={ButtonPiece.Full}
         onClickMotion={Motion.DecrementModeAndDecrementRoot}
-        className={selectorButtonsCssModule["bottom-top-left"]}
-        dataTestid="bottom-top-left"
+        className={selectorButtonsCssModule["lower-top-left"]}
+        dataTestid="lower-top-left"
       />
       <SelectorButton
-        width={46}
-        height={40}
+        buttonPiece={ButtonPiece.LeftHalf}
         onClickMotion={Motion.DecrementDegreeAndIncrementMode}
-        className={selectorButtonsCssModule["bottom-top-right"]}
-        dataTestid="bottom-top-right"
+        className={selectorButtonsCssModule["lower-top-right"]}
+        dataTestid="lower-top-right"
         />
       <SelectorButton
-        width={46}
-        height={40}
+        buttonPiece={ButtonPiece.RightHalf}
         onClickMotion={Motion.IncrementDegreeAndDecrementMode}
-        className={selectorButtonsCssModule["bottom-bottom-left"]}
-        dataTestid="bottom-bottom-left"
+        className={selectorButtonsCssModule["lower-bottom-left"]}
+        dataTestid="lower-bottom-left"
       />
       <SelectorButton
-        width={98}
-        height={40}
+        buttonPiece={ButtonPiece.Full}
         onClickMotion={Motion.DecrementRootAndDecrementDegree}
-        className={selectorButtonsCssModule["bottom-bottom-right"]}
-        dataTestid="bottom-bottom-right"
+        className={selectorButtonsCssModule["lower-bottom-right"]}
+        dataTestid="lower-bottom-right"
       />
     </>
   );

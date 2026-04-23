@@ -8,14 +8,18 @@ import { Motion } from "@/utilities/motion";
 
 interface IconProps {
   motion: Motion;
+  className?: string;
 }
 
 export function Icon({
-  motion
+  motion,
+  className
 }: IconProps): JSX.Element | null {
   if (motion === Motion.IncrementModeAndIncrementRoot) {
     return (
-      <>
+      <g
+        className={className}
+      >
         <circle
           cx="6"
           cy="-4"
@@ -48,12 +52,14 @@ export function Icon({
           strokeWidth="1"
           stroke={ICON_MOTION_STROKE}
         />
-      </>
+      </g>
     );
   }
   if (motion === Motion.DecrementModeAndDecrementRoot) {
     return (
-      <>
+      <g
+        className={className}
+      >
         <circle
           cx="-6"
           cy="4"
@@ -86,12 +92,14 @@ export function Icon({
           strokeWidth="1"
           stroke={ICON_MOTION_STROKE}
         />
-      </>
+      </g>
     );
   }
   if (motion === Motion.IncrementDegreeAndDecrementMode) {
     return (
-      <>
+      <g
+        className={className}
+      >
         <line
           x1="1.5"
           y1="-8.5"
@@ -118,12 +126,14 @@ export function Icon({
           strokeWidth="1.5"
           stroke="black"
         />
-      </>
+      </g>
     );
   }
   if (motion === Motion.DecrementDegreeAndIncrementMode) {
     return (
-      <>
+      <g
+        className={className}
+      >
         <line
           x1="-2.5"
           y1="-8.5"
@@ -138,27 +148,35 @@ export function Icon({
           strokeWidth="1.5"
           d="m -2.5,6.5 c 0,0 6.8039886,-3.502052 5.1449035,-5.77124323 -1.67644584,-2.29293637 -5.1005164,0.80130563 -5.1005164,0.80130563 0,0 3.23252528,-2.5530565 4.4272078,-0.62375756 C 3.3102876,3.0681666 -2.5,6.5 -2.5,6.5 Z"
         />
-      </>
+      </g>
     );
   }
   if (motion === Motion.IncrementRootAndIncrementDegree) {
     return (
-      <polyline
-        points="-20,8 0,-8 20,8 0,-5"
-        strokeWidth="1"
-        stroke="black"
-        fill="black"
-      />
+      <g
+        className={className}
+      >
+        <polyline
+          points="-20,8 0,-8 20,8 0,-5"
+          strokeWidth="1"
+          stroke="black"
+          fill="black"
+        />
+      </g>
     );
   }
   if (motion === Motion.DecrementRootAndDecrementDegree) {
     return (
-      <polygon
-        points="-20,-8 0,8 20,-8 0,5"
-        strokeWidth="1"
-        stroke="black"
-        fill="black"
-      />
+      <g
+        className={className}
+      >
+        <polygon
+          points="-20,-8 0,8 20,-8 0,5"
+          strokeWidth="1"
+          stroke="black"
+          fill="black"
+        />
+      </g>
     );
   }
   return null;
