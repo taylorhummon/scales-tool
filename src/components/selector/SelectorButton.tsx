@@ -102,14 +102,57 @@ function ButtonRectangle({
     }
   }
 
-  return (
-    <path
-      className={buildClassName(selectorButtonCssModule, ["button-rectangle", buttonState])}
-      onClick={handleClick}
-      data-testid={dataTestid}
-      d={getRectangleDrawString(buttonPiece)}
-    />
-  );
+  if (buttonPiece === ButtonPiece.LeftHalf) {
+    return (
+      <>
+        <path
+          className={buildClassName(selectorButtonCssModule, ["rectangle", buttonState])}
+          onClick={handleClick}
+          data-testid={dataTestid}
+          d={"M 34 -20 L -15 -20 a 8 8, 0, 0, 0, -8, 8 L -23 12 a 8 8, 0, 0, 0, 8, 8 L 34 20"}
+        />
+        <line
+          className={buildClassName(selectorButtonCssModule, ["dashed-line", buttonState])}
+          x1="34"
+          y1="-20"
+          x2="34"
+          y2="20"
+        />
+      </>
+    );
+  } else if (buttonPiece === ButtonPiece.RightHalf) {
+    return (
+      <>
+        <path
+          className={buildClassName(selectorButtonCssModule, ["rectangle", buttonState])}
+          onClick={handleClick}
+          data-testid={dataTestid}
+          d={"M -34 20 L 15 20 a 8 8, 0, 0, 0, 8, -8 L 23 -12 a 8 8, 0, 0, 0, -8, -8 L -34 -20"}
+        />
+        <line
+          className={buildClassName(selectorButtonCssModule, ["dashed-line", buttonState])}
+          x1="-34"
+          y1="-20"
+          x2="-34"
+          y2="20"
+        />
+      </>
+    );
+  } else {
+    return (
+      <rect
+        className={buildClassName(selectorButtonCssModule, ["rectangle", buttonState])}
+        onClick={handleClick}
+        data-testid={dataTestid}
+        width="98"
+        height="40"
+        x="-49"
+        y="-20"
+        rx="8"
+        ry="8"
+      />
+    );
+  }
 }
 
 function getButtonState(
@@ -127,16 +170,4 @@ function getButtonState(
     return ButtonState.Waiting;
   }
   return ButtonState.Ready;
-}
-
-function getRectangleDrawString(
-  buttonPiece: ButtonPiece,
-): string {
-  if (buttonPiece === ButtonPiece.LeftHalf) {
-    return "M 30 -20 L -15 -20 a 8 8, 0, 0, 0, -8, 8 L -23 12 a 8 8, 0, 0, 0, 8, 8 L 30 20";
-  } else if (buttonPiece === ButtonPiece.RightHalf) {
-    return "M -30 20 L 15 20 a 8 8, 0, 0, 0, 8, -8 L 23 -12 a 8 8, 0, 0, 0, -8, -8 L -30 -20";
-  } else {
-    return "M 0 -20 L -41 -20 a 8 8, 0, 0, 0, -8, 8 L -49 12 a 8 8, 0, 0, 0, 8, 8 L 0 20 L 41 20 a 8 8, 0, 0, 0, 8, -8 L 49 -12 a 8 8, 0, 0, 0, -8, -8 L 0 -20";
-  }
 }

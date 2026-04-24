@@ -29,10 +29,6 @@ export function ModeSelector(
               key={position}
               mode={selectedMode + position}
               position={position}
-              className={buildClassName(selectorCssModule, [
-                "selector-value",
-                `position-${position}`,
-              ])}
             />
           ))}
         </g>

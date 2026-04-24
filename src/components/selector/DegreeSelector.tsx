@@ -29,10 +29,6 @@ export function DegreeSelector(
               key={position}
               degree={selectedDegree + position}
               position={position}
-              className={buildClassName(selectorCssModule, [
-                "selector-value",
-                `position-${position}`,
-              ])}
             />
           ))}
         </g>

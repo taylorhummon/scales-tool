@@ -1,4 +1,4 @@
-.button-rectangle {
+.rectangle {
   stroke-width: 2;
   stroke: rgb(255, 165, 0);
   fill: rgba(255, 255, 255, 0);
@@ -19,6 +19,12 @@
     fill: rgba(156, 136, 99, 0.5);
     cursor: default;
   }
+}
+
+.dashed-line {
+  stroke-width: 2;
+  stroke: rgb(180, 130, 130);
+  stroke-dasharray: 4, 3;
 }
 
 .nudge-icon-left {

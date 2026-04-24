@@ -1,3 +1,48 @@
+@use "@/utilities/animation" as animation;
+@use "@/utilities/position" as position;
+
+
+$unselected: 0.4;
+$selected: 1;
+
+@keyframes fade-from-unselected-to-selected {
+  0% {
+    opacity: $unselected;
+  }
+  40% {
+    opacity: $unselected;
+  }
+  100% {
+    opacity: $selected;
+  }
+}
+
+.selector-value {
+  offset-rotate: 0deg;
+
+  @for $position from -4 through 4 {
+    &.position-#{$position} {
+      offset-path: position.position-still-path($position);
+    }
+  }
+
+  &.unselected {
+    opacity: $unselected;
+  }
+
+  &.selected {
+    opacity: $selected;
+  }
+
+  &.fade-from-unselected-to-selected {
+    animation: fade-from-unselected-to-selected animation.$duration linear 1 forwards;
+  }
+
+  &.fade-from-selected-to-unselected {
+    animation: fade-from-unselected-to-selected animation.$duration linear 1 forwards reverse;
+  }
+}
+
 .text {
   font-family: "PT Mono", monospace;
 }

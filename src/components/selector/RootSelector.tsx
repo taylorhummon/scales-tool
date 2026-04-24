@@ -29,10 +29,6 @@ export function RootSelector(
             <Root
               key={note.position}
               note={note}
-              className={buildClassName(selectorCssModule, [
-                "selector-value",
-                `position-${note.position}`,
-              ])}
             />
           ))}
         </g>
