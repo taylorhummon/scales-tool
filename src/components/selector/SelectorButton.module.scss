@@ -21,17 +21,3 @@
     cursor: default;
   }
 }
-
-.dashed-line {
-  stroke-width: 2;
-  stroke: rgb(180, 130, 130);
-  stroke-dasharray: 4, 3;
-}
-
-.nudge-icon-left {
-  offset-path: path("M -21 0");
-}
-
-.nudge-icon-right {
-  offset-path: path("M 21 0");
-}

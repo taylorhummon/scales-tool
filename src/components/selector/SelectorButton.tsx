@@ -10,10 +10,9 @@ import { addToBrowserHistory } from "@/utilities/routing";
 import selectorButtonCssModule from "@/components/selector/SelectorButton.module.scss";
 
 
-export enum ButtonPiece {
-  Full = "full",
-  LeftHalf = "left-half",
-  RightHalf = "right-half",
+export enum ButtonSize {
+  Large = "large",
+  Small = "small",
 }
 
 enum ButtonState {
@@ -24,14 +23,14 @@ enum ButtonState {
 }
 
 interface SelectorButtonProps {
-  buttonPiece: ButtonPiece;
+  buttonSize: ButtonSize;
   onClickMotion: Motion;
   className?: string;
   dataTestid: string;
 }
 
 export function SelectorButton({
-  buttonPiece,
+  buttonSize,
   onClickMotion,
   className,
   dataTestid,
@@ -40,10 +39,9 @@ export function SelectorButton({
     <g className={getClassName(className)}>
       <Icon
         motion={onClickMotion}
-        className={getIconClassName(buttonPiece)}
       />
       <ButtonRectangle
-        buttonPiece={buttonPiece}
+        buttonSize={buttonSize}
         onClickMotion={onClickMotion}
         dataTestid={dataTestid}
       />
@@ -62,26 +60,14 @@ function getClassName(
   ).join(" ");
 }
 
-function getIconClassName(
-  buttonPiece: ButtonPiece,
-): string | undefined {
-  if (buttonPiece === ButtonPiece.LeftHalf) {
-    return selectorButtonCssModule["nudge-icon-right"];
-  } else if (buttonPiece === ButtonPiece.RightHalf) {
-    return selectorButtonCssModule["nudge-icon-left"];
-  } else {
-    return undefined;
-  }
-}
-
 interface ButtonRectangleProps {
-  buttonPiece: ButtonPiece;
+  buttonSize: ButtonSize;
   onClickMotion: Motion;
   dataTestid: string;
 }
 
 function ButtonRectangle({
-  buttonPiece,
+  buttonSize,
   onClickMotion,
   dataTestid,
 }: ButtonRectangleProps) {
@@ -100,58 +86,21 @@ function ButtonRectangle({
       dispatch({ type: ActionType.ChangeKey, nextMusicalKey: onClickMusicalKey });
     }
   }
-
-  if (buttonPiece === ButtonPiece.LeftHalf) {
-    return (
-      <>
-        <path
-          className={buildClassName(selectorButtonCssModule, ["rectangle", buttonState])}
-          onClick={handleClick}
-          data-testid={dataTestid}
-          d={"M 34 -20 L -15 -20 a 8 8, 0, 0, 0, -8, 8 L -23 12 a 8 8, 0, 0, 0, 8, 8 L 34 20"}
-        />
-        <line
-          className={buildClassName(selectorButtonCssModule, ["dashed-line", buttonState])}
-          x1="34"
-          y1="-20"
-          x2="34"
-          y2="20"
-        />
-      </>
-    );
-  } else if (buttonPiece === ButtonPiece.RightHalf) {
-    return (
-      <>
-        <path
-          className={buildClassName(selectorButtonCssModule, ["rectangle", buttonState])}
-          onClick={handleClick}
-          data-testid={dataTestid}
-          d={"M -34 20 L 15 20 a 8 8, 0, 0, 0, 8, -8 L 23 -12 a 8 8, 0, 0, 0, -8, -8 L -34 -20"}
-        />
-        <line
-          className={buildClassName(selectorButtonCssModule, ["dashed-line", buttonState])}
-          x1="-34"
-          y1="-20"
-          x2="-34"
-          y2="20"
-        />
-      </>
-    );
-  } else {
-    return (
-      <rect
-        className={buildClassName(selectorButtonCssModule, ["rectangle", buttonState])}
-        onClick={handleClick}
-        data-testid={dataTestid}
-        width="98"
-        height="40"
-        x="-49"
-        y="-20"
-        rx="8"
-        ry="8"
-      />
-    );
-  }
+  const width = buttonSize === ButtonSize.Large ? 98 : 46;
+  const x = - width / 2;
+  return (
+    <rect
+      className={buildClassName(selectorButtonCssModule, ["rectangle", buttonState])}
+      onClick={handleClick}
+      data-testid={dataTestid}
+      width={width}
+      height="40"
+      x={x}
+      y="-20"
+      rx="8"
+      ry="8"
+    />
+  );
 }
 
 function getButtonState(
