@@ -23,7 +23,7 @@ export function SolfegeSwitch(
       checked={isUsingSolfege}
       onChange={(event) => dispatch({
         type: ActionType.SelectIsUsingSolfege,
-        isUsingSolfege: event.currentTarget.checked
+        isUsingSolfege: event.currentTarget.checked,
       })}
     />
   );

@@ -23,7 +23,7 @@ export class Note {
 
   constructor(
     root: number,
-    position: number
+    position: number,
   ) {
     this.value = root + position;
     const { naturalNote, sharpsCount } = getNaturalNoteAndSharpsCount(this.value);
@@ -39,7 +39,7 @@ export class Note {
 // *** Private functions below this line ***
 
 function getNaturalNoteAndSharpsCount(
-  value: number
+  value: number,
 ): { naturalNote: NaturalNote, sharpsCount: number } {
   if (value > 0) {
     const { quotient, remainder } = quotientAndRemainderFor(3 + value, 7);
@@ -60,7 +60,7 @@ function getNaturalNoteAndSharpsCount(
 
 function getHour(
   naturalNote: NaturalNote,
-  sharpsCount: number
+  sharpsCount: number,
 ): number {
   const hour = HOUR_BY_NATURAL_NOTE_NAME.get(naturalNote) as number;
   return remainderFor(hour + sharpsCount, 12);
@@ -68,7 +68,7 @@ function getHour(
 
 function getName(
   naturalNote: NaturalNote,
-  sharpsCount: number
+  sharpsCount: number,
 ): string {
   if (sharpsCount > 0) {
     return naturalNote + "♯".repeat(sharpsCount);

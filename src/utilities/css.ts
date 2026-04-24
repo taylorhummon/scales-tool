@@ -4,7 +4,7 @@ type CssModule = {
 
 export function buildClassName(
   cssModule: CssModule,
-  classNames: Array<string>
+  classNames: Array<string>,
 ): string {
   return classNames.map(
     (className) => cssModule[className]

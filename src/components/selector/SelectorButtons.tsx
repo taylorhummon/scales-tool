@@ -8,9 +8,7 @@ export function SelectorButtons(
 ): JSX.Element {
   return (
     <>
-      <g
-        className={selectorButtonsCssModule["upper-buttons"]}
-      >
+      <g className={selectorButtonsCssModule["upper-buttons"]}>
         <SelectorButton
           buttonPiece={ButtonPiece.Full}
           onClickMotion={Motion.IncrementModeAndIncrementRoot}
@@ -36,9 +34,7 @@ export function SelectorButtons(
           dataTestid="upper-bottom-right"
         />
       </g>
-      <g
-        className={selectorButtonsCssModule["lower-buttons"]}
-      >
+      <g className={selectorButtonsCssModule["lower-buttons"]}>
         <SelectorButton
           buttonPiece={ButtonPiece.RightHalf}
           onClickMotion={Motion.IncrementDegreeAndDecrementMode}

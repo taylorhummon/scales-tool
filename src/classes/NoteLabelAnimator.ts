@@ -6,7 +6,7 @@ import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/moti
 
 export function buildNoteLabelAnimator(
   musicalKey: MusicalKey,
-  motion: Motion
+  motion: Motion,
 ): NoteLabelAnimator | null {
   if (getWillIncrementDegree(motion) || getWillDecrementDegree(motion)) {
     return new NoteLabelAnimator(musicalKey, motion);
@@ -24,7 +24,7 @@ export class NoteLabelAnimator {
 
   constructor(
     musicalKey: MusicalKey,
-    motion: Motion
+    motion: Motion,
   ) {
     const isIncrement = getIsIncrement(motion);
     this.startNote = getStartNote(musicalKey, isIncrement);
@@ -35,7 +35,7 @@ export class NoteLabelAnimator {
   }
 
   willAnimate(
-    note: Note
+    note: Note,
   ): boolean {
     return note.hour === this.startNote.hour;
   }
@@ -45,7 +45,7 @@ export class NoteLabelAnimator {
 
 function getStartNote(
   musicalKey: MusicalKey,
-  isIncrement: boolean
+  isIncrement: boolean,
 ): Note {
   if (isIncrement) {
     return musicalKey.noteAt(musicalKey.topPosition);
@@ -57,7 +57,7 @@ function getStartNote(
 function getFinishNote(
   startNote: Note,
   musicalKey: MusicalKey,
-  isIncrement: boolean
+  isIncrement: boolean,
 ): Note {
   if (isIncrement) {
     return new Note(musicalKey.root, startNote.position + 7);
@@ -67,7 +67,7 @@ function getFinishNote(
 }
 
 function getIsIncrement(
-  motion: Motion
+  motion: Motion,
 ): boolean {
   if (getWillIncrementDegree(motion)) return true;
   if (getWillDecrementDegree(motion)) return false;
@@ -76,7 +76,7 @@ function getIsIncrement(
 
 function getIsAddingCharacter(
   musicalKey: MusicalKey,
-  isIncrement: boolean
+  isIncrement: boolean,
 ): boolean {
   if (isIncrement && musicalKey.degree < 0) {
     return false;
@@ -90,7 +90,7 @@ function getIsAddingCharacter(
 function getNoteWithLongerName(
   isAddingCharacter: boolean,
   startNote: Note,
-  finishNote: Note
+  finishNote: Note,
 ): Note {
   return isAddingCharacter ? finishNote : startNote;
 }

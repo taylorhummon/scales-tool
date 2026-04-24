@@ -6,9 +6,9 @@ import { historicalStateFromMusicalKey } from "@/utilities/state";
 
 
 export function addToBrowserHistory(
-  musicalKey: MusicalKey
+  musicalKey: MusicalKey,
 ): void {
-  const path = `/?root=${musicalKey.root}&degree=${musicalKey.degree}`;
+  const path = `/?mode=${musicalKey.mode}&root=${musicalKey.root}`;
   const historicalState = historicalStateFromMusicalKey(musicalKey);
   window.history.pushState(historicalState, "", path);
 }
@@ -31,49 +31,49 @@ export function musicalKeyFromCurrentURL(
 }
 
 function isPathOK(
-  path: string
+  path: string,
 ): boolean {
   return path === "/" || path === "";
 }
 
 function isSearchEmpty(
-  search: string
+  search: string,
 ): boolean {
   return search === "" || search === "?";
 }
 
 function musicalKeyFromPath(
   path: string,
-  search: string
+  search: string,
 ): MusicalKey | null {
   if (! isPathOK(path)) return null;
   const searchParams = new URLSearchParams(search);
+  const mode = modeFromSearchParams(searchParams);
+  if (mode === null) return null;
   const root = rootFromSearchParams(searchParams);
   if (root === null) return null;
-  const degree = degreeFromSearchParams(searchParams);
-  if (degree === null) return null;
-  const mode = root - degree;
+  const degree = root - mode;
+  if (degree > MAX_DEGREE || degree < MIN_DEGREE) return null;
+  return new MusicalKey({ mode, root });
+}
+
+function modeFromSearchParams(
+  searchParams: URLSearchParams,
+): number | null {
+  const modeParam = searchParams.get("mode");
+  if (modeParam === null) return null;
+  const mode = parseInt(modeParam, 10);
+  if (isNaN(mode)) return null;
   if (mode > MAX_MODE || mode < MIN_MODE) return null;
-  return new MusicalKey(root, degree);
+  return mode;
 }
 
 function rootFromSearchParams(
-  searchParams: URLSearchParams
+  searchParams: URLSearchParams,
 ): number | null {
   const rootParam = searchParams.get("root");
   if (rootParam === null) return null;
   const root = parseInt(rootParam, 10);
   if (isNaN(root)) return null;
   return root;
-}
-
-function degreeFromSearchParams(
-  searchParams: URLSearchParams
-): number | null {
-  const degreeParam = searchParams.get("degree");
-  if (degreeParam === null) return null;
-  const degree = parseInt(degreeParam, 10);
-  if (isNaN(degree)) return null;
-  if (degree > MAX_DEGREE || degree < MIN_DEGREE) return null;
-  return degree;
 }

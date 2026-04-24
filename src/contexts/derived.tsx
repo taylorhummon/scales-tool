@@ -34,35 +34,36 @@ const DEFAULT_DERIVED: Derived = {
   nextMusicalKey: DEFAULT_MUSICAL_KEY,
   motion: Motion.Still,
   animationType: DEFAULT_ANIMATION_TYPE,
-  isUsingSolfege: DEFAULT_IS_USING_SOLFEGE
+  isUsingSolfege: DEFAULT_IS_USING_SOLFEGE,
 };
 
 export const DerivedContext: Context<Derived> = createContext(DEFAULT_DERIVED);
 
-export function useDerivedContext() {
+export function useDerivedContext(
+) {
   return useContext(DerivedContext);
 }
 
 interface DerivedProviderProps {
-  children: JSX.Element | null
+  children: JSX.Element | null,
 }
 
 export function DerivedProvider({
-  children
+  children,
 }: DerivedProviderProps): JSX.Element {
   const [state, dispatch] = useReducer(reducer, getInitialState());
-  const { root, degree, motion, animationType, isUsingSolfege } = state;
+  const { mode, root, motion, animationType, isUsingSolfege } = state;
   const musicalKey = useMemo(
     () => {
-      return new MusicalKey(root, degree);
+      return new MusicalKey({ mode, root });
     },
-    [root, degree]
+    [mode, root],
   );
   const nextMusicalKey = useMemo(
     () => {
       return getNextMusicalKey(musicalKey, motion);
     },
-    [musicalKey, motion]
+    [musicalKey, motion],
   );
   const derived = { musicalKey, nextMusicalKey, motion, animationType, isUsingSolfege };
 
@@ -77,7 +78,7 @@ export function DerivedProvider({
 
 function reducer(
   state: State,
-  action: Action
+  action: Action,
 ): State {
   if (action.type === ActionType.ActivateMotion) {
     return { ...state, motion: action.motion };
@@ -85,8 +86,8 @@ function reducer(
   if (action.type === ActionType.ChangeKey) {
     return {
       ...state,
+      mode: action.nextMusicalKey.mode,
       root: action.nextMusicalKey.root,
-      degree: action.nextMusicalKey.degree,
       motion: Motion.Still
     }
   }

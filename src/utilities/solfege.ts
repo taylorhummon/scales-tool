@@ -7,13 +7,13 @@ export enum SolfegeLetter {
   Fa = "fa",
   Sol = "sol",
   La = "la",
-  Ti = "ti"
+  Ti = "ti",
 }
 
 export const SOLFEGE_LETTERS = Object.values(SolfegeLetter);
 
 export function solfegeLetterFromPosition(
-  position: number
+  position: number,
 ): SolfegeLetter {
   return SOLFEGE_LETTERS[remainderFor(4 * position, 7)];
 }

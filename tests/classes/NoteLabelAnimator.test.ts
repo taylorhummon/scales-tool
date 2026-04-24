@@ -1,12 +1,12 @@
 import { test, expect } from "vitest";
 
-import { NoteLabelAnimator } from "@/classes/NoteLabelAnimator";
 import { MusicalKey } from "@/classes/MusicalKey";
+import { NoteLabelAnimator } from "@/classes/NoteLabelAnimator";
 import { Motion } from "@/utilities/motion";
 
 
 test("NoteLabelAnimator works for key degree = 0", () => {
-  const musicalKey = new MusicalKey(1, 0);
+  const musicalKey = new MusicalKey({ root: 1, degree: 0 });
 
   expect(
     (new NoteLabelAnimator(musicalKey, Motion.DecrementDegreeAndIncrementMode)).startNote.name
@@ -62,7 +62,7 @@ test("NoteLabelAnimator works for key degree = 0", () => {
 });
 
 test("NoteLabelAnimator works for key degree = 1", () => {
-  const musicalKey = new MusicalKey(1, 1);
+  const musicalKey = new MusicalKey({ root: 1, degree: 1 });
 
   expect(
     (new NoteLabelAnimator(musicalKey, Motion.DecrementDegreeAndIncrementMode)).startNote.name
@@ -118,7 +118,7 @@ test("NoteLabelAnimator works for key degree = 1", () => {
 });
 
 test("NoteLabelAnimator works for key degree = -3", () => {
-  const musicalKey = new MusicalKey(0, -3);
+  const musicalKey = new MusicalKey({ root: 0, degree: -3 });
 
   expect(
     (new NoteLabelAnimator(musicalKey, Motion.DecrementDegreeAndIncrementMode)).startNote.name

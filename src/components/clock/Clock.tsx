@@ -15,9 +15,7 @@ export function Clock(
   const { musicalKey } = useDerivedContext();
 
   return (
-    <g
-      className={clockCssModule["clock"]}
-    >
+    <g className={clockCssModule["clock"]}>
       <RootDot />
       <ClockFace />
       {arrayFromMap(musicalKey.scale, (note: Note) => (

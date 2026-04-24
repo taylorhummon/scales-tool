@@ -25,7 +25,7 @@ export function RootDot(
 
 function getClassName(
   musicalKey: MusicalKey,
-  nextMusicalKey: MusicalKey
+  nextMusicalKey: MusicalKey,
 ): string {
   const classNames = ["root-dot"];
   const startHour = musicalKey.rootNote.hour;

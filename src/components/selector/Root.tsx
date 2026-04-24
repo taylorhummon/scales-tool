@@ -1,25 +1,25 @@
 import type { Note } from "@/classes/Note";
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassName } from "@/utilities/css";
-import { getFadingClassName } from "@/utilities/fading";
+import { getSelectorValueState } from "@/utilities/selector";
 
 import selectorValueCssModule from "@/components/selector/SelectorValue.module.scss";
 
 
 interface RootProps {
   note: Note;
+  className?: string;
 }
 
 export function Root({
-  note
+  note,
+  className,
 }: RootProps): JSX.Element {
   const { musicalKey, nextMusicalKey } = useDerivedContext();
   const position = note.position;
   const nextPosition = position - nextMusicalKey.root + musicalKey.root;
   return (
-    <g
-      className={getClassName(position, nextPosition)}
-    >
+    <g className={getClassName(position, nextPosition, className)}>
       <text
         className={selectorValueCssModule["text"]}
         textAnchor="middle"
@@ -32,13 +32,15 @@ export function Root({
 
 function getClassName(
   position: number,
-  nextPosition: number
+  nextPosition: number,
+  external: string | undefined,
 ): string {
   const classNames = [
     "root",
     "selector-value",
     `position-${position}`,
-    getFadingClassName(position, nextPosition),
+    getSelectorValueState(position, nextPosition),
   ];
-  return buildClassName(selectorValueCssModule, classNames);
+  const internal = buildClassName(selectorValueCssModule, classNames);
+  return [internal, external].filter((className) => className !== undefined).join(" ");
 }

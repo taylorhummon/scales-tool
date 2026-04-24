@@ -22,7 +22,7 @@ test("addToBrowserHistory() works", () => {
   ).toBe(
     1
   );
-  addToBrowserHistory(new MusicalKey(0, 0));
+  addToBrowserHistory(new MusicalKey({ mode: 0, root: 0 }));
   expect(
     document.location.pathname
   ).toBe(
@@ -31,14 +31,14 @@ test("addToBrowserHistory() works", () => {
   expect(
     document.location.search
   ).toBe(
-    "?root=0&degree=0"
+    "?mode=0&root=0"
   );
   expect(
     window.history.length
   ).toBe(
     2
   );
-  addToBrowserHistory(new MusicalKey(3, 2));
+  addToBrowserHistory(new MusicalKey({ mode: 3, root: 2 }));
   expect(
     document.location.pathname
   ).toBe(
@@ -47,7 +47,7 @@ test("addToBrowserHistory() works", () => {
   expect(
     document.location.search
   ).toBe(
-    "?root=3&degree=2"
+    "?mode=3&root=2"
   );
   expect(
     window.history.length
@@ -58,36 +58,36 @@ test("addToBrowserHistory() works", () => {
 
 test("musicalKeyFromCurrentURL() works", () => {
   expect(
-    musicalKeyFromCurrentURL().root
+    musicalKeyFromCurrentURL().mode
   ).toBe(
     -2
   );
   expect(
-    musicalKeyFromCurrentURL().degree
+    musicalKeyFromCurrentURL().root
+  ).toBe(
+    -2
+  );
+
+  addToBrowserHistory(new MusicalKey({ mode: 0, root: 0 }));
+  expect(
+    musicalKeyFromCurrentURL().mode
   ).toBe(
     0
   );
-
-  addToBrowserHistory(new MusicalKey(0, 0));
   expect(
     musicalKeyFromCurrentURL().root
   ).toBe(
     0
   );
-  expect(
-    musicalKeyFromCurrentURL().degree
-  ).toBe(
-    0
-  );
 
-  addToBrowserHistory(new MusicalKey(3, 2));
+  addToBrowserHistory(new MusicalKey({ mode: 3, root: 2 }));
   expect(
-    musicalKeyFromCurrentURL().root
+    musicalKeyFromCurrentURL().mode
   ).toBe(
     3
   );
   expect(
-    musicalKeyFromCurrentURL().degree
+    musicalKeyFromCurrentURL().root
   ).toBe(
     2
   );
@@ -95,14 +95,14 @@ test("musicalKeyFromCurrentURL() works", () => {
   // User enters a garbage path in the URL
   window.history.pushState(null, "", "garbage/path/here");
   expect(
-    musicalKeyFromCurrentURL().root
+    musicalKeyFromCurrentURL().mode
   ).toBe(
     -2
   );
   expect(
-    musicalKeyFromCurrentURL().degree
+    musicalKeyFromCurrentURL().root
   ).toBe(
-    0
+    -2
   );
   expect(
     document.location.pathname

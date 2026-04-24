@@ -6,14 +6,14 @@ import { remainderFor } from "@/utilities/math";
 export enum AnimationType {
   None = "None",
   Simple = "Simple",
-  Ballet = "Ballet"
+  Ballet = "Ballet",
 }
 
 export function getNoteFinishHour(
   animationType: AnimationType,
   musicalKey: MusicalKey,
   nextMusicalKey: MusicalKey,
-  note: Note
+  note: Note,
 ): number {
   const currentDegree = musicalKey.degree;
   const nextDegree = nextMusicalKey.degree;

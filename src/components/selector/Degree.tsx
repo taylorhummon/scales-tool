@@ -1,6 +1,6 @@
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassName } from "@/utilities/css";
-import { getFadingClassName } from "@/utilities/fading";
+import { getSelectorValueState } from "@/utilities/selector";
 
 import selectorValueCssModule from "@/components/selector/SelectorValue.module.scss";
 
@@ -8,18 +8,18 @@ import selectorValueCssModule from "@/components/selector/SelectorValue.module.s
 interface DegreeProps {
   degree: number;
   position: number;
+  className?: string;
 }
 
 export function Degree({
   degree,
-  position
+  position,
+  className,
 }: DegreeProps): JSX.Element {
   const { musicalKey, nextMusicalKey } = useDerivedContext();
   const nextPosition = position - nextMusicalKey.degree + musicalKey.degree;
   return (
-    <g
-      className={getClassName(position, nextPosition)}
-    >
+    <g className={getClassName(position, nextPosition, className)}>
       <text
         className={selectorValueCssModule["text"]}
         textAnchor="middle"
@@ -32,19 +32,21 @@ export function Degree({
 
 function getClassName(
   position: number,
-  nextPosition: number
+  nextPosition: number,
+  external: string | undefined,
 ): string {
   const classNames = [
     "degree",
     "selector-value",
     `position-${position}`,
-    getFadingClassName(position, nextPosition),
+    getSelectorValueState(position, nextPosition),
   ];
-  return buildClassName(selectorValueCssModule, classNames);
+  const internal = buildClassName(selectorValueCssModule, classNames);
+  return [internal, external].filter((className) => className !== undefined).join(" ");
 }
 
 function getFancyDegree(
-  degree: number
+  degree: number,
 ): JSX.Element {
   const count = Math.abs(degree);
   if (degree > 0) {

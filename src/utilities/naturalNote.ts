@@ -5,7 +5,7 @@ export enum NaturalNote {
   D = "D",
   E = "E",
   F = "F",
-  G = "G"
+  G = "G",
 }
 
 export const NATURAL_NOTES_IN_FCGDAEB_ORDER = [
@@ -15,7 +15,7 @@ export const NATURAL_NOTES_IN_FCGDAEB_ORDER = [
   NaturalNote.D,
   NaturalNote.A,
   NaturalNote.E,
-  NaturalNote.B
+  NaturalNote.B,
 ];
 
 export const NATURAL_NOTES_IN_BEADGCF_ORDER = [...NATURAL_NOTES_IN_FCGDAEB_ORDER].reverse();

@@ -2,7 +2,7 @@ import { Context, Dispatch, createContext, useContext } from 'react';
 
 
 function trivialDispatcher(
-  _a: any
+  _a: any,
 ): void {
   return;
 }
@@ -12,6 +12,7 @@ function trivialDispatcher(
 export const DispatchContext: Context<Dispatch<any>> = createContext(trivialDispatcher);
 
 // Provides a dispatch function used for sending actions to update the state.
-export function useDispatchContext() {
+export function useDispatchContext(
+) {
   return useContext(DispatchContext);
 }

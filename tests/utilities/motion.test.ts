@@ -15,7 +15,7 @@ import {
 
 
 test("canPerformMotion() works for Dorian D", () => {
-  const musicalKey = new MusicalKey(0, 0);
+  const musicalKey = new MusicalKey({ mode: 0, root: 0 });
   expect(
     canPerformMotion(musicalKey, Motion.IncrementModeAndIncrementRoot)
   ).toBe(
@@ -49,7 +49,7 @@ test("canPerformMotion() works for Dorian D", () => {
 });
 
 test("canPerformMotion() works for 14 sharps", () => {
-  const musicalKey = new MusicalKey(12, 14);
+  const musicalKey = new MusicalKey({ mode: -2, degree: 14 });
   expect(
     canPerformMotion(musicalKey, Motion.IncrementModeAndIncrementRoot)
   ).toBe(
@@ -83,7 +83,7 @@ test("canPerformMotion() works for 14 sharps", () => {
 });
 
 test("canPerformMotion() works for 14 flats", () => {
-  const musicalKey = new MusicalKey(-15, -14);
+  const musicalKey = new MusicalKey({ mode: -1, degree: -14 });
   expect(
     canPerformMotion(musicalKey, Motion.IncrementModeAndIncrementRoot)
   ).toBe(
@@ -116,8 +116,8 @@ test("canPerformMotion() works for 14 flats", () => {
   );
 });
 
-test("canPerformMotion() works for mode = 3", () => {
-  const musicalKey = new MusicalKey(2, 5);
+test("canPerformMotion() works for mode = -3", () => {
+  const musicalKey = new MusicalKey({ mode: -3, root: 2 });
   expect(
     canPerformMotion(musicalKey, Motion.IncrementModeAndIncrementRoot)
   ).toBe(
@@ -151,7 +151,7 @@ test("canPerformMotion() works for mode = 3", () => {
 });
 
 test("getNextMusicalKey() works", () => {
-  const musicalKey = new MusicalKey(0, 0);
+  const musicalKey = new MusicalKey({ mode: 0, root: 0 });
   expect(
     getNextMusicalKey(musicalKey, Motion.IncrementModeAndIncrementRoot).root
   ).toBe(

@@ -8,23 +8,23 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@": "/src/"
+      "@": "/src/",
     },
   },
   server: {
     port: 1234,
-    strictPort: true
+    strictPort: true,
   },
   css: {
     preprocessorOptions: {
       scss: {
-        api: "modern-compiler"
+        api: "modern-compiler",
       }
     }
   },
   test: {
     dir: "tests",
     environment: "jsdom",
-    setupFiles: "./tests/setupTests.ts"
+    setupFiles: "./tests/setupTests.ts",
   }
 });

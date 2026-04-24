@@ -1,12 +1,12 @@
 import { test, expect } from "vitest";
 
-import { SolfegeLabelAnimator } from "@/classes/SolfegeLabelAnimator";
 import { MusicalKey } from "@/classes/MusicalKey";
+import { SolfegeLabelAnimator } from "@/classes/SolfegeLabelAnimator";
 import { Motion } from "@/utilities/motion";
 
 
 test("SolfegeLabelAnimator works", () => {
-  const musicalKey = new MusicalKey(1, 0);
+  const musicalKey = new MusicalKey({ mode: 1, root: 1 });
 
   expect(
     (new SolfegeLabelAnimator(musicalKey, Motion.IncrementModeAndIncrementRoot)).finishHour(0)

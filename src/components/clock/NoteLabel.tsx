@@ -13,7 +13,7 @@ interface NoteLabelProps {
 
 export function NoteLabel({
   noteLabelAnimator,
-  note
+  note,
 }: NoteLabelProps): JSX.Element {
   return (
     <g
@@ -30,7 +30,7 @@ export function NoteLabel({
 
 function getClassName(
   noteLabelAnimator: NoteLabelAnimator | null,
-  note: Note
+  note: Note,
 ): string {
   const classNames = ["note-label"];
   if (noteLabelAnimator === null || ! noteLabelAnimator.willAnimate(note)) {

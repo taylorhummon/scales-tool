@@ -5,7 +5,7 @@ import { isBetweenInclusive } from "@/utilities/math";
 import { MAX_MODE, MIN_MODE } from "@/utilities/mode";
 import type { Motion } from "@/utilities/motion";
 import { getWillIncrementMode, getWillDecrementMode } from "@/utilities/motion";
-import { EXTENDED_POSITIONS } from "@/utilities/fading";
+import { EXTENDED_POSITIONS } from "@/utilities/selector";
 
 import selectorCssModule from "@/components/selector/Selector.module.scss";
 
@@ -18,25 +18,21 @@ export function ModeSelector(
     (position) => isBetweenInclusive(selectedMode + position, MIN_MODE, MAX_MODE)
   );
   return (
-    <g
-      className={selectorCssModule["mode-selector"]}
-    >
-      <text
-        className={selectorCssModule["label"]}
-      >
+    <g className={selectorCssModule["mode-selector"]}>
+      <text className={selectorCssModule["label"]}>
         mode
       </text>
-      <g
-        clipPath="url(#selectors-clip-path)"
-      >
-        <g
-          className={getClassName(motion)}
-        >
+      <g clipPath="url(#selectors-clip-path)">
+        <g className={getClassName(motion)}>
           {positions.map((position) => (
             <Mode
               key={position}
               mode={selectedMode + position}
               position={position}
+              className={buildClassName(selectorCssModule, [
+                "selector-value",
+                `position-${position}`,
+              ])}
             />
           ))}
         </g>
@@ -46,7 +42,7 @@ export function ModeSelector(
 }
 
 function getClassName(
-  motion: Motion
+  motion: Motion,
 ): string {
   const classNames = ["selector-inner"];
   if (getWillIncrementMode(motion)) {

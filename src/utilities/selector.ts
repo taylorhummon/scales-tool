@@ -1,30 +1,29 @@
-export const POSITIONS = [-3, -2, -1, 0, 1, 2, 3];
 export const EXTENDED_POSITIONS = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
 
-export enum FadingClassName {
+export enum SelectorValueState {
   Unselected = "unselected",
   Selected = "selected",
   FadeFromUnselectedToSelected = "fade-from-unselected-to-selected",
   FadeFromSelectedToUnselected = "fade-from-selected-to-unselected",
 }
 
-export function getFadingClassName(
+export function getSelectorValueState(
   position: number,
-  nextPosition: number
-): FadingClassName {
+  nextPosition: number,
+): SelectorValueState {
   if (position === 0 && nextPosition === 0) {
-    return FadingClassName.Selected;
+    return SelectorValueState.Selected;
   }
   if (
     nextPosition === position + 1 ||
     nextPosition === position - 1
   ) {
     if (position === 0) {
-      return FadingClassName.FadeFromSelectedToUnselected;
+      return SelectorValueState.FadeFromSelectedToUnselected;
     }
     if (nextPosition === 0) {
-      return FadingClassName.FadeFromUnselectedToSelected;
+      return SelectorValueState.FadeFromUnselectedToSelected;
     }
   }
-  return FadingClassName.Unselected;
+  return SelectorValueState.Unselected;
 }

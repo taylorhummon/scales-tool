@@ -1,6 +1,6 @@
 import { useDerivedContext } from "@/contexts/derived";
 import { buildClassName } from "@/utilities/css";
-import { getFadingClassName } from "@/utilities/fading";
+import { getSelectorValueState } from "@/utilities/selector";
 import { shortModeNameFromMode } from "@/utilities/mode";
 
 import selectorValueCssModule from "@/components/selector/SelectorValue.module.scss";
@@ -9,18 +9,18 @@ import selectorValueCssModule from "@/components/selector/SelectorValue.module.s
 interface ModeProps {
   mode: number;
   position: number;
+  className?: string;
 }
 
 export function Mode({
   mode,
-  position
+  position,
+  className,
 }: ModeProps): JSX.Element {
   const { musicalKey, nextMusicalKey } = useDerivedContext();
   const nextPosition = position - nextMusicalKey.mode + musicalKey.mode;
   return (
-    <g
-      className={getClassName(position, nextPosition)}
-    >
+    <g className={getClassName(position, nextPosition, className)}>
       <text
         className={selectorValueCssModule["text"]}
         textAnchor="middle"
@@ -33,13 +33,15 @@ export function Mode({
 
 function getClassName(
   position: number,
-  nextPosition: number
+  nextPosition: number,
+  external: string | undefined,
 ): string {
   const classNames = [
     "mode",
     "selector-value",
     `position-${position}`,
-    getFadingClassName(position, nextPosition),
+    getSelectorValueState(position, nextPosition),
   ];
-  return buildClassName(selectorValueCssModule, classNames);
+  const internal = buildClassName(selectorValueCssModule, classNames);
+  return [internal, external].filter((className) => className !== undefined).join(" ");
 }

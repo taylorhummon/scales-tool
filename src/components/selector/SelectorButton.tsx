@@ -14,14 +14,14 @@ import selectorButtonCssModule from "@/components/selector/SelectorButton.module
 export enum ButtonPiece {
   Full = "full",
   LeftHalf = "left-half",
-  RightHalf = "right-half"
+  RightHalf = "right-half",
 }
 
 enum ButtonState {
   Ready = "ready",
   Active = "active",
   Waiting = "waiting",
-  Disabled = "disabled"
+  Disabled = "disabled",
 }
 
 interface SelectorButtonProps {
@@ -35,12 +35,10 @@ export function SelectorButton({
   buttonPiece,
   onClickMotion,
   className,
-  dataTestid
+  dataTestid,
 }: SelectorButtonProps): JSX.Element {
   return (
-    <g
-      className={getRootClassName(className)}
-    >
+    <g className={getClassName(className)}>
       <Icon
         motion={onClickMotion}
         className={getIconClassName(buttonPiece)}
@@ -54,8 +52,8 @@ export function SelectorButton({
   );
 }
 
-function getRootClassName(
-  className?: string
+function getClassName(
+  className?: string,
 ): string {
   return [
     selectorButtonCssModule["button"],
@@ -66,7 +64,7 @@ function getRootClassName(
 }
 
 function getIconClassName(
-  buttonPiece: ButtonPiece
+  buttonPiece: ButtonPiece,
 ): string | undefined {
   if (buttonPiece === ButtonPiece.LeftHalf) {
     return selectorButtonCssModule["nudge-icon-right"];
@@ -86,7 +84,7 @@ interface ButtonRectangleProps {
 function ButtonRectangle({
   buttonPiece,
   onClickMotion,
-  dataTestid
+  dataTestid,
 }: ButtonRectangleProps) {
   const { musicalKey, nextMusicalKey, motion, animationType } = useDerivedContext();
   const dispatch = useDispatchContext();
@@ -117,7 +115,7 @@ function ButtonRectangle({
 function getButtonState(
   nextMusicalKey: MusicalKey,
   motion: Motion,
-  onClickMotion: Motion
+  onClickMotion: Motion,
 ): ButtonState {
   if (! canPerformMotion(nextMusicalKey, onClickMotion)) {
     return ButtonState.Disabled;
@@ -132,7 +130,7 @@ function getButtonState(
 }
 
 function getRectangleDrawString(
-  buttonPiece: ButtonPiece
+  buttonPiece: ButtonPiece,
 ): string {
   if (buttonPiece === ButtonPiece.LeftHalf) {
     return "M 30 -20 L -15 -20 a 8 8, 0, 0, 0, -8, 8 L -23 12 a 8 8, 0, 0, 0, 8, 8 L 30 20";

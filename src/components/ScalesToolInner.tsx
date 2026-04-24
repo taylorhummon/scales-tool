@@ -24,7 +24,7 @@ export function ScalesToolInner(
     function handlePopstate(event: PopStateEvent) {
       dispatch({
         type: ActionType.ChangeKey,
-        nextMusicalKey: musicalKeyFromHistoricalState(event.state)
+        nextMusicalKey: musicalKeyFromHistoricalState(event.state),
       });
     }
     return registerEventListener(window, "popstate", handlePopstate);
@@ -80,7 +80,7 @@ export function ScalesToolInner(
 function registerEventListener(
   element: Window | HTMLElement | null,
   eventType: string,
-  listener: (event: any) => void
+  listener: (event: any) => void,
 ): () => void {
   if (element) element.addEventListener(eventType, listener);
   return () => {
@@ -89,12 +89,12 @@ function registerEventListener(
 }
 
 function musicalKeyFromHistoricalState(
-  historicalState: HistoricalState | undefined
+  historicalState: HistoricalState | undefined,
 ): MusicalKey {
+  const mode = historicalState?.mode;
   const root = historicalState?.root;
-  const degree = historicalState?.degree;
-  if (typeof degree === "number" && typeof root === "number") {
-    return new MusicalKey(root, degree);
+  if (typeof mode === "number" && typeof root === "number") {
+    return new MusicalKey({ mode, root });
   } else {
     return DEFAULT_MUSICAL_KEY;
   }

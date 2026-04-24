@@ -5,7 +5,7 @@ import { buildClassName } from "@/utilities/css";
 import { isBetweenInclusive } from "@/utilities/math";
 import type { Motion } from "@/utilities/motion";
 import { getWillIncrementDegree, getWillDecrementDegree } from "@/utilities/motion";
-import { EXTENDED_POSITIONS } from "@/utilities/fading";
+import { EXTENDED_POSITIONS } from "@/utilities/selector";
 
 import selectorCssModule from "@/components/selector/Selector.module.scss";
 
@@ -18,25 +18,21 @@ export function DegreeSelector(
     (position) => isBetweenInclusive(selectedDegree + position, MIN_DEGREE, MAX_DEGREE)
   );
   return (
-    <g
-      className={selectorCssModule["degree-selector"]}
-    >
-      <text
-        className={selectorCssModule["label"]}
-      >
+    <g className={selectorCssModule["degree-selector"]}>
+      <text className={selectorCssModule["label"]}>
         deg
       </text>
-      <g
-        clipPath="url(#selectors-clip-path)"
-      >
-        <g
-          className={getClassName(motion)}
-        >
+      <g clipPath="url(#selectors-clip-path)">
+        <g className={getClassName(motion)}>
           {positions.map((position) => (
             <Degree
               key={position}
               degree={selectedDegree + position}
               position={position}
+              className={buildClassName(selectorCssModule, [
+                "selector-value",
+                `position-${position}`,
+              ])}
             />
           ))}
         </g>
@@ -46,7 +42,7 @@ export function DegreeSelector(
 }
 
 function getClassName(
-  motion: Motion
+  motion: Motion,
 ): string {
   const classNames = ["selector-inner"];
   if (getWillIncrementDegree(motion)) {

@@ -14,11 +14,11 @@ export enum ModeName {
   Dorian = "Dorian",
   Phrygian = "Phrygian",
   Lydian = "Lydian",
-  Mixolydian = "Mixolydian"
+  Mixolydian = "Mixolydian",
 }
 
 export function modeNameFromMode(
-  mode: number
+  mode: number,
 ): ModeName {
   if (mode === -3) return ModeName.Lydian;
   if (mode === -2) return ModeName.Major;
@@ -31,7 +31,7 @@ export function modeNameFromMode(
 }
 
 export function shortModeNameFromMode(
-  mode: number
+  mode: number,
 ): string {
   if (mode === -3) return "Lyd";
   if (mode === -2) return "Maj";
@@ -44,7 +44,7 @@ export function shortModeNameFromMode(
 }
 
 export function modeNoteFromMode(
-  mode: number
+  mode: number,
 ): NaturalNote {
   if (mode === -3) return NaturalNote.F;
   if (mode === -2) return NaturalNote.C;

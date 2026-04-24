@@ -10,13 +10,9 @@ import selectorsCssModule from "@/components/selector/Selectors.module.scss";
 export function Selectors(
 ): JSX.Element {
   return (
-    <g
-      className={selectorsCssModule["selectors"]}
-    >
+    <g className={selectorsCssModule["selectors"]}>
       <defs>
-        <clipPath
-          id="selectors-clip-path"
-        >
+        <clipPath id="selectors-clip-path">
           <rect
             x="-30"
             y="-103"

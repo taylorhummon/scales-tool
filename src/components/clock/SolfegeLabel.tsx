@@ -13,19 +13,15 @@ interface SolfegeLabelProps {
 
 export function SolfegeLabel({
   solfegeLabelAnimator,
-  note
+  note,
 }: SolfegeLabelProps): JSX.Element {
   return (
     <g
       className={getClassName(solfegeLabelAnimator, note)}
       data-testid={`solfege-label-${note.solfegeLetter}`}
     >
-      <g
-        className={getInnerClassName(note)}
-      >
-        <text
-          className={solfegeLabelCssModule["text"]}
-        >
+      <g className={getInnerClassName(note)}>
+        <text className={solfegeLabelCssModule["text"]}>
           {note.solfegeLetter}
         </text>
       </g>
@@ -35,7 +31,7 @@ export function SolfegeLabel({
 
 function getClassName(
   solfegeLabelAnimator: SolfegeLabelAnimator | null,
-  note: Note
+  note: Note,
 ): string {
   const classNames = ["solfege-label"];
   const startHour = note.hour;
@@ -49,7 +45,7 @@ function getClassName(
 }
 
 function getInnerClassName(
-  note: Note
+  note: Note,
 ): string {
   const classNames = ["solfege-label-inner"];
   if (note.solfegeLetter === SolfegeLetter.Sol) {

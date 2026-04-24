@@ -12,7 +12,7 @@ interface NoteLabelTextProps {
 
 export function NoteLabelText({
   noteLabelAnimator,
-  note
+  note,
 }: NoteLabelTextProps): JSX.Element {
   if (noteLabelAnimator === null || ! noteLabelAnimator.willAnimate(note)) {
     return (
@@ -28,9 +28,7 @@ export function NoteLabelText({
       <text>
         {note.naturalNote}
         {"♯".repeat(opaqueSharpsCount)}
-        <tspan
-          className={getClassName(noteLabelAnimator)}
-        >
+        <tspan className={getClassName(noteLabelAnimator)}>
           ♯
         </tspan>
       </text>
@@ -56,7 +54,7 @@ export function NoteLabelText({
 }
 
 function getClassName(
-  noteLabelAnimator: NoteLabelAnimator
+  noteLabelAnimator: NoteLabelAnimator,
 ): string {
   const classNames = [];
   if (noteLabelAnimator.isAddingCharacter) {

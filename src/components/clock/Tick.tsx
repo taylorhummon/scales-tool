@@ -11,7 +11,7 @@ interface TickProps {
 }
 
 export function Tick({
-  hour
+  hour,
 }: TickProps): JSX.Element {
   return (
     <line

@@ -11,7 +11,7 @@ import {
 
 export function buildSolfegeLabelAnimator(
   musicalKey: MusicalKey,
-  motion: Motion
+  motion: Motion,
 ): SolfegeLabelAnimator | null {
   if (
     getWillIncrementDegree(motion) ||
@@ -31,7 +31,7 @@ export class SolfegeLabelAnimator {
 
   constructor(
     musicalKey: MusicalKey,
-    motion: Motion
+    motion: Motion,
   ) {
     this.#motion = motion;
     this.#topHour = musicalKey.noteAt(musicalKey.topPosition).hour;
@@ -39,7 +39,7 @@ export class SolfegeLabelAnimator {
   }
 
   finishHour(
-    startHour: number
+    startHour: number,
   ): number | null {
     if (getWillIncrementRoot(this.#motion)) {
       if (this.#motion === Motion.IncrementModeAndIncrementRoot && startHour === this.#bottomHour) {

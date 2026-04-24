@@ -7,7 +7,7 @@ export enum ActionType {
   ActivateMotion = "activate-motion",
   ChangeKey = "change-key",
   SelectAnimationType = "select-animation-type",
-  SelectIsUsingSolfege = "select-is-using-solfege"
+  SelectIsUsingSolfege = "select-is-using-solfege",
 }
 
 export type Action =

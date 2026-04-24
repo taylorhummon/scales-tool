@@ -6,7 +6,7 @@ Number.MAX_SAFE_INTEGER = 9,007,199,254,740,991.
 
 export function quotientAndRemainderFor(
   numerator: number,
-  denominator: number
+  denominator: number,
 ): { quotient: number, remainder: number } {
   const remainder = remainderFor(numerator, denominator);
   const quotient = ensureZeroIsPositive((numerator - remainder) / denominator);
@@ -15,7 +15,7 @@ export function quotientAndRemainderFor(
 
 export function remainderFor(
   numerator: number,
-  denominator: number
+  denominator: number,
 ): number {
   if (denominator <= 0) throw Error("remainder() expects a positive denominator");
   const possiblyNegative = ensureZeroIsPositive(numerator % denominator);
@@ -27,7 +27,7 @@ export function remainderFor(
 }
 
 export function ensureZeroIsPositive(
-  n: number
+  n: number,
 ): number {
   // Note: -0 === 0, and that's OK
   return n === 0 ? 0 : n;
@@ -36,7 +36,7 @@ export function ensureZeroIsPositive(
 export function isBetweenInclusive(
   n: number,
   lower: number,
-  upper: number
+  upper: number,
 ): boolean {
   return n >= lower && n <= upper;
 }

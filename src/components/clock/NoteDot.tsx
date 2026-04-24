@@ -12,7 +12,7 @@ interface NoteDotProps {
 }
 
 export function NoteDot({
-  note
+  note,
 }: NoteDotProps): JSX.Element {
   const { animationType, musicalKey, nextMusicalKey } = useDerivedContext();
 
@@ -32,7 +32,7 @@ function getClassName(
   animationType: AnimationType,
   musicalKey: MusicalKey,
   nextMusicalKey: MusicalKey,
-  note: Note
+  note: Note,
 ): string {
   const classNames = ["note-dot"];
   const startHour = note.hour;

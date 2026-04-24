@@ -15,7 +15,7 @@ export enum Motion {
 
 export function canPerformMotion(
   musicalKey: MusicalKey,
-  motion: Motion
+  motion: Motion,
 ): boolean {
   if (motion === Motion.IncrementModeAndIncrementRoot) {
     return musicalKey.mode < MAX_MODE;
@@ -46,61 +46,97 @@ export function canPerformMotion(
 
 export function getNextMusicalKey(
   musicalKey: MusicalKey,
-  motion: Motion
+  motion: Motion,
 ): MusicalKey {
   if (motion === Motion.IncrementModeAndIncrementRoot) {
-    return new MusicalKey(musicalKey.root + 1, musicalKey.degree);
+    return new MusicalKey({
+      mode: musicalKey.mode + 1,
+      root: musicalKey.root + 1,
+    });
   }
   if (motion === Motion.DecrementModeAndDecrementRoot) {
-    return new MusicalKey(musicalKey.root - 1, musicalKey.degree);
+    return new MusicalKey({
+      mode: musicalKey.mode - 1,
+      root: musicalKey.root - 1,
+    });
   }
   if (motion === Motion.IncrementDegreeAndDecrementMode) {
-    return new MusicalKey(musicalKey.root, musicalKey.degree + 1);
+    return new MusicalKey({
+      mode: musicalKey.mode - 1,
+      root: musicalKey.root,
+    });
   }
   if (motion === Motion.DecrementDegreeAndIncrementMode) {
-    return new MusicalKey(musicalKey.root, musicalKey.degree - 1);
+    return new MusicalKey({
+      mode: musicalKey.mode + 1,
+      root: musicalKey.root,
+    });
   }
   if (motion === Motion.IncrementRootAndIncrementDegree) {
-    return new MusicalKey(musicalKey.root + 1, musicalKey.degree + 1);
+    return new MusicalKey({
+      root: musicalKey.root + 1,
+      degree: musicalKey.degree + 1,
+    });
   }
   if (motion === Motion.DecrementRootAndDecrementDegree) {
-    return new MusicalKey(musicalKey.root - 1, musicalKey.degree - 1);
+    return new MusicalKey({
+      root: musicalKey.root - 1,
+      degree: musicalKey.degree - 1,
+    });
   }
   return musicalKey;
 }
 
 export function getWillIncrementMode(
-  motion: Motion
+  motion: Motion,
 ): boolean {
-  return motion === Motion.IncrementModeAndIncrementRoot || motion === Motion.DecrementDegreeAndIncrementMode;
+  return (
+    motion === Motion.IncrementModeAndIncrementRoot ||
+    motion === Motion.DecrementDegreeAndIncrementMode
+  );
 }
 
 export function getWillDecrementMode(
-  motion: Motion
+  motion: Motion,
 ): boolean {
-  return motion === Motion.DecrementModeAndDecrementRoot || motion === Motion.IncrementDegreeAndDecrementMode;
+  return (
+    motion === Motion.DecrementModeAndDecrementRoot ||
+    motion === Motion.IncrementDegreeAndDecrementMode
+  );
 }
 
 export function getWillIncrementRoot(
-  motion: Motion
+  motion: Motion,
 ): boolean {
-  return motion === Motion.IncrementModeAndIncrementRoot || motion === Motion.IncrementRootAndIncrementDegree;
+  return (
+    motion === Motion.IncrementModeAndIncrementRoot ||
+    motion === Motion.IncrementRootAndIncrementDegree
+  );
 }
 
 export function getWillDecrementRoot(
-  motion: Motion
+  motion: Motion,
 ): boolean {
-  return motion === Motion.DecrementModeAndDecrementRoot || motion === Motion.DecrementRootAndDecrementDegree;
+  return (
+    motion === Motion.DecrementModeAndDecrementRoot ||
+    motion === Motion.DecrementRootAndDecrementDegree
+  );
 }
 
 export function getWillIncrementDegree(
-  motion: Motion
+  motion: Motion,
 ): boolean {
-  return motion === Motion.IncrementDegreeAndDecrementMode || motion === Motion.IncrementRootAndIncrementDegree;
+  return (
+    motion === Motion.IncrementDegreeAndDecrementMode ||
+    motion === Motion.IncrementRootAndIncrementDegree
+  );
 }
 
 export function getWillDecrementDegree(
-  motion: Motion
+  motion: Motion,
 ): boolean {
-  return motion === Motion.DecrementDegreeAndIncrementMode || motion === Motion.DecrementRootAndDecrementDegree;
+  return (
+    motion === Motion.DecrementDegreeAndIncrementMode ||
+    motion === Motion.DecrementRootAndDecrementDegree
+  );
 }

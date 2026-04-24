@@ -10,15 +10,20 @@ import { cleanHistory } from "../testHelpers";
 
 afterEach(cleanHistory);
 
-function getRootDot() {
+function getRootDot(
+) {
   return screen.getByTestId("clock-root-dot");
 }
 
-function getNoteDot(solfegeLetter: SolfegeLetter) {
+function getNoteDot(
+  solfegeLetter: SolfegeLetter,
+) {
   return screen.getByTestId(`note-dot-${solfegeLetter}`);
 }
 
-function getNoteLabel(solfegeLetter: SolfegeLetter) {
+function getNoteLabel(
+  solfegeLetter: SolfegeLetter,
+) {
   return screen.getByTestId(`note-label-${solfegeLetter}`);
 }
 
@@ -114,7 +119,7 @@ test("<ScalesTool /> shows C-Major as default correctly", () => {
 });
 
 test("<ScalesTool /> shows Dorian D correctly", () => {
-  addToBrowserHistory(new MusicalKey(0, 0));
+  addToBrowserHistory(new MusicalKey({ mode: 0, root: 0 }));
 
   render(<ScalesTool />);
 
@@ -203,7 +208,7 @@ test("<ScalesTool /> shows Dorian D correctly", () => {
 });
 
 test("<ScalesTool /> shows D-Major correctly", () => {
-  addToBrowserHistory(new MusicalKey(0, 2));
+  addToBrowserHistory(new MusicalKey({ mode: -2, root: 0 }));
 
   render(<ScalesTool />);
 
@@ -292,7 +297,7 @@ test("<ScalesTool /> shows D-Major correctly", () => {
 });
 
 test("<ScalesTool /> shows C-Minor correctly", () => {
-  addToBrowserHistory(new MusicalKey(-2, -3));
+  addToBrowserHistory(new MusicalKey({ mode: 1, root: -2 }));
 
   render(<ScalesTool />);
 

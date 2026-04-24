@@ -64,7 +64,7 @@ function getDegreeExplanation(
 }
 
 function getWrittenOutNumber(
-  n: number
+  n: number,
 ): string {
   if (n >= WRITTEN_OUT_NUMBERS.length) return "Many";
   return WRITTEN_OUT_NUMBERS[n];
