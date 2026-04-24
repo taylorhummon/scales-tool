@@ -20,7 +20,7 @@ export function ModeSelector(
   return (
     <g className={selectorCssModule["mode-selector"]}>
       <text className={selectorCssModule["label"]}>
-        mode
+        Mode
       </text>
       <g clipPath="url(#selectors-clip-path)">
         <g className={getClassName(motion)}>

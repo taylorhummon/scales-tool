@@ -1,6 +1,9 @@
-import { DEFAULT_ANIMATION_TYPE, DEFAULT_IS_USING_SOLFEGE } from "@/config";
+import {
+  DEFAULT_IS_USING_SOLFEGE,
+  DEFAULT_IS_USING_ANIMATION,
+  DEFAULT_IS_USING_NOTES_BALLET,
+} from "@/config";
 import { MusicalKey } from "@/classes/MusicalKey";
-import { AnimationType } from "@/utilities/animation";
 import { Motion } from "@/utilities/motion";
 import { musicalKeyFromCurrentURL } from "@/utilities/routing";
 
@@ -9,8 +12,9 @@ export interface State {
   mode: number;
   root: number;
   motion: Motion;
-  animationType: AnimationType;
   isUsingSolfege: boolean;
+  isUsingAnimation: boolean;
+  isUsingNotesBallet: boolean;
 }
 
 // The state that's stored in the browser's history
@@ -26,8 +30,9 @@ export function getInitialState(
     mode: musicalKey.mode,
     root: musicalKey.root,
     motion: Motion.Still,
-    animationType: DEFAULT_ANIMATION_TYPE,
     isUsingSolfege: DEFAULT_IS_USING_SOLFEGE,
+    isUsingAnimation: DEFAULT_IS_USING_ANIMATION,
+    isUsingNotesBallet: DEFAULT_IS_USING_NOTES_BALLET,
   };
 }
 

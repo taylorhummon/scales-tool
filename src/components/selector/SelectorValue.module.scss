@@ -2,7 +2,7 @@
 @use "@/utilities/position" as position;
 
 
-$unselected: 0.4;
+$unselected: 0.45;
 $selected: 1;
 
 @keyframes fade-from-unselected-to-selected {

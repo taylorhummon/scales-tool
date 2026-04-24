@@ -1,9 +1,9 @@
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider } from "@mantine/core";
 
-import { DerivedProvider } from '@/contexts/derived';
+import { DerivedProvider } from "@/contexts/derived";
 import { ScalesToolInner } from "@/components/ScalesToolInner";
 
-import '@mantine/core/styles.css';
+import "@mantine/core/styles.css";
 
 
 export default function ScalesTool(

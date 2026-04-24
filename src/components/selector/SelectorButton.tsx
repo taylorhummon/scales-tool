@@ -3,7 +3,6 @@ import { Icon } from "@/components/selector/Icon";
 import { useDerivedContext } from "@/contexts/derived";
 import { useDispatchContext } from "@/contexts/dispatch";
 import { ActionType } from "@/utilities/action";
-import { AnimationType } from "@/utilities/animation";
 import { buildClassName } from "@/utilities/css";
 import { Motion, canPerformMotion, getNextMusicalKey } from "@/utilities/motion";
 import { addToBrowserHistory } from "@/utilities/routing";
@@ -86,19 +85,19 @@ function ButtonRectangle({
   onClickMotion,
   dataTestid,
 }: ButtonRectangleProps) {
-  const { musicalKey, nextMusicalKey, motion, animationType } = useDerivedContext();
+  const { musicalKey, nextMusicalKey, motion, isUsingAnimation } = useDerivedContext();
   const dispatch = useDispatchContext();
   const buttonState = getButtonState(nextMusicalKey, motion, onClickMotion);
 
   function handleClick(
   ): void {
     if (buttonState !== ButtonState.Ready) return;
-    if (animationType === AnimationType.None) {
+    if (isUsingAnimation) {
+      dispatch({ type: ActionType.ActivateMotion, motion: onClickMotion });
+    } else {
       const onClickMusicalKey = getNextMusicalKey(musicalKey, onClickMotion);
       addToBrowserHistory(onClickMusicalKey);
       dispatch({ type: ActionType.ChangeKey, nextMusicalKey: onClickMusicalKey });
-    } else {
-      dispatch({ type: ActionType.ActivateMotion, motion: onClickMotion });
     }
   }
 

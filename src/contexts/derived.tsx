@@ -4,13 +4,16 @@ import {
   useReducer,
   useContext,
   useMemo,
-} from 'react';
+} from "react";
 
-import { DEFAULT_ANIMATION_TYPE, DEFAULT_IS_USING_SOLFEGE } from "@/config";
+import {
+  DEFAULT_IS_USING_SOLFEGE,
+  DEFAULT_IS_USING_ANIMATION,
+  DEFAULT_IS_USING_NOTES_BALLET,
+} from "@/config";
 import { MusicalKey, DEFAULT_MUSICAL_KEY } from "@/classes/MusicalKey";
 import { DispatchContext } from "@/contexts/dispatch";
 import { ActionType, Action } from "@/utilities/action";
-import { AnimationType } from "@/utilities/animation";
 import { Motion, getNextMusicalKey } from "@/utilities/motion";
 import type { State } from "@/utilities/state";
 import { getInitialState } from "@/utilities/state";
@@ -23,8 +26,9 @@ export interface Derived {
   musicalKey: MusicalKey;
   nextMusicalKey: MusicalKey;
   motion: Motion;
-  animationType: AnimationType;
   isUsingSolfege: boolean;
+  isUsingAnimation: boolean;
+  isUsingNotesBallet: boolean;
 }
 
 // The DEFAULT_DERIVED will only be used outside of the DerivedContext provider.
@@ -33,8 +37,9 @@ const DEFAULT_DERIVED: Derived = {
   musicalKey: DEFAULT_MUSICAL_KEY,
   nextMusicalKey: DEFAULT_MUSICAL_KEY,
   motion: Motion.Still,
-  animationType: DEFAULT_ANIMATION_TYPE,
   isUsingSolfege: DEFAULT_IS_USING_SOLFEGE,
+  isUsingAnimation: DEFAULT_IS_USING_ANIMATION,
+  isUsingNotesBallet: DEFAULT_IS_USING_NOTES_BALLET,
 };
 
 export const DerivedContext: Context<Derived> = createContext(DEFAULT_DERIVED);
@@ -52,7 +57,7 @@ export function DerivedProvider({
   children,
 }: DerivedProviderProps): JSX.Element {
   const [state, dispatch] = useReducer(reducer, getInitialState());
-  const { mode, root, motion, animationType, isUsingSolfege } = state;
+  const { mode, root, motion, isUsingSolfege, isUsingAnimation, isUsingNotesBallet } = state;
   const musicalKey = useMemo(
     () => {
       return new MusicalKey({ mode, root });
@@ -65,7 +70,14 @@ export function DerivedProvider({
     },
     [musicalKey, motion],
   );
-  const derived = { musicalKey, nextMusicalKey, motion, animationType, isUsingSolfege };
+  const derived = {
+    musicalKey,
+    nextMusicalKey,
+    motion,
+    isUsingSolfege,
+    isUsingAnimation,
+    isUsingNotesBallet,
+  };
 
   return (
     <DerivedContext.Provider value={derived}>
@@ -91,11 +103,14 @@ function reducer(
       motion: Motion.Still
     }
   }
-  if (action.type === ActionType.SelectAnimationType) {
-    return { ...state, animationType: action.animationType };
-  }
   if (action.type === ActionType.SelectIsUsingSolfege) {
     return { ...state, isUsingSolfege: action.isUsingSolfege };
+  }
+  if (action.type === ActionType.SelectIsUsingAnimation) {
+    return { ...state, isUsingAnimation: action.isUsingAnimation };
+  }
+  if (action.type === ActionType.SelectIsUsingNotesBallet) {
+    return { ...state, isUsingNotesBallet: action.isUsingNotesBallet };
   }
   return state;
 }

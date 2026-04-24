@@ -21,7 +21,7 @@ export function RootSelector(
   return (
     <g className={selectorCssModule["root-selector"]}>
       <text className={selectorCssModule["label"]}>
-        root
+        Root
       </text>
       <g clipPath="url(#selectors-clip-path)">
         <g className={getClassName(motion)}>

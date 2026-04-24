@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 
 import { MusicalKey, DEFAULT_MUSICAL_KEY } from "@/classes/MusicalKey";
 import { Canvas } from "@/components/Canvas";
-import { SettingsAccordion } from "@/components/settings/SettingsAccordion";
+import { Settings } from "@/components/settings/Settings";
 import { useDerivedContext } from "@/contexts/derived";
 import { ActionType } from "@/utilities/action";
 import { useDispatchContext } from "@/contexts/dispatch";
@@ -70,7 +70,7 @@ export function ScalesToolInner(
         </li>
       </ul>
       <Canvas />
-      <SettingsAccordion />
+      <Settings />
     </div>
   );
 }

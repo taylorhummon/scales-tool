@@ -1,7 +1,6 @@
 import { test, expect, afterEach } from "vitest";
 
 import { MusicalKey } from "@/classes/MusicalKey";
-import { AnimationType } from "@/utilities/animation";
 import { Motion } from "@/utilities/motion";
 import { addToBrowserHistory } from "@/utilities/routing";
 import {
@@ -21,8 +20,9 @@ test("getInitialState() works", () => {
       mode: -2,
       root: -2,
       motion: Motion.Still,
-      animationType: AnimationType.Simple,
       isUsingSolfege: false,
+      isUsingAnimation: true,
+      isUsingNotesBallet: false,
     }
   );
   addToBrowserHistory(new MusicalKey({ mode: 0, root: 0 }));
@@ -32,9 +32,10 @@ test("getInitialState() works", () => {
     {
       mode: 0,
       root: 0,
-      animationType: AnimationType.Simple,
       motion: Motion.Still,
       isUsingSolfege: false,
+      isUsingAnimation: true,
+      isUsingNotesBallet: false,
     }
   );
   addToBrowserHistory(new MusicalKey({ mode: 3, root: 2 }));
@@ -44,9 +45,10 @@ test("getInitialState() works", () => {
     {
       mode: 3,
       root: 2,
-      animationType: AnimationType.Simple,
       motion: Motion.Still,
       isUsingSolfege: false,
+      isUsingAnimation: true,
+      isUsingNotesBallet: false,
     }
   );
 });

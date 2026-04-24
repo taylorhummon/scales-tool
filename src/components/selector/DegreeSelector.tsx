@@ -20,7 +20,7 @@ export function DegreeSelector(
   return (
     <g className={selectorCssModule["degree-selector"]}>
       <text className={selectorCssModule["label"]}>
-        deg
+        Deg
       </text>
       <g clipPath="url(#selectors-clip-path)">
         <g className={getClassName(motion)}>
