@@ -3,7 +3,6 @@ import { Stack, Switch } from "@mantine/core";
 import { useDerivedContext } from "@/contexts/derived";
 import { useDispatchContext } from "@/contexts/dispatch";
 import { ActionType } from "@/utilities/action";
-import { SWITCH_ACTIVATED_COLOR } from "@/utilities/color";
 
 import settingsCssModule from "@/components/settings/Settings.module.scss";
 
@@ -25,7 +24,6 @@ export function Settings(
       <Switch
         label="Solfège"
         size={SWITCH_SIZE}
-        color={SWITCH_ACTIVATED_COLOR}
         withThumbIndicator={WITH_THUMB_INDICATOR}
         checked={isUsingSolfege}
         onChange={(event) => dispatch({
@@ -36,7 +34,6 @@ export function Settings(
       <Switch
         label="Animation"
         size={SWITCH_SIZE}
-        color={SWITCH_ACTIVATED_COLOR}
         withThumbIndicator={WITH_THUMB_INDICATOR}
         checked={isUsingAnimation}
         onChange={(event) => dispatch({
@@ -47,7 +44,6 @@ export function Settings(
       <Switch
         label="Notes ballet"
         size={SWITCH_SIZE}
-        color={SWITCH_ACTIVATED_COLOR}
         withThumbIndicator={WITH_THUMB_INDICATOR}
         disabled={! isUsingAnimation}
         checked={isUsingNotesBallet}
