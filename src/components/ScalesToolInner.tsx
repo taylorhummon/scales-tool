@@ -9,8 +9,6 @@ import { useDispatchContext } from "@/contexts/dispatch";
 import { addToBrowserHistory } from "@/utilities/routing";
 import type { HistoricalState } from "@/utilities/state";
 
-import scalesToolInnerCssModule from "@/components/ScalesToolInner.module.scss";
-
 
 export function ScalesToolInner(
 ): JSX.Element {
@@ -53,22 +51,6 @@ export function ScalesToolInner(
     <div
       ref={domNodeRef}
     >
-      <h1>
-        Explore Musical Scales Visually
-      </h1>
-      <ul
-        className={scalesToolInnerCssModule["instructions"]}
-      >
-        <li>
-          Arrow buttons change keys within a mode.
-        </li>
-        <li>
-          Blue dot buttons move between relative keys.
-        </li>
-        <li>
-          Sharp and flat buttons move between parallel keys.
-        </li>
-      </ul>
       <Canvas />
       <Settings />
     </div>
