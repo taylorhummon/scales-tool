@@ -1,0 +1,48 @@
+@use "@/utilities/animation" as animation;
+@use "@/utilities/position" as position;
+
+
+$unhighlighted: 0.45;
+$highlighted: 1;
+
+@keyframes fade-from-unhighlighted-to-highlighted {
+  0% {
+    opacity: $unhighlighted;
+  }
+  40% {
+    opacity: $unhighlighted;
+  }
+  100% {
+    opacity: $highlighted;
+  }
+}
+
+.gauge-value {
+  offset-rotate: 0deg;
+
+  @for $position from -4 through 4 {
+    &.position-#{$position} {
+      offset-path: position.position-still-path($position);
+    }
+  }
+
+  &.unhighlighted {
+    opacity: $unhighlighted;
+  }
+
+  &.highlighted {
+    opacity: $highlighted;
+  }
+
+  &.fade-from-unhighlighted-to-highlighted {
+    animation: fade-from-unhighlighted-to-highlighted animation.$duration linear 1 forwards;
+  }
+
+  &.fade-from-highlighted-to-unhighlighted {
+    animation: fade-from-unhighlighted-to-highlighted animation.$duration linear 1 forwards reverse;
+  }
+}
+
+.text {
+  font-family: "PT Mono", monospace;
+}

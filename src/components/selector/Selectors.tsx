@@ -1,4 +1,4 @@
-import { CentralBox } from "@/components/selector/CentralBox";
+import { Highlighter } from "@/components/selector/Highlighter";
 import { DegreeSelector } from "@/components/selector/DegreeSelector";
 import { RootSelector } from "@/components/selector/RootSelector";
 import { SelectorButtons } from "@/components/selector/SelectorButtons";
@@ -21,9 +21,9 @@ export function Selectors(
         </clipPath>
       </defs>
       <SelectorButtons />
-      <CentralBox />
-      <RootSelector />
+      <Highlighter />
       <DegreeSelector />
+      <RootSelector />
     </g>
   );
 }

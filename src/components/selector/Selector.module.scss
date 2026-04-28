@@ -2,11 +2,11 @@
 @use "@/utilities/position" as position;
 
 
-.root-selector {
+.degree-selector {
   offset-path: path("M -26 0");
 }
 
-.degree-selector {
+.root-selector {
   offset-path: path("M 26 0");
 }
 

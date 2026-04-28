@@ -1,0 +1,38 @@
+@use "@/utilities/animation" as animation;
+@use "@/utilities/path" as path;
+@use "@/utilities/position" as position;
+
+
+@keyframes move-highlighter {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+
+.highlighter {
+  offset-rotate: 0deg;
+
+  @for $position from -3 through 3 {
+    &.position-#{$position} {
+      offset-path: position.position-still-path($position);
+    }
+  }
+
+  @for $position-a from -3 through 2 {
+    $position-b: $position-a + 1;
+
+    &.move-from-#{$position-a}-to-#{$position-b} {
+      animation: move-highlighter animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(position.point($position-a), position.point($position-b));
+    }
+
+    &.move-from-#{$position-b}-to-#{$position-a} {
+      animation: move-highlighter animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(position.point($position-b), position.point($position-a));
+    }
+  }
+}

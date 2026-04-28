@@ -1,4 +1,4 @@
-import { CENTRAL_BOX_STROKE, CENTRAL_BOX_FILL } from "@/utilities/color";
+import { HIGHLIGHTER_STROKE, HIGHLIGHTER_FILL } from "@/utilities/color";
 
 
 const width = 104;
@@ -10,21 +10,22 @@ const left = - right;
 const bottom = height / 2;
 const top = - bottom;
 
-export function CentralBox(
+
+export function Highlighter(
 ): JSX.Element {
   return (
     <>
       <rect
-        stroke="none"
         x={left}
         y={top}
         width={width}
         height={height}
-        fill={CENTRAL_BOX_FILL}
+        stroke="none"
+        fill={HIGHLIGHTER_FILL}
       />
       <g
         strokeWidth="1.5"
-        stroke={CENTRAL_BOX_STROKE}
+        stroke={HIGHLIGHTER_STROKE}
         fill="none"
       >
         <polyline
