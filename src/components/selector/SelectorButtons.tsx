@@ -10,10 +10,16 @@ export function SelectorButtons(
     <>
       <g className={selectorButtonsCssModule["upper-buttons"]}>
         <SelectorButton
-          buttonSize={ButtonSize.Large}
+          buttonSize={ButtonSize.Small}
           onClickMotion={Motion.IncrementModeAndIncrementRoot}
           className={selectorButtonsCssModule["top-left"]}
           dataTestid="upper-top-left"
+        />
+        <SelectorButton
+          buttonSize={ButtonSize.Small}
+          onClickMotion={Motion.IncrementRootAndIncrementDegree}
+          className={selectorButtonsCssModule["top-middle"]}
+          dataTestid="upper-top-middle"
         />
         <SelectorButton
           buttonSize={ButtonSize.Small}
@@ -28,7 +34,13 @@ export function SelectorButtons(
           dataTestid="upper-bottom-left"
         />
         <SelectorButton
-          buttonSize={ButtonSize.Large}
+          buttonSize={ButtonSize.Small}
+          onClickMotion={Motion.IncrementModeAndIncrementRoot}
+          className={selectorButtonsCssModule["bottom-middle"]}
+          dataTestid="upper-bottom-middle"
+        />
+        <SelectorButton
+          buttonSize={ButtonSize.Small}
           onClickMotion={Motion.IncrementRootAndIncrementDegree}
           className={selectorButtonsCssModule["bottom-right"]}
           dataTestid="upper-bottom-right"
@@ -42,16 +54,28 @@ export function SelectorButtons(
           dataTestid="lower-top-left"
         />
         <SelectorButton
-          buttonSize={ButtonSize.Large}
+          buttonSize={ButtonSize.Small}
+          onClickMotion={Motion.DecrementModeAndDecrementRoot}
+          className={selectorButtonsCssModule["top-middle"]}
+          dataTestid="lower-top-middle"
+        />
+        <SelectorButton
+          buttonSize={ButtonSize.Small}
           onClickMotion={Motion.DecrementRootAndDecrementDegree}
           className={selectorButtonsCssModule["top-right"]}
           dataTestid="lower-top-right"
         />
         <SelectorButton
-          buttonSize={ButtonSize.Large}
+          buttonSize={ButtonSize.Small}
           onClickMotion={Motion.DecrementModeAndDecrementRoot}
           className={selectorButtonsCssModule["bottom-left"]}
           dataTestid="lower-bottom-left"
+        />
+        <SelectorButton
+          buttonSize={ButtonSize.Small}
+          onClickMotion={Motion.DecrementRootAndDecrementDegree}
+          className={selectorButtonsCssModule["bottom-middle"]}
+          dataTestid="lower-bottom-middle"
         />
         <SelectorButton
           buttonSize={ButtonSize.Small}

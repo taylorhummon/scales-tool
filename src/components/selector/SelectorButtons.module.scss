@@ -2,7 +2,11 @@
   offset-path: path("M 0 -181");
 
   .top-left {
-    offset-path: path("M -26 -23");
+    offset-path: path("M -52 -23");
+  }
+
+  .top-middle {
+    offset-path: path("M 0 -23");
   }
 
   .top-right {
@@ -13,8 +17,12 @@
     offset-path: path("M -52 23");
   }
 
+  .bottom-middle {
+    offset-path: path("M 0 23");
+  }
+
   .bottom-right {
-    offset-path: path("M 26 23");
+    offset-path: path("M 52 23");
   }
 }
 
@@ -25,12 +33,20 @@
     offset-path: path("M -52 -23");
   }
 
+  .top-middle {
+    offset-path: path("M 0 -23");
+  }
+
   .top-right {
-    offset-path: path("M 26 -23");
+    offset-path: path("M 52 -23");
   }
 
   .bottom-left {
-    offset-path: path("M -26 23");
+    offset-path: path("M -52 23");
+  }
+
+  .bottom-middle {
+    offset-path: path("M 0 23");
   }
 
   .bottom-right {
