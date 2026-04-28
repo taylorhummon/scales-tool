@@ -1,5 +1,4 @@
 import { CentralBox } from "@/components/selector/CentralBox";
-import { ModeSelector } from "@/components/selector/ModeSelector";
 import { DegreeSelector } from "@/components/selector/DegreeSelector";
 import { RootSelector } from "@/components/selector/RootSelector";
 import { SelectorButtons } from "@/components/selector/SelectorButtons";
@@ -23,7 +22,6 @@ export function Selectors(
       </defs>
       <SelectorButtons />
       <CentralBox />
-      <ModeSelector />
       <RootSelector />
       <DegreeSelector />
     </g>

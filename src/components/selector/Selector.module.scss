@@ -2,16 +2,12 @@
 @use "@/utilities/position" as position;
 
 
-.mode-selector {
-  offset-path: path("M -50 0");
-}
-
 .root-selector {
-  offset-path: path("M 0 0");
+  offset-path: path("M -26 0");
 }
 
 .degree-selector {
-  offset-path: path("M 50 0");
+  offset-path: path("M 26 0");
 }
 
 .label {

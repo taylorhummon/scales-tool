@@ -17,34 +17,34 @@ test("getInitialState() works", () => {
     getInitialState()
   ).toStrictEqual(
     {
-      mode: -2,
       root: -2,
+      degree: 0,
       motion: Motion.Still,
       isUsingSolfege: false,
       isUsingAnimation: true,
       isUsingNotesBallet: false,
     }
   );
-  addToBrowserHistory(new MusicalKey({ mode: 0, root: 0 }));
+  addToBrowserHistory(new MusicalKey({ root: 0, degree: 0 }));
   expect(
     getInitialState()
   ).toStrictEqual(
     {
-      mode: 0,
       root: 0,
+      degree: 0,
       motion: Motion.Still,
       isUsingSolfege: false,
       isUsingAnimation: true,
       isUsingNotesBallet: false,
     }
   );
-  addToBrowserHistory(new MusicalKey({ mode: 3, root: 2 }));
+  addToBrowserHistory(new MusicalKey({ root: 3, degree: 2 }));
   expect(
     getInitialState()
   ).toStrictEqual(
     {
-      mode: 3,
-      root: 2,
+      root: 3,
+      degree: 2,
       motion: Motion.Still,
       isUsingSolfege: false,
       isUsingAnimation: true,
@@ -55,11 +55,11 @@ test("getInitialState() works", () => {
 
 test("historicalStateFromMusicalKey() works", () => {
   expect(
-    historicalStateFromMusicalKey(new MusicalKey({ mode: -2, root: 1 }))
+    historicalStateFromMusicalKey(new MusicalKey({ root: -2, degree: 1 }))
   ).toStrictEqual(
     {
-      mode: -2,
-      root: 1,
+      root: -2,
+      degree: 1,
     }
   );
 });

@@ -1,7 +1,7 @@
 import { CENTRAL_BOX_STROKE, CENTRAL_BOX_FILL } from "@/utilities/color";
 
 
-const width = 156;
+const width = 104;
 const height = 30;
 const decorationWidth = 8;
 const decorationHeight = 6;

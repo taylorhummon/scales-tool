@@ -57,12 +57,12 @@ export function DerivedProvider({
   children,
 }: DerivedProviderProps): JSX.Element {
   const [state, dispatch] = useReducer(reducer, getInitialState());
-  const { mode, root, motion, isUsingSolfege, isUsingAnimation, isUsingNotesBallet } = state;
+  const { root, degree, motion, isUsingSolfege, isUsingAnimation, isUsingNotesBallet } = state;
   const musicalKey = useMemo(
     () => {
-      return new MusicalKey({ mode, root });
+      return new MusicalKey({ root, degree });
     },
-    [mode, root],
+    [root, degree],
   );
   const nextMusicalKey = useMemo(
     () => {
@@ -98,8 +98,8 @@ function reducer(
   if (action.type === ActionType.ChangeKey) {
     return {
       ...state,
-      mode: action.nextMusicalKey.mode,
       root: action.nextMusicalKey.root,
+      degree: action.nextMusicalKey.degree,
       motion: Motion.Still
     }
   }

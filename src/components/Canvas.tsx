@@ -11,7 +11,7 @@ export function Canvas(
   return (
     <svg
       className={canvasCssModule["canvas"]}
-      viewBox="0 0 520 440"
+      viewBox="0 0 492 440"
       xmlns="http://www.w3.org/2000/svg"
     >
       <Selectors />

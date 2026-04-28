@@ -73,10 +73,10 @@ function registerEventListener(
 function musicalKeyFromHistoricalState(
   historicalState: HistoricalState | undefined,
 ): MusicalKey {
-  const mode = historicalState?.mode;
   const root = historicalState?.root;
-  if (typeof mode === "number" && typeof root === "number") {
-    return new MusicalKey({ mode, root });
+  const degree = historicalState?.degree;
+  if (typeof root === "number" && typeof degree === "number") {
+    return new MusicalKey({ root, degree });
   } else {
     return DEFAULT_MUSICAL_KEY;
   }

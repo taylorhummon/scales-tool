@@ -17,32 +17,32 @@ import {
 test("canPerformMotion() works for Dorian D", () => {
   const musicalKey = new MusicalKey({ mode: 0, root: 0 });
   expect(
-    canPerformMotion(musicalKey, Motion.IncrementModeAndIncrementRoot)
+    canPerformMotion(musicalKey, Motion.IncrementRoot)
   ).toBe(
     true
   );
   expect(
-    canPerformMotion(musicalKey, Motion.DecrementModeAndDecrementRoot)
+    canPerformMotion(musicalKey, Motion.DecrementRoot)
   ).toBe(
     true
   );
   expect(
-    canPerformMotion(musicalKey, Motion.IncrementDegreeAndDecrementMode)
+    canPerformMotion(musicalKey, Motion.IncrementDegree)
   ).toBe(
     true
   );
   expect(
-    canPerformMotion(musicalKey, Motion.DecrementDegreeAndIncrementMode)
+    canPerformMotion(musicalKey, Motion.DecrementDegree)
   ).toBe(
     true
   );
   expect(
-    canPerformMotion(musicalKey, Motion.IncrementRootAndIncrementDegree)
+    canPerformMotion(musicalKey, Motion.IncrementBoth)
   ).toBe(
     true
   );
   expect(
-    canPerformMotion(musicalKey, Motion.DecrementRootAndDecrementDegree)
+    canPerformMotion(musicalKey, Motion.DecrementBoth)
   ).toBe(
     true
   );
@@ -51,32 +51,32 @@ test("canPerformMotion() works for Dorian D", () => {
 test("canPerformMotion() works for 14 sharps", () => {
   const musicalKey = new MusicalKey({ mode: -2, degree: 14 });
   expect(
-    canPerformMotion(musicalKey, Motion.IncrementModeAndIncrementRoot)
+    canPerformMotion(musicalKey, Motion.IncrementRoot)
   ).toBe(
     true
   );
   expect(
-    canPerformMotion(musicalKey, Motion.DecrementModeAndDecrementRoot)
+    canPerformMotion(musicalKey, Motion.DecrementRoot)
   ).toBe(
     true
   );
   expect(
-    canPerformMotion(musicalKey, Motion.IncrementDegreeAndDecrementMode)
+    canPerformMotion(musicalKey, Motion.IncrementDegree)
   ).toBe(
     false
   );
   expect(
-    canPerformMotion(musicalKey, Motion.DecrementDegreeAndIncrementMode)
+    canPerformMotion(musicalKey, Motion.DecrementDegree)
   ).toBe(
     true
   );
   expect(
-    canPerformMotion(musicalKey, Motion.IncrementRootAndIncrementDegree)
+    canPerformMotion(musicalKey, Motion.IncrementBoth)
   ).toBe(
     false
   );
   expect(
-    canPerformMotion(musicalKey, Motion.DecrementRootAndDecrementDegree)
+    canPerformMotion(musicalKey, Motion.DecrementBoth)
   ).toBe(
     true
   );
@@ -85,32 +85,32 @@ test("canPerformMotion() works for 14 sharps", () => {
 test("canPerformMotion() works for 14 flats", () => {
   const musicalKey = new MusicalKey({ mode: -1, degree: -14 });
   expect(
-    canPerformMotion(musicalKey, Motion.IncrementModeAndIncrementRoot)
+    canPerformMotion(musicalKey, Motion.IncrementRoot)
   ).toBe(
     true
   );
   expect(
-    canPerformMotion(musicalKey, Motion.DecrementModeAndDecrementRoot)
+    canPerformMotion(musicalKey, Motion.DecrementRoot)
   ).toBe(
     true
   );
   expect(
-    canPerformMotion(musicalKey, Motion.IncrementDegreeAndDecrementMode)
+    canPerformMotion(musicalKey, Motion.IncrementDegree)
   ).toBe(
     true
   );
   expect(
-    canPerformMotion(musicalKey, Motion.DecrementDegreeAndIncrementMode)
+    canPerformMotion(musicalKey, Motion.DecrementDegree)
   ).toBe(
     false
   );
   expect(
-    canPerformMotion(musicalKey, Motion.IncrementRootAndIncrementDegree)
+    canPerformMotion(musicalKey, Motion.IncrementBoth)
   ).toBe(
     true
   );
   expect(
-    canPerformMotion(musicalKey, Motion.DecrementRootAndDecrementDegree)
+    canPerformMotion(musicalKey, Motion.DecrementBoth)
   ).toBe(
     false
   );
@@ -119,32 +119,32 @@ test("canPerformMotion() works for 14 flats", () => {
 test("canPerformMotion() works for mode = -3", () => {
   const musicalKey = new MusicalKey({ mode: -3, root: 2 });
   expect(
-    canPerformMotion(musicalKey, Motion.IncrementModeAndIncrementRoot)
+    canPerformMotion(musicalKey, Motion.IncrementRoot)
   ).toBe(
     true
   );
   expect(
-    canPerformMotion(musicalKey, Motion.DecrementModeAndDecrementRoot)
+    canPerformMotion(musicalKey, Motion.DecrementRoot)
   ).toBe(
     false
   );
   expect(
-    canPerformMotion(musicalKey, Motion.IncrementDegreeAndDecrementMode)
+    canPerformMotion(musicalKey, Motion.IncrementDegree)
   ).toBe(
     false
   );
   expect(
-    canPerformMotion(musicalKey, Motion.DecrementDegreeAndIncrementMode)
+    canPerformMotion(musicalKey, Motion.DecrementDegree)
   ).toBe(
     true
   );
   expect(
-    canPerformMotion(musicalKey, Motion.IncrementRootAndIncrementDegree)
+    canPerformMotion(musicalKey, Motion.IncrementBoth)
   ).toBe(
     true
   );
   expect(
-    canPerformMotion(musicalKey, Motion.DecrementRootAndDecrementDegree)
+    canPerformMotion(musicalKey, Motion.DecrementBoth)
   ).toBe(
     true
   );
@@ -153,62 +153,62 @@ test("canPerformMotion() works for mode = -3", () => {
 test("getNextMusicalKey() works", () => {
   const musicalKey = new MusicalKey({ mode: 0, root: 0 });
   expect(
-    getNextMusicalKey(musicalKey, Motion.IncrementModeAndIncrementRoot).root
+    getNextMusicalKey(musicalKey, Motion.IncrementRoot).root
   ).toBe(
     1
   );
   expect(
-    getNextMusicalKey(musicalKey, Motion.IncrementModeAndIncrementRoot).degree
+    getNextMusicalKey(musicalKey, Motion.IncrementRoot).degree
   ).toBe(
     0
   );
   expect(
-    getNextMusicalKey(musicalKey, Motion.DecrementModeAndDecrementRoot).root
+    getNextMusicalKey(musicalKey, Motion.DecrementRoot).root
   ).toBe(
     -1
   );
   expect(
-    getNextMusicalKey(musicalKey, Motion.DecrementModeAndDecrementRoot).degree
+    getNextMusicalKey(musicalKey, Motion.DecrementRoot).degree
   ).toBe(
     0
   );
   expect(
-    getNextMusicalKey(musicalKey, Motion.IncrementDegreeAndDecrementMode).root
+    getNextMusicalKey(musicalKey, Motion.IncrementDegree).root
   ).toBe(
     0
   );
   expect(
-    getNextMusicalKey(musicalKey, Motion.IncrementDegreeAndDecrementMode).degree
+    getNextMusicalKey(musicalKey, Motion.IncrementDegree).degree
   ).toBe(
     1
   );
   expect(
-    getNextMusicalKey(musicalKey, Motion.DecrementDegreeAndIncrementMode).root
+    getNextMusicalKey(musicalKey, Motion.DecrementDegree).root
   ).toBe(
     0
   );
   expect(
-    getNextMusicalKey(musicalKey, Motion.DecrementDegreeAndIncrementMode).degree
+    getNextMusicalKey(musicalKey, Motion.DecrementDegree).degree
   ).toBe(
     -1
   );
   expect(
-    getNextMusicalKey(musicalKey, Motion.IncrementRootAndIncrementDegree).root
+    getNextMusicalKey(musicalKey, Motion.IncrementBoth).root
   ).toBe(
     1
   );
   expect(
-    getNextMusicalKey(musicalKey, Motion.IncrementRootAndIncrementDegree).degree
+    getNextMusicalKey(musicalKey, Motion.IncrementBoth).degree
   ).toBe(
     1
   );
   expect(
-    getNextMusicalKey(musicalKey, Motion.DecrementRootAndDecrementDegree).root
+    getNextMusicalKey(musicalKey, Motion.DecrementBoth).root
   ).toBe(
     -1
   );
   expect(
-    getNextMusicalKey(musicalKey, Motion.DecrementRootAndDecrementDegree).degree
+    getNextMusicalKey(musicalKey, Motion.DecrementBoth).degree
   ).toBe(
     -1
   );
@@ -216,32 +216,32 @@ test("getNextMusicalKey() works", () => {
 
 test("getWillIncrementMode() works", () => {
   expect(
-    getWillIncrementMode(Motion.IncrementModeAndIncrementRoot)
+    getWillIncrementMode(Motion.IncrementRoot)
   ).toBe(
     true
   );
   expect(
-    getWillIncrementMode(Motion.IncrementDegreeAndDecrementMode)
+    getWillIncrementMode(Motion.IncrementDegree)
   ).toBe(
     false
   );
   expect(
-    getWillIncrementMode(Motion.IncrementRootAndIncrementDegree)
+    getWillIncrementMode(Motion.IncrementBoth)
   ).toBe(
     false
   );
   expect(
-    getWillIncrementMode(Motion.DecrementModeAndDecrementRoot)
+    getWillIncrementMode(Motion.DecrementRoot)
   ).toBe(
     false
   );
   expect(
-    getWillIncrementMode(Motion.DecrementDegreeAndIncrementMode)
+    getWillIncrementMode(Motion.DecrementDegree)
   ).toBe(
     true
   );
   expect(
-    getWillIncrementMode(Motion.DecrementRootAndDecrementDegree)
+    getWillIncrementMode(Motion.DecrementBoth)
   ).toBe(
     false
   );
@@ -249,32 +249,32 @@ test("getWillIncrementMode() works", () => {
 
 test("getWillDecrementMode() works", () => {
   expect(
-    getWillDecrementMode(Motion.IncrementModeAndIncrementRoot)
+    getWillDecrementMode(Motion.IncrementRoot)
   ).toBe(
     false
   );
   expect(
-    getWillDecrementMode(Motion.IncrementDegreeAndDecrementMode)
+    getWillDecrementMode(Motion.IncrementDegree)
   ).toBe(
     true
   );
   expect(
-    getWillDecrementMode(Motion.IncrementRootAndIncrementDegree)
+    getWillDecrementMode(Motion.IncrementBoth)
   ).toBe(
     false
   );
   expect(
-    getWillDecrementMode(Motion.DecrementModeAndDecrementRoot)
+    getWillDecrementMode(Motion.DecrementRoot)
   ).toBe(
     true
   );
   expect(
-    getWillDecrementMode(Motion.DecrementDegreeAndIncrementMode)
+    getWillDecrementMode(Motion.DecrementDegree)
   ).toBe(
     false
   );
   expect(
-    getWillDecrementMode(Motion.DecrementRootAndDecrementDegree)
+    getWillDecrementMode(Motion.DecrementBoth)
   ).toBe(
     false
   );
@@ -282,17 +282,17 @@ test("getWillDecrementMode() works", () => {
 
 test("getWillIncrementRoot() works", () => {
   expect(
-    getWillIncrementRoot(Motion.IncrementModeAndIncrementRoot)
+    getWillIncrementRoot(Motion.IncrementRoot)
   ).toBe(
     true
   );
   expect(
-    getWillIncrementRoot(Motion.IncrementDegreeAndDecrementMode)
+    getWillIncrementRoot(Motion.IncrementDegree)
   ).toBe(
     false
   );
   expect(
-    getWillIncrementRoot(Motion.IncrementRootAndIncrementDegree)
+    getWillIncrementRoot(Motion.IncrementBoth)
   ).toBe(
     true
   );
@@ -300,17 +300,17 @@ test("getWillIncrementRoot() works", () => {
 
 test("getWillDecrementRoot() works", () => {
   expect(
-    getWillDecrementRoot(Motion.DecrementModeAndDecrementRoot)
+    getWillDecrementRoot(Motion.DecrementRoot)
   ).toBe(
     true
   );
   expect(
-    getWillDecrementRoot(Motion.DecrementDegreeAndIncrementMode)
+    getWillDecrementRoot(Motion.DecrementDegree)
   ).toBe(
     false
   );
   expect(
-    getWillDecrementRoot(Motion.DecrementRootAndDecrementDegree)
+    getWillDecrementRoot(Motion.DecrementBoth)
   ).toBe(
     true
   );
@@ -318,17 +318,17 @@ test("getWillDecrementRoot() works", () => {
 
 test("getWillIncrementDegree() works", () => {
   expect(
-    getWillIncrementDegree(Motion.IncrementModeAndIncrementRoot)
+    getWillIncrementDegree(Motion.IncrementRoot)
   ).toBe(
     false
   );
   expect(
-    getWillIncrementDegree(Motion.IncrementDegreeAndDecrementMode)
+    getWillIncrementDegree(Motion.IncrementDegree)
   ).toBe(
     true
   );
   expect(
-    getWillIncrementDegree(Motion.IncrementRootAndIncrementDegree)
+    getWillIncrementDegree(Motion.IncrementBoth)
   ).toBe(
     true
   );
@@ -336,17 +336,17 @@ test("getWillIncrementDegree() works", () => {
 
 test("getWillDecrementDegree() works", () => {
   expect(
-    getWillDecrementDegree(Motion.DecrementModeAndDecrementRoot)
+    getWillDecrementDegree(Motion.DecrementRoot)
   ).toBe(
     false
   );
   expect(
-    getWillDecrementDegree(Motion.DecrementDegreeAndIncrementMode)
+    getWillDecrementDegree(Motion.DecrementDegree)
   ).toBe(
     true
   );
   expect(
-    getWillDecrementDegree(Motion.DecrementRootAndDecrementDegree)
+    getWillDecrementDegree(Motion.DecrementBoth)
   ).toBe(
     true
   );

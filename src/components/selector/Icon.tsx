@@ -15,7 +15,7 @@ export function Icon({
   motion,
   className,
 }: IconProps): JSX.Element | null {
-  if (motion === Motion.IncrementModeAndIncrementRoot) {
+  if (motion === Motion.IncrementRoot) {
     return (
       <g className={className}>
         <circle
@@ -53,7 +53,7 @@ export function Icon({
       </g>
     );
   }
-  if (motion === Motion.DecrementModeAndDecrementRoot) {
+  if (motion === Motion.DecrementRoot) {
     return (
       <g className={className}>
         <circle
@@ -91,7 +91,7 @@ export function Icon({
       </g>
     );
   }
-  if (motion === Motion.IncrementDegreeAndDecrementMode) {
+  if (motion === Motion.IncrementDegree) {
     return (
       <g className={className}>
         <line
@@ -123,7 +123,7 @@ export function Icon({
       </g>
     );
   }
-  if (motion === Motion.DecrementDegreeAndIncrementMode) {
+  if (motion === Motion.DecrementDegree) {
     return (
       <g className={className}>
         <line
@@ -143,7 +143,7 @@ export function Icon({
       </g>
     );
   }
-  if (motion === Motion.IncrementRootAndIncrementDegree) {
+  if (motion === Motion.IncrementBoth) {
     return (
       <g className={className}>
         <polyline
@@ -155,7 +155,7 @@ export function Icon({
       </g>
     );
   }
-  if (motion === Motion.DecrementRootAndDecrementDegree) {
+  if (motion === Motion.DecrementBoth) {
     return (
       <g className={className}>
         <polygon

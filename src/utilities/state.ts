@@ -9,8 +9,8 @@ import { musicalKeyFromCurrentURL } from "@/utilities/routing";
 
 
 export interface State {
-  mode: number;
   root: number;
+  degree: number;
   motion: Motion;
   isUsingSolfege: boolean;
   isUsingAnimation: boolean;
@@ -19,16 +19,16 @@ export interface State {
 
 // The state that's stored in the browser's history
 export interface HistoricalState {
-  mode: number;
   root: number;
+  degree: number;
 }
 
 export function getInitialState(
 ): State {
   const musicalKey = musicalKeyFromCurrentURL();
   return {
-    mode: musicalKey.mode,
     root: musicalKey.root,
+    degree: musicalKey.degree,
     motion: Motion.Still,
     isUsingSolfege: DEFAULT_IS_USING_SOLFEGE,
     isUsingAnimation: DEFAULT_IS_USING_ANIMATION,
@@ -40,7 +40,7 @@ export function historicalStateFromMusicalKey(
   musicalKey: MusicalKey,
 ): HistoricalState {
   return {
-    mode: musicalKey.mode,
     root: musicalKey.root,
+    degree: musicalKey.degree,
   };
 }
