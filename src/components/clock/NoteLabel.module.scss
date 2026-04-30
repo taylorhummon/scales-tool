@@ -63,6 +63,78 @@
   }
 
   @for $hour-a from 0 through 11 {
+    $hour-b: unit-circle.hour($hour-a + 5);
+
+    &.move-from-#{$hour-a}-cc-1-to-#{$hour-b}-cc-2 {
+      animation: move-note-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(
+        note-label.point($hour-a, 1),
+        note-label.point($hour-b, 2),
+      );
+    }
+
+    &.move-from-#{$hour-a}-cc-2-to-#{$hour-b}-cc-3 {
+      animation: move-note-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(
+        note-label.point($hour-a, 2),
+        note-label.point($hour-b, 3),
+      );
+    }
+
+    &.move-from-#{$hour-a}-cc-3-to-#{$hour-b}-cc-2 {
+      animation: move-note-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(
+        note-label.point($hour-a, 3),
+        note-label.point($hour-b, 2),
+      );
+    }
+
+    &.move-from-#{$hour-a}-cc-2-to-#{$hour-b}-cc-1 {
+      animation: move-note-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(
+        note-label.point($hour-a, 2),
+        note-label.point($hour-b, 1),
+      );
+    }
+  }
+
+  @for $hour-a from 0 through 11 {
+    $hour-b: unit-circle.hour($hour-a + 7);
+
+    &.move-from-#{$hour-a}-cc-1-to-#{$hour-b}-cc-2 {
+      animation: move-note-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(
+        note-label.point($hour-a, 1),
+        note-label.point($hour-b, 2),
+      );
+    }
+
+    &.move-from-#{$hour-a}-cc-2-to-#{$hour-b}-cc-3 {
+      animation: move-note-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(
+        note-label.point($hour-a, 2),
+        note-label.point($hour-b, 3),
+      );
+    }
+
+    &.move-from-#{$hour-a}-cc-3-to-#{$hour-b}-cc-2 {
+      animation: move-note-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(
+        note-label.point($hour-a, 3),
+        note-label.point($hour-b, 2),
+      );
+    }
+
+    &.move-from-#{$hour-a}-cc-2-to-#{$hour-b}-cc-1 {
+      animation: move-note-label animation.$duration ease-in-out 1 forwards;
+      offset-path: path.linear-path(
+        note-label.point($hour-a, 2),
+        note-label.point($hour-b, 1),
+      );
+    }
+  }
+
+  @for $hour-a from 0 through 11 {
     $hour-b: unit-circle.hour($hour-a + 11);
 
     &.move-from-#{$hour-a}-cc-1-to-#{$hour-b}-cc-2 {
