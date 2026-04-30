@@ -34,9 +34,13 @@ function getClassName(
 ): string {
   const classNames = ["note-label"];
   if (noteLabelAnimator === null || ! noteLabelAnimator.willAnimate(note)) {
-    classNames.push(`note-${note.name}`);
+    const characterCount = note.name.length;
+    classNames.push(`hour-${note.hour}-cc-${characterCount}`);
   } else {
-    classNames.push(`move-from-${noteLabelAnimator.startNote.name}-to-${noteLabelAnimator.finishNote.name}`);
-  }
+    const startHour = noteLabelAnimator.startNote.hour;
+    const startCharacterCount = noteLabelAnimator.startNote.name.length;
+    const finishHour = noteLabelAnimator.finishNote.hour;
+    const finishCharacterCount = noteLabelAnimator.finishNote.name.length;
+    classNames.push(`move-from-${startHour}-cc-${startCharacterCount}-to-${finishHour}-cc-${finishCharacterCount}`);  }
   return buildClassName(noteLabelCssModule, classNames);
 }

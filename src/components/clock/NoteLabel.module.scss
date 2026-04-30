@@ -1,6 +1,7 @@
 @use "@/utilities/animation" as animation;
 @use "@/utilities/noteLabel" as note-label;
 @use "@/utilities/path" as path;
+@use "@/utilities/unitCircle" as unit-circle;
 
 
 @keyframes move-note-label {
@@ -17,102 +18,78 @@
   offset-rotate: 0deg;
   font-family: "PT Mono", monospace;
 
-  $natural-notes: "A", "B", "C", "D", "E", "F", "G";
-
-  @each $natural-note in $natural-notes {
-    &.note-#{$natural-note}♭♭ {
-      offset-path: path.still-path(
-        note-label.point($natural-note, -2)
-      );
-    }
-
-    &.note-#{$natural-note}♭ {
-      offset-path: path.still-path(
-        note-label.point($natural-note, -1)
-      );
-    }
-
-    &.note-#{$natural-note} {
-      offset-path: path.still-path(
-        note-label.point($natural-note, 0)
-      );
-    }
-
-    &.note-#{$natural-note}♯ {
-      offset-path: path.still-path(
-        note-label.point($natural-note, 1)
-      );
-    }
-
-    &.note-#{$natural-note}♯♯ {
-      offset-path: path.still-path(
-        note-label.point($natural-note, 2)
-      );
+  @for $hour from 0 through 11 {
+    @for $character-count from 1 through 3 {
+      &.hour-#{$hour}-cc-#{$character-count} {
+        offset-path: path.still-path(note-label.point($hour, $character-count));
+      }
     }
   }
 
-  @each $natural-note in $natural-notes {
-    &.move-from-#{$natural-note}♭♭-to-#{$natural-note}♭ {
+  @for $hour-a from 0 through 11 {
+    $hour-b: unit-circle.hour($hour-a + 1);
+
+    &.move-from-#{$hour-a}-cc-1-to-#{$hour-b}-cc-2 {
       animation: move-note-label animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(
-        note-label.point($natural-note, -2),
-        note-label.point($natural-note, -1)
+        note-label.point($hour-a, 1),
+        note-label.point($hour-b, 2),
       );
     }
 
-    &.move-from-#{$natural-note}♭-to-#{$natural-note} {
+    &.move-from-#{$hour-a}-cc-2-to-#{$hour-b}-cc-3 {
       animation: move-note-label animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(
-        note-label.point($natural-note, -1),
-        note-label.point($natural-note, 0)
+        note-label.point($hour-a, 2),
+        note-label.point($hour-b, 3),
       );
     }
 
-    &.move-from-#{$natural-note}-to-#{$natural-note}♯ {
+    &.move-from-#{$hour-a}-cc-3-to-#{$hour-b}-cc-2 {
       animation: move-note-label animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(
-        note-label.point($natural-note, 0),
-        note-label.point($natural-note, 1)
+        note-label.point($hour-a, 3),
+        note-label.point($hour-b, 2),
       );
     }
 
-    &.move-from-#{$natural-note}♯-to-#{$natural-note}♯♯ {
+    &.move-from-#{$hour-a}-cc-2-to-#{$hour-b}-cc-1 {
       animation: move-note-label animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(
-        note-label.point($natural-note, 1),
-        note-label.point($natural-note, 2)
+        note-label.point($hour-a, 2),
+        note-label.point($hour-b, 1),
       );
     }
 
-    &.move-from-#{$natural-note}♯♯-to-#{$natural-note}♯ {
+    &.move-from-#{$hour-b}-cc-1-to-#{$hour-a}-cc-2 {
       animation: move-note-label animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(
-        note-label.point($natural-note, 2),
-        note-label.point($natural-note, 1)
+        note-label.point($hour-b, 1),
+        note-label.point($hour-a, 2),
       );
     }
 
-    &.move-from-#{$natural-note}♯-to-#{$natural-note} {
+    &.move-from-#{$hour-b}-cc-2-to-#{$hour-a}-cc-3 {
       animation: move-note-label animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(
-        note-label.point($natural-note, 1),
-        note-label.point($natural-note, 0)
+        note-label.point($hour-b, 2),
+        note-label.point($hour-a, 3),
       );
     }
 
-    &.move-from-#{$natural-note}-to-#{$natural-note}♭ {
+    &.move-from-#{$hour-b}-cc-3-to-#{$hour-a}-cc-2 {
       animation: move-note-label animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(
-        note-label.point($natural-note, 0),
-        note-label.point($natural-note, -1)
+        note-label.point($hour-b, 3),
+        note-label.point($hour-a, 2),
       );
     }
 
-    &.move-from-#{$natural-note}♭-to-#{$natural-note}♭♭ {
+    &.move-from-#{$hour-b}-cc-2-to-#{$hour-a}-cc-1 {
       animation: move-note-label animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(
-        note-label.point($natural-note, -1),
-        note-label.point($natural-note, -2)
+        note-label.point($hour-b, 2),
+        note-label.point($hour-a, 1),
       );
     }
   }

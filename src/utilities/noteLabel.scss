@@ -8,21 +8,8 @@ $radius: 80;
 $x-font-offset: -5;
 $y-font-offset: 5;
 
-@function point($natural-note, $sharps-count) {
-  $hour-of-natural-note: map.get($hour-by-natural-note, $natural-note);
-  $hour: unit-circle.hour($hour-of-natural-note + $sharps-count);
-  $character-count: math.abs($sharps-count) + 1;
+@function point($hour, $character-count) {
   $x: $radius * unit-circle.x-at($hour) + $character-count * $x-font-offset;
   $y: $radius * unit-circle.y-at($hour) + $y-font-offset;
   @return "#{$x} #{$y}";
 }
-
-$hour-by-natural-note: (
-  "D": 0,
-  "E": 2,
-  "F": 3,
-  "G": 5,
-  "A": 7,
-  "B": 9,
-  "C": 10
-);
