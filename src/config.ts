@@ -1,4 +1,5 @@
 // Default Settings
+export const DEFAULT_IS_CLUSTERING_NOTES: boolean = false;
 export const DEFAULT_IS_USING_SOLFEGE: boolean = false;
 export const DEFAULT_IS_USING_ANIMATION: boolean = true;
 export const DEFAULT_IS_USING_NOTES_BALLET: boolean = false;

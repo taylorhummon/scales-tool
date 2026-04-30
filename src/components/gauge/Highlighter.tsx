@@ -1,5 +1,5 @@
 import { useDerivedContext } from "@/contexts/derived";
-import { HIGHLIGHTER_STROKE, HIGHLIGHTER_FILL } from "@/utilities/color"; // !!! RENAME THESE
+import { HIGHLIGHTER_STROKE, HIGHLIGHTER_FILL } from "@/utilities/color";
 import { buildClassName } from "@/utilities/css";
 
 import highlighterCssModule from "@/components/gauge/Highlighter.module.scss";
@@ -8,6 +8,7 @@ import highlighterCssModule from "@/components/gauge/Highlighter.module.scss";
 export function Highlighter(
 ): JSX.Element {
   const { musicalKey, nextMusicalKey } = useDerivedContext();
+
   return (
     <g
       className={getClassName(musicalKey.mode, nextMusicalKey.mode)}

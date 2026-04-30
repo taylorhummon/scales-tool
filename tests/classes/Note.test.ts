@@ -3,9 +3,13 @@ import { test, expect } from "vitest";
 import { Note } from "@/classes/Note";
 import { NaturalNote } from "@/utilities/naturalNote";
 import { SolfegeLetter } from "@/utilities/solfege";
+import { DEFAULT_SETTINGS } from "@/utilities/settings";
 
 
 test("Note works", () => {
+  const notClusteredNotesSettings = { ...DEFAULT_SETTINGS, isClusteringNotes: false };
+  const clusteredNotesSettings = { ...DEFAULT_SETTINGS, isClusteringNotes: true };
+
   const note1 = new Note(0, 0);
   expect(
     note1.value
@@ -38,7 +42,12 @@ test("Note works", () => {
     0
   );
   expect(
-    note1.hour
+    note1.getHour(notClusteredNotesSettings)
+  ).toBe(
+    0
+  );
+  expect(
+    note1.getHour(clusteredNotesSettings)
   ).toBe(
     0
   );
@@ -75,7 +84,12 @@ test("Note works", () => {
     -2
   );
   expect(
-    note2.hour
+    note2.getHour(notClusteredNotesSettings)
+  ).toBe(
+    10
+  );
+  expect(
+    note2.getHour(clusteredNotesSettings)
   ).toBe(
     10
   );
@@ -112,7 +126,12 @@ test("Note works", () => {
     0
   );
   expect(
-    note3.hour
+    note3.getHour(notClusteredNotesSettings)
+  ).toBe(
+    8
+  );
+  expect(
+    note3.getHour(clusteredNotesSettings)
   ).toBe(
     8
   );
@@ -149,9 +168,14 @@ test("Note works", () => {
     2
   );
   expect(
-    note4.hour
+    note4.getHour(notClusteredNotesSettings)
   ).toBe(
     1
+  );
+  expect(
+    note4.getHour(clusteredNotesSettings)
+  ).toBe(
+    7
   );
 
   const note5 = new Note(7, -3);
@@ -186,7 +210,12 @@ test("Note works", () => {
     -3
   );
   expect(
-    note5.hour
+    note5.getHour(notClusteredNotesSettings)
+  ).toBe(
+    4
+  );
+  expect(
+    note5.getHour(clusteredNotesSettings)
   ).toBe(
     4
   );

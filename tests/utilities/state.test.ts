@@ -17,12 +17,13 @@ test("getInitialState() works", () => {
     getInitialState()
   ).toStrictEqual(
     {
-      root: -2,
-      degree: 0,
-      motion: Motion.Still,
+      isClusteringNotes: false,
       isUsingSolfege: false,
       isUsingAnimation: true,
       isUsingNotesBallet: false,
+      motion: Motion.Still,
+      root: -2,
+      degree: 0,
     }
   );
   addToBrowserHistory(new MusicalKey({ root: 0, degree: 0 }));
@@ -30,12 +31,13 @@ test("getInitialState() works", () => {
     getInitialState()
   ).toStrictEqual(
     {
-      root: 0,
-      degree: 0,
-      motion: Motion.Still,
+      isClusteringNotes: false,
       isUsingSolfege: false,
       isUsingAnimation: true,
       isUsingNotesBallet: false,
+      motion: Motion.Still,
+      root: 0,
+      degree: 0,
     }
   );
   addToBrowserHistory(new MusicalKey({ root: 3, degree: 2 }));
@@ -43,12 +45,13 @@ test("getInitialState() works", () => {
     getInitialState()
   ).toStrictEqual(
     {
-      root: 3,
-      degree: 2,
-      motion: Motion.Still,
+      isClusteringNotes: false,
       isUsingSolfege: false,
       isUsingAnimation: true,
       isUsingNotesBallet: false,
+      motion: Motion.Still,
+      root: 3,
+      degree: 2,
     }
   );
 });

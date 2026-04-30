@@ -9,14 +9,14 @@ import { arrayFromMap } from "@/utilities/map";
 
 export function Labels(
 ): JSX.Element {
-  const { musicalKey, motion, isUsingSolfege } = useDerivedContext();
-  if (isUsingSolfege) {
-    const solfegeLabelAnimator = buildSolfegeLabelAnimator(musicalKey, motion);
+  const { musicalKey, motion, settings } = useDerivedContext();
+  if (settings.isUsingSolfege) {
+    const solfegeLabelAnimator = buildSolfegeLabelAnimator(settings, musicalKey, motion);
     return (
       <>
         {arrayFromMap(musicalKey.scale, (note: Note) => (
           <SolfegeLabel
-            key={note.hour}
+            key={note.value}
             solfegeLabelAnimator={solfegeLabelAnimator}
             note={note}
           />
@@ -29,7 +29,7 @@ export function Labels(
       <>
         {arrayFromMap(musicalKey.scale, (note: Note) => (
           <NoteLabel
-            key={note.hour}
+            key={note.value}
             noteLabelAnimator={noteLabelAnimator}
             note={note}
           />

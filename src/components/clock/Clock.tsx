@@ -20,7 +20,7 @@ export function Clock(
       <ClockFace />
       {arrayFromMap(musicalKey.scale, (note: Note) => (
         <NoteDot
-          key={note.hour}
+          key={note.value}
           note={note}
         />
       ))}

@@ -37,7 +37,7 @@ export class NoteLabelAnimator {
   willAnimate(
     note: Note,
   ): boolean {
-    return note.hour === this.startNote.hour;
+    return note.value === this.startNote.value;
   }
 }
 

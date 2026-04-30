@@ -71,14 +71,14 @@ function ButtonRectangle({
   onClickMotion,
   dataTestid,
 }: ButtonRectangleProps) {
-  const { musicalKey, nextMusicalKey, motion, isUsingAnimation } = useDerivedContext();
+  const { settings, musicalKey, nextMusicalKey, motion } = useDerivedContext();
   const dispatch = useDispatchContext();
   const buttonState = getButtonState(nextMusicalKey, motion, onClickMotion);
 
   function handleClick(
   ): void {
     if (buttonState !== ButtonState.Ready) return;
-    if (isUsingAnimation) {
+    if (settings.isUsingAnimation) {
       dispatch({ type: ActionType.ActivateMotion, motion: onClickMotion });
     } else {
       const onClickMusicalKey = getNextMusicalKey(musicalKey, onClickMotion);
@@ -86,8 +86,10 @@ function ButtonRectangle({
       dispatch({ type: ActionType.ChangeKey, nextMusicalKey: onClickMusicalKey });
     }
   }
+
   const width = buttonSize === ButtonSize.Large ? 98 : 46;
   const x = - width / 2;
+
   return (
     <rect
       className={buildClassName(selectorButtonCssModule, ["rectangle", buttonState])}

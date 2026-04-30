@@ -1,6 +1,8 @@
 import type { Note } from "@/classes/Note";
 import { SolfegeLabelAnimator } from "@/classes/SolfegeLabelAnimator";
+import { useDerivedContext } from "@/contexts/derived";
 import { buildClassName } from "@/utilities/css";
+import type { Settings } from "@/utilities/settings";
 import { SolfegeLetter } from "@/utilities/solfege";
 
 import solfegeLabelCssModule from "@/components/clock/SolfegeLabel.module.scss";
@@ -15,9 +17,11 @@ export function SolfegeLabel({
   solfegeLabelAnimator,
   note,
 }: SolfegeLabelProps): JSX.Element {
+  const { settings } = useDerivedContext();
+
   return (
     <g
-      className={getClassName(solfegeLabelAnimator, note)}
+      className={getClassName(settings, solfegeLabelAnimator, note)}
       data-testid={`solfege-label-${note.solfegeLetter}`}
     >
       <g className={getInnerClassName(note)}>
@@ -30,12 +34,13 @@ export function SolfegeLabel({
 }
 
 function getClassName(
+  settings: Settings,
   solfegeLabelAnimator: SolfegeLabelAnimator | null,
   note: Note,
 ): string {
   const classNames = ["solfege-label"];
-  const startHour = note.hour;
-  const finishHour = solfegeLabelAnimator?.finishHour(note.hour);
+  const startHour = note.getHour(settings);
+  const finishHour = solfegeLabelAnimator?.finishHour(note.getHour(settings));
   if (typeof finishHour !== "number") {
     classNames.push(`hour-${startHour}`);
   } else {

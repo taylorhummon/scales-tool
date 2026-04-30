@@ -6,15 +6,12 @@ import {
   useMemo,
 } from "react";
 
-import {
-  DEFAULT_IS_USING_SOLFEGE,
-  DEFAULT_IS_USING_ANIMATION,
-  DEFAULT_IS_USING_NOTES_BALLET,
-} from "@/config";
 import { MusicalKey, DEFAULT_MUSICAL_KEY } from "@/classes/MusicalKey";
 import { DispatchContext } from "@/contexts/dispatch";
 import { ActionType, Action } from "@/utilities/action";
 import { Motion, getNextMusicalKey } from "@/utilities/motion";
+import type { Settings } from "@/utilities/settings";
+import { DEFAULT_SETTINGS } from "@/utilities/settings";
 import type { State } from "@/utilities/state";
 import { getInitialState } from "@/utilities/state";
 
@@ -23,23 +20,19 @@ import { getInitialState } from "@/utilities/state";
 // subcomponents by putting it into a context.
 
 export interface Derived {
+  settings: Settings;
+  motion: Motion;
   musicalKey: MusicalKey;
   nextMusicalKey: MusicalKey;
-  motion: Motion;
-  isUsingSolfege: boolean;
-  isUsingAnimation: boolean;
-  isUsingNotesBallet: boolean;
 }
 
 // The DEFAULT_DERIVED will only be used outside of the DerivedContext provider.
 // We don't expect this to ever happen.
 const DEFAULT_DERIVED: Derived = {
+  settings: DEFAULT_SETTINGS,
+  motion: Motion.Still,
   musicalKey: DEFAULT_MUSICAL_KEY,
   nextMusicalKey: DEFAULT_MUSICAL_KEY,
-  motion: Motion.Still,
-  isUsingSolfege: DEFAULT_IS_USING_SOLFEGE,
-  isUsingAnimation: DEFAULT_IS_USING_ANIMATION,
-  isUsingNotesBallet: DEFAULT_IS_USING_NOTES_BALLET,
 };
 
 export const DerivedContext: Context<Derived> = createContext(DEFAULT_DERIVED);
@@ -57,7 +50,26 @@ export function DerivedProvider({
   children,
 }: DerivedProviderProps): JSX.Element {
   const [state, dispatch] = useReducer(reducer, getInitialState());
-  const { root, degree, motion, isUsingSolfege, isUsingAnimation, isUsingNotesBallet } = state;
+  const {
+    isClusteringNotes,
+    isUsingSolfege,
+    isUsingAnimation,
+    isUsingNotesBallet,
+    motion,
+    root,
+    degree,
+  } = state;
+  const settings = useMemo(
+    () => {
+      return {
+        isClusteringNotes,
+        isUsingSolfege,
+        isUsingAnimation,
+        isUsingNotesBallet,
+      };
+    },
+    [isClusteringNotes, isUsingSolfege, isUsingAnimation, isUsingNotesBallet]
+  )
   const musicalKey = useMemo(
     () => {
       return new MusicalKey({ root, degree });
@@ -71,12 +83,10 @@ export function DerivedProvider({
     [musicalKey, motion],
   );
   const derived = {
+    settings,
+    motion,
     musicalKey,
     nextMusicalKey,
-    motion,
-    isUsingSolfege,
-    isUsingAnimation,
-    isUsingNotesBallet,
   };
 
   return (
@@ -93,24 +103,32 @@ function reducer(
   action: Action,
 ): State {
   if (action.type === ActionType.ActivateMotion) {
-    return { ...state, motion: action.motion };
+    const { motion } = action;
+    return { ...state, motion };
   }
   if (action.type === ActionType.ChangeKey) {
     return {
       ...state,
+      motion: Motion.Still,
       root: action.nextMusicalKey.root,
       degree: action.nextMusicalKey.degree,
-      motion: Motion.Still
-    }
+    };
+  }
+  if (action.type === ActionType.SelectIsClusteringNotes) {
+    const { isClusteringNotes } = action;
+    return { ...state, isClusteringNotes };
   }
   if (action.type === ActionType.SelectIsUsingSolfege) {
-    return { ...state, isUsingSolfege: action.isUsingSolfege };
+    const { isUsingSolfege } = action;
+    return { ...state, isUsingSolfege };
   }
   if (action.type === ActionType.SelectIsUsingAnimation) {
-    return { ...state, isUsingAnimation: action.isUsingAnimation };
+    const { isUsingAnimation } = action;
+    return { ...state, isUsingAnimation };
   }
   if (action.type === ActionType.SelectIsUsingNotesBallet) {
-    return { ...state, isUsingNotesBallet: action.isUsingNotesBallet };
+    const { isUsingNotesBallet } = action;
+    return { ...state, isUsingNotesBallet };
   }
   return state;
 }

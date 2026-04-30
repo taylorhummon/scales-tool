@@ -12,7 +12,7 @@ const WITH_THUMB_INDICATOR = false;
 
 export function Settings(
 ): JSX.Element {
-  const { isUsingSolfege, isUsingAnimation, isUsingNotesBallet } = useDerivedContext();
+  const { settings } = useDerivedContext();
   const dispatch = useDispatchContext();
 
   return (
@@ -22,10 +22,20 @@ export function Settings(
       gap="sm"
     >
       <Switch
+        label="Cluster notes"
+        size={SWITCH_SIZE}
+        withThumbIndicator={WITH_THUMB_INDICATOR}
+        checked={settings.isClusteringNotes}
+        onChange={(event) => dispatch({
+          type: ActionType.SelectIsClusteringNotes,
+          isClusteringNotes: event.currentTarget.checked,
+        })}
+      />
+      <Switch
         label="Solfège"
         size={SWITCH_SIZE}
         withThumbIndicator={WITH_THUMB_INDICATOR}
-        checked={isUsingSolfege}
+        checked={settings.isUsingSolfege}
         onChange={(event) => dispatch({
           type: ActionType.SelectIsUsingSolfege,
           isUsingSolfege: event.currentTarget.checked,
@@ -35,7 +45,7 @@ export function Settings(
         label="Animation"
         size={SWITCH_SIZE}
         withThumbIndicator={WITH_THUMB_INDICATOR}
-        checked={isUsingAnimation}
+        checked={settings.isUsingAnimation}
         onChange={(event) => dispatch({
           type: ActionType.SelectIsUsingAnimation,
           isUsingAnimation: event.currentTarget.checked,
@@ -45,8 +55,8 @@ export function Settings(
         label="Notes ballet"
         size={SWITCH_SIZE}
         withThumbIndicator={WITH_THUMB_INDICATOR}
-        disabled={! isUsingAnimation}
-        checked={isUsingNotesBallet}
+        disabled={! settings.isUsingAnimation}
+        checked={settings.isUsingNotesBallet}
         onChange={(event) => dispatch({
           type: ActionType.SelectIsUsingNotesBallet,
           isUsingNotesBallet: event.currentTarget.checked,

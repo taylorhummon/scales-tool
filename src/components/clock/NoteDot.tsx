@@ -3,6 +3,7 @@ import type { Note } from "@/classes/Note";
 import { useDerivedContext } from "@/contexts/derived";
 import { getNoteFinishHour } from "@/utilities/animation";
 import { buildClassName } from "@/utilities/css";
+import type { Settings } from "@/utilities/settings";
 
 import noteDotCssModule from "@/components/clock/NoteDot.module.scss";
 
@@ -14,11 +15,11 @@ interface NoteDotProps {
 export function NoteDot({
   note,
 }: NoteDotProps): JSX.Element {
-  const { musicalKey, nextMusicalKey, isUsingNotesBallet } = useDerivedContext();
+  const { settings, musicalKey, nextMusicalKey } = useDerivedContext();
 
   return (
     <circle
-      className={getClassName(musicalKey, nextMusicalKey, isUsingNotesBallet, note)}
+      className={getClassName(settings, musicalKey, nextMusicalKey, note)}
       data-testid={`note-dot-${note.solfegeLetter}`}
       cx="0"
       cy="0"
@@ -29,14 +30,14 @@ export function NoteDot({
 }
 
 function getClassName(
+  settings: Settings,
   musicalKey: MusicalKey,
   nextMusicalKey: MusicalKey,
-  isUsingNotesBallet: boolean,
   note: Note,
 ): string {
   const classNames = ["note-dot"];
-  const startHour = note.hour;
-  const finishHour = getNoteFinishHour(musicalKey, nextMusicalKey, isUsingNotesBallet, note);
+  const startHour = note.getHour(settings);
+  const finishHour = getNoteFinishHour(settings, musicalKey, nextMusicalKey, note);
   if (finishHour === startHour) {
     classNames.push(`hour-${startHour}`);
   } else {

@@ -7,8 +7,8 @@ import {
   NaturalNote,
   NATURAL_NOTES_IN_FCGDAEB_ORDER,
   NATURAL_NOTES_IN_BEADGCF_ORDER,
-  HOUR_BY_NATURAL_NOTE_NAME,
 } from "@/utilities/naturalNote";
+import type { Settings } from "@/utilities/settings";
 import { SolfegeLetter, solfegeLetterFromPosition } from "@/utilities/solfege";
 
 
@@ -19,7 +19,6 @@ export class Note {
   name: string;
   solfegeLetter: SolfegeLetter;   // where in the scale
   position: number;               // where on the selector
-  hour: number;                   // where on the clock
 
   constructor(
     root: number,
@@ -32,7 +31,13 @@ export class Note {
     this.name = getName(naturalNote, sharpsCount);
     this.solfegeLetter = solfegeLetterFromPosition(position);
     this.position = position;
-    this.hour = getHour(naturalNote, sharpsCount);
+  }
+
+  // where on the clock
+  getHour(
+    settings: Settings,
+  ): number {
+    return getHour(settings, this.naturalNote, this.sharpsCount);
   }
 }
 
@@ -59,12 +64,27 @@ function getNaturalNoteAndSharpsCount(
 }
 
 function getHour(
+  settings: Settings,
   naturalNote: NaturalNote,
   sharpsCount: number,
 ): number {
-  const hour = HOUR_BY_NATURAL_NOTE_NAME.get(naturalNote) as number;
-  return remainderFor(hour + sharpsCount, 12);
+  const ordinaryHour = ORDINARY_HOUR_BY_NATURAL_NOTE_NAME.get(naturalNote) as number;
+  if (settings.isClusteringNotes) {
+    return remainderFor(7 * (ordinaryHour + sharpsCount), 12);
+  } else {
+    return remainderFor(ordinaryHour + sharpsCount, 12);
+  }
 }
+
+const ORDINARY_HOUR_BY_NATURAL_NOTE_NAME = new Map<NaturalNote, number>([
+  [NaturalNote.A, -5],
+  [NaturalNote.B, -3],
+  [NaturalNote.C, -2],
+  [NaturalNote.D, 0],
+  [NaturalNote.E, 2],
+  [NaturalNote.F, 3],
+  [NaturalNote.G, 5],
+]);
 
 function getName(
   naturalNote: NaturalNote,
