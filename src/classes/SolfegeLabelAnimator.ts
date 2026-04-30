@@ -43,26 +43,26 @@ export class SolfegeLabelAnimator {
   ): number | null {
     if (getWillIncrementRoot(this.#motion)) {
       if (this.#motion === Motion.IncrementRoot && startHour === this.#bottomHour) {
-        return this.#topHour;
+        return remainderFor(startHour + 6, 12);
       } else {
         return remainderFor(startHour + 7, 12);
       }
     }
     if (getWillDecrementRoot(this.#motion)) {
       if (this.#motion === Motion.DecrementRoot && startHour === this.#topHour) {
-        return this.#bottomHour;
+        return remainderFor(startHour - 6, 12);
       } else {
         return remainderFor(startHour - 7, 12);
       }
     }
     if (this.#motion === Motion.IncrementDegree) {
       if (startHour === this.#topHour) {
-        return remainderFor(this.#topHour + 1, 12);
+        return remainderFor(startHour + 1, 12);
       }
     }
     if (this.#motion === Motion.DecrementDegree) {
       if (startHour === this.#bottomHour) {
-        return remainderFor(this.#bottomHour - 1, 12);
+        return remainderFor(startHour - 1, 12);
       }
     }
     return null;
