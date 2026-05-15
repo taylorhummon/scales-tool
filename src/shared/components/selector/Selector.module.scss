@@ -2,14 +2,6 @@
 @use "@shared/utilities/position" as position;
 
 
-.degree-selector {
-  offset-path: path("M -26 0");
-}
-
-.root-selector {
-  offset-path: path("M 26 0");
-}
-
 .label {
   offset-path: path("M 0 -115");
   text-anchor: middle;

@@ -1,12 +1,12 @@
 import { type MusicalKey } from "@shared/classes/MusicalKey"
 import { SHARP, FLAT } from "@shared/classes/Note"
+import { Selector } from "@shared/components/selector/Selector"
 import { SelectorValue } from "@shared/components/selector/SelectorValue"
-import { buildClassName } from "@shared/utilities/css"
 import { isBetweenInclusive } from "@shared/utilities/math"
 import { type Motion, getWillIncrementDegree, getWillDecrementDegree } from "@shared/utilities/motion"
 import { EXTENDED_POSITIONS } from "@shared/utilities/selector"
 
-import selectorCssModule from "./Selector.module.scss"
+import degreeSelectorCssModule from "./DegreeSelector.module.scss"
 
 
 interface DegreeSelectorInput {
@@ -32,37 +32,23 @@ export function DegreeSelector({
   const degreeDifference = nextMusicalKey.degree - musicalKey.degree
 
   return (
-    <g className={selectorCssModule["degree-selector"]}>
-      <text className={selectorCssModule["label"]}>
-        Deg
-      </text>
-      <g clipPath="url(#selectors-clip-path)">
-        <g className={getClassName(motion)}>
-          {pairs.map(({ position, degree }) => (
-            <SelectorValue
-              key={position}
-              currentPosition={position}
-              nextPosition={position - degreeDifference}
-            >
-              {getFancyDegree(degree)}
-            </SelectorValue>
-          ))}
-        </g>
-      </g>
-    </g>
+    <Selector
+      className={degreeSelectorCssModule["degree-selector"]}
+      label="Deg"
+      isIncrementing={getWillIncrementDegree(motion)}
+      isDecrementing={getWillDecrementDegree(motion)}
+    >
+      {pairs.map(({ position, degree }) => (
+        <SelectorValue
+          key={position}
+          currentPosition={position}
+          nextPosition={position - degreeDifference}
+        >
+          {getFancyDegree(degree)}
+        </SelectorValue>
+      ))}
+    </Selector>
   )
-}
-
-function getClassName(
-  motion: Motion,
-): string {
-  const classNames = [ "selector-inner" ]
-  if (getWillIncrementDegree(motion)) {
-    classNames.push("move-up")
-  } else if (getWillDecrementDegree(motion)) {
-    classNames.push("move-down")
-  }
-  return buildClassName(selectorCssModule, classNames)
 }
 
 function getFancyDegree(
