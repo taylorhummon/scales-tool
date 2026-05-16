@@ -23,29 +23,30 @@ export function SettingsPanel({
       gap="sm"
     >
       <Switch
-        label="Animation"
+        label="Untangle"
         size={SWITCH_SIZE}
         withThumbIndicator={WITH_THUMB_INDICATOR}
-        checked={clockSettings.isUsingAnimation}
+        checked={clockSettings.isUntangled}
         onChange={(event) => {
           dispatch({
-            type: ActionType.SelectIsUsingAnimation,
-            isUsingAnimation: event.currentTarget.checked,
+            type: ActionType.SelectIsUntangled,
+            isUntangled: event.currentTarget.checked,
           })
         }}
-        data-testid="animation-switch"
+        data-testid="untangle-switch"
       />
       <Switch
-        label="Alphabetical"
+        label="Symmetry Note"
         size={SWITCH_SIZE}
         withThumbIndicator={WITH_THUMB_INDICATOR}
-        checked={clockSettings.isAlphabetical}
+        checked={clockSettings.isUsingSymmetryDot}
         onChange={(event) => {
           dispatch({
-            type: ActionType.SelectIsAlphabetical,
-            isAlphabetical: event.currentTarget.checked,
+            type: ActionType.SelectIsUsingSymmetryDot,
+            isUsingSymmetryDot: event.currentTarget.checked,
           })
         }}
+        data-testid="symmetry-switch"
       />
       <Switch
         label="Solfège"
@@ -58,6 +59,20 @@ export function SettingsPanel({
             isUsingSolfege: event.currentTarget.checked,
           })
         }}
+        data-testid="solfege-switch"
+      />
+      <Switch
+        label="Animation"
+        size={SWITCH_SIZE}
+        withThumbIndicator={WITH_THUMB_INDICATOR}
+        checked={clockSettings.isUsingAnimation}
+        onChange={(event) => {
+          dispatch({
+            type: ActionType.SelectIsUsingAnimation,
+            isUsingAnimation: event.currentTarget.checked,
+          })
+        }}
+        data-testid="animation-switch"
       />
     </Stack>
   )

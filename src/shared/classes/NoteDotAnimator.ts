@@ -4,23 +4,23 @@ import { Motion, getWillIncrementDegree, getWillDecrementDegree } from "@shared/
 
 
 interface constructorInput {
-  isAlphabetical: boolean,
+  isUntangled: boolean,
   motion: Motion,
   musicalKey: MusicalKey,
 }
 
 export class NoteDotAnimator {
-  #isAlphabetical: boolean
+  #isUntangled: boolean
   #motion: Motion
   #headNoteValue: number
   #tailNoteValue: number
 
   constructor({
-    isAlphabetical,
+    isUntangled,
     motion,
     musicalKey,
   }: constructorInput) {
-    this.#isAlphabetical = isAlphabetical
+    this.#isUntangled = isUntangled
     this.#motion = motion
     this.#headNoteValue = musicalKey.headNote.value
     this.#tailNoteValue = musicalKey.tailNote.value
@@ -29,14 +29,26 @@ export class NoteDotAnimator {
   finishNote(
     startNote: Note,
   ): Note {
-    if (this.#isAlphabetical) {
-      return this.#whenAlphabetical(startNote)
+    if (this.#isUntangled) {
+      return this.#whenUntangled(startNote)
     } else {
-      return this.#whenNotAlphabetical(startNote)
+      return this.#whenTangled(startNote)
     }
   }
 
-  #whenAlphabetical(
+  #whenUntangled(
+    startNote: Note,
+  ): Note {
+    if (getWillIncrementDegree(this.#motion)) {
+      return new Note({ value: startNote.value + 1 })
+    }
+    if (getWillDecrementDegree(this.#motion)) {
+      return new Note({ value: startNote.value - 1 })
+    }
+    return startNote
+  }
+
+  #whenTangled(
     startNote: Note,
   ): Note {
     if (
@@ -50,18 +62,6 @@ export class NoteDotAnimator {
       startNote.value === this.#headNoteValue
     ) {
       return new Note({ value: startNote.value - 7 })
-    }
-    return startNote
-  }
-
-  #whenNotAlphabetical(
-    startNote: Note,
-  ): Note {
-    if (getWillIncrementDegree(this.#motion)) {
-      return new Note({ value: startNote.value + 1 })
-    }
-    if (getWillDecrementDegree(this.#motion)) {
-      return new Note({ value: startNote.value - 1 })
     }
     return startNote
   }

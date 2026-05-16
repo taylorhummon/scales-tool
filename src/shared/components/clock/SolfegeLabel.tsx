@@ -20,11 +20,11 @@ export function SolfegeLabel({
   solfegeLetter,
   note,
 }: SolfegeLabelInput): React.ReactNode {
-  const { isAlphabetical } = clockSettings
+  const { isUntangled } = clockSettings
 
   return (
     <g
-      className={getClassName(isAlphabetical, solfegeLabelAnimator, note)}
+      className={getClassName(isUntangled, solfegeLabelAnimator, note)}
       data-testid={`solfege-label-${solfegeLetter}`}
     >
       <g className={getInnerClassName(solfegeLetter)}>
@@ -37,13 +37,13 @@ export function SolfegeLabel({
 }
 
 function getClassName(
-  isAlphabetical: boolean,
+  isUntangled: boolean,
   solfegeLabelAnimator: SolfegeLabelAnimator,
   note: Note,
 ): string {
   const classNames = [ "solfege-label" ]
-  const startHour = getHour({ isAlphabetical, note })
-  const finishHour = getHour({ isAlphabetical, note: solfegeLabelAnimator.finishNote(note) })
+  const startHour = getHour({ isUntangled, note })
+  const finishHour = getHour({ isUntangled, note: solfegeLabelAnimator.finishNote(note) })
   if (finishHour === startHour) {
     classNames.push(`hour-${startHour}`)
   } else {

@@ -3,23 +3,24 @@ import { remainderFor } from "@shared/utilities/math"
 
 
 export interface ClockSettings {
-  isUsingAnimation: boolean,
-  isAlphabetical: boolean,
+  isUntangled: boolean,
+  isUsingSymmetryDot: boolean,
   isUsingSolfege: boolean,
+  isUsingAnimation: boolean,
 }
 
 interface getHourInput {
-  isAlphabetical: boolean,
+  isUntangled: boolean,
   note: Note,
 }
 
 export function getHour({
-  isAlphabetical,
+  isUntangled,
   note,
 }: getHourInput): number {
-  if (isAlphabetical) {
-    return remainderFor(7 * note.value, 12)
-  } else {
+  if (isUntangled) {
     return remainderFor(note.value, 12)
+  } else {
+    return remainderFor(7 * note.value, 12)
   }
 }

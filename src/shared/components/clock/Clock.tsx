@@ -4,6 +4,7 @@ import { KeyDescription } from "@shared/components/clock/KeyDescription"
 import { Labels } from "@shared/components/clock/Labels"
 import { NoteDots } from "@shared/components/clock/NoteDots"
 import { RootDot } from "@shared/components/clock/RootDot"
+import { SymmetryDot } from "@shared/components/clock/SymmetryDot"
 import { type ClockSettings } from "@shared/utilities/clock"
 import { type Motion } from "@shared/utilities/motion"
 
@@ -26,6 +27,11 @@ export function Clock({
   return (
     <g className={clockCssModule["clock"]}>
       <RootDot
+        clockSettings={clockSettings}
+        musicalKey={musicalKey}
+        nextMusicalKey={nextMusicalKey}
+      />
+      <SymmetryDot
         clockSettings={clockSettings}
         musicalKey={musicalKey}
         nextMusicalKey={nextMusicalKey}

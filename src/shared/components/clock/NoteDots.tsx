@@ -19,8 +19,8 @@ export function NoteDots({
   motion,
   musicalKey,
 }: ClockInput): React.ReactNode {
-  const { isAlphabetical } = clockSettings
-  const noteDotAnimator = new NoteDotAnimator({ isAlphabetical, motion, musicalKey })
+  const { isUntangled } = clockSettings
+  const noteDotAnimator = new NoteDotAnimator({ isUntangled, motion, musicalKey })
 
   return (
     <>

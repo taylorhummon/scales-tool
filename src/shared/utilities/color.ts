@@ -7,3 +7,6 @@ export const CLOCK_STROKE = "rgb(120, 120, 120)"
 
 export const ROOT_DOT_STROKE = "rgb(4, 51, 255)"
 export const ROOT_DOT_FILL = "rgb(208, 214, 253)"
+
+export const SYMMETRY_DOT_STROKE = "rgba(244, 3, 132, 0.8)"
+export const SYMMETRY_DOT_FILL = "rgba(244, 3, 132, 0.3)"

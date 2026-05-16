@@ -1,34 +1,35 @@
 import { type MusicalKey } from "@shared/classes/MusicalKey"
-import { ROOT_DOT_STROKE, ROOT_DOT_FILL } from "@shared/utilities/color"
+import { SYMMETRY_DOT_STROKE, SYMMETRY_DOT_FILL } from "@shared/utilities/color"
 import { type ClockSettings, getHour } from "@shared/utilities/clock"
 import { buildClassName } from "@shared/utilities/css"
 
-import rootDotCssModule from "./RootDot.module.scss"
+import symmetryDotCssModule from "./SymmetryDot.module.scss"
 
 
-interface RootDotInput {
+interface SymmetryDotInput {
   clockSettings: ClockSettings,
   musicalKey: MusicalKey,
   nextMusicalKey: MusicalKey,
 }
 
-export function RootDot({
+export function SymmetryDot({
   clockSettings,
   musicalKey,
   nextMusicalKey,
-}: RootDotInput): React.ReactNode {
-  const { isUntangled } = clockSettings
+}: SymmetryDotInput): React.ReactNode {
+  const { isUsingSymmetryDot, isUntangled } = clockSettings
+  if (! isUsingSymmetryDot) return null
 
   return (
     <circle
       className={getClassName(isUntangled, musicalKey, nextMusicalKey)}
-      data-testid={"clock-root-dot"}
+      data-testid={"clock-symmetry-dot"}
       cx="0"
       cy="0"
       r="14"
       strokeWidth="1.6"
-      stroke={ROOT_DOT_STROKE}
-      fill={ROOT_DOT_FILL}
+      stroke={SYMMETRY_DOT_STROKE}
+      fill={SYMMETRY_DOT_FILL}
     />
   )
 }
@@ -38,13 +39,13 @@ function getClassName(
   musicalKey: MusicalKey,
   nextMusicalKey: MusicalKey,
 ): string {
-  const classNames = [ "root-dot" ]
-  const startHour = getHour({ isUntangled, note: musicalKey.rootNote })
-  const finishHour = getHour({ isUntangled, note: nextMusicalKey.rootNote })
+  const classNames = [ "symmetry-dot" ]
+  const startHour = getHour({ isUntangled, note: musicalKey.symmetryNote })
+  const finishHour = getHour({ isUntangled, note: nextMusicalKey.symmetryNote })
   if (finishHour === startHour) {
     classNames.push(`hour-${startHour}`)
   } else {
     classNames.push(`move-from-${startHour}-to-${finishHour}`)
   }
-  return buildClassName(rootDotCssModule, classNames)
+  return buildClassName(symmetryDotCssModule, classNames)
 }

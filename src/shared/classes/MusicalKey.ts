@@ -43,7 +43,7 @@ export class MusicalKey {
     return new Note({ value: this.root })
   }
 
-  get centerNote(
+  get symmetryNote(
   ): Note {
     return new Note({ value: this.degree })
   }

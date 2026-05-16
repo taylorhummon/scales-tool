@@ -1,7 +1,8 @@
 // Default Settings
-export const DEFAULT_IS_USING_ANIMATION: boolean = true
-export const DEFAULT_IS_ALPHABETICAL: boolean = true
+export const DEFAULT_IS_UNTANGLED: boolean = false
+export const DEFAULT_IS_USING_SYMMETRY_DOT: boolean = false
 export const DEFAULT_IS_USING_SOLFEGE: boolean = false
+export const DEFAULT_IS_USING_ANIMATION: boolean = true
 
 // Default to C-Major
 export const DEFAULT_ROOT: number = -2

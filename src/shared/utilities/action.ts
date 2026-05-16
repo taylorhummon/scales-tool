@@ -5,14 +5,16 @@ import { type Motion } from "@shared/utilities/motion"
 export enum ActionType {
   ActivateMotion = "activate-motion",
   ChangeKey = "change-key",
-  SelectIsUsingAnimation = "select-is-using-animation",
-  SelectIsAlphabetical = "select-is-alphabetical",
+  SelectIsUntangled = "select-is-untangled",
+  SelectIsUsingSymmetryDot = "select-is-using-symmetry-dot",
   SelectIsUsingSolfege = "select-is-using-solfege",
+  SelectIsUsingAnimation = "select-is-using-animation",
 }
 
 export type Action =
   | { type: ActionType.ActivateMotion, motion: Motion }
   | { type: ActionType.ChangeKey, nextMusicalKey: MusicalKey }
-  | { type: ActionType.SelectIsUsingAnimation, isUsingAnimation: boolean }
-  | { type: ActionType.SelectIsAlphabetical, isAlphabetical: boolean }
+  | { type: ActionType.SelectIsUntangled, isUntangled: boolean }
+  | { type: ActionType.SelectIsUsingSymmetryDot, isUsingSymmetryDot: boolean }
   | { type: ActionType.SelectIsUsingSolfege, isUsingSolfege: boolean }
+  | { type: ActionType.SelectIsUsingAnimation, isUsingAnimation: boolean }

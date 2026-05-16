@@ -8,9 +8,10 @@ import { Motion } from "@shared/utilities/motion"
 
 test("useDerived() works", () => {
   const state = {
-    isUsingAnimation: true,
-    isAlphabetical: false,
+    isUntangled: false,
+    isUsingSymmetryDot: false,
     isUsingSolfege: true,
+    isUsingAnimation: true,
     motion: Motion.IncrementDegree,
     root: 2,
     degree: 3,
@@ -18,17 +19,22 @@ test("useDerived() works", () => {
   const { result } = renderHook(() => useDerived(state))
   const derived = result.current
   expect(
-    derived.clockSettings.isUsingAnimation
+    derived.clockSettings.isUntangled
   ).toBe(
-    true
+    false
   )
   expect(
-    derived.clockSettings.isAlphabetical
+    derived.clockSettings.isUsingSymmetryDot
   ).toBe(
     false
   )
   expect(
     derived.clockSettings.isUsingSolfege
+  ).toBe(
+    true
+  )
+  expect(
+    derived.clockSettings.isUsingAnimation
   ).toBe(
     true
   )

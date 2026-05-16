@@ -118,7 +118,7 @@ test("MusicalKey works for Dorian D", () => {
     "D"
   )
   expect(
-    musicalKey.centerNote.name
+    musicalKey.symmetryNote.name
   ).toBe(
     "D"
   )
@@ -162,7 +162,7 @@ test("MusicalKey works for A-Major", () => {
     "A"
   )
   expect(
-    musicalKey.centerNote.name
+    musicalKey.symmetryNote.name
   ).toBe(
     "B"
   )
@@ -206,7 +206,7 @@ test("MusicalKey works for G-Minor", () => {
     "G"
   )
   expect(
-    musicalKey.centerNote.name
+    musicalKey.symmetryNote.name
   ).toBe(
     "C"
   )

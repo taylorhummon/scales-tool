@@ -42,10 +42,10 @@ test("reducer() works", () => {
     reducer(
       getInitialState(),
       {
-        type: ActionType.SelectIsUsingAnimation,
-        isUsingAnimation: false
+        type: ActionType.SelectIsUntangled,
+        isUntangled: false
       },
-    ).isUsingAnimation
+    ).isUntangled
   ).toBe(
     false
   )
@@ -53,10 +53,10 @@ test("reducer() works", () => {
     reducer(
       getInitialState(),
       {
-        type: ActionType.SelectIsAlphabetical,
-        isAlphabetical: false
+        type: ActionType.SelectIsUsingSymmetryDot,
+        isUsingSymmetryDot: false
       },
-    ).isAlphabetical
+    ).isUsingSymmetryDot
   ).toBe(
     false
   )
@@ -70,5 +70,16 @@ test("reducer() works", () => {
     ).isUsingSolfege
   ).toBe(
     true
+  )
+  expect(
+    reducer(
+      getInitialState(),
+      {
+        type: ActionType.SelectIsUsingAnimation,
+        isUsingAnimation: false
+      },
+    ).isUsingAnimation
+  ).toBe(
+    false
   )
 })

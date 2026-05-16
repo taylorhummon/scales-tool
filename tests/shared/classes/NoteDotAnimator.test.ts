@@ -27,14 +27,14 @@ function exerciseAnimator(
   );
 }
 
-test("NoteDotAnimator works when is alphabetical and incrementing root", () => {
+test("NoteDotAnimator works when is tangled and incrementing root", () => {
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
     [ -2, -1, 0, 1, 2, 3, 4 ]
   )
-  const animator = new NoteDotAnimator({ isAlphabetical: true, motion: Motion.IncrementRoot, musicalKey })
+  const animator = new NoteDotAnimator({ isUntangled: false, motion: Motion.IncrementRoot, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
@@ -42,14 +42,14 @@ test("NoteDotAnimator works when is alphabetical and incrementing root", () => {
   )
 })
 
-test("NoteDotAnimator works when is alphabetical and decrementing root", () => {
+test("NoteDotAnimator works when is tangled and decrementing root", () => {
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
     [ -2, -1, 0, 1, 2, 3, 4 ]
   )
-  const animator = new NoteDotAnimator({ isAlphabetical: true, motion: Motion.DecrementRoot, musicalKey })
+  const animator = new NoteDotAnimator({ isUntangled: false, motion: Motion.DecrementRoot, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
@@ -57,14 +57,14 @@ test("NoteDotAnimator works when is alphabetical and decrementing root", () => {
   )
 })
 
-test("NoteDotAnimator works when is alphabetical and incrementing degree", () => {
+test("NoteDotAnimator works when is tangled and incrementing degree", () => {
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
     [ -2, -1, 0, 1, 2, 3, 4 ]
   )
-  const animator = new NoteDotAnimator({ isAlphabetical: true, motion: Motion.IncrementDegree, musicalKey })
+  const animator = new NoteDotAnimator({ isUntangled: false, motion: Motion.IncrementDegree, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
@@ -72,14 +72,14 @@ test("NoteDotAnimator works when is alphabetical and incrementing degree", () =>
   )
 })
 
-test("NoteDotAnimator works when is alphabetical and decrementing degree", () => {
+test("NoteDotAnimator works when is tangled and decrementing degree", () => {
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
     [ -2, -1, 0, 1, 2, 3, 4 ]
   )
-  const animator = new NoteDotAnimator({ isAlphabetical: true, motion: Motion.DecrementDegree, musicalKey })
+  const animator = new NoteDotAnimator({ isUntangled: false, motion: Motion.DecrementDegree, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
@@ -87,14 +87,14 @@ test("NoteDotAnimator works when is alphabetical and decrementing degree", () =>
   )
 })
 
-test("NoteDotAnimator works when is alphabetical and incrementing both", () => {
+test("NoteDotAnimator works when is tangled and incrementing both", () => {
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
     [ -2, -1, 0, 1, 2, 3, 4 ]
   )
-  const animator = new NoteDotAnimator({ isAlphabetical: true, motion: Motion.IncrementDegree, musicalKey })
+  const animator = new NoteDotAnimator({ isUntangled: false, motion: Motion.IncrementDegree, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
@@ -102,14 +102,14 @@ test("NoteDotAnimator works when is alphabetical and incrementing both", () => {
   )
 })
 
-test("NoteDotAnimator works when is alphabetical and decrementing both", () => {
+test("NoteDotAnimator works when is tangled and decrementing both", () => {
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
     [ -2, -1, 0, 1, 2, 3, 4 ]
   )
-  const animator = new NoteDotAnimator({ isAlphabetical: true, motion: Motion.DecrementDegree, musicalKey })
+  const animator = new NoteDotAnimator({ isUntangled: false, motion: Motion.DecrementDegree, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
@@ -117,14 +117,14 @@ test("NoteDotAnimator works when is alphabetical and decrementing both", () => {
   )
 })
 
-test("NoteDotAnimator works when is not alphabetical and incrementing root", () => {
+test("NoteDotAnimator works when is untangled and incrementing root", () => {
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
     [ -2, -1, 0, 1, 2, 3, 4 ]
   )
-  const animator = new NoteDotAnimator({ isAlphabetical: false, motion: Motion.IncrementRoot, musicalKey })
+  const animator = new NoteDotAnimator({ isUntangled: true, motion: Motion.IncrementRoot, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
@@ -132,14 +132,14 @@ test("NoteDotAnimator works when is not alphabetical and incrementing root", () 
   )
 })
 
-test("NoteDotAnimator works when is not alphabetical and decrementing root", () => {
+test("NoteDotAnimator works when is untangled and decrementing root", () => {
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
     [ -2, -1, 0, 1, 2, 3, 4 ]
   )
-  const animator = new NoteDotAnimator({ isAlphabetical: false, motion: Motion.DecrementRoot, musicalKey })
+  const animator = new NoteDotAnimator({ isUntangled: true, motion: Motion.DecrementRoot, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
@@ -147,14 +147,14 @@ test("NoteDotAnimator works when is not alphabetical and decrementing root", () 
   )
 })
 
-test("NoteDotAnimator works when is not alphabetical and incrementing degree", () => {
+test("NoteDotAnimator works when is untangled and incrementing degree", () => {
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
     [ -2, -1, 0, 1, 2, 3, 4 ]
   )
-  const animator = new NoteDotAnimator({ isAlphabetical: false, motion: Motion.IncrementDegree, musicalKey })
+  const animator = new NoteDotAnimator({ isUntangled: true, motion: Motion.IncrementDegree, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
@@ -162,14 +162,14 @@ test("NoteDotAnimator works when is not alphabetical and incrementing degree", (
   )
 })
 
-test("NoteDotAnimator works when is not alphabetical and decrementing degree", () => {
+test("NoteDotAnimator works when is untangled and decrementing degree", () => {
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
     [ -2, -1, 0, 1, 2, 3, 4 ]
   )
-  const animator = new NoteDotAnimator({ isAlphabetical: false, motion: Motion.DecrementDegree, musicalKey })
+  const animator = new NoteDotAnimator({ isUntangled: true, motion: Motion.DecrementDegree, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
@@ -177,14 +177,14 @@ test("NoteDotAnimator works when is not alphabetical and decrementing degree", (
   )
 })
 
-test("NoteDotAnimator works when is not alphabetical and incrementing both", () => {
+test("NoteDotAnimator works when is untangled and incrementing both", () => {
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
     [ -2, -1, 0, 1, 2, 3, 4 ]
   )
-  const animator = new NoteDotAnimator({ isAlphabetical: false, motion: Motion.IncrementDegree, musicalKey })
+  const animator = new NoteDotAnimator({ isUntangled: true, motion: Motion.IncrementDegree, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
@@ -192,14 +192,14 @@ test("NoteDotAnimator works when is not alphabetical and incrementing both", () 
   )
 })
 
-test("NoteDotAnimator works when is not alphabetical and decrementing both", () => {
+test("NoteDotAnimator works when is untangled and decrementing both", () => {
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
     [ -2, -1, 0, 1, 2, 3, 4 ]
   )
-  const animator = new NoteDotAnimator({ isAlphabetical: false, motion: Motion.DecrementDegree, musicalKey })
+  const animator = new NoteDotAnimator({ isUntangled: true, motion: Motion.DecrementDegree, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(

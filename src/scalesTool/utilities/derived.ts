@@ -18,9 +18,10 @@ export function useDerived(
   state: State,
 ): Derived {
   const {
-    isUsingAnimation,
-    isAlphabetical,
+    isUntangled,
+    isUsingSymmetryDot,
     isUsingSolfege,
+    isUsingAnimation,
     motion,
     root,
     degree,
@@ -28,12 +29,13 @@ export function useDerived(
   const clockSettings = useMemo(
     () => {
       return {
-        isUsingAnimation,
-        isAlphabetical,
+        isUntangled,
+        isUsingSymmetryDot,
         isUsingSolfege,
+        isUsingAnimation,
       }
     },
-    [ isUsingAnimation, isAlphabetical, isUsingSolfege ]
+    [ isUntangled, isUsingSymmetryDot, isUsingSolfege, isUsingAnimation ]
   )
   const musicalKey = useMemo(
     () => {

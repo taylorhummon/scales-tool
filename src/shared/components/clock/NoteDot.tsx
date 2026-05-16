@@ -20,11 +20,11 @@ export function NoteDot({
   solfegeLetter,
   note,
 }: NoteDotInput): React.ReactNode {
-  const { isAlphabetical } = clockSettings
+  const { isUntangled } = clockSettings
 
   return (
     <circle
-      className={getClassName(isAlphabetical, noteDotAnimator, note)}
+      className={getClassName(isUntangled, noteDotAnimator, note)}
       cx="0"
       cy="0"
       r="8"
@@ -35,13 +35,13 @@ export function NoteDot({
 }
 
 function getClassName(
-  isAlphabetical: boolean,
+  isUntangled: boolean,
   noteDotAnimator: NoteDotAnimator,
   note: Note,
 ): string {
   const classNames = [ "note-dot" ]
-  const startHour = getHour({ isAlphabetical, note })
-  const finishHour = getHour({ isAlphabetical, note: noteDotAnimator.finishNote(note) })
+  const startHour = getHour({ isUntangled, note })
+  const finishHour = getHour({ isUntangled, note: noteDotAnimator.finishNote(note) })
   if (finishHour === startHour) {
     classNames.push(`hour-${startHour}`)
   } else {
