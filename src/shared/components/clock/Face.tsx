@@ -3,7 +3,7 @@ import { buildIndicesArray } from "@shared/utilities/array"
 import { CLOCK_STROKE } from "@shared/utilities/color"
 
 
-const RADIUS = 120
+const RADIUS = 110
 
 export function Face(
 ): React.ReactNode {

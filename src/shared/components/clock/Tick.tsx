@@ -2,8 +2,8 @@ import { UNIT_CIRCLE_XS, UNIT_CIRCLE_YS } from "@shared/utilities/unitCircle"
 import { CLOCK_STROKE } from "@shared/utilities/color"
 
 
-const OUTER_RADIUS = 120
-const INNER_RADIUS = 100
+const OUTER_RADIUS = 116
+const INNER_RADIUS = 104
 
 
 interface TickInput {

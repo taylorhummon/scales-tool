@@ -30,13 +30,13 @@ export class NoteDotAnimator {
     startNote: Note,
   ): Note {
     if (this.#isUntangled) {
-      return this.#whenUntangled(startNote)
+      return this.#notesBallet(startNote)
     } else {
-      return this.#whenTangled(startNote)
+      return this.#notesBallet(startNote)
     }
   }
 
-  #whenUntangled(
+  #notesBallet(
     startNote: Note,
   ): Note {
     if (getWillIncrementDegree(this.#motion)) {
@@ -48,7 +48,7 @@ export class NoteDotAnimator {
     return startNote
   }
 
-  #whenTangled(
+  #minimal(
     startNote: Note,
   ): Note {
     if (

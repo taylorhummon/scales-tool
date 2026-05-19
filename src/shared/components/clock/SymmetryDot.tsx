@@ -17,12 +17,11 @@ export function SymmetryDot({
   musicalKey,
   nextMusicalKey,
 }: SymmetryDotInput): React.ReactNode {
-  const { isUsingSymmetryDot, isUntangled } = clockSettings
-  if (! isUsingSymmetryDot) return null
+  if (! clockSettings.isUsingSymmetryDot) return null
 
   return (
     <circle
-      className={getClassName(isUntangled, musicalKey, nextMusicalKey)}
+      className={getClassName(clockSettings, musicalKey, nextMusicalKey)}
       data-testid={"clock-symmetry-dot"}
       cx="0"
       cy="0"
@@ -35,13 +34,13 @@ export function SymmetryDot({
 }
 
 function getClassName(
-  isUntangled: boolean,
+  clockSettings: ClockSettings,
   musicalKey: MusicalKey,
   nextMusicalKey: MusicalKey,
 ): string {
   const classNames = [ "symmetry-dot" ]
-  const startHour = getHour({ isUntangled, note: musicalKey.symmetryNote })
-  const finishHour = getHour({ isUntangled, note: nextMusicalKey.symmetryNote })
+  const startHour = getHour({ clockSettings, musicalKey, note: musicalKey.symmetryNote })
+  const finishHour = getHour({ clockSettings, musicalKey: nextMusicalKey, note: nextMusicalKey.symmetryNote })
   if (finishHour === startHour) {
     classNames.push(`hour-${startHour}`)
   } else {

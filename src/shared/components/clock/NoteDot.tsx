@@ -1,3 +1,4 @@
+import { type MusicalKey } from "@shared/classes/MusicalKey"
 import { type Note } from "@shared/classes/Note"
 import { type NoteDotAnimator } from "@shared/classes/NoteDotAnimator"
 import { type ClockSettings, getHour } from "@shared/utilities/clock"
@@ -9,6 +10,8 @@ import noteDotCssModule from "./NoteDot.module.scss"
 
 interface NoteDotInput {
   clockSettings: ClockSettings,
+  musicalKey: MusicalKey,
+  nextMusicalKey: MusicalKey,
   noteDotAnimator: NoteDotAnimator,
   solfegeLetter: SolfegeLetter,
   note: Note,
@@ -16,15 +19,19 @@ interface NoteDotInput {
 
 export function NoteDot({
   clockSettings,
+  musicalKey,
+  nextMusicalKey,
   noteDotAnimator,
   solfegeLetter,
   note,
 }: NoteDotInput): React.ReactNode {
-  const { isUntangled } = clockSettings
+  const finishNote = noteDotAnimator.finishNote(note)
+  const startHour = getHour({ clockSettings, musicalKey, note })
+  const finishHour = getHour({ clockSettings, musicalKey: nextMusicalKey, note: finishNote })
 
   return (
     <circle
-      className={getClassName(isUntangled, noteDotAnimator, note)}
+      className={getClassName(startHour, finishHour)}
       cx="0"
       cy="0"
       r="8"
@@ -35,13 +42,10 @@ export function NoteDot({
 }
 
 function getClassName(
-  isUntangled: boolean,
-  noteDotAnimator: NoteDotAnimator,
-  note: Note,
+  startHour: number,
+  finishHour: number,
 ): string {
   const classNames = [ "note-dot" ]
-  const startHour = getHour({ isUntangled, note })
-  const finishHour = getHour({ isUntangled, note: noteDotAnimator.finishNote(note) })
   if (finishHour === startHour) {
     classNames.push(`hour-${startHour}`)
   } else {

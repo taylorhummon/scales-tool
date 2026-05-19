@@ -1,3 +1,4 @@
+import { type MusicalKey } from "@shared/classes/MusicalKey"
 import { type Note } from "@shared/classes/Note"
 import { SolfegeLabelAnimator } from "@shared/classes/SolfegeLabelAnimator"
 import { type ClockSettings, getHour } from "@shared/utilities/clock"
@@ -9,6 +10,8 @@ import solfegeLabelCssModule from "./SolfegeLabel.module.scss"
 
 interface SolfegeLabelInput {
   clockSettings: ClockSettings,
+  musicalKey: MusicalKey,
+  nextMusicalKey: MusicalKey,
   solfegeLabelAnimator: SolfegeLabelAnimator,
   solfegeLetter: SolfegeLetter,
   note: Note,
@@ -16,15 +19,21 @@ interface SolfegeLabelInput {
 
 export function SolfegeLabel({
   clockSettings,
+  musicalKey,
+  nextMusicalKey,
   solfegeLabelAnimator,
   solfegeLetter,
   note,
 }: SolfegeLabelInput): React.ReactNode {
-  const { isUntangled } = clockSettings
+  const { isUsingSolfege } = clockSettings
+  if (! isUsingSolfege) return null
+  const finishNote = solfegeLabelAnimator.finishNote(note)
+  const startHour = getHour({ clockSettings, musicalKey, note })
+  const finishHour = getHour({ clockSettings, musicalKey: nextMusicalKey, note: finishNote })
 
   return (
     <g
-      className={getClassName(isUntangled, solfegeLabelAnimator, note)}
+      className={getClassName(startHour, finishHour)}
       data-testid={`solfege-label-${solfegeLetter}`}
     >
       <g className={getInnerClassName(solfegeLetter)}>
@@ -37,13 +46,10 @@ export function SolfegeLabel({
 }
 
 function getClassName(
-  isUntangled: boolean,
-  solfegeLabelAnimator: SolfegeLabelAnimator,
-  note: Note,
+  startHour: number,
+  finishHour: number,
 ): string {
   const classNames = [ "solfege-label" ]
-  const startHour = getHour({ isUntangled, note })
-  const finishHour = getHour({ isUntangled, note: solfegeLabelAnimator.finishNote(note) })
   if (finishHour === startHour) {
     classNames.push(`hour-${startHour}`)
   } else {

@@ -17,11 +17,9 @@ export function RootDot({
   musicalKey,
   nextMusicalKey,
 }: RootDotInput): React.ReactNode {
-  const { isUntangled } = clockSettings
-
   return (
     <circle
-      className={getClassName(isUntangled, musicalKey, nextMusicalKey)}
+      className={getClassName(clockSettings, musicalKey, nextMusicalKey)}
       data-testid={"clock-root-dot"}
       cx="0"
       cy="0"
@@ -34,13 +32,13 @@ export function RootDot({
 }
 
 function getClassName(
-  isUntangled: boolean,
+  clockSettings: ClockSettings,
   musicalKey: MusicalKey,
   nextMusicalKey: MusicalKey,
 ): string {
   const classNames = [ "root-dot" ]
-  const startHour = getHour({ isUntangled, note: musicalKey.rootNote })
-  const finishHour = getHour({ isUntangled, note: nextMusicalKey.rootNote })
+  const startHour = getHour({ clockSettings, musicalKey, note: musicalKey.rootNote })
+  const finishHour = getHour({ clockSettings, musicalKey: nextMusicalKey, note: nextMusicalKey.rootNote })
   if (finishHour === startHour) {
     classNames.push(`hour-${startHour}`)
   } else {
