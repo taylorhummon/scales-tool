@@ -2,7 +2,7 @@ import { Note } from "@shared/classes/Note"
 import { buildIndicesArray, buildInclusiveRange } from "@shared/utilities/array"
 import { remainderFor } from "@shared/utilities/math"
 import { MAX_MODE, MIN_MODE, modeNameFromMode, modeNoteFromMode } from "@shared/utilities/mode"
-import { type NaturalNote } from "@shared/utilities/naturalNote"
+import { type NaturalNote, NATURAL_NOTES } from "@shared/utilities/naturalNote"
 import { type SolfegeLetter, SOLFEGE_LETTERS } from "@shared/utilities/solfege"
 
 
@@ -16,7 +16,9 @@ export class MusicalKey {
   mode: number
   root: number
   degree: number
-  #scale: Map<SolfegeLetter, Note> | null = null
+  #notes: Array<Note> | null = null
+  #noteBySolfegeLetter: Map<SolfegeLetter, Note> | null = null
+  #noteByNaturalNote: Map<NaturalNote, Note> | null = null
 
   constructor(
     input: constructorInput,
@@ -58,23 +60,50 @@ export class MusicalKey {
     return new Note({ value: this.degree - 3 })
   }
 
-  get scale(
-  ): Map<SolfegeLetter, Note> {
-    if (this.#scale === null) this.#scale = this.#getScale()
-    return this.#scale
+  get notes(
+  ): Array<Note> {
+    if (this.#notes === null) this.#notes = this.#getNotes()
+    return this.#notes
   }
 
-  #getScale(
+  get noteBySolfegeLetter(
   ): Map<SolfegeLetter, Note> {
+    if (this.#noteBySolfegeLetter === null) this.#noteBySolfegeLetter = this.#getNoteBySolfegeLetter()
+    return this.#noteBySolfegeLetter
+  }
+
+  get noteByNaturalNote(
+  ): Map<NaturalNote, Note> {
+    if (this.#noteByNaturalNote === null) this.#noteByNaturalNote = this.#getNoteByNaturalNote()
+    return this.#noteByNaturalNote
+  }
+
+  #getNotes(
+  ): Array<Note> {
     const values = buildInclusiveRange(this.degree - 3, this.degree + 3)
-    const notes = values.map((value) => new Note({ value }))
+    return values.map((value) => new Note({ value }))
+  }
+
+  #getNoteBySolfegeLetter(
+  ): Map<SolfegeLetter, Note> {
     const scale: Map<SolfegeLetter, Note> = new Map()
     for (const index of buildIndicesArray(7)) {
       const solfegeLetter = SOLFEGE_LETTERS[index]
-      const note = notes[remainderFor(2 * index + this.mode + 3, 7)]
+      const note = this.notes[remainderFor(2 * index + this.mode + 3, 7)]
       scale.set(solfegeLetter, note)
     }
     return scale
+  }
+
+  #getNoteByNaturalNote(
+  ): Map<NaturalNote, Note> {
+    const noteByNaturalNote: Map<NaturalNote, Note> = new Map()
+    for (const index of buildIndicesArray(7)) {
+      const naturalNote = NATURAL_NOTES[index]
+      const note = this.notes[remainderFor(2 * index - this.degree - 3, 7)]
+      noteByNaturalNote.set(naturalNote, note)
+    }
+    return noteByNaturalNote
   }
 }
 

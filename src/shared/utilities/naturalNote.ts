@@ -8,6 +8,8 @@ export enum NaturalNote {
   G = "G",
 }
 
+export const NATURAL_NOTES = Object.values(NaturalNote)
+
 export const NATURAL_NOTES_IN_FCGDAEB_ORDER = [
   NaturalNote.F,
   NaturalNote.C,

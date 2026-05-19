@@ -1,63 +1,38 @@
 import { type MusicalKey } from "@shared/classes/MusicalKey"
 import { Note } from "@shared/classes/Note"
-import { Motion } from "@shared/utilities/motion"
+import { type SolfegeLetter } from "@shared/utilities/solfege"
 
 
 interface constructorInput {
-  motion: Motion,
   musicalKey: MusicalKey,
+  nextMusicalKey: MusicalKey,
 }
 
 export class SolfegeLabelAnimator {
-  #motion: Motion
-  #headNoteValue: number
-  #tailNoteValue: number
+  #startNoteBySolfegeLetter: Map<SolfegeLetter, Note>
+  #finishNoteBySolfegeLetter: Map<SolfegeLetter, Note>
 
   constructor({
-    motion,
     musicalKey,
+    nextMusicalKey,
   }: constructorInput) {
-    this.#motion = motion
-    this.#headNoteValue = musicalKey.headNote.value
-    this.#tailNoteValue = musicalKey.tailNote.value
+    this.#startNoteBySolfegeLetter = musicalKey.noteBySolfegeLetter
+    this.#finishNoteBySolfegeLetter = nextMusicalKey.noteBySolfegeLetter
+  }
+
+  startNote(
+    solfegeLetter: SolfegeLetter,
+  ): Note {
+    const startNote = this.#startNoteBySolfegeLetter.get(solfegeLetter)
+    if (startNote === undefined) throw Error(`Missing note for: ${solfegeLetter}`)
+    return startNote
   }
 
   finishNote(
-    startNote: Note,
+    solfegeLetter: SolfegeLetter,
   ): Note {
-    if (this.#motion === Motion.Still) {
-      return startNote
-    }
-    if (this.#motion === Motion.IncrementRoot) {
-      if (startNote.value === this.#headNoteValue) {
-        return new Note({ value: startNote.value + 6 })
-      } else {
-        return new Note({ value: startNote.value + 1 })
-      }
-    }
-    if (this.#motion === Motion.DecrementRoot) {
-      if (startNote.value === this.#tailNoteValue) {
-        return new Note({ value: startNote.value - 6 })
-      } else {
-        return new Note({ value: startNote.value - 1 })
-      }
-    }
-    if (this.#motion === Motion.IncrementDegree) {
-      if (startNote.value === this.#tailNoteValue) {
-        return new Note({ value: startNote.value + 7 })
-      }
-    }
-    if (this.#motion === Motion.DecrementDegree) {
-      if (startNote.value === this.#headNoteValue) {
-        return new Note({ value: startNote.value - 7 })
-      }
-    }
-    if (this.#motion === Motion.IncrementBoth) {
-      return new Note({ value: startNote.value + 1 })
-    }
-    if (this.#motion === Motion.DecrementBoth) {
-      return new Note({ value: startNote.value - 1 })
-    }
-    return startNote
+    const finishNote = this.#finishNoteBySolfegeLetter.get(solfegeLetter)
+    if (finishNote === undefined) throw Error(`Missing note for: ${solfegeLetter}`)
+    return finishNote
   }
 }

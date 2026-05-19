@@ -1,118 +1,127 @@
 import { test, expect } from "vitest"
 
 import { MusicalKey } from "@shared/classes/MusicalKey"
-import { Note } from "@shared/classes/Note"
 import { NoteLabelAnimator } from "@shared/classes/NoteLabelAnimator"
-import { buildInclusiveRange } from "@shared/utilities/array"
-import { Motion } from "@shared/utilities/motion"
+import { Motion, getNextMusicalKey } from "@shared/utilities/motion"
+import { NATURAL_NOTES } from "@shared/utilities/naturalNote"
 
-
-function noMotion(
-  musicalKey: MusicalKey,
-): Array<number> {
-  return buildInclusiveRange(musicalKey.tailNote.value, musicalKey.headNote.value)
-}
-
-function exerciseAnimator(
-  musicalKey: MusicalKey,
-  animator: NoteLabelAnimator,
-): Array<number> {
-  const values = buildInclusiveRange(musicalKey.tailNote.value, musicalKey.headNote.value)
-  return values.map(
-    (value) => new Note({ value })
-  ).map(
-    (startNote) => animator.finishNote(startNote)
-  ).map(
-    (finishNote) => finishNote.value
-  );
-}
 
 test("NoteLabelAnimator works when incrementing root", () => {
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
+  const nextMusicalKey = getNextMusicalKey({ musicalKey, motion: Motion.IncrementRoot })
+  const animator = new NoteLabelAnimator({ musicalKey, nextMusicalKey })
   expect(
-    noMotion(musicalKey)
+    NATURAL_NOTES.map((naturalNote) =>
+      animator.startNote(naturalNote).name
+    )
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "A", "B", "C", "D", "E", "F♯", "G" ]
   )
-  const animator = new NoteLabelAnimator({ motion: Motion.IncrementRoot, musicalKey })
   expect(
-    exerciseAnimator(musicalKey, animator)
+    NATURAL_NOTES.map((naturalNote) =>
+      animator.finishNote(naturalNote).name
+    )
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "A", "B", "C", "D", "E", "F♯", "G" ]
   )
 })
 
 test("NoteLabelAnimator works when decrementing root", () => {
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
+  const nextMusicalKey = getNextMusicalKey({ musicalKey, motion: Motion.DecrementRoot })
+  const animator = new NoteLabelAnimator({ musicalKey, nextMusicalKey })
   expect(
-    noMotion(musicalKey)
+    NATURAL_NOTES.map((naturalNote) =>
+      animator.startNote(naturalNote).name
+    )
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "A", "B", "C", "D", "E", "F♯", "G" ]
   )
-  const animator = new NoteLabelAnimator({ motion: Motion.DecrementRoot, musicalKey })
   expect(
-    exerciseAnimator(musicalKey, animator)
+    NATURAL_NOTES.map((naturalNote) =>
+      animator.finishNote(naturalNote).name
+    )
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "A", "B", "C", "D", "E", "F♯", "G" ]
   )
 })
 
 test("NoteLabelAnimator works when incrementing degree", () => {
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
+  const nextMusicalKey = getNextMusicalKey({ musicalKey, motion: Motion.IncrementDegree })
+  const animator = new NoteLabelAnimator({ musicalKey, nextMusicalKey })
   expect(
-    noMotion(musicalKey)
+    NATURAL_NOTES.map((naturalNote) =>
+      animator.startNote(naturalNote).name
+    )
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "A", "B", "C", "D", "E", "F♯", "G" ]
   )
-  const animator = new NoteLabelAnimator({ motion: Motion.IncrementDegree, musicalKey })
   expect(
-    exerciseAnimator(musicalKey, animator)
+    NATURAL_NOTES.map((naturalNote) =>
+      animator.finishNote(naturalNote).name
+    )
   ).toStrictEqual(
-    [ 5, -1, 0, 1, 2, 3, 4 ]
+    [ "A", "B", "C♯", "D", "E", "F♯", "G" ]
   )
 })
 
 test("NoteLabelAnimator works when decrementing degree", () => {
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
+  const nextMusicalKey = getNextMusicalKey({ musicalKey, motion: Motion.DecrementDegree })
+  const animator = new NoteLabelAnimator({ musicalKey, nextMusicalKey })
   expect(
-    noMotion(musicalKey)
+    NATURAL_NOTES.map((naturalNote) =>
+      animator.startNote(naturalNote).name
+    )
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "A", "B", "C", "D", "E", "F♯", "G" ]
   )
-  const animator = new NoteLabelAnimator({ motion: Motion.DecrementDegree, musicalKey })
   expect(
-    exerciseAnimator(musicalKey, animator)
+    NATURAL_NOTES.map((naturalNote) =>
+      animator.finishNote(naturalNote).name
+    )
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, -3 ]
+    [ "A", "B", "C", "D", "E", "F", "G" ]
   )
 })
 
 test("NoteLabelAnimator works when incrementing both", () => {
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
+  const nextMusicalKey = getNextMusicalKey({ musicalKey, motion: Motion.IncrementBoth })
+  const animator = new NoteLabelAnimator({ musicalKey, nextMusicalKey })
   expect(
-    noMotion(musicalKey)
+    NATURAL_NOTES.map((naturalNote) =>
+      animator.startNote(naturalNote).name
+    )
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "A", "B", "C", "D", "E", "F♯", "G" ]
   )
-  const animator = new NoteLabelAnimator({ motion: Motion.IncrementBoth, musicalKey })
   expect(
-    exerciseAnimator(musicalKey, animator)
+    NATURAL_NOTES.map((naturalNote) =>
+      animator.finishNote(naturalNote).name
+    )
   ).toStrictEqual(
-    [ 5, -1, 0, 1, 2, 3, 4 ]
+    [ "A", "B", "C♯", "D", "E", "F♯", "G" ]
   )
 })
 
 test("NoteLabelAnimator works when decrementing both", () => {
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
+  const nextMusicalKey = getNextMusicalKey({ musicalKey, motion: Motion.DecrementBoth })
+  const animator = new NoteLabelAnimator({ musicalKey, nextMusicalKey })
   expect(
-    noMotion(musicalKey)
+    NATURAL_NOTES.map((naturalNote) =>
+      animator.startNote(naturalNote).name
+    )
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "A", "B", "C", "D", "E", "F♯", "G" ]
   )
-  const animator = new NoteLabelAnimator({ motion: Motion.DecrementBoth, musicalKey })
   expect(
-    exerciseAnimator(musicalKey, animator)
+    NATURAL_NOTES.map((naturalNote) =>
+      animator.finishNote(naturalNote).name
+    )
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, -3 ]
+    [ "A", "B", "C", "D", "E", "F", "G" ]
   )
 })

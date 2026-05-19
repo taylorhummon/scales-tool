@@ -1,52 +1,38 @@
 import { type MusicalKey } from "@shared/classes/MusicalKey"
 import { Note } from "@shared/classes/Note"
-import { type Motion } from "@shared/utilities/motion"
-import { getWillIncrementDegree, getWillDecrementDegree } from "@shared/utilities/motion"
+import { type NaturalNote } from "@shared/utilities/naturalNote"
 
 
 interface constructorInput {
-  motion: Motion,
   musicalKey: MusicalKey,
+  nextMusicalKey: MusicalKey,
 }
 
 export class NoteLabelAnimator {
-  #motion: Motion
-  #movingNote?: Note
+  #startNoteByNaturalNote: Map<NaturalNote, Note>
+  #finishNoteByNaturalNote: Map<NaturalNote, Note>
 
   constructor({
-    motion,
     musicalKey,
+    nextMusicalKey,
   }: constructorInput) {
-    this.#motion = motion
-    this.#movingNote = getMovingNote(motion, musicalKey)
+    this.#startNoteByNaturalNote = musicalKey.noteByNaturalNote
+    this.#finishNoteByNaturalNote = nextMusicalKey.noteByNaturalNote
+  }
+
+  startNote(
+    naturalNote: NaturalNote,
+  ): Note {
+    const startNote = this.#startNoteByNaturalNote.get(naturalNote)
+    if (startNote === undefined) throw `Could not find note for ${naturalNote}`
+    return startNote
   }
 
   finishNote(
-    startNote: Note,
+    naturalNote: NaturalNote,
   ): Note {
-    if (startNote.value === this.#movingNote?.value) {
-      if (getWillIncrementDegree(this.#motion)) {
-        return new Note({ value: startNote.value + 7 })
-      }
-      if (getWillDecrementDegree(this.#motion)) {
-        return new Note({ value: startNote.value - 7 })
-      }
-    }
-    return startNote
+    const finishNote = this.#finishNoteByNaturalNote.get(naturalNote)
+    if (finishNote === undefined) throw `Could not find note for ${naturalNote}`
+    return finishNote
   }
-}
-
-// *** Private functions below this line ***
-
-function getMovingNote(
-  motion: Motion,
-  musicalKey: MusicalKey,
-): Note | undefined {
-  if (getWillIncrementDegree(motion)) {
-    return musicalKey.tailNote
-  }
-  if (getWillDecrementDegree(motion)) {
-    return musicalKey.headNote
-  }
-  return undefined;
 }

@@ -12,8 +12,9 @@ import { SolfegeLabel } from "@shared/components/clock/SolfegeLabel"
 import { SymmetryDot } from "@shared/components/clock/SymmetryDot"
 import { type ClockSettings } from "@shared/utilities/clock"
 import { arrayFromMap } from "@shared/utilities/map"
+import { NATURAL_NOTES } from "@shared/utilities/naturalNote"
 import { type Motion } from "@shared/utilities/motion"
-import { SolfegeLetter } from "@shared/utilities/solfege"
+import { type SolfegeLetter, SOLFEGE_LETTERS } from "@shared/utilities/solfege"
 
 import clockCssModule from "./Clock.module.scss"
 
@@ -33,8 +34,8 @@ export function Clock({
 }: ClockInput): React.ReactNode {
   const { isUntangled } = clockSettings
   const noteDotAnimator = new NoteDotAnimator({ isUntangled, motion, musicalKey })
-  const noteLabelAnimator = new NoteLabelAnimator({ motion, musicalKey })
-  const solfegeLabelAnimator = new SolfegeLabelAnimator({ motion, musicalKey })
+  const noteLabelAnimator = new NoteLabelAnimator({ musicalKey, nextMusicalKey })
+  const solfegeLabelAnimator = new SolfegeLabelAnimator({ musicalKey, nextMusicalKey })
 
   return (
     <g className={clockCssModule["clock"]}>
@@ -49,7 +50,7 @@ export function Clock({
         nextMusicalKey={nextMusicalKey}
       />
       <Face />
-      {arrayFromMap(musicalKey.scale, (note: Note, solfegeLetter: SolfegeLetter) => (
+      {arrayFromMap(musicalKey.noteBySolfegeLetter, (note: Note, solfegeLetter: SolfegeLetter) => (
         <NoteDot
           key={note.value}
           clockSettings={clockSettings}
@@ -60,28 +61,26 @@ export function Clock({
           note={note}
         />
       ))}
-      {arrayFromMap(musicalKey.scale, (note: Note, solfegeLetter: SolfegeLetter) => (
+      {NATURAL_NOTES.map((naturalNote) =>
         <NoteLabel
-          key={note.value}
+          key={naturalNote}
           clockSettings={clockSettings}
           musicalKey={musicalKey}
           nextMusicalKey={nextMusicalKey}
           noteLabelAnimator={noteLabelAnimator}
-          solfegeLetter={solfegeLetter}
-          note={note}
+          naturalNote={naturalNote}
         />
-      ))}
-      {arrayFromMap(musicalKey.scale, (note: Note, solfegeLetter: SolfegeLetter) => (
+      )}
+      {SOLFEGE_LETTERS.map((solfegeLetter) =>
         <SolfegeLabel
-          key={note.value}
+          key={solfegeLetter}
           clockSettings={clockSettings}
           musicalKey={musicalKey}
           nextMusicalKey={nextMusicalKey}
           solfegeLabelAnimator={solfegeLabelAnimator}
           solfegeLetter={solfegeLetter}
-          note={note}
         />
-      ))}
+      )}
       <Description
         musicalKey={musicalKey}
       />

@@ -133,14 +133,24 @@ test("MusicalKey works for Dorian D", () => {
     "F"
   )
   expect(
-    arrayFromMap(musicalKey.scale, (_note, solfegeLetter) => solfegeLetter)
+    arrayFromMap(musicalKey.noteBySolfegeLetter, (_note, solfegeLetter) => solfegeLetter)
   ).toStrictEqual(
     [ "do", "re", "mi", "fa", "sol", "la", "ti" ]
   )
   expect(
-    arrayFromMap(musicalKey.scale, (note, _solfegeLetter) => note.name)
+    arrayFromMap(musicalKey.noteBySolfegeLetter, (note, _solfegeLetter) => note.name)
   ).toStrictEqual(
     [ "D", "E", "F", "G", "A", "B", "C" ]
+  )
+  expect(
+    arrayFromMap(musicalKey.noteByNaturalNote, (_note, naturalNote) => naturalNote)
+  ).toStrictEqual(
+    [ "A", "B", "C", "D", "E", "F", "G" ]
+  )
+  expect(
+    arrayFromMap(musicalKey.noteByNaturalNote, (note, _naturalNote) => note.name)
+  ).toStrictEqual(
+    [ "A", "B", "C", "D", "E", "F", "G" ]
   )
 })
 
@@ -177,12 +187,22 @@ test("MusicalKey works for A-Major", () => {
     "D"
   )
   expect(
-    arrayFromMap(musicalKey.scale, (_note, solfegeLetter) => solfegeLetter)
+    arrayFromMap(musicalKey.noteBySolfegeLetter, (_note, solfegeLetter) => solfegeLetter)
   ).toStrictEqual(
     [ "do", "re", "mi", "fa", "sol", "la", "ti" ]
   )
   expect(
-    arrayFromMap(musicalKey.scale, (note, _solfegeLetter) => note.name)
+    arrayFromMap(musicalKey.noteBySolfegeLetter, (note, _solfegeLetter) => note.name)
+  ).toStrictEqual(
+    [ "A", "B", "C♯", "D", "E", "F♯", "G♯" ]
+  )
+  expect(
+    arrayFromMap(musicalKey.noteByNaturalNote, (_note, naturalNote) => naturalNote)
+  ).toStrictEqual(
+    [ "A", "B", "C", "D", "E", "F", "G" ]
+  )
+  expect(
+    arrayFromMap(musicalKey.noteByNaturalNote, (note, _naturalNote) => note.name)
   ).toStrictEqual(
     [ "A", "B", "C♯", "D", "E", "F♯", "G♯" ]
   )
@@ -221,13 +241,23 @@ test("MusicalKey works for G-Minor", () => {
     "E♭"
   )
   expect(
-    arrayFromMap(musicalKey.scale, (_note, solfegeLetter) => solfegeLetter)
+    arrayFromMap(musicalKey.noteBySolfegeLetter, (_note, solfegeLetter) => solfegeLetter)
   ).toStrictEqual(
     [ "do", "re", "mi", "fa", "sol", "la", "ti" ]
   )
   expect(
-    arrayFromMap(musicalKey.scale, (note, _solfegeLetter) => note.name)
+    arrayFromMap(musicalKey.noteBySolfegeLetter, (note, _solfegeLetter) => note.name)
   ).toStrictEqual(
     [ "G", "A", "B♭", "C", "D", "E♭", "F" ]
+  )
+  expect(
+    arrayFromMap(musicalKey.noteByNaturalNote, (_note, naturalNote) => naturalNote)
+  ).toStrictEqual(
+    [ "A", "B", "C", "D", "E", "F", "G" ]
+  )
+  expect(
+    arrayFromMap(musicalKey.noteByNaturalNote, (note, _naturalNote) => note.name)
+  ).toStrictEqual(
+    [ "A", "B♭", "C", "D", "E♭", "F", "G" ]
   )
 })

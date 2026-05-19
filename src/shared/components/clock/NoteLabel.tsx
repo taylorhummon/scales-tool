@@ -1,10 +1,9 @@
 import { type MusicalKey } from "@shared/classes/MusicalKey"
-import { type Note } from "@shared/classes/Note"
 import { type NoteLabelAnimator } from "@shared/classes/NoteLabelAnimator"
 import { NoteLabelText } from "@shared/components/clock/NoteLabelText"
 import { type ClockSettings, getHour } from "@shared/utilities/clock"
 import { buildClassName } from "@shared/utilities/css"
-import { type SolfegeLetter } from "@shared/utilities/solfege"
+import { type NaturalNote } from "@shared/utilities/naturalNote"
 
 import noteLabelCssModule from "./NoteLabel.module.scss"
 
@@ -14,8 +13,7 @@ interface NoteLabelInput {
   musicalKey: MusicalKey,
   nextMusicalKey: MusicalKey,
   noteLabelAnimator: NoteLabelAnimator,
-  solfegeLetter: SolfegeLetter,
-  note: Note,
+  naturalNote: NaturalNote,
 }
 
 export function NoteLabel({
@@ -23,22 +21,22 @@ export function NoteLabel({
   musicalKey,
   nextMusicalKey,
   noteLabelAnimator,
-  solfegeLetter,
-  note,
+  naturalNote,
 }: NoteLabelInput): React.ReactNode {
-  const finishNote = noteLabelAnimator.finishNote(note)
-  const startHour = getHour({ clockSettings, musicalKey, note })
+  const startNote = noteLabelAnimator.startNote(naturalNote)
+  const finishNote = noteLabelAnimator.finishNote(naturalNote)
+  const startHour = getHour({ clockSettings, musicalKey, note: startNote })
   const finishHour = getHour({ clockSettings, musicalKey: nextMusicalKey, note: finishNote })
-  const startCharacterCount = note.name.length
+  const startCharacterCount = startNote.name.length
   const finishCharacterCount = finishNote.name.length
 
   return (
     <g
       className={getClassName(startHour, finishHour, startCharacterCount, finishCharacterCount)}
-      data-testid={`note-label-${solfegeLetter}`}
+      data-testid={`note-label-${naturalNote}`}
     >
       <NoteLabelText
-        startNote={note}
+        startNote={startNote}
         finishNote={finishNote}
       />
     </g>

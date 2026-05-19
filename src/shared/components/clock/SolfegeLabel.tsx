@@ -14,7 +14,6 @@ interface SolfegeLabelInput {
   nextMusicalKey: MusicalKey,
   solfegeLabelAnimator: SolfegeLabelAnimator,
   solfegeLetter: SolfegeLetter,
-  note: Note,
 }
 
 export function SolfegeLabel({
@@ -23,12 +22,12 @@ export function SolfegeLabel({
   nextMusicalKey,
   solfegeLabelAnimator,
   solfegeLetter,
-  note,
 }: SolfegeLabelInput): React.ReactNode {
   const { isUsingSolfege } = clockSettings
   if (! isUsingSolfege) return null
-  const finishNote = solfegeLabelAnimator.finishNote(note)
-  const startHour = getHour({ clockSettings, musicalKey, note })
+  const startNote = solfegeLabelAnimator.startNote(solfegeLetter)
+  const finishNote = solfegeLabelAnimator.finishNote(solfegeLetter)
+  const startHour = getHour({ clockSettings, musicalKey, note: startNote })
   const finishHour = getHour({ clockSettings, musicalKey: nextMusicalKey, note: finishNote })
 
   return (

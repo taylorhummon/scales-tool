@@ -32,7 +32,7 @@ export class NoteDotAnimator {
     if (this.#isUntangled) {
       return this.#notesBallet(startNote)
     } else {
-      return this.#notesBallet(startNote)
+      return this.#minimal(startNote)
     }
   }
 

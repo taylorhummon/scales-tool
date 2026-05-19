@@ -5,6 +5,7 @@ import userEvent from "@testing-library/user-event"
 
 import { ScalesTool } from "@scalesTool/components/ScalesTool"
 
+import { NaturalNote } from "@shared/utilities/naturalNote"
 import { SolfegeLetter } from "@shared/utilities/solfege"
 
 
@@ -37,9 +38,9 @@ function getNoteDot(
 }
 
 function getNoteLabel(
-  solfegeLetter: SolfegeLetter,
+  naturalNote: NaturalNote,
 ) {
-  return screen.getByTestId(`note-label-${solfegeLetter}`)
+  return screen.getByTestId(`note-label-${naturalNote}`)
 }
 
 
@@ -66,7 +67,12 @@ test("<ScalesTool /> shows C-Major as default correctly", async () => {
     expect.stringContaining("hour-10")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Do).textContent
+    getNoteLabel(NaturalNote.C).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-10")
+  )
+  expect(
+    getNoteLabel(NaturalNote.C).textContent
   ).toBe(
     "C"
   )
@@ -77,7 +83,12 @@ test("<ScalesTool /> shows C-Major as default correctly", async () => {
     expect.stringContaining("hour-0")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Re).textContent
+    getNoteLabel(NaturalNote.D).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-0")
+  )
+  expect(
+    getNoteLabel(NaturalNote.D).textContent
   ).toBe(
     "D"
   )
@@ -88,7 +99,12 @@ test("<ScalesTool /> shows C-Major as default correctly", async () => {
     expect.stringContaining("hour-2")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Mi).textContent
+    getNoteLabel(NaturalNote.E).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-2")
+  )
+  expect(
+    getNoteLabel(NaturalNote.E).textContent
   ).toBe(
     "E"
   )
@@ -99,7 +115,12 @@ test("<ScalesTool /> shows C-Major as default correctly", async () => {
     expect.stringContaining("hour-3")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Fa).textContent
+    getNoteLabel(NaturalNote.F).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-3")
+  )
+  expect(
+    getNoteLabel(NaturalNote.F).textContent
   ).toBe(
     "F"
   )
@@ -110,7 +131,12 @@ test("<ScalesTool /> shows C-Major as default correctly", async () => {
     expect.stringContaining("hour-5")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Sol).textContent
+    getNoteLabel(NaturalNote.G).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-5")
+  )
+  expect(
+    getNoteLabel(NaturalNote.G).textContent
   ).toBe(
     "G"
   )
@@ -121,7 +147,12 @@ test("<ScalesTool /> shows C-Major as default correctly", async () => {
     expect.stringContaining("hour-7")
   )
   expect(
-    getNoteLabel(SolfegeLetter.La).textContent
+    getNoteLabel(NaturalNote.A).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-7")
+  )
+  expect(
+    getNoteLabel(NaturalNote.A).textContent
   ).toBe(
     "A"
   )
@@ -132,7 +163,12 @@ test("<ScalesTool /> shows C-Major as default correctly", async () => {
     expect.stringContaining("hour-9")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Ti).textContent
+    getNoteLabel(NaturalNote.B).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-9")
+  )
+  expect(
+    getNoteLabel(NaturalNote.B).textContent
   ).toBe(
     "B"
   )
@@ -163,7 +199,12 @@ test("<ScalesTool /> shows G-Major as default correctly", async () => {
     expect.stringContaining("hour-5")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Do).textContent
+    getNoteLabel(NaturalNote.G).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-5")
+  )
+  expect(
+    getNoteLabel(NaturalNote.G).textContent
   ).toBe(
     "G"
   )
@@ -174,7 +215,12 @@ test("<ScalesTool /> shows G-Major as default correctly", async () => {
     expect.stringContaining("hour-7")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Re).textContent
+    getNoteLabel(NaturalNote.A).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-7")
+  )
+  expect(
+    getNoteLabel(NaturalNote.A).textContent
   ).toBe(
     "A"
   )
@@ -185,7 +231,12 @@ test("<ScalesTool /> shows G-Major as default correctly", async () => {
     expect.stringContaining("hour-9")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Mi).textContent
+    getNoteLabel(NaturalNote.B).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-9")
+  )
+  expect(
+    getNoteLabel(NaturalNote.B).textContent
   ).toBe(
     "B"
   )
@@ -196,7 +247,12 @@ test("<ScalesTool /> shows G-Major as default correctly", async () => {
     expect.stringContaining("hour-10")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Fa).textContent
+    getNoteLabel(NaturalNote.C).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-10")
+  )
+  expect(
+    getNoteLabel(NaturalNote.C).textContent
   ).toBe(
     "C"
   )
@@ -207,7 +263,12 @@ test("<ScalesTool /> shows G-Major as default correctly", async () => {
     expect.stringContaining("hour-0")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Sol).textContent
+    getNoteLabel(NaturalNote.D).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-0")
+  )
+  expect(
+    getNoteLabel(NaturalNote.D).textContent
   ).toBe(
     "D"
   )
@@ -218,7 +279,12 @@ test("<ScalesTool /> shows G-Major as default correctly", async () => {
     expect.stringContaining("hour-2")
   )
   expect(
-    getNoteLabel(SolfegeLetter.La).textContent
+    getNoteLabel(NaturalNote.E).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-2")
+  )
+  expect(
+    getNoteLabel(NaturalNote.E).textContent
   ).toBe(
     "E"
   )
@@ -229,7 +295,12 @@ test("<ScalesTool /> shows G-Major as default correctly", async () => {
     expect.stringContaining("hour-4")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Ti).textContent
+    getNoteLabel(NaturalNote.F).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-4")
+  )
+  expect(
+    getNoteLabel(NaturalNote.F).textContent
   ).toBe(
     "F♯"
   )
@@ -263,7 +334,12 @@ test("<ScalesTool /> shows C-Minor correctly", async () => {
     expect.stringContaining("hour-10")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Do).textContent
+    getNoteLabel(NaturalNote.C).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-10")
+  )
+  expect(
+    getNoteLabel(NaturalNote.C).textContent
   ).toBe(
     "C"
   )
@@ -274,7 +350,12 @@ test("<ScalesTool /> shows C-Minor correctly", async () => {
     expect.stringContaining("hour-0")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Re).textContent
+    getNoteLabel(NaturalNote.D).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-0")
+  )
+  expect(
+    getNoteLabel(NaturalNote.D).textContent
   ).toBe(
     "D"
   )
@@ -285,7 +366,12 @@ test("<ScalesTool /> shows C-Minor correctly", async () => {
     expect.stringContaining("hour-1")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Mi).textContent
+    getNoteLabel(NaturalNote.E).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-1")
+  )
+  expect(
+    getNoteLabel(NaturalNote.E).textContent
   ).toBe(
     "E♭"
   )
@@ -296,7 +382,12 @@ test("<ScalesTool /> shows C-Minor correctly", async () => {
     expect.stringContaining("hour-3")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Fa).textContent
+    getNoteLabel(NaturalNote.F).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-3")
+  )
+  expect(
+    getNoteLabel(NaturalNote.F).textContent
   ).toBe(
     "F"
   )
@@ -307,7 +398,12 @@ test("<ScalesTool /> shows C-Minor correctly", async () => {
     expect.stringContaining("hour-5")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Sol).textContent
+    getNoteLabel(NaturalNote.G).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-5")
+  )
+  expect(
+    getNoteLabel(NaturalNote.G).textContent
   ).toBe(
     "G"
   )
@@ -318,7 +414,12 @@ test("<ScalesTool /> shows C-Minor correctly", async () => {
     expect.stringContaining("hour-6")
   )
   expect(
-    getNoteLabel(SolfegeLetter.La).textContent
+    getNoteLabel(NaturalNote.A).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-6")
+  )
+  expect(
+    getNoteLabel(NaturalNote.A).textContent
   ).toBe(
     "A♭"
   )
@@ -329,7 +430,12 @@ test("<ScalesTool /> shows C-Minor correctly", async () => {
     expect.stringContaining("hour-8")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Ti).textContent
+    getNoteLabel(NaturalNote.B).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-8")
+  )
+  expect(
+    getNoteLabel(NaturalNote.B).textContent
   ).toBe(
     "B♭"
   )
@@ -362,7 +468,12 @@ test("<ScalesTool /> shows Dorian D correctly", async () => {
     expect.stringContaining("hour-0")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Do).textContent
+    getNoteLabel(NaturalNote.D).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-0")
+  )
+  expect(
+    getNoteLabel(NaturalNote.D).textContent
   ).toBe(
     "D"
   )
@@ -373,7 +484,12 @@ test("<ScalesTool /> shows Dorian D correctly", async () => {
     expect.stringContaining("hour-2")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Re).textContent
+    getNoteLabel(NaturalNote.E).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-2")
+  )
+  expect(
+    getNoteLabel(NaturalNote.E).textContent
   ).toBe(
     "E"
   )
@@ -384,7 +500,12 @@ test("<ScalesTool /> shows Dorian D correctly", async () => {
     expect.stringContaining("hour-3")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Mi).textContent
+    getNoteLabel(NaturalNote.F).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-3")
+  )
+  expect(
+    getNoteLabel(NaturalNote.F).textContent
   ).toBe(
     "F"
   )
@@ -395,7 +516,12 @@ test("<ScalesTool /> shows Dorian D correctly", async () => {
     expect.stringContaining("hour-5")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Fa).textContent
+    getNoteLabel(NaturalNote.G).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-5")
+  )
+  expect(
+    getNoteLabel(NaturalNote.G).textContent
   ).toBe(
     "G"
   )
@@ -406,7 +532,12 @@ test("<ScalesTool /> shows Dorian D correctly", async () => {
     expect.stringContaining("hour-7")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Sol).textContent
+    getNoteLabel(NaturalNote.A).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-7")
+  )
+  expect(
+    getNoteLabel(NaturalNote.A).textContent
   ).toBe(
     "A"
   )
@@ -417,7 +548,12 @@ test("<ScalesTool /> shows Dorian D correctly", async () => {
     expect.stringContaining("hour-9")
   )
   expect(
-    getNoteLabel(SolfegeLetter.La).textContent
+    getNoteLabel(NaturalNote.B).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-9")
+  )
+  expect(
+    getNoteLabel(NaturalNote.B).textContent
   ).toBe(
     "B"
   )
@@ -428,7 +564,12 @@ test("<ScalesTool /> shows Dorian D correctly", async () => {
     expect.stringContaining("hour-10")
   )
   expect(
-    getNoteLabel(SolfegeLetter.Ti).textContent
+    getNoteLabel(NaturalNote.C).getAttribute("class")
+  ).toEqual(
+    expect.stringContaining("hour-10")
+  )
+  expect(
+    getNoteLabel(NaturalNote.C).textContent
   ).toBe(
     "C"
   )
