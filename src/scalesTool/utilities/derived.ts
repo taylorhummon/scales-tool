@@ -21,6 +21,7 @@ export function useDerived(
     isUntangled,
     isUsingSymmetryDot,
     isUsingSolfege,
+    isUsingDotsBallet,
     isUsingAnimation,
     motion,
     root,
@@ -32,10 +33,11 @@ export function useDerived(
         isUntangled,
         isUsingSymmetryDot,
         isUsingSolfege,
+        isUsingDotsBallet,
         isUsingAnimation,
       }
     },
-    [ isUntangled, isUsingSymmetryDot, isUsingSolfege, isUsingAnimation ]
+    [ isUntangled, isUsingSymmetryDot, isUsingSolfege, isUsingDotsBallet, isUsingAnimation ]
   )
   const musicalKey = useMemo(
     () => {

@@ -2,6 +2,7 @@
 export const DEFAULT_IS_UNTANGLED: boolean = false
 export const DEFAULT_IS_USING_SYMMETRY_DOT: boolean = false
 export const DEFAULT_IS_USING_SOLFEGE: boolean = false
+export const DEFAULT_IS_USING_DOTS_BALLET: boolean = false
 export const DEFAULT_IS_USING_ANIMATION: boolean = true
 
 // Default to C-Major

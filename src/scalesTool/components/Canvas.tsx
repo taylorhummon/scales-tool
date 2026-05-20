@@ -46,7 +46,6 @@ export function Canvas({
       />
       <Clock
         clockSettings={clockSettings}
-        motion={motion}
         musicalKey={musicalKey}
         nextMusicalKey={nextMusicalKey}
       />

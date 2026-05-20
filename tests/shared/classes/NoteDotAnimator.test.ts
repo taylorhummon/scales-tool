@@ -1,208 +1,266 @@
 import { test, expect } from "vitest"
 
+import {
+  DEFAULT_IS_UNTANGLED,
+  DEFAULT_IS_USING_SYMMETRY_DOT,
+  DEFAULT_IS_USING_SOLFEGE,
+  DEFAULT_IS_USING_DOTS_BALLET,
+  DEFAULT_IS_USING_ANIMATION,
+} from "@scalesTool/config"
+
 import { MusicalKey } from "@shared/classes/MusicalKey"
 import { Note } from "@shared/classes/Note"
 import { NoteDotAnimator } from "@shared/classes/NoteDotAnimator"
 import { buildInclusiveRange } from "@shared/utilities/array"
-import { Motion } from "@shared/utilities/motion"
+import { Motion, getNextMusicalKey } from "@shared/utilities/motion"
 
+
+const DEFAULT_CLOCK_SETTINGS = {
+  isUntangled: DEFAULT_IS_UNTANGLED,
+  isUsingSymmetryDot: DEFAULT_IS_USING_SYMMETRY_DOT,
+  isUsingSolfege: DEFAULT_IS_USING_SOLFEGE,
+  isUsingDotsBallet: DEFAULT_IS_USING_DOTS_BALLET,
+  isUsingAnimation: DEFAULT_IS_USING_ANIMATION,
+}
 
 function noMotion(
   musicalKey: MusicalKey,
-): Array<number> {
-  return buildInclusiveRange(musicalKey.tailNote.value, musicalKey.headNote.value)
+): Array<string> {
+  const values = buildInclusiveRange(musicalKey.tailNote.value, musicalKey.headNote.value)
+  return values.map(
+    (value) => new Note({ value })
+  ).map(
+    (finishNote) => finishNote.name
+  );
 }
 
 function exerciseAnimator(
   musicalKey: MusicalKey,
   animator: NoteDotAnimator,
-): Array<number> {
+): Array<string> {
   const values = buildInclusiveRange(musicalKey.tailNote.value, musicalKey.headNote.value)
   return values.map(
     (value) => new Note({ value })
   ).map(
     (startNote) => animator.finishNote(startNote)
   ).map(
-    (finishNote) => finishNote.value
+    (finishNote) => finishNote.name
   );
 }
 
-test("NoteDotAnimator works when is tangled and incrementing root", () => {
+
+test("NoteDotAnimator works when is incrementing root and is not using dots ballet", () => {
+  const clockSettings = { ...DEFAULT_CLOCK_SETTINGS, isUsingDotsBallet: false }
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
+  const nextMusicalKey = getNextMusicalKey({ musicalKey, motion: Motion.IncrementRoot })
+  const animator = new NoteDotAnimator({ clockSettings, musicalKey, nextMusicalKey })
+
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "C", "G", "D", "A", "E", "B", "F♯" ]
   )
-  const animator = new NoteDotAnimator({ isUntangled: false, motion: Motion.IncrementRoot, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "C", "G", "D", "A", "E", "B", "F♯" ]
   )
 })
 
-test("NoteDotAnimator works when is tangled and decrementing root", () => {
+test("NoteDotAnimator works when is decrementing root and is not using dots ballet", () => {
+  const clockSettings = { ...DEFAULT_CLOCK_SETTINGS, isUsingDotsBallet: false }
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
+  const nextMusicalKey = getNextMusicalKey({ musicalKey, motion: Motion.DecrementRoot })
+  const animator = new NoteDotAnimator({ clockSettings, musicalKey, nextMusicalKey })
+
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "C", "G", "D", "A", "E", "B", "F♯" ]
   )
-  const animator = new NoteDotAnimator({ isUntangled: false, motion: Motion.DecrementRoot, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "C", "G", "D", "A", "E", "B", "F♯" ]
   )
 })
 
-test("NoteDotAnimator works when is tangled and incrementing degree", () => {
+test("NoteDotAnimator works when is incrementing degree and is not using dots ballet", () => {
+  const clockSettings = { ...DEFAULT_CLOCK_SETTINGS, isUsingDotsBallet: false }
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
+  const nextMusicalKey = getNextMusicalKey({ musicalKey, motion: Motion.IncrementDegree })
+  const animator = new NoteDotAnimator({ clockSettings, musicalKey, nextMusicalKey })
+
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "C", "G", "D", "A", "E", "B", "F♯" ]
   )
-  const animator = new NoteDotAnimator({ isUntangled: false, motion: Motion.IncrementDegree, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
-    [ 5, -1, +0, 1, 2, 3, 4 ]
+    [ "C♯", "G", "D", "A", "E", "B", "F♯" ]
   )
 })
 
-test("NoteDotAnimator works when is tangled and decrementing degree", () => {
+test("NoteDotAnimator works when is decrementing degree and is not using dots ballet", () => {
+  const clockSettings = { ...DEFAULT_CLOCK_SETTINGS, isUsingDotsBallet: false }
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
+  const nextMusicalKey = getNextMusicalKey({ musicalKey, motion: Motion.DecrementDegree })
+  const animator = new NoteDotAnimator({ clockSettings, musicalKey, nextMusicalKey })
+
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "C", "G", "D", "A", "E", "B", "F♯" ]
   )
-  const animator = new NoteDotAnimator({ isUntangled: false, motion: Motion.DecrementDegree, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, -3 ]
+    [ "C", "G", "D", "A", "E", "B", "F" ]
   )
 })
 
-test("NoteDotAnimator works when is tangled and incrementing both", () => {
+test("NoteDotAnimator works when is incrementing both and is not using dots ballet", () => {
+  const clockSettings = { ...DEFAULT_CLOCK_SETTINGS, isUsingDotsBallet: false }
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
+  const nextMusicalKey = getNextMusicalKey({ musicalKey, motion: Motion.IncrementBoth })
+  const animator = new NoteDotAnimator({ clockSettings, musicalKey, nextMusicalKey })
+
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "C", "G", "D", "A", "E", "B", "F♯" ]
   )
-  const animator = new NoteDotAnimator({ isUntangled: false, motion: Motion.IncrementDegree, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
-    [ 5, -1, 0, 1, 2, 3, 4 ]
+    [ "C♯", "G", "D", "A", "E", "B", "F♯" ]
   )
 })
 
-test("NoteDotAnimator works when is tangled and decrementing both", () => {
+test("NoteDotAnimator works when is decrementing both and is not using dots ballet", () => {
+  const clockSettings = { ...DEFAULT_CLOCK_SETTINGS, isUsingDotsBallet: false }
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
+  const nextMusicalKey = getNextMusicalKey({ musicalKey, motion: Motion.DecrementBoth })
+  const animator = new NoteDotAnimator({ clockSettings, musicalKey, nextMusicalKey })
+
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "C", "G", "D", "A", "E", "B", "F♯" ]
   )
-  const animator = new NoteDotAnimator({ isUntangled: false, motion: Motion.DecrementDegree, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, -3 ]
+    [ "C", "G", "D", "A", "E", "B", "F" ]
   )
 })
 
-test("NoteDotAnimator works when is untangled and incrementing root", () => {
+test("NoteDotAnimator works when is incrementing root and is using dots ballet", () => {
+  const clockSettings = { ...DEFAULT_CLOCK_SETTINGS, isUsingDotsBallet: true }
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
+  const nextMusicalKey = getNextMusicalKey({ musicalKey, motion: Motion.IncrementRoot })
+  const animator = new NoteDotAnimator({ clockSettings, musicalKey, nextMusicalKey })
+
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "C", "G", "D", "A", "E", "B", "F♯" ]
   )
-  const animator = new NoteDotAnimator({ isUntangled: true, motion: Motion.IncrementRoot, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "C", "G", "D", "A", "E", "B", "F♯" ]
   )
 })
 
-test("NoteDotAnimator works when is untangled and decrementing root", () => {
+test("NoteDotAnimator works when is decrementing root and is using dots ballet", () => {
+  const clockSettings = { ...DEFAULT_CLOCK_SETTINGS, isUsingDotsBallet: true }
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
+  const nextMusicalKey = getNextMusicalKey({ musicalKey, motion: Motion.DecrementRoot })
+  const animator = new NoteDotAnimator({ clockSettings, musicalKey, nextMusicalKey })
+
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "C", "G", "D", "A", "E", "B", "F♯" ]
   )
-  const animator = new NoteDotAnimator({ isUntangled: true, motion: Motion.DecrementRoot, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "C", "G", "D", "A", "E", "B", "F♯" ]
   )
 })
 
-test("NoteDotAnimator works when is untangled and incrementing degree", () => {
+test("NoteDotAnimator works when is incrementing degree and is using dots ballet", () => {
+  const clockSettings = { ...DEFAULT_CLOCK_SETTINGS, isUsingDotsBallet: true }
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
+  const nextMusicalKey = getNextMusicalKey({ musicalKey, motion: Motion.IncrementDegree })
+  const animator = new NoteDotAnimator({ clockSettings, musicalKey, nextMusicalKey })
+
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "C", "G", "D", "A", "E", "B", "F♯" ]
   )
-  const animator = new NoteDotAnimator({ isUntangled: true, motion: Motion.IncrementDegree, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
-    [ -1, 0, 1, 2, 3, 4, 5 ]
+    [ "G", "D", "A", "E", "B", "F♯", "C♯" ]
   )
 })
 
-test("NoteDotAnimator works when is untangled and decrementing degree", () => {
+test("NoteDotAnimator works when is decrementing degree and is using dots ballet", () => {
+  const clockSettings = { ...DEFAULT_CLOCK_SETTINGS, isUsingDotsBallet: true }
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
+  const nextMusicalKey = getNextMusicalKey({ musicalKey, motion: Motion.DecrementDegree })
+  const animator = new NoteDotAnimator({ clockSettings, musicalKey, nextMusicalKey })
+
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "C", "G", "D", "A", "E", "B", "F♯" ]
   )
-  const animator = new NoteDotAnimator({ isUntangled: true, motion: Motion.DecrementDegree, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
-    [ -3, -2, -1, 0, 1, 2, 3 ]
+    [ "F", "C", "G", "D", "A", "E", "B" ]
   )
 })
 
-test("NoteDotAnimator works when is untangled and incrementing both", () => {
+test("NoteDotAnimator works when is incrementing both and is using dots ballet", () => {
+  const clockSettings = { ...DEFAULT_CLOCK_SETTINGS, isUsingDotsBallet: true }
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
+  const nextMusicalKey = getNextMusicalKey({ musicalKey, motion: Motion.IncrementBoth })
+  const animator = new NoteDotAnimator({ clockSettings, musicalKey, nextMusicalKey })
+
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "C", "G", "D", "A", "E", "B", "F♯" ]
   )
-  const animator = new NoteDotAnimator({ isUntangled: true, motion: Motion.IncrementDegree, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
-    [ -1, 0, 1, 2, 3, 4, 5 ]
+    [ "G", "D", "A", "E", "B", "F♯", "C♯" ]
   )
 })
 
-test("NoteDotAnimator works when is untangled and decrementing both", () => {
+test("NoteDotAnimator works when is decrementing both and is using dots ballet", () => {
+  const clockSettings = { ...DEFAULT_CLOCK_SETTINGS, isUsingDotsBallet: true }
   const musicalKey = new MusicalKey({ root: 2, degree: 1 })
+  const nextMusicalKey = getNextMusicalKey({ musicalKey, motion: Motion.DecrementBoth })
+  const animator = new NoteDotAnimator({ clockSettings, musicalKey, nextMusicalKey })
+
   expect(
     noMotion(musicalKey)
   ).toStrictEqual(
-    [ -2, -1, 0, 1, 2, 3, 4 ]
+    [ "C", "G", "D", "A", "E", "B", "F♯" ]
   )
-  const animator = new NoteDotAnimator({ isUntangled: true, motion: Motion.DecrementDegree, musicalKey })
   expect(
     exerciseAnimator(musicalKey, animator)
   ).toStrictEqual(
-    [ -3, -2, -1, 0, 1, 2, 3 ]
+    [ "F", "C", "G", "D", "A", "E", "B" ]
   )
 })

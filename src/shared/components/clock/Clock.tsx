@@ -21,19 +21,16 @@ import clockCssModule from "./Clock.module.scss"
 
 interface ClockInput {
   clockSettings: ClockSettings,
-  motion: Motion,
   musicalKey: MusicalKey,
   nextMusicalKey: MusicalKey,
 }
 
 export function Clock({
   clockSettings,
-  motion,
   musicalKey,
   nextMusicalKey,
 }: ClockInput): React.ReactNode {
-  const { isUntangled } = clockSettings
-  const noteDotAnimator = new NoteDotAnimator({ isUntangled, motion, musicalKey })
+  const noteDotAnimator = new NoteDotAnimator({ clockSettings, musicalKey, nextMusicalKey })
   const noteLabelAnimator = new NoteLabelAnimator({ musicalKey, nextMusicalKey })
   const solfegeLabelAnimator = new SolfegeLabelAnimator({ musicalKey, nextMusicalKey })
 

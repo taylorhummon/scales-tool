@@ -62,6 +62,19 @@ export function SettingsPanel({
         data-testid="solfege-switch"
       />
       <Switch
+        label="Notes Ballet"
+        size={SWITCH_SIZE}
+        withThumbIndicator={WITH_THUMB_INDICATOR}
+        checked={clockSettings.isUsingDotsBallet}
+        onChange={(event) => {
+          dispatch({
+            type: ActionType.SelectIsUsingDotsBallet,
+            isUsingDotsBallet: event.currentTarget.checked,
+          })
+        }}
+        data-testid="notes-ballet-switch"
+      />
+      <Switch
         label="Animation"
         size={SWITCH_SIZE}
         withThumbIndicator={WITH_THUMB_INDICATOR}

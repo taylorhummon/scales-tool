@@ -8,6 +8,7 @@ export enum ActionType {
   SelectIsUntangled = "select-is-untangled",
   SelectIsUsingSymmetryDot = "select-is-using-symmetry-dot",
   SelectIsUsingSolfege = "select-is-using-solfege",
+  SelectIsUsingDotsBallet = "select-is-using-notes-ballet",
   SelectIsUsingAnimation = "select-is-using-animation",
 }
 
@@ -17,4 +18,5 @@ export type Action =
   | { type: ActionType.SelectIsUntangled, isUntangled: boolean }
   | { type: ActionType.SelectIsUsingSymmetryDot, isUsingSymmetryDot: boolean }
   | { type: ActionType.SelectIsUsingSolfege, isUsingSolfege: boolean }
+  | { type: ActionType.SelectIsUsingDotsBallet, isUsingDotsBallet: boolean }
   | { type: ActionType.SelectIsUsingAnimation, isUsingAnimation: boolean }

@@ -7,6 +7,7 @@ export interface ClockSettings {
   isUntangled: boolean,
   isUsingSymmetryDot: boolean,
   isUsingSolfege: boolean,
+  isUsingDotsBallet: boolean,
   isUsingAnimation: boolean,
 }
 
