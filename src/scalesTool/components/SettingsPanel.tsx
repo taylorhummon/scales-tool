@@ -23,7 +23,7 @@ export function SettingsPanel({
       gap="sm"
     >
       <Switch
-        label="Untangle"
+        label="Ducks in a row"
         size={SWITCH_SIZE}
         withThumbIndicator={WITH_THUMB_INDICATOR}
         checked={clockSettings.isUntangled}
@@ -36,7 +36,7 @@ export function SettingsPanel({
         data-testid="untangle-switch"
       />
       <Switch
-        label="Symmetry Note"
+        label="Symmetry note"
         size={SWITCH_SIZE}
         withThumbIndicator={WITH_THUMB_INDICATOR}
         checked={clockSettings.isUsingSymmetrySpotlight}
@@ -61,29 +61,18 @@ export function SettingsPanel({
         }}
         data-testid="solfege-switch"
       />
-      <Select
-        label="Dot Animation"
-        data={Object.values(AnimationOption)}
-        value={clockSettings.animationOption}
-        onChange={(value) => {
-          if (value === null) return
+      <Switch
+        label="Reduce motion"
+        size={SWITCH_SIZE}
+        withThumbIndicator={WITH_THUMB_INDICATOR}
+        checked={clockSettings.animationOption === AnimationOption.Minimal}
+        onChange={(event) => {
           dispatch({
             type: ActionType.SelectAnimationOption,
-            animationOption: value,
+            animationOption: event.currentTarget.checked ? AnimationOption.Minimal : AnimationOption.Ballet,
           })
         }}
-      />
-      <Select
-        label="Anchor to Top"
-        data={Object.values(AnchorOption)}
-        value={clockSettings.anchorOption}
-        onChange={(value) => {
-          if (value === null) return
-          dispatch({
-            type: ActionType.SelectAnchorOption,
-            anchorOption: value,
-          })
-        }}
+        data-testid="reduce-motion-switch"
       />
     </Stack>
   )

@@ -6,14 +6,14 @@ import { getRemainder } from "@scalesTool/utilities/math"
 export enum AnimationOption {
   Minimal = "Minimal",
   Ballet = "Ballet",
-  FollowsOrdinaryLabel = "Follows Ordinary Label",
-  FollowsSolfegeLabel = "Follows Solfege Label",
+  FollowsOrdinaryLabel = "Follows ordinary label",
+  FollowsSolfegeLabel = "Follows solfege label",
 }
 
 export enum AnchorOption {
   D = "D",
-  RootNote = "Root Note",
-  DegreeNote = "Symmetry Note",
+  RootNote = "Root note",
+  DegreeNote = "Symmetry note",
 }
 
 export interface ClockSettings {
