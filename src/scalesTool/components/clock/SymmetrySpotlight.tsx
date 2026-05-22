@@ -39,8 +39,8 @@ function getClassName(
   nextMusicalKey: MusicalKey,
 ): string {
   const classNames = [ "symmetry-spotlight" ]
-  const startHour = getHour({ clockSettings, musicalKey: currentMusicalKey, note: currentMusicalKey.degreeNote })
-  const finishHour = getHour({ clockSettings, musicalKey: nextMusicalKey, note: nextMusicalKey.degreeNote })
+  const startHour = getHour({ clockSettings, note: currentMusicalKey.degreeNote })
+  const finishHour = getHour({ clockSettings, note: nextMusicalKey.degreeNote })
   if (finishHour === startHour) {
     classNames.push(`hour-${startHour}`)
   } else {

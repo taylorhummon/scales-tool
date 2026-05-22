@@ -37,8 +37,8 @@ function getClassName(
   nextMusicalKey: MusicalKey,
 ): string {
   const classNames = [ "root-spotlight" ]
-  const startHour = getHour({ clockSettings, musicalKey: currentMusicalKey, note: currentMusicalKey.rootNote })
-  const finishHour = getHour({ clockSettings, musicalKey: nextMusicalKey, note: nextMusicalKey.rootNote })
+  const startHour = getHour({ clockSettings, note: currentMusicalKey.rootNote })
+  const finishHour = getHour({ clockSettings, note: nextMusicalKey.rootNote })
   if (finishHour === startHour) {
     classNames.push(`hour-${startHour}`)
   } else {

@@ -4,12 +4,11 @@ import {
   DEFAULT_IS_USING_SOLFEGE,
   DEFAULT_IS_USING_ANIMATION,
   DEFAULT_ANIMATION_OPTION,
-  DEFAULT_ANCHOR_OPTION,
   DEFAULT_ROOT,
   DEFAULT_DEGREE,
 } from "@scalesTool/config"
 import { ActionType, Action } from "@scalesTool/utilities/action"
-import { type AnimationOption, type AnchorOption } from "@scalesTool/utilities/clock"
+import { type AnimationOption } from "@scalesTool/utilities/clock"
 import { Motion } from "@scalesTool/utilities/motion"
 
 
@@ -19,7 +18,6 @@ export interface State {
   isUsingSymmetrySpotlight: boolean,
   isUsingSolfege: boolean,
   animationOption: AnimationOption,
-  anchorOption: AnchorOption,
   motion: Motion,
   root: number,
   degree: number,
@@ -33,7 +31,6 @@ export function getInitialState(
     isUsingSymmetrySpotlight: DEFAULT_IS_USING_SYMMETRY_DOT,
     isUsingSolfege: DEFAULT_IS_USING_SOLFEGE,
     animationOption: DEFAULT_ANIMATION_OPTION,
-    anchorOption: DEFAULT_ANCHOR_OPTION,
     motion: Motion.Still,
     root: DEFAULT_ROOT,
     degree: DEFAULT_DEGREE,
@@ -75,10 +72,6 @@ export function reducer(
   if (action.type === ActionType.SelectAnimationOption) {
     const { animationOption } = action
     return { ...state, animationOption }
-  }
-  if (action.type === ActionType.SelectAnchorOption) {
-    const { anchorOption } = action
-    return { ...state, anchorOption }
   }
   return state
 }

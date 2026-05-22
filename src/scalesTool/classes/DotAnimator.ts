@@ -77,7 +77,6 @@ export class DotAnimator {
   ): number {
     return getHour({
       clockSettings: this.#clockSettings,
-      musicalKey: this.#nextMusicalKey,
       note: this.#nextMusicalKey.noteFromNaturalNote(naturalNote),
     })
   }
@@ -87,7 +86,6 @@ export class DotAnimator {
   ): number {
     return getHour({
       clockSettings: this.#clockSettings,
-      musicalKey: this.#nextMusicalKey,
       note: this.#nextMusicalKey.noteFromSolfegeLetter(solfegeLetter),
     })
   }
@@ -114,10 +112,10 @@ function getLeftOverNotes(
   nextMusicalKey: MusicalKey,
 ): LeftOverNotes | null {
   const currentHours = new Set(currentMusicalKey.notes.map(
-    (note) => getHour({ clockSettings, musicalKey: currentMusicalKey, note }))
+    (note) => getHour({ clockSettings, note }))
   )
   const nextHours = new Set(nextMusicalKey.notes.map(
-    (note) => getHour({ clockSettings, musicalKey: nextMusicalKey, note })
+    (note) => getHour({ clockSettings, note })
   ))
   const sharedHours = currentHours.intersection(nextHours)
   if (sharedHours.size === 7) {

@@ -22,7 +22,6 @@ export function useDerived(
     isUsingSymmetrySpotlight,
     isUsingSolfege,
     animationOption,
-    anchorOption,
     motion,
     root,
     degree,
@@ -35,7 +34,6 @@ export function useDerived(
         isUsingSymmetrySpotlight,
         isUsingSolfege,
         animationOption,
-        anchorOption,
       }
     },
     [
@@ -44,7 +42,6 @@ export function useDerived(
       isUsingSymmetrySpotlight,
       isUsingSolfege,
       animationOption,
-      anchorOption,
     ]
   )
   const currentMusicalKey = useMemo(

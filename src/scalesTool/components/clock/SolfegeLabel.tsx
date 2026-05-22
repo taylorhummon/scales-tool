@@ -23,8 +23,8 @@ export function SolfegeLabel({
   if (! isUsingSolfege) return null
   const startNote = currentMusicalKey.noteFromSolfegeLetter(solfegeLetter)
   const finishNote = nextMusicalKey.noteFromSolfegeLetter(solfegeLetter)
-  const startHour = getHour({ clockSettings, musicalKey: currentMusicalKey, note: startNote })
-  const finishHour = getHour({ clockSettings, musicalKey: nextMusicalKey, note: finishNote })
+  const startHour = getHour({ clockSettings, note: startNote })
+  const finishHour = getHour({ clockSettings, note: finishNote })
 
   return (
     <g
