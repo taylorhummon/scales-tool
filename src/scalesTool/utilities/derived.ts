@@ -2,9 +2,9 @@ import { useMemo } from "react"
 
 import { type State } from "@scalesTool/utilities/state"
 
-import { MusicalKey } from "@shared/classes/MusicalKey"
-import { type ClockSettings } from "@shared/utilities/clock"
-import { Motion, getNextMusicalKey } from "@shared/utilities/motion"
+import { MusicalKey } from "@scalesTool/classes/MusicalKey"
+import { type ClockSettings } from "@scalesTool/utilities/clock"
+import { Motion, getNextMusicalKey } from "@scalesTool/utilities/motion"
 
 
 export interface Derived {

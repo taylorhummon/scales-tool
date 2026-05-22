@@ -1,12 +1,12 @@
 import { MAX_DEGREE, MIN_DEGREE } from "@scalesTool/config"
 
-import { type MusicalKey } from "@shared/classes/MusicalKey"
-import { Clock } from "@shared/components/clock/Clock"
-import { ModeGauge } from "@shared/components/gauge/ModeGauge"
-import { Selectors } from "@shared/components/selector/Selectors"
-import { type ClockSettings } from "@shared/utilities/clock"
-import { type Motion } from "@shared/utilities/motion"
-import { type SelectorButtonClickHandler } from "@shared/utilities/selector"
+import { type MusicalKey } from "@scalesTool/classes/MusicalKey"
+import { Clock } from "@scalesTool/components/clock/Clock"
+import { ModeGauge } from "@scalesTool/components/gauge/ModeGauge"
+import { Selectors } from "@scalesTool/components/selector/Selectors"
+import { type ClockSettings } from "@scalesTool/utilities/clock"
+import { type Motion } from "@scalesTool/utilities/motion"
+import { type SelectorButtonClickHandler } from "@scalesTool/utilities/selector"
 
 import canvasCssModule from "./Canvas.module.scss"
 

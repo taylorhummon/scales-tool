@@ -1,8 +1,8 @@
 import { type ActionDispatch } from "react"
 import { Stack, Switch, Select } from "@mantine/core"
 
-import { type Action, ActionType } from "@shared/utilities/action"
-import { type ClockSettings, AnimationOption, AnchorOption } from "@shared/utilities/clock"
+import { type Action, ActionType } from "@scalesTool/utilities/action"
+import { type ClockSettings, AnimationOption, AnchorOption } from "@scalesTool/utilities/clock"
 
 import settingsPanelCssModule from "./SettingsPanel.module.scss"
 

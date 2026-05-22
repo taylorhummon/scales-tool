@@ -7,9 +7,9 @@ import { SettingsPanel } from "@scalesTool/components/SettingsPanel"
 import { useDerived } from "@scalesTool/utilities/derived"
 import { getInitialState, reducer } from "@scalesTool/utilities/state"
 
-import { ActionType } from "@shared/utilities/action"
-import { registerEventListener } from "@shared/utilities/eventListener"
-import { Motion, getNextMusicalKey } from "@shared/utilities/motion"
+import { ActionType } from "@scalesTool/utilities/action"
+import { registerEventListener } from "@scalesTool/utilities/eventListener"
+import { Motion, getNextMusicalKey } from "@scalesTool/utilities/motion"
 
 
 export function ScalesTool(

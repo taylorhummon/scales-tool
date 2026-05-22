@@ -2,9 +2,9 @@ import { test, expect } from "vitest"
 
 import { getInitialState, reducer } from "@scalesTool/utilities/state"
 
-import { MusicalKey } from "@shared/classes/MusicalKey"
-import { ActionType } from "@shared/utilities/action"
-import { Motion } from "@shared/utilities/motion"
+import { MusicalKey } from "@scalesTool/classes/MusicalKey"
+import { ActionType } from "@scalesTool/utilities/action"
+import { Motion } from "@scalesTool/utilities/motion"
 
 
 test("reducer() works", () => {

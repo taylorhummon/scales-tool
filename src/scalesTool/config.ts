@@ -1,4 +1,4 @@
-import { AnimationOption, AnchorOption } from "@shared/utilities/clock"
+import { AnimationOption, AnchorOption } from "@scalesTool/utilities/clock"
 
 
 // Default Settings

@@ -3,7 +3,7 @@ import { renderHook } from "@testing-library/react"
 
 import { useDerived } from "@scalesTool/utilities/derived"
 
-import { Motion } from "@shared/utilities/motion"
+import { Motion } from "@scalesTool/utilities/motion"
 
 
 test("useDerived() works", () => {

@@ -9,9 +9,9 @@ import {
   DEFAULT_DEGREE,
 } from "@scalesTool/config"
 
-import { ActionType, Action } from "@shared/utilities/action"
-import { type AnimationOption, type AnchorOption } from "@shared/utilities/clock"
-import { Motion } from "@shared/utilities/motion"
+import { ActionType, Action } from "@scalesTool/utilities/action"
+import { type AnimationOption, type AnchorOption } from "@scalesTool/utilities/clock"
+import { Motion } from "@scalesTool/utilities/motion"
 
 
 export interface State {

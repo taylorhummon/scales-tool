@@ -25,7 +25,6 @@
     "paths": {
       "@/*": ["./src/*"],
       "@scalesTool/*": ["./src/scalesTool/*"],
-      "@shared/*": ["./src/shared/*"],
     }
   },
   "include": [

@@ -5,8 +5,8 @@ import userEvent from "@testing-library/user-event"
 
 import { ScalesTool } from "@scalesTool/components/ScalesTool"
 
-import { NaturalNote } from "@shared/utilities/naturalNote"
-import { SolfegeLetter } from "@shared/utilities/solfege"
+import { NaturalNote } from "@scalesTool/utilities/naturalNote"
+import { SolfegeLetter } from "@scalesTool/utilities/solfege"
 
 
 async function turnOnSymmetrySpotlight() {
