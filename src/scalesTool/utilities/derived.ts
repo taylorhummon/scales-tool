@@ -21,6 +21,7 @@ export function useDerived(
     isUntangled,
     isUsingSymmetrySpotlight,
     isUsingSolfege,
+    isAnchoringRoot,
     animationOption,
     motion,
     root,
@@ -33,6 +34,7 @@ export function useDerived(
         isUntangled,
         isUsingSymmetrySpotlight,
         isUsingSolfege,
+        isAnchoringRoot,
         animationOption,
       }
     },
@@ -41,6 +43,7 @@ export function useDerived(
       isUntangled,
       isUsingSymmetrySpotlight,
       isUsingSolfege,
+      isAnchoringRoot,
       animationOption,
     ]
   )

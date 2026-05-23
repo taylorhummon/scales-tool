@@ -1,3 +1,4 @@
+import { type MusicalKey } from "@scalesTool/classes/MusicalKey"
 import { Note } from "@scalesTool/classes/Note"
 import { getRemainder } from "@scalesTool/utilities/math"
 
@@ -14,18 +15,22 @@ export interface ClockSettings {
   isUntangled: boolean,
   isUsingSymmetrySpotlight: boolean,
   isUsingSolfege: boolean,
+  isAnchoringRoot: boolean,
   animationOption: AnimationOption,
 }
 
 interface getHourParameters {
   clockSettings: ClockSettings,
+  musicalKey: MusicalKey,
   note: Note,
 }
 
 export function getHour({
   clockSettings,
+  musicalKey,
   note,
 }: getHourParameters): number {
-  const untangledValue = clockSettings.isUntangled ? 1 : 7
-  return getRemainder(untangledValue * note.value, 12)
+  const anchorValue = clockSettings.isAnchoringRoot ? musicalKey.rootNote.value : 0
+  const untangledMultiplier = clockSettings.isUntangled ? 1 : 7
+  return getRemainder(untangledMultiplier * (note.value - anchorValue), 12)
 }

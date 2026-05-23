@@ -22,8 +22,8 @@ export function OrdinaryLabel({
 }: OrdinaryLabelParameters): React.ReactNode {
   const startNote = currentMusicalKey.noteFromNaturalNote(naturalNote)
   const finishNote = nextMusicalKey.noteFromNaturalNote(naturalNote)
-  const startHour = getHour({ clockSettings, note: startNote })
-  const finishHour = getHour({ clockSettings, note: finishNote })
+  const startHour = getHour({ clockSettings, musicalKey: currentMusicalKey, note: startNote })
+  const finishHour = getHour({ clockSettings, musicalKey: nextMusicalKey, note: finishNote })
   const startCharacterCount = startNote.name.length
   const finishCharacterCount = finishNote.name.length
 

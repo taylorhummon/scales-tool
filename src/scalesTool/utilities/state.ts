@@ -3,6 +3,7 @@ import {
   DEFAULT_IS_USING_SYMMETRY_DOT,
   DEFAULT_IS_USING_SOLFEGE,
   DEFAULT_IS_USING_ANIMATION,
+  DEFAULT_IS_ANCHORING_ROOT,
   DEFAULT_ANIMATION_OPTION,
   DEFAULT_ROOT,
   DEFAULT_DEGREE,
@@ -17,6 +18,7 @@ export interface State {
   isUntangled: boolean,
   isUsingSymmetrySpotlight: boolean,
   isUsingSolfege: boolean,
+  isAnchoringRoot: boolean,
   animationOption: AnimationOption,
   motion: Motion,
   root: number,
@@ -30,6 +32,7 @@ export function getInitialState(
     isUntangled: DEFAULT_IS_UNTANGLED,
     isUsingSymmetrySpotlight: DEFAULT_IS_USING_SYMMETRY_DOT,
     isUsingSolfege: DEFAULT_IS_USING_SOLFEGE,
+    isAnchoringRoot: DEFAULT_IS_ANCHORING_ROOT,
     animationOption: DEFAULT_ANIMATION_OPTION,
     motion: Motion.Still,
     root: DEFAULT_ROOT,
@@ -53,10 +56,6 @@ export function reducer(
       degree: action.nextMusicalKey.degree,
     }
   }
-  if (action.type === ActionType.SelectIsUsingAnimation) {
-    const { isUsingAnimation } = action
-    return { ...state, isUsingAnimation }
-  }
   if (action.type === ActionType.SelectIsUntangled) {
     const { isUntangled } = action
     return { ...state, isUntangled }
@@ -68,6 +67,10 @@ export function reducer(
   if (action.type === ActionType.SelectIsUsingSolfege) {
     const { isUsingSolfege } = action
     return { ...state, isUsingSolfege }
+  }
+  if (action.type === ActionType.SelectIsAnchoringRoot) {
+    const { isAnchoringRoot } = action
+    return { ...state, isAnchoringRoot }
   }
   if (action.type === ActionType.SelectAnimationOption) {
     const { animationOption } = action

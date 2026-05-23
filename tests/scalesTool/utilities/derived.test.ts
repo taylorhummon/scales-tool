@@ -13,6 +13,7 @@ test("useDerived() works", () => {
     isUntangled: false,
     isUsingSymmetrySpotlight: false,
     isUsingSolfege: true,
+    isAnchoringRoot: false,
     animationOption: AnimationOption.Ballet,
     motion: Motion.IncrementDegree,
     root: 2,

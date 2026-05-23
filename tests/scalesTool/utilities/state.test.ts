@@ -71,15 +71,4 @@ test("reducer() works", () => {
   ).toBe(
     true
   )
-  expect(
-    reducer(
-      getInitialState(),
-      {
-        type: ActionType.SelectIsUsingAnimation,
-        isUsingAnimation: false
-      },
-    ).isUsingAnimation
-  ).toBe(
-    false
-  )
 })

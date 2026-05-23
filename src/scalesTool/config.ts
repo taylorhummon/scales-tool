@@ -6,6 +6,7 @@ export const DEFAULT_IS_USING_ANIMATION: boolean = true
 export const DEFAULT_IS_UNTANGLED: boolean = false
 export const DEFAULT_IS_USING_SYMMETRY_DOT: boolean = false
 export const DEFAULT_IS_USING_SOLFEGE: boolean = false
+export const DEFAULT_IS_ANCHORING_ROOT: boolean = false
 export const DEFAULT_ANIMATION_OPTION: AnimationOption = AnimationOption.Ballet
 
 // Default to C-Major

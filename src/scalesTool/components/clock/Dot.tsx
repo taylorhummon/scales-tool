@@ -21,7 +21,7 @@ export function Dot({
   solfegeLetter,
 }: DotParameters): React.ReactNode {
   const startNote = currentMusicalKey.noteFromSolfegeLetter(solfegeLetter)
-  const startHour = getHour({ clockSettings, note: startNote })
+  const startHour = getHour({ clockSettings, musicalKey: currentMusicalKey, note: startNote })
   const finishHour = dotAnimator.getFinishHour(startHour, startNote.naturalNote, solfegeLetter)
 
   return (

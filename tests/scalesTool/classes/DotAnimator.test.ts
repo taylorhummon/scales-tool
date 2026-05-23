@@ -5,6 +5,7 @@ import {
   DEFAULT_IS_UNTANGLED,
   DEFAULT_IS_USING_SYMMETRY_DOT,
   DEFAULT_IS_USING_SOLFEGE,
+  DEFAULT_IS_ANCHORING_ROOT,
   DEFAULT_ANIMATION_OPTION,
 } from "@scalesTool/config"
 
@@ -20,6 +21,7 @@ const DEFAULT_CLOCK_SETTINGS = {
   isUntangled: DEFAULT_IS_UNTANGLED,
   isUsingSymmetrySpotlight: DEFAULT_IS_USING_SYMMETRY_DOT,
   isUsingSolfege: DEFAULT_IS_USING_SOLFEGE,
+  isAnchoringRoot: DEFAULT_IS_ANCHORING_ROOT,
   animationOption: DEFAULT_ANIMATION_OPTION,
 }
 
@@ -30,7 +32,11 @@ function noMotion(
   return SOLFEGE_LETTERS.map(
     (solfegeLetter) => {
       const note = currentMusicalKey.noteFromSolfegeLetter(solfegeLetter)
-      const startHour = getHour({ clockSettings, note })
+      const startHour = getHour({
+        clockSettings,
+        musicalKey: currentMusicalKey,
+        note,
+      })
       return startHour
     }
   )
@@ -44,7 +50,11 @@ function exerciseAnimator(
   return SOLFEGE_LETTERS.map(
     (solfegeLetter) => {
       const note = currentMusicalKey.noteFromSolfegeLetter(solfegeLetter)
-      const startHour = getHour({ clockSettings, note })
+      const startHour = getHour({
+        clockSettings,
+        musicalKey: currentMusicalKey,
+        note,
+      })
       return animator.getFinishHour(startHour, note.naturalNote, solfegeLetter)
     }
   )
