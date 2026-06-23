@@ -20,7 +20,7 @@ export default function Header(
             className={styles["site-title"]}
             href="/"
           >
-            Scales Tool
+            Music Tools
           </Link>
           <Link
             className={styles["navigation-link"]}

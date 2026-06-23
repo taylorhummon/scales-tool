@@ -1,8 +1,0 @@
-@use "@scalesTool/utilities/unitCircle" as unit-circle;
-
-
-@function point($radius, $hour) {
-  $x: $radius * unit-circle.x-at($hour);
-  $y: $radius * unit-circle.y-at($hour);
-  @return "#{$x} #{$y}";
-}

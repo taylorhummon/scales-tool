@@ -24,7 +24,10 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
+      "@modesTool/*": ["./src/modesTool/*"],
       "@scalesTool/*": ["./src/scalesTool/*"],
+      "@triadsTool/*": ["./src/triadsTool/*"],
+      "@shared/*": ["./src/shared/*"],
     }
   },
   "include": [

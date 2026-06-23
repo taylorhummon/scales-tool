@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react"
 
-import { type Derived, useDerived } from "@scalesTool/utilities/derived"
-import { type State } from "@scalesTool/utilities/state"
+import { type Derived, useDerived } from "@shared/utilities/derived"
+import { type State } from "@shared/utilities/state"
 
 
 export function getDerivedFromState(

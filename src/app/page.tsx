@@ -1,4 +1,6 @@
-import { ScalesTool } from "@scalesTool/components/ScalesTool"
+import Link from "next/link"
+
+import { ScalesTool } from "@scalesTool/ScalesTool"
 
 import styles from "./page.module.scss"
 
@@ -6,8 +8,11 @@ import styles from "./page.module.scss"
 export default function Page() {
   return (
     <>
+      <div className={styles["see-also-links"]}>
+        See also: <Link href="/mode/">Modes Tool</Link> and <Link href="/triad/">Triads Tool</Link>.
+      </div>
       <h1>
-        Explore Musical Scales Visually
+        Explore Scales Visually
       </h1>
       <ul className={styles["instructions"]}>
         <li>

@@ -1,0 +1,44 @@
+@use "@shared/utilities/animation" as animation;
+@use "@shared/utilities/slider" as slider;
+
+
+$unhighlighted: 0.45;
+$highlighted: 1;
+
+@keyframes fade-from-unhighlighted-to-highlighted {
+  0% {
+    opacity: $unhighlighted;
+  }
+  40% {
+    opacity: $unhighlighted;
+  }
+  100% {
+    opacity: $highlighted;
+  }
+}
+
+.slider-value {
+  offset-rotate: 0deg;
+
+  @for $position from -4 through 4 {
+    &.position-#{$position} {
+      offset-path: slider.position-still-path($position);
+    }
+  }
+
+  &.unhighlighted {
+    opacity: $unhighlighted;
+  }
+
+  &.highlighted {
+    opacity: $highlighted;
+  }
+
+  &.fade-from-unhighlighted-to-highlighted {
+    animation: fade-from-unhighlighted-to-highlighted animation.$duration linear 1 forwards;
+  }
+
+  &.fade-from-highlighted-to-unhighlighted {
+    animation: fade-from-unhighlighted-to-highlighted animation.$duration linear 1 forwards reverse;
+  }
+}
