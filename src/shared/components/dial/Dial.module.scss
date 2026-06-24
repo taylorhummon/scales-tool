@@ -7,7 +7,7 @@
   font-weight: 500;
 }
 
-@keyframes move-dial-inner {
+@keyframes move {
   0% {
     offset-distance: 0%;
   }
@@ -21,12 +21,12 @@
   offset-rotate: 0deg;
 
   &.move-up {
-    animation: move-dial-inner animation.$duration ease-in-out 1 forwards;
+    animation: move animation.$duration ease-in-out 1 forwards;
     offset-path: path("M 0 5 L 0 -25");
   }
 
   &.move-down {
-    animation: move-dial-inner animation.$duration ease-in-out 1 forwards;
+    animation: move animation.$duration ease-in-out 1 forwards;
     offset-path: path("M 0 5 L 0 35");
   }
 }

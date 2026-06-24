@@ -6,7 +6,7 @@
 
 $radius: 110;
 
-@keyframes move-triad-spotlight {
+@keyframes move {
   0% {
     offset-distance: 0%;
   }
@@ -28,7 +28,7 @@ $radius: 110;
     $hour-b: unit-circle.hour($hour-a + 1);
 
     &.move-from-#{$hour-a}-to-#{$hour-b} {
-      animation: move-triad-spotlight animation.$duration ease-in-out 1 forwards;
+      animation: move animation.$duration ease-in-out 1 forwards;
       offset-path: path.cw-arc-path($radius, $hour-a, 1);
     }
   }
@@ -37,7 +37,7 @@ $radius: 110;
     $hour-b: unit-circle.hour($hour-a + 2);
 
     &.move-from-#{$hour-a}-to-#{$hour-b} {
-      animation: move-triad-spotlight animation.$duration ease-in-out 1 forwards;
+      animation: move animation.$duration ease-in-out 1 forwards;
       offset-path: path.cw-arc-path($radius, $hour-a, 2);
     }
   }
@@ -46,7 +46,7 @@ $radius: 110;
     $hour-b: unit-circle.hour($hour-a + 10);
 
     &.move-from-#{$hour-a}-to-#{$hour-b} {
-      animation: move-triad-spotlight animation.$duration ease-in-out 1 forwards;
+      animation: move animation.$duration ease-in-out 1 forwards;
       offset-path: path.ccw-arc-path($radius, $hour-a, 2);
     }
   }
@@ -55,7 +55,7 @@ $radius: 110;
     $hour-b: unit-circle.hour($hour-a + 11);
 
     &.move-from-#{$hour-a}-to-#{$hour-b} {
-      animation: move-triad-spotlight animation.$duration ease-in-out 1 forwards;
+      animation: move animation.$duration ease-in-out 1 forwards;
       offset-path: path.ccw-arc-path($radius, $hour-a, 1);
     }
   }

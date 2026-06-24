@@ -43,13 +43,13 @@ function getDialValueState(
   nextPosition: number,
 ): string {
   if (currentPosition === 0 && nextPosition === 0) {
-    return "selected"
+    return "highlighted"
   }
   if (currentPosition === 0) {
-    return "fade-from-selected-to-unselected"
+    return "fade-from-highlighted-to-unhighlighted"
   }
   if (nextPosition === 0) {
-    return "fade-from-unselected-to-selected"
+    return "fade-from-unhighlighted-to-highlighted"
   }
-  return "unselected"
+  return "unhighlighted"
 }

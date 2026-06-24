@@ -7,7 +7,7 @@
 $inside-radius: 75;
 $outside-radius: 145;
 
-@keyframes move-solfege-label {
+@keyframes move {
   0% {
     offset-distance: 0%;
   }
@@ -29,7 +29,7 @@ $outside-radius: 145;
     $hour-b: unit-circle.hour($hour-a + 1);
 
     &.move-from-#{$hour-a}-to-#{$hour-b} {
-      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
+      animation: move animation.$duration ease-in-out 1 forwards;
       offset-path: path.cw-arc-path($inside-radius, $hour-a, 1);
     }
   }
@@ -38,7 +38,7 @@ $outside-radius: 145;
     $hour-b: unit-circle.hour($hour-a + 5);
 
     &.move-from-#{$hour-a}-to-#{$hour-b} {
-      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
+      animation: move animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(clock.point($inside-radius, $hour-a), clock.point($inside-radius, $hour-b));
     }
   }
@@ -47,7 +47,7 @@ $outside-radius: 145;
     $hour-b: unit-circle.hour($hour-a + 6);
 
     &.move-from-#{$hour-a}-to-#{$hour-b} {
-      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
+      animation: move animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(clock.point($inside-radius, $hour-a), clock.point($inside-radius, $hour-b));
     }
   }
@@ -56,7 +56,7 @@ $outside-radius: 145;
     $hour-b: unit-circle.hour($hour-a + 7);
 
     &.move-from-#{$hour-a}-to-#{$hour-b} {
-      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
+      animation: move animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(clock.point($inside-radius, $hour-a), clock.point($inside-radius, $hour-b));
     }
   }
@@ -65,7 +65,7 @@ $outside-radius: 145;
     $hour-b: unit-circle.hour($hour-a + 11);
 
     &.move-from-#{$hour-a}-to-#{$hour-b} {
-      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
+      animation: move animation.$duration ease-in-out 1 forwards;
       offset-path: path.ccw-arc-path($inside-radius, $hour-a, 1);
     }
   }
@@ -84,7 +84,7 @@ $outside-radius: 145;
     $hour-b: unit-circle.hour($hour-a + 1);
 
     &.move-from-#{$hour-a}-to-#{$hour-b} {
-      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
+      animation: move animation.$duration ease-in-out 1 forwards;
       offset-path: path.cw-arc-path($outside-radius, $hour-a, 1);
     }
   }
@@ -93,7 +93,7 @@ $outside-radius: 145;
     $hour-b: unit-circle.hour($hour-a + 5);
 
     &.move-from-#{$hour-a}-to-#{$hour-b} {
-      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
+      animation: move animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(clock.point($outside-radius, $hour-a), clock.point($outside-radius, $hour-b));
     }
   }
@@ -102,7 +102,7 @@ $outside-radius: 145;
     $hour-b: unit-circle.hour($hour-a + 6);
 
     &.move-from-#{$hour-a}-to-#{$hour-b} {
-      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
+      animation: move animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(clock.point($outside-radius, $hour-a), clock.point($outside-radius, $hour-b));
     }
   }
@@ -111,7 +111,7 @@ $outside-radius: 145;
     $hour-b: unit-circle.hour($hour-a + 7);
 
     &.move-from-#{$hour-a}-to-#{$hour-b} {
-      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
+      animation: move animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(clock.point($outside-radius, $hour-a), clock.point($outside-radius, $hour-b));
     }
   }
@@ -120,7 +120,7 @@ $outside-radius: 145;
     $hour-b: unit-circle.hour($hour-a + 11);
 
     &.move-from-#{$hour-a}-to-#{$hour-b} {
-      animation: move-solfege-label animation.$duration ease-in-out 1 forwards;
+      animation: move animation.$duration ease-in-out 1 forwards;
       offset-path: path.ccw-arc-path($outside-radius, $hour-a, 1);
     }
   }

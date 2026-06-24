@@ -3,7 +3,7 @@
 @use "@shared/utilities/slider" as slider;
 
 
-@keyframes move-highlighter {
+@keyframes move {
   0% {
     offset-distance: 0%;
   }
@@ -26,12 +26,12 @@
     $position-b: $position-a + 1;
 
     &.move-from-#{$position-a}-to-#{$position-b} {
-      animation: move-highlighter animation.$duration ease-in-out 1 forwards;
+      animation: move animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(slider.point($position-a), slider.point($position-b));
     }
 
     &.move-from-#{$position-b}-to-#{$position-a} {
-      animation: move-highlighter animation.$duration ease-in-out 1 forwards;
+      animation: move animation.$duration ease-in-out 1 forwards;
       offset-path: path.linear-path(slider.point($position-b), slider.point($position-a));
     }
   }

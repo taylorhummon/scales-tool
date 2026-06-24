@@ -2,18 +2,18 @@
 @use "@shared/utilities/dial" as dial;
 
 
-$unselected: 0.45;
-$selected: 1;
+$unhighlighted: 0.45;
+$highlighted: 1;
 
-@keyframes fade-from-unselected-to-selected {
+@keyframes fade-from-unhighlighted-to-highlighted {
   0% {
-    opacity: $unselected;
+    opacity: $unhighlighted;
   }
   40% {
-    opacity: $unselected;
+    opacity: $unhighlighted;
   }
   100% {
-    opacity: $selected;
+    opacity: $highlighted;
   }
 }
 
@@ -26,19 +26,19 @@ $selected: 1;
     }
   }
 
-  &.unselected {
-    opacity: $unselected;
+  &.unhighlighted {
+    opacity: $unhighlighted;
   }
 
-  &.selected {
-    opacity: $selected;
+  &.highlighted {
+    opacity: $highlighted;
   }
 
-  &.fade-from-unselected-to-selected {
-    animation: fade-from-unselected-to-selected animation.$duration linear 1 forwards;
+  &.fade-from-unhighlighted-to-highlighted {
+    animation: fade-from-unhighlighted-to-highlighted animation.$duration linear 1 forwards;
   }
 
-  &.fade-from-selected-to-unselected {
-    animation: fade-from-unselected-to-selected animation.$duration linear 1 forwards reverse;
+  &.fade-from-highlighted-to-unhighlighted {
+    animation: fade-from-unhighlighted-to-highlighted animation.$duration linear 1 forwards reverse;
   }
 }
