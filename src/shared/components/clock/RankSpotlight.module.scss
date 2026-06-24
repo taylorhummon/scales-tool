@@ -4,6 +4,8 @@
 @use "@shared/utilities/unitCircle" as unit-circle;
 
 
+$radius: 110;
+
 @keyframes move-rank-spotlight {
   0% {
     offset-distance: 0%;
@@ -12,10 +14,6 @@
     offset-distance: 100%;
   }
 }
-
-
-$radius: 110;
-
 
 .rank-spotlight {
   offset-rotate: 0deg;
