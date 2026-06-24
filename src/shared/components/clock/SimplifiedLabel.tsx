@@ -28,8 +28,8 @@ export function SimplifiedLabel({
       className={getClassName(isInside, startHour, finishHour)}
       data-testid={`simplified-label-${simplifiedLetter}`}
     >
-      <g className={simplifiedLabelCssModule["regular"]}>
-        <text className={simplifiedLabelCssModule["text"]}>
+      <g className={simplifiedLabelCssModule["width-1"]}>
+        <text>
           {simplifiedLetter}
         </text>
       </g>

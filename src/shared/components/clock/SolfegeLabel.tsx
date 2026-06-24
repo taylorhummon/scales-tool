@@ -28,8 +28,8 @@ export function SolfegeLabel({
       className={getClassName(isInside, startHour, finishHour)}
       data-testid={`solfege-label-${solfegeLetter}`}
     >
-      <g className={getDisplacementClassName(solfegeLetter)}>
-        <text className={solfegeLabelCssModule["text"]}>
+      <g className={getWidthClassName(solfegeLetter)}>
+        <text>
           {solfegeLetter}
         </text>
       </g>
@@ -56,12 +56,12 @@ function getClassName(
   return buildClassName(solfegeLabelCssModule, classNames, [ "fixed-width-font" ])
 }
 
-function getDisplacementClassName(
+function getWidthClassName(
   solfegeLetter: SolfegeLetter
 ): string {
   if (solfegeLetter === SolfegeLetter.sol) {
-    return solfegeLabelCssModule["wide"]
+    return solfegeLabelCssModule["width-3"]
   } else {
-    return solfegeLabelCssModule["regular"]
+    return solfegeLabelCssModule["width-2"]
   }
 }
