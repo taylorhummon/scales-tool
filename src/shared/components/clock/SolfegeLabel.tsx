@@ -28,7 +28,9 @@ export function SolfegeLabel({
       className={getClassName(isInside, startHour, finishHour)}
       data-testid={`solfege-label-${solfegeLetter}`}
     >
-      <g className={getWidthClassName(solfegeLetter)}>
+      <g
+        className={solfegeLabelCssModule[`width-${solfegeLetter.length}`]}
+      >
         <text>
           {solfegeLetter}
         </text>
@@ -54,14 +56,4 @@ function getClassName(
     classNames.push(`move-from-${startHour}-to-${finishHour}`)
   }
   return buildClassName(solfegeLabelCssModule, classNames, [ "fixed-width-font" ])
-}
-
-function getWidthClassName(
-  solfegeLetter: SolfegeLetter
-): string {
-  if (solfegeLetter === SolfegeLetter.sol) {
-    return solfegeLabelCssModule["width-3"]
-  } else {
-    return solfegeLabelCssModule["width-2"]
-  }
 }

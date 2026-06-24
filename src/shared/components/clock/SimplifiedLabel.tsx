@@ -28,7 +28,9 @@ export function SimplifiedLabel({
       className={getClassName(isInside, startHour, finishHour)}
       data-testid={`simplified-label-${simplifiedLetter}`}
     >
-      <g className={simplifiedLabelCssModule["width-1"]}>
+      <g
+        className={simplifiedLabelCssModule["width-1"]}
+      >
         <text>
           {simplifiedLetter}
         </text>
