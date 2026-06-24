@@ -35,11 +35,12 @@ export function TriadsTool(
     currentTriadOffset,
     nextTriadOffset,
   } = derived
+  const { animationOption } = clockSettings
 
   // When the user clicks on a button
   const buttonClickHandler = useCallback(
     (motion: Motion) => {
-      if (clockSettings.animationOption === AnimationOption.None) {
+      if (animationOption === AnimationOption.None) {
         dispatch({
           type: ActionType.CompleteMotion,
           nextMusicalKey: getNextMusicalKey({ motion, currentMusicalKey }),
@@ -52,10 +53,10 @@ export function TriadsTool(
     },
     [
       dispatch,
-      clockSettings.animationOption,
+      animationOption,
       currentMusicalKey,
       currentIsCaterpillarPattern,
-      nextTriadOffset,
+      currentTriadOffset,
     ],
   )
 
