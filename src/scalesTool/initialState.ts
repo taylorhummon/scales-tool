@@ -18,7 +18,6 @@ export function getInitialState(
     animationOption: AnimationOption.Combo,
     isUsingRootSpotlight: true,
     isUsingRankSpotlight: false,
-    isUsingRankDial: false,
     motion: Motion.Still,
     root: -2,
     rank: 0,

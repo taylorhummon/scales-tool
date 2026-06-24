@@ -40,7 +40,6 @@ export interface ClockSettings {
   animationOption: AnimationOption,
   isUsingRootSpotlight: boolean,
   isUsingRankSpotlight: boolean,
-  isUsingRankDial: boolean,
 }
 
 export function getCurrentHour(

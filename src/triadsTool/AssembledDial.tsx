@@ -19,10 +19,6 @@ export function AssembledDial({
   buttonClickHandler,
   className,
 }: AssembledDialParameters): React.ReactNode {
-  const { clockSettings } = derived
-  const { isUsingRankDial } = clockSettings
-  if (! isUsingRankDial) return null
-
   return (
     <g className={className}>
       <defs>

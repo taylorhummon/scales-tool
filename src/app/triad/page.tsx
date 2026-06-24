@@ -18,6 +18,9 @@ export default function Page() {
         <li>
           Rotation buttons select a triad.
         </li>
+        <li>
+          Sharp and flat buttons change the rank.
+        </li>
       </ul>
       <TriadsTool />
     </>

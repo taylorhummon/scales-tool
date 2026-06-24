@@ -61,19 +61,11 @@ test("reducer() works for SelectExtraNoteNames action", () => {
   )
 })
 
-test("reducer() works for SelectIsUsingRankDial action", () => {
+test("reducer() works for SelectIsUsingSimplifiedNotes action", () => {
   expect(
     reducer(
       getInitialState(),
-      { type: ActionType.SelectIsUsingRankDial, isUsingRankDial: true },
-    ).isUsingRankDial
-  ).toBe(
-    true
-  )
-  expect(
-    reducer(
-      getInitialState(),
-      { type: ActionType.SelectIsUsingRankDial, isUsingRankDial: true },
+      { type: ActionType.SelectIsUsingSimplifiedNotes, isUsingSimplifiedNotes: true },
     ).insideLabelsOption
   ).toBe(
     LabelsOption.Ordinary
@@ -82,15 +74,7 @@ test("reducer() works for SelectIsUsingRankDial action", () => {
   expect(
     reducer(
       getInitialState(),
-      { type: ActionType.SelectIsUsingRankDial, isUsingRankDial: false },
-    ).isUsingRankDial
-  ).toBe(
-    false
-  )
-  expect(
-    reducer(
-      getInitialState(),
-      { type: ActionType.SelectIsUsingRankDial, isUsingRankDial: false },
+      { type: ActionType.SelectIsUsingSimplifiedNotes, isUsingSimplifiedNotes: false },
     ).insideLabelsOption
   ).toBe(
     LabelsOption.Simplified

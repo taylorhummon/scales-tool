@@ -1,4 +1,5 @@
 import { Caption as CaptionCommon } from "@shared/components/caption/Caption"
+import { LabelsOption } from "@shared/utilities/clock"
 import { type Derived } from "@shared/utilities/derived"
 import { getBalancedMod7 } from "@shared/utilities/math"
 import { simplifiedLetterFromButterflyIndex } from "@shared/utilities/simplifiedLetter"
@@ -26,14 +27,16 @@ export function Caption({
 function getFirstLine(
   derived: Derived,
 ): React.ReactNode {
-  if (derived.clockSettings.isUsingRankDial) {
-    return getFirstLineWhenUsingRankDial(derived)
-  } else {
-    return getFirstLineWhenNotUsingRankDial(derived)
+  if (derived.clockSettings.insideLabelsOption === LabelsOption.Ordinary) {
+    return whenUsingOrdinaryLabels(derived)
   }
+  if (derived.clockSettings.insideLabelsOption === LabelsOption.Simplified) {
+    return whenUsingSimplifiedLabels(derived)
+  }
+  return null
 }
 
-function getFirstLineWhenUsingRankDial(
+function whenUsingOrdinaryLabels(
   derived: Derived,
 ): React.ReactNode {
   const { currentMusicalKey, currentTriadOffset } = derived
@@ -48,7 +51,7 @@ function getFirstLineWhenUsingRankDial(
   )
 }
 
-function getFirstLineWhenNotUsingRankDial(
+function whenUsingSimplifiedLabels(
   derived: Derived,
 ): React.ReactNode {
   const { currentMusicalKey, currentTriadOffset } = derived

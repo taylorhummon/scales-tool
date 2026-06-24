@@ -18,7 +18,6 @@ export interface State {
   animationOption: AnimationOption,
   isUsingRootSpotlight: boolean,
   isUsingRankSpotlight: boolean,
-  isUsingRankDial: boolean,
   // Changing causes animation
   motion: Motion,
   root: number,
@@ -34,8 +33,8 @@ export function reducer(
   if (action.type === ActionType.SelectExtraNoteNames) {
     return reduceSelectExtraNoteNames(state, action.outsideLabelsOption)
   }
-  if (action.type === ActionType.SelectIsUsingRankDial) {
-    return reduceSelectIsUsingRankDial(state, action.isUsingRankDial)
+  if (action.type === ActionType.SelectIsUsingSimplifiedNotes) {
+    return reduceSelectIsUsingSimplifiedNotes(state, action.isUsingSimplifiedNotes)
   }
   if (action.type === ActionType.ActivateMotion) {
     return reduceActivateMotion(state, action.motion)
@@ -55,17 +54,12 @@ function reduceSelectExtraNoteNames(
   return { ...state, outsideLabelsOption, isUsingRankSpotlight }
 }
 
-function reduceSelectIsUsingRankDial(
+function reduceSelectIsUsingSimplifiedNotes(
   state: State,
-  isUsingRankDial: boolean,
+  isUsingSimplifiedNotes: boolean,
 ): State {
-  if (isUsingRankDial) {
-    const insideLabelsOption = LabelsOption.Ordinary
-    return { ...state, isUsingRankDial, insideLabelsOption }
-  } else {
-    const insideLabelsOption = LabelsOption.Simplified
-    return { ...state, isUsingRankDial, insideLabelsOption }
-  }
+  const insideLabelsOption = isUsingSimplifiedNotes ? LabelsOption.Simplified : LabelsOption.Ordinary
+  return { ...state, insideLabelsOption }
 }
 
 function reduceActivateMotion(

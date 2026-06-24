@@ -19,7 +19,6 @@ test("useDerived() works", () => {
     animationOption: AnimationOption.Combo,
     isUsingRootSpotlight: true,
     isUsingRankSpotlight: false,
-    isUsingRankDial: false,
     motion: Motion.IncrementRank,
     root: 2,
     rank: 3,
@@ -58,11 +57,6 @@ test("useDerived() works", () => {
   )
   expect(
     derived.clockSettings.isUsingRankSpotlight
-  ).toBe(
-    false
-  )
-  expect(
-    derived.clockSettings.isUsingRankDial
   ).toBe(
     false
   )

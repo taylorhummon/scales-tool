@@ -12,13 +12,12 @@ export function getInitialState(
 ): State {
   return {
     anchorOption: AnchorOption.RankNote,
-    insideLabelsOption: LabelsOption.Simplified,
+    insideLabelsOption: LabelsOption.Ordinary,
     outsideLabelsOption: LabelsOption.None,
     triadOriginOption: TriadOriginOption.RankNote,
     animationOption: AnimationOption.Combo,
     isUsingRootSpotlight: false,
     isUsingRankSpotlight: false,
-    isUsingRankDial: false,
     motion: Motion.Still,
     root: 0,
     rank: 0,

@@ -5,7 +5,7 @@ import { type Motion } from "@shared/utilities/motion"
 
 export enum ActionType {
   SelectExtraNoteNames = "select-extra-note-names",
-  SelectIsUsingRankDial = "select-is-using-rank-dial",
+  SelectIsUsingSimplifiedNotes = "select-is-using-simplified-notes",
   ActivateMotion = "activate-motion",
   CompleteMotion = "complete-motion",
 }
@@ -16,8 +16,8 @@ export type Action =
     outsideLabelsOption: LabelsOption,
   }
 | {
-    type: ActionType.SelectIsUsingRankDial,
-    isUsingRankDial: boolean,
+    type: ActionType.SelectIsUsingSimplifiedNotes,
+    isUsingSimplifiedNotes: boolean,
   }
 | {
     type: ActionType.ActivateMotion,

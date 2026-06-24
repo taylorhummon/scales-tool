@@ -33,7 +33,6 @@ export function useDerived(
     animationOption,
     isUsingRootSpotlight,
     isUsingRankSpotlight,
-    isUsingRankDial,
     motion,
     root,
     rank,
@@ -50,7 +49,6 @@ export function useDerived(
         animationOption,
         isUsingRootSpotlight,
         isUsingRankSpotlight,
-        isUsingRankDial,
       }
     },
     [
@@ -61,7 +59,6 @@ export function useDerived(
       animationOption,
       isUsingRootSpotlight,
       isUsingRankSpotlight,
-      isUsingRankDial,
     ]
   )
   const currentMusicalKey = useMemo(

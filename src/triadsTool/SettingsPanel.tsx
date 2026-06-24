@@ -2,7 +2,7 @@ import { type ActionDispatch } from "react"
 import { Stack, Switch } from "@mantine/core"
 
 import { type Action, ActionType } from "@shared/utilities/action"
-import { type ClockSettings } from "@shared/utilities/clock"
+import { type ClockSettings, LabelsOption } from "@shared/utilities/clock"
 
 import settingsPanelCssModule from "./SettingsPanel.module.scss"
 
@@ -23,17 +23,17 @@ export function SettingsPanel({
       gap="sm"
     >
       <Switch
-        label="Ranks"
+        label="Simplified notes"
         size={SWITCH_SIZE}
         withThumbIndicator={WITH_THUMB_INDICATOR}
-        checked={clockSettings.isUsingRankDial}
+        checked={clockSettings.insideLabelsOption === LabelsOption.Simplified}
         onChange={(event) => {
           dispatch({
-            type: ActionType.SelectIsUsingRankDial,
-            isUsingRankDial: event.currentTarget.checked,
+            type: ActionType.SelectIsUsingSimplifiedNotes,
+            isUsingSimplifiedNotes: event.currentTarget.checked,
           })
         }}
-        data-testid="ranks-switch"
+        data-testid="simplified-notes-switch"
       />
     </Stack>
   )
