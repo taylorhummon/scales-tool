@@ -1,5 +1,3 @@
-import Link from "next/link"
-
 import { ModesTool } from "@modesTool/ModesTool"
 
 import styles from "./page.module.scss"
@@ -8,11 +6,8 @@ import styles from "./page.module.scss"
 export default function Page() {
   return (
     <>
-      <div className={styles["see-also-links"]}>
-        See also: <Link href="/">Scales Tool</Link> and <Link href="/triad/">Triads Tool</Link>.
-      </div>
       <h1>
-        Explore Modes Visually
+        Modes Tool
       </h1>
       <ul className={styles["instructions"]}>
         <li>

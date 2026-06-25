@@ -1,7 +1,7 @@
-# Scales Tool
+# Visual Music Tools
 
-The Scales Tool allows you to visually explore patterns among musical scales. You can try it
-out at [https://taylorhummon.com/](https://taylorhummon.com/).
+The Visual Music Tool allows you to visually explore patterns among musical scales, modes, 
+and triads. You can try it out at [https://taylorhummon.com/](https://taylorhummon.com/).
 
 
 ## Installation
@@ -15,7 +15,7 @@ follow its [installation instructions](https://pnpm.io/installation).
 
 To install this application's dependencies, change into the project directory and run `pnpm`:
 ```
-cd scales_tool/
+cd visual_music_tools/
 pnpm
 ```
 

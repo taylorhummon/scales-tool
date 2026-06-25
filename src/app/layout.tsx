@@ -12,8 +12,8 @@ import "./globals.scss"
 
 
 export const metadata: Metadata = {
-  title: "Scales Tool",
-  description: "Visualize musical scales!",
+  title: "Visual Music Tools",
+  description: "Visualize scales, modes, and triads!",
 }
 
 interface LayoutParameters {

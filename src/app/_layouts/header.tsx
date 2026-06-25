@@ -20,7 +20,7 @@ export default function Header(
             className={styles["site-title"]}
             href="/"
           >
-            Music Tools
+            Visual Music Tools
           </Link>
           <Link
             className={styles["navigation-link"]}

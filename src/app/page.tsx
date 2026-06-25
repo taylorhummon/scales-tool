@@ -8,11 +8,8 @@ import styles from "./page.module.scss"
 export default function Page() {
   return (
     <>
-      <div className={styles["see-also-links"]}>
-        See also: <Link href="/mode/">Modes Tool</Link> and <Link href="/triad/">Triads Tool</Link>.
-      </div>
       <h1>
-        Explore Scales Visually
+        Scales Tool
       </h1>
       <ul className={styles["instructions"]}>
         <li>
@@ -26,6 +23,9 @@ export default function Page() {
         </li>
       </ul>
       <ScalesTool />
+      <div className={styles["see-also-links"]}>
+        See also: <Link href="/mode/">Modes Tool</Link> and <Link href="/triad/">Triads Tool</Link>.
+      </div>
     </>
   )
 }

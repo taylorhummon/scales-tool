@@ -21,9 +21,9 @@ export default function About(
       </p>
       <p>
         I love making interactive visuals to help make sense of hard topics. Lately I&apos;ve been
-        thinking a bunch about the math behind musical scales, and that&apos;s led me to create
-        the <Link href="/">Scales Tool</Link>. You can take a look at
-        the <ExternalLink href="https://github.com/taylorhummon/scales-tool">source code</ExternalLink>,
+        thinking a bunch about the math behind musical scales, and that&apos;s led me to
+        create <Link href="/">Visual Music Tools</Link>. You can take a look at
+        the <ExternalLink href="https://github.com/taylorhummon/visual-music-tools">source code</ExternalLink>,
         too, if you&apos;re curious.
       </p>
       <p>
