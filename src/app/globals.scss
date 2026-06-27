@@ -89,3 +89,7 @@ select {
 .fixed-width-font {
   font-family: var(--fixed-width-font);
 }
+
+svg text {
+  user-select: none;
+}
